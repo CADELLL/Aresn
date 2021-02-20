@@ -1,3 +1,8 @@
+<?php
+require 'functions.php';
+$siswa = query("SELECT * FROM tb_siswa");
+$uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,25 +26,29 @@
 
     <div id="sidebar">
         <ul>
-            <li><a href="#"><span class="hide">User </span><i class='bx bx-user'></i></a></li>
-            <li><a href="#"><span class="hide">User </span><i class='bx bx-user'></i></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
+            <li><a href="index.php" class=""><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
         </ul>
     </div>
 
     <div id="konten">
+        <p class="h2">Informasi</p>
         <section id="informasi">
-            <div class="kartu siswa">
-                Siswa
-            </div>
-            <div class="kartu pembayaran">
+            <a href="siswa/index.php" class="kartu siswa">
+                Jumlah Siswa
+                <div class="jumlah">
+                    <?= count($siswa); ?>
+                </div>
+            </a href="#">
+            <a href="#" class="kartu pembayaran">
                 Pembayaran
-            </div>
-            <div class="kartu kelas">
+            </a href="#">
+            <a href="#" class="kartu kelas">
                 Kelas
-            </div>
-            <div class="kartu pengguna">
+            </a href="#">
+            <a href="#" class="kartu pengguna">
                 Pengguna
-            </div>
+            </a href="#">
         </section>
     </div>
 
