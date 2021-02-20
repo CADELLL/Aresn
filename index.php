@@ -25,14 +25,18 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     </nav>
 
     <div id="sidebar">
+        <p id="menu">Menu</p>
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
-            <li><a href="index.php" class=""><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
+            <li><a href="siswa/index.php"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
         </ul>
     </div>
 
     <div id="konten">
-        <p class="h2">Informasi</p>
+        <span id="aksi">
+            <p class="h2">Informasi Singkat</p>
+        </span>
+
         <section id="informasi">
             <a href="siswa/index.php" class="kartu siswa">
                 Jumlah Siswa
@@ -52,9 +56,6 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         </section>
     </div>
 
-    <footer>
-        <a href="">Hafid Ardiansyah</a>
-    </footer>
 </body>
 
 </html>

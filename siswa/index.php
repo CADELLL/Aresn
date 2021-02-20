@@ -13,38 +13,59 @@ $no = 1;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Siswa</title>
     <link rel="stylesheet" href="../style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <a href="tambah.php">Tambah Data</a>
-    <h1>Daftar Siswa</h1>
-    <hr>
-    <table>
-        <tr>
-            <td>No</td>
-            <td>Nisn</td>
-            <td>Nis</td>
-            <td>Nama</td>
-            <td>Kelas</td>
-            <td>Alamat</td>
-            <td>No telepon</td>
-            <td>Pengaturan</td>
-        </tr>
-        <?php foreach ($siswa as $s) : ?>
+    <nav>
+        <form action="" method="POST">
+            <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
+            <button type="submit" name="cari">Cari</button>
+        </form>
+        <a href="profil.php">Profil</a>
+    </nav>
+
+    <div id="sidebar">
+        <p id="menu">Menu</p>
+        <ul>
+            <li><a href="../index.php"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
+        </ul>
+    </div>
+
+    <div id="konten">
+        <span id="aksi">
+            <p class="h2">Daftar Siswa</p>
+            <a href="tambah.php" class="href hijau">Tambah Data</a>
+        </span>
+        <table>
             <tr>
-                <td><?= $no++; ?></td>
-                <td><?= $s['nisn']; ?></td>
-                <td><?= $s['nis']; ?></td>
-                <td><?= $s['nama']; ?></td>
-                <td><?= $s['id_kelas']; ?></td>
-                <td><?= $s['alamat']; ?></td>
-                <td><?= $s['no_telepon']; ?></td>
-                <td>
-                    <a href="edit.php">Edit</a> | <a href="hapus.php">Hapus</a>
-                </td>
+                <td>No</td>
+                <td>Nisn</td>
+                <td>Nis</td>
+                <td>Nama</td>
+                <td>Kelas</td>
+                <td>Alamat</td>
+                <td>No telepon</td>
+                <td>Pengaturan</td>
             </tr>
-        <?php endforeach; ?>
-    </table>
+            <?php foreach ($siswa as $s) : ?>
+                <tr>
+                    <td><?= $no++; ?></td>
+                    <td><?= $s['nisn']; ?></td>
+                    <td><?= $s['nis']; ?></td>
+                    <td><?= $s['nama']; ?></td>
+                    <td><?= $s['id_kelas']; ?></td>
+                    <td><?= $s['alamat']; ?></td>
+                    <td><?= $s['no_telepon']; ?></td>
+                    <td>
+                        <a href="edit.php?n=<?= $s['nisn'] ?>" class="href kuning">Edit
+                            <a href="hapus.php?n=<?= $s['nisn'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
 </body>
 
 </html>
