@@ -1,15 +1,20 @@
 <?php
 require '../functions.php';
+$nisn = $_GET['n'];
+
+$siswa = query("SELECT * FROM tb_siswa 
+JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id 
+JOIN tb_spp ON tb_siswa.id_spp = tb_spp.id 
+WHERE tb_siswa.nisn = $nisn")[0];
+
 $kelas = query("SELECT * FROM tb_kelas");
 $spp = query("SELECT * FROM tb_spp");
 
-if (isset($_POST['tambah'])) {
-    if (tambahSiswa($_POST) > 0) {
+if (isset($_POST['ubah'])) {
+    if (ubahSiswa($_POST) > 0) {
         header("Location: index.php");
-        die;
     } else {
-        echo ('data sudah ada');
-        die;
+        header("Location: index.php");
     }
 }
 ?>
@@ -49,25 +54,26 @@ if (isset($_POST['tambah'])) {
             <a href="index.php" class="href">Kembali</a>
         </span>
         <form action="" method="POST">
+            <input type="hidden" name="nisn" value="<?= $siswa['nisn'] ?>">
+            <input type="hidden" name="nisLama" value="<?= $siswa['nis'] ?>">
             <table>
                 <tr>
-                    <td><label for="nisn">NISN</label></td>
-                    <td><input type="number" name="nisn" class="input-form" id="nisn" maxlength="13" placeholder="Masukkan NISN!" required autocomplete="off"></td>
-                </tr>
-                <tr>
                     <td><label for="nis">NIS</label></td>
-                    <td><input type="number" name="nis" class="input-form" id="nis" maxlength="8" placeholder="Masukkan NIS!" required autocomplete="off"></td>
+                    <td><input type="number" name="nis" class="input-form" id="nis" value="<?= $siswa['nis']; ?>" placeholder="Masukkan NIS!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="nama">Nama</label></td>
-                    <td><input type="text" name="nama" class="input-form" id="nama" maxlength="35" placeholder="Masukkan Nama!" required autocomplete="off"></td>
+                    <td><input type="text" name="nama" class="input-form" id="nama" value="<?= $siswa['nama']; ?>" placeholder="Masukkan Nama!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="id_kelas">Kelas</label></td>
                     <td>
                         <select name="id_kelas" id="id_kelas" required>
+                            <option value="<?= $siswa['id_kelas'] ?>"><?= $siswa['kelas'] ?></option>
                             <?php foreach ($kelas as $k) : ?>
-                                <option value="<?= $k['id'] ?>"><?= $k['kelas'] ?></option>
+                                <?php if ($k['id'] != $siswa['id_kelas']) : ?>
+                                    <option value="<?= $k['id'] ?>"><?= $k['kelas'] ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </td>
@@ -75,25 +81,28 @@ if (isset($_POST['tambah'])) {
                 <tr>
                     <td><label for="alamat">Alamat</label></td>
                     <td>
-                        <input type="text" name="alamat" class="input-form" id="alamat" placeholder="Masukkan Alamat!" required autocomplete="off">
+                        <input type="text" name="alamat" class="input-form" id="alamat" value="<?= $siswa['alamat'] ?>" placeholder="Masukkan Alamat!" required autocomplete="off">
                     </td>
                 </tr>
                 <tr>
                     <td><label for="no_telepon">No Telepon</label></td>
-                    <td><input type="number" name="no_telepon" class="input-form" id="no_telepon" maxlength="13" placeholder="Masukkan No Telepon!" required autocomplete="off"></td>
+                    <td><input type="number" name="no_telepon" class="input-form" id="no_telepon" value="<?= $siswa['no_telepon'] ?>" placeholder="Masukkan No Telepon!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="id_spp">SPP</label></td>
                     <td>
                         <select name="id_spp" id="id_spp">
+                            <option value="<?= $siswa['id_spp'] ?>">Tahun <?= $siswa['tahun'] ?> - Rp. <?= number_format($siswa['nominal'], 2, ',', '.') ?></option>
                             <?php foreach ($spp as $s) : ?>
-                                <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Rp. <?= number_format($s['nominal'], 2, ',', '.') ?></option>
+                                <?php if ($s['id'] != $siswa['id_spp']) : ?>
+                                    <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Rp. <?= number_format($s['nominal'], 2, ',', '.') ?></option>
+                                <?php endif ?>
                             <?php endforeach; ?>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="text-align: center;"><button type="submit" name="tambah" class="hijau">Tambah</button></td>
+                    <td colspan="2" style="text-align: center;"><button type="submit" name="ubah" class="hijau">Ubah</button></td>
                 </tr>
             </table>
 

@@ -1,7 +1,12 @@
 <?php
 require '../functions.php';
-$siswa = query("SELECT * FROM tb_siswa");
+$siswa = query("SELECT * FROM tb_siswa JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id");
 $no = 1;
+
+if (isset($_POST['cari'])) {
+    $siswa = cariSiswa($_POST['kataKunci']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -55,12 +60,12 @@ $no = 1;
                     <td><?= $s['nisn']; ?></td>
                     <td><?= $s['nis']; ?></td>
                     <td><?= $s['nama']; ?></td>
-                    <td><?= $s['id_kelas']; ?></td>
+                    <td><?= $s['kelas']; ?></td>
                     <td><?= $s['alamat']; ?></td>
                     <td><?= $s['no_telepon']; ?></td>
                     <td>
-                        <a href="edit.php?n=<?= $s['nisn'] ?>" class="href kuning">Edit
-                            <a href="hapus.php?n=<?= $s['nisn'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
+                        <a href="ubah.php?n=<?= $s['nisn'] ?>" class="href kuning">Ubah</a>
+                        <a href="hapus.php?n=<?= $s['nisn'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
