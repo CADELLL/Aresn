@@ -158,7 +158,7 @@ select {
   border: 0;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
   height: 38px;
-  width: 250px;
+  width: 100%;
   padding: 6px 10px;
   box-sizing: border-box;
   background-color: rgb(250, 250, 250);
@@ -230,13 +230,35 @@ nav {
   position: fixed;
 }
 
-/* Style */
-form .input-form {
-  width: 100%;
+nav form input[type="text"] {
+  width: 250px;
 }
+
+/* Style */
 
 .h2 {
   font-size: 24px;
+}
+
+.info {
+  border-radius: 5px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  margin: 10px 0px;
+  width: 100%;
+  height: 50px;
+  font-size: 14px;
+  line-height: 50px;
+}
+
+.info-merah {
+  background-color: #f8d7da;
+  color: red;
+}
+
+.info-hijau {
+  background-color: #d1e7dd;
+  color: green;
 }
 
 #sidebar {
@@ -350,7 +372,7 @@ form .input-form {
 }
 
 @media (max-width: 720px) {
-  input[type="text"] {
+  nav form input[type="text"] {
     width: 200px;
   }
 

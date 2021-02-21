@@ -29,6 +29,8 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
             <li><a href="siswa/index.php"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
+            <li><a href="autentikasi/masuk.php"><span class="hide">Masuk </span><i class='bx bx-user'></i></a></li>
+            <li><a href="autentikasi/daftar.php"><span class="hide">Daftar </span><i class='bx bx-user'></i></a></li>
         </ul>
     </div>
 

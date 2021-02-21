@@ -104,3 +104,42 @@ function cariSiswa($kataKunci)
 
     return query($query);
 }
+
+
+function daftar($data)
+{
+    global $koneksi;
+
+    $email = strtolower(stripslashes(htmlspecialchars($data["email"])));
+    $kata_sandi = htmlspecialchars($data["kata_sandi"]);
+    $kata_sandi2 = htmlspecialchars($data["kata_sandi2"]);
+    $nama = strtolower(stripslashes(htmlspecialchars($data["nama"])));
+
+
+    // cek nama_pengguna sudah ada atau belum
+    $result = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
+
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+				alert('Akun Sudah Terdaftar!')
+		      </script>";
+        return false;
+    }
+
+
+    // cek konfirmasi kata_sandi
+    if ($kata_sandi !== $kata_sandi2) {
+        echo "<script>
+				alert('Konfirmasi Kata Sandi Tidak Sesuai!');
+		      </script>";
+        return false;
+    }
+
+    // enkripsi kata_sandi
+    $kata_sandi = password_hash($kata_sandi, PASSWORD_DEFAULT);
+
+    // tambahkan userbaru ke database
+    mysqli_query($koneksi, "INSERT INTO tb_pengguna VALUES('', '$email', '$kata_sandi','$nama', 'siswa')");
+
+    return mysqli_affected_rows($koneksi);
+}
