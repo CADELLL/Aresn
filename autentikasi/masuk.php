@@ -1,6 +1,25 @@
 <?php
 session_start();
 
+if (isset($_SESSION["tingkat"]) == 'admin') {
+    echo "
+		<script>
+			alert('Tidak dapat mengakses fitur!');
+            document.location.href = '../admin.php';
+		</script>
+	";
+    exit;
+}
+if (isset($_SESSION["tingkat"]) == 'petugas') {
+    echo "
+		<script>
+			alert('Tidak dapat mengakses fitur!');
+            document.location.href = '../petugas.php';
+		</script>
+	";
+    exit;
+}
+
 require '../functions.php';
 
 if (isset($_POST["masuk"])) {

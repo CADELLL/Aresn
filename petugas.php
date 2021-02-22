@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["tingkat"]) != "petugas") {
+if (isset($_SESSION["tingkat"]) !== "petugas") {
     echo "
 		<script>
 			alert('Tidak dapat mengakses fitur!');

@@ -1,5 +1,15 @@
 <?php
+session_start();
 
+if (isset($_SESSION["tingkat"]) !== 'admin') {
+	echo "
+		<script>
+			alert('Tidak dapat mengakses fitur!');
+            window.history.back();
+		</script>
+	";
+	exit;
+}
 require '../functions.php';
 
 $nisn = $_GET["n"];

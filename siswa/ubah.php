@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["tingkat"]) != 'admin') {
+if (isset($_SESSION["tingkat"]) !== 'admin') {
     echo "
 		<script>
 			alert('Tidak dapat mengakses fitur ini!');
@@ -65,7 +65,7 @@ if (isset($_POST['ubah'])) {
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
+            <li><a href="../<?= $_SESSION['tingkat'] ?>.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
             <li><a href="index.php" class="active"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
