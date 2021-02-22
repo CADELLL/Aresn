@@ -1,5 +1,15 @@
 <?php
+session_start();
 
+if (isset($_SESSION["tingkat"]) != 'admin') {
+    echo "
+		<script>
+            alert('Tidak dapat mengakses fitur ini!');
+            window.history.back();
+		</script>
+	";
+    exit;
+}
 require '../functions.php';
 
 $siswa = query("SELECT * FROM tb_siswa JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id");
@@ -29,7 +39,7 @@ if (isset($_POST['cari'])) {
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
             <button type="submit" name="cari">Cari</button>
         </form>
-        <a href="profil.php">Profil</a>
+        <p><?= $_SESSION["nama"] ?></p>
     </nav>
 
     <div id="sidebar">
@@ -40,6 +50,7 @@ if (isset($_POST['cari'])) {
             <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
             <li><a href="../pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
+            <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
     </div>
 

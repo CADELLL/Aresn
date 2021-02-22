@@ -159,34 +159,6 @@ function daftar($data)
     return mysqli_affected_rows($koneksi);
 }
 
-function masuk($data)
-{
-    global $koneksi;
-
-    $email = htmlspecialchars($data["email"]);
-    $kataSandi = htmlspecialchars($data["kata_sandi"]);
-
-    $hasil = mysqli_query($koneksi, "SELECT * FROM tb_pengguna WHERE email = '$email'");
-
-    // cek email
-    if (mysqli_num_rows($hasil) === 1) {
-
-        // cek kata_sandi
-        $row = mysqli_fetch_assoc($hasil);
-        if ($kataSandi == $row["kata_sandi"]) {
-            // if ($row["tingkat"] == "admin") {
-            //     $_SESSION["nama"] = $row['nama'];
-            //     $_SESSION["tingkat"] = "admin";
-            // } else if ($row["tingkat"] == "petugas") {
-            //     $_SESSION["nama"] = $row['nama'];
-            //     $_SESSION["tingkat"] = "admin";
-            // } else {
-            header('location:../index.php');
-            // }
-        }
-    }
-}
-
 // Petugas
 
 function tambahPetugas($data)
@@ -227,7 +199,7 @@ function ubahPetugas($data)
     global $koneksi;
 
     $id = $data["id"];
-    $emailLama = $data["emailLama"];
+    $email_lama = $data["email_lama"];
 
     $email = htmlspecialchars($data["email"]);
     $kataSandi = htmlspecialchars($data["kata_sandi"]);
@@ -238,7 +210,7 @@ function ubahPetugas($data)
     // cek nama_pengguna sudah ada atau belum
     $hasil = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
 
-    if ($email !== $emailLama && mysqli_fetch_assoc($hasil)) {
+    if ($email !== $email_lama && mysqli_fetch_assoc($hasil)) {
         echo "<script>
                 alert('Akun sudah terdaftar');
             </script>";
@@ -386,6 +358,7 @@ function ubahPembayaran($data)
 
     $id_petugas = $data['id_petugas'];
     $id_pembayaran = $data['id_pembayaran'];
+    $nisn_lama = $data['nisn_lama'];
     $nisn = htmlspecialchars($data['nisn']);
     $tanggal_bayar = htmlspecialchars($data['tanggal_bayar']);
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
@@ -393,9 +366,9 @@ function ubahPembayaran($data)
     $id_spp = htmlspecialchars($data['id_spp']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
-    $hasil = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
+    $hasil = mysqli_query($koneksi, "SELECT nisn FROM tb_nisn WHERE nisn = '$nisn'");
 
-    if (mysqli_fetch_assoc($hasil)) {
+    if ($nisn !== $nisn_lama && mysqli_fetch_assoc($hasil)) {
         echo "<script>
 				alert('NISN tidak terdaftar!')
 		      </script>";

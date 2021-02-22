@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if (isset($_SESSION["tingkat"]) != "petugas") {
+    echo "
+		<script>
+			alert('Tidak dapat mengakses fitur!');
+            window.history.back();
+		</script>
+	";
+    exit;
+}
 
 require 'functions.php';
 $siswa = query("SELECT * FROM tb_siswa");
@@ -25,15 +36,15 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
             <button type="submit" name="cari">Cari</button>
         </form>
-        <p>SMKN 1 Kepanjen</p>
+        <p><?= $_SESSION["nama"] ?></p>
     </nav>
 
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="pembayaran/detail.php"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
-            <li><a href="autentikasi/masuk.php"><span class="hide">Masuk </span><span class="hide-icon"><i class='bx bx-log-in'></i></span></a></li>
+            <li><a href="pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
+            <li><a href="autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
     </div>
 

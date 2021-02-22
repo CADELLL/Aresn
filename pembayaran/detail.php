@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION["tingkat"]) == "") {
+if (isset($_SESSION["tingkat"]) != "siswa") {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -13,10 +13,10 @@ if (isset($_SESSION["tingkat"]) == "") {
 }
 
 require '../functions.php';
-
 $pembayaran = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran
                     JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
-                    JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp");
+                    JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp
+                    WHERE tb_pembayaran.nisn");
 $no = 1;
 
 if (isset($_POST['cari'])) {

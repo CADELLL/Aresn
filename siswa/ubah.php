@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if (isset($_SESSION["tingkat"]) != 'admin') {
+    echo "
+		<script>
+			alert('Tidak dapat mengakses fitur ini!');
+			window.history.back();
+		</script>
+	";
+    exit;
+}
 
 require '../functions.php';
 
@@ -48,7 +59,7 @@ if (isset($_POST['ubah'])) {
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autocomplete="off">
             <button type="submit" name="cari">Cari</button>
         </form>
-        <a href="profil.php">Profil</a>
+        <p><?= $_SESSION["nama"] ?></p>
     </nav>
 
     <div id="sidebar">
@@ -59,12 +70,13 @@ if (isset($_POST['ubah'])) {
             <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
             <li><a href="../pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
+            <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
     </div>
 
     <div id="konten">
         <span id="aksi">
-            <p class="h2">Ubah siswa</p>
+            <p><?= $_SESSION["nama"] ?? 'Profile' ?></p>
             <a href="index.php" class="href">Kembali</a>
         </span>
 

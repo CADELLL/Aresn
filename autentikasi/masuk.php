@@ -1,13 +1,46 @@
 <?php
+session_start();
+
 require '../functions.php';
 
 if (isset($_POST["masuk"])) {
 
-    if (masuk($_POST) > 0) {
-        echo "<script>
-				alert('User baru berhasil ditambahkan!');
-                document.location.href = 'masuk.php';
-			  </script>";
+    $koneksi = mysqli_connect("localhost", "root", "", "db_spp");
+
+    $email = $_POST["email"];
+    $kataSandi = $_POST["kata_sandi"];
+
+    $hasil = mysqli_query($koneksi, "SELECT * FROM tb_pengguna WHERE email = '$email'");
+
+    // cek email
+    if (mysqli_num_rows($hasil) === 1) {
+
+        // cek kata_sandi
+        $row = mysqli_fetch_assoc($hasil);
+        if ($kataSandi == $row["kata_sandi"]) {
+            if ($row["tingkat"] == "admin") {
+                $_SESSION["id"] = $row['id'];
+                $_SESSION["nama"] = $row['nama'];
+                $_SESSION["tingkat"] = "admin";
+                header('Location: ../admin.php');
+                exit;
+            } else if ($row["tingkat"] == "petugas") {
+                $_SESSION["id"] = $row['id'];
+                $_SESSION["nama"] = $row['nama'];
+                $_SESSION["tingkat"] = "petugas";
+                header('Location: ../petugas.php');
+                exit;
+                // } else if ($row["tingkat"] == "siswa") {
+                //     $_SESSION["id"] = $row['id'];
+                //     $_SESSION["nama"] = $row['nama'];
+                //     $_SESSION["tingkat"] = "siswa";
+                //     header('Location: ../siswa.php');
+                //     exit;
+            } else {
+                header('Location: ../index.php');
+                exit;
+            }
+        }
     }
     $error = true;
 }
