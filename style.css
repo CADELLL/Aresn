@@ -253,12 +253,12 @@ nav form input[type="text"] {
 
 .info-merah {
   background-color: #f8d7da;
-  color: red;
+  color: darkred;
 }
 
 .info-hijau {
   background-color: #d1e7dd;
-  color: green;
+  color: darkgreen;
 }
 
 #sidebar {

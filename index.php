@@ -2,6 +2,7 @@
 require 'functions.php';
 $siswa = query("SELECT * FROM tb_siswa");
 $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -29,6 +30,7 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
             <li><a href="siswa/index.php"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
+            <li><a href="petugas/index.php"><span class="hide">Petugas </span><i class='bx bx-user'></i></a></li>
             <li><a href="autentikasi/masuk.php"><span class="hide">Masuk </span><i class='bx bx-user'></i></a></li>
             <li><a href="autentikasi/daftar.php"><span class="hide">Daftar </span><i class='bx bx-user'></i></a></li>
         </ul>

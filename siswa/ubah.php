@@ -1,5 +1,7 @@
 <?php
+
 require '../functions.php';
+
 $nisn = $_GET['n'];
 
 $siswa = query("SELECT * FROM tb_siswa 
@@ -12,11 +14,24 @@ $spp = query("SELECT * FROM tb_spp");
 
 if (isset($_POST['ubah'])) {
     if (ubahSiswa($_POST) > 0) {
-        header("Location: index.php");
+        echo ("
+        <script>
+			alert('Data berhasil diubah!');
+			document.location.href = 'index.php';
+		</script>
+        ");
+        exit;
     } else {
-        header("Location: index.php");
+        echo ("
+        <script>
+			alert('Data tidak diubah!');
+			document.location.href = 'index.php';
+		</script>
+        ");
+        exit;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -26,15 +41,15 @@ if (isset($_POST['ubah'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Siswa</title>
+    <title>Ubah siswa</title>
     <link rel="stylesheet" href="../style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
     <nav>
-        <form action="" method="POST">
-            <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
+        <form action="index.php" method="POST">
+            <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autocomplete="off">
             <button type="submit" name="cari">Cari</button>
         </form>
         <a href="profil.php">Profil</a>
@@ -45,25 +60,27 @@ if (isset($_POST['ubah'])) {
         <ul>
             <li><a href="../index.php"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
             <li><a href="index.php" class="active"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
+            <li><a href="../petugas/index.php"><span class="hide">Petugas </span><i class='bx bx-user'></i></a></li>
         </ul>
     </div>
 
     <div id="konten">
         <span id="aksi">
-            <p class="h2">Tambah Data</p>
+            <p class="h2">Ubah siswa</p>
             <a href="index.php" class="href">Kembali</a>
         </span>
+
         <form action="" method="POST">
             <input type="hidden" name="nisn" value="<?= $siswa['nisn'] ?>">
             <input type="hidden" name="nisLama" value="<?= $siswa['nis'] ?>">
             <table>
                 <tr>
                     <td><label for="nis">NIS</label></td>
-                    <td><input type="number" name="nis" class="input-form" id="nis" value="<?= $siswa['nis']; ?>" placeholder="Masukkan NIS!" required autocomplete="off"></td>
+                    <td><input type="number" name="nis" class="input-form" id="nis" value="<?= $siswa['nis']; ?>" maxlength="8" placeholder="Masukkan NIS!" autofocus required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="nama">Nama</label></td>
-                    <td><input type="text" name="nama" class="input-form" id="nama" value="<?= $siswa['nama']; ?>" placeholder="Masukkan Nama!" required autocomplete="off"></td>
+                    <td><input type="text" name="nama" class="input-form" id="nama" value="<?= $siswa['nama']; ?>" maxlength="35" placeholder="Masukkan nama!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="id_kelas">Kelas</label></td>
@@ -81,12 +98,12 @@ if (isset($_POST['ubah'])) {
                 <tr>
                     <td><label for="alamat">Alamat</label></td>
                     <td>
-                        <input type="text" name="alamat" class="input-form" id="alamat" value="<?= $siswa['alamat'] ?>" placeholder="Masukkan Alamat!" required autocomplete="off">
+                        <input type="text" name="alamat" class="input-form" id="alamat" value="<?= $siswa['alamat'] ?>" placeholder="Masukkan alamat!" required autocomplete="off">
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="no_telepon">No Telepon</label></td>
-                    <td><input type="number" name="no_telepon" class="input-form" id="no_telepon" value="<?= $siswa['no_telepon'] ?>" placeholder="Masukkan No Telepon!" required autocomplete="off"></td>
+                    <td><label for="no_telepon">No telepon</label></td>
+                    <td><input type="number" name="no_telepon" class="input-form" id="no_telepon" maxlength="13" value="<?= $siswa['no_telepon'] ?>" placeholder="Masukkan no telepon!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="id_spp">SPP</label></td>

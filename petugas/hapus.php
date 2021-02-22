@@ -2,9 +2,9 @@
 
 require '../functions.php';
 
-$nisn = $_GET["n"];
+$id = $_GET["i"];
 
-if (hapusSiswa($nisn) > 0) {
+if (hapusPetugas($id) > 0) {
 	echo "
 		<script>
 			alert('Data berhasil dihapus!');

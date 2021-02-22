@@ -5,3 +5,7 @@
 - Membuat template website
 - CRUD Semua halaman
 - Auth System
+
+## Trigger
+
+- SPP

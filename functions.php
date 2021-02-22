@@ -29,11 +29,28 @@ function tambahSiswa($data)
     $no_telepon = htmlspecialchars($data['no_telepon']);
     $id_spp = htmlspecialchars($data['id_spp']);
 
-    // cek nisn
-    $hasil = mysqli_query($koneksi, "SELECT nisn FROM tb_nisn WHERE nisn = '$nisn'");
+    // cek nisn sudah terdaftar apa belum di tabel nisn
+    $tbNisn = mysqli_query($koneksi, "SELECT nisn FROM tb_nisn WHERE nisn = '$nisn'");
 
-    if ($nisn !== mysqli_fetch_assoc($hasil)['nisn']) {
-        die;
+    if (!mysqli_fetch_assoc($tbNisn)) {
+        echo ("
+        <script>
+        	alert('NISN tidak terdaftar!');
+        </script>
+        ");
+        return false;
+    }
+
+    // cek nisn sudah terdfatar apa belum di tabel siswa
+    $tbSiswa = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
+
+    if (mysqli_fetch_assoc($tbSiswa)) {
+        echo ("
+        <script>
+        	alert('NISN sudah terdaftar!');
+        </script>
+        ");
+        return false;
     }
 
     $query = "INSERT INTO tb_siswa VALUES ('$nisn','$nis','$nama','$id_kelas','$alamat','$no_telepon','$id_spp')";
@@ -59,13 +76,11 @@ function ubahSiswa($data)
     // cek nisn
     $hasil = mysqli_query($koneksi, "SELECT nis FROM tb_siswa WHERE nis = '$nis'");
 
-    // var_dump(mysqli_fetch_assoc($hasil));
-    // var_dump($nisLama);
-    // var_dump($nis);
-    // die;
-
-    if (mysqli_fetch_assoc($hasil)) {
-        $nis = $nisLama;
+    if ($nis !== $nisLama && mysqli_fetch_assoc($hasil)) {
+        echo "<script>
+             alert('NIS sudah terdaftar');
+           </script>";
+        return false;
     }
 
     $query = "UPDATE tb_siswa SET 
@@ -105,41 +120,166 @@ function cariSiswa($kataKunci)
     return query($query);
 }
 
+// Autentikasi
 
 function daftar($data)
 {
     global $koneksi;
 
     $email = strtolower(stripslashes(htmlspecialchars($data["email"])));
-    $kata_sandi = htmlspecialchars($data["kata_sandi"]);
-    $kata_sandi2 = htmlspecialchars($data["kata_sandi2"]);
-    $nama = strtolower(stripslashes(htmlspecialchars($data["nama"])));
+    $kataSandi = htmlspecialchars($data["kata_sandi"]);
+    $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
+    $nama = htmlspecialchars($data["nama"]);
 
 
     // cek nama_pengguna sudah ada atau belum
-    $result = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
+    $hasil = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
 
-    if (mysqli_fetch_assoc($result)) {
+    if (mysqli_fetch_assoc($hasil)) {
         echo "<script>
-				alert('Akun Sudah Terdaftar!')
+				alert('Akun sudah terdaftar!')
 		      </script>";
         return false;
     }
 
 
     // cek konfirmasi kata_sandi
-    if ($kata_sandi !== $kata_sandi2) {
+    if ($kataSandi !== $kataSandi2) {
         echo "<script>
-				alert('Konfirmasi Kata Sandi Tidak Sesuai!');
+				alert('Konfirmasi kata sandi tidak sesuai!');
 		      </script>";
         return false;
     }
 
-    // enkripsi kata_sandi
-    $kata_sandi = password_hash($kata_sandi, PASSWORD_DEFAULT);
-
     // tambahkan userbaru ke database
-    mysqli_query($koneksi, "INSERT INTO tb_pengguna VALUES('', '$email', '$kata_sandi','$nama', 'siswa')");
+    mysqli_query($koneksi, "INSERT INTO tb_pengguna VALUES('', '$email', '$kataSandi','$nama', 'siswa')");
 
     return mysqli_affected_rows($koneksi);
+}
+
+function masuk($data)
+{
+    global $koneksi;
+
+    $email = htmlspecialchars($data["email"]);
+    $kataSandi = htmlspecialchars($data["kata_sandi"]);
+
+    $hasil = mysqli_query($koneksi, "SELECT * FROM tb_pengguna WHERE email = '$email'");
+
+    // cek email
+    if (mysqli_num_rows($hasil) === 1) {
+
+        // cek kata_sandi
+        $row = mysqli_fetch_assoc($hasil);
+        if ($kataSandi == $row["kata_sandi"]) {
+            // if ($row["tingkat"] == "admin") {
+            //     $_SESSION["nama"] = $row['nama'];
+            //     $_SESSION["tingkat"] = "admin";
+            // } else if ($row["tingkat"] == "petugas") {
+            //     $_SESSION["nama"] = $row['nama'];
+            //     $_SESSION["tingkat"] = "admin";
+            // } else {
+            header('location:../index.php');
+            // }
+        }
+    }
+}
+
+// Petugas
+
+function tambahPetugas($data)
+{
+    global $koneksi;
+
+    $email = strtolower(stripslashes(htmlspecialchars($data["email"])));
+    $kataSandi = htmlspecialchars($data["kata_sandi"]);
+    $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
+    $nama = strtolower(stripslashes(htmlspecialchars($data["nama"])));
+
+    // cek nama_pengguna sudah ada atau belum
+    $hasil = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
+
+    if (mysqli_fetch_assoc($hasil)) {
+        echo "<script>
+				alert('Akun sudah terdaftar!')
+		      </script>";
+        return false;
+    }
+
+    // cek konfirmasi kata_sandi
+    if ($kataSandi !== $kataSandi2) {
+        echo "<script>
+				alert('Konfirmasi kata sandi tidak sesuai!');
+		      </script>";
+        return false;
+    }
+
+    // tambahkan userbaru ke database
+    mysqli_query($koneksi, "INSERT INTO tb_pengguna VALUES('', '$email', '$kataSandi','$nama', 'petugas')");
+
+    return mysqli_affected_rows($koneksi);
+}
+
+function ubahPetugas($data)
+{
+    global $koneksi;
+
+    $id = $data["id"];
+    $emailLama = $data["emailLama"];
+
+    $email = strtolower(stripslashes(htmlspecialchars($data["email"])));
+    $kataSandi = htmlspecialchars($data["kata_sandi"]);
+    $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
+    $nama = htmlspecialchars($data["nama"]);
+
+
+    // cek nama_pengguna sudah ada atau belum
+    $hasil = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
+
+    if ($email !== $emailLama && mysqli_fetch_assoc($hasil)) {
+        echo "<script>
+             alert('Akun sudah terdaftar');
+           </script>";
+        return false;
+    }
+
+    // cek konfirmasi kata_sandi
+    if ($kataSandi !== $kataSandi2) {
+        echo "<script>
+             alert('Konfirmasi kata sandi tidak sesuai!');
+           </script>";
+        return false;
+    }
+
+    mysqli_query(
+        $koneksi,
+        "UPDATE tb_pengguna SET
+            email = '$email', 
+            kata_sandi = '$kataSandi',
+            nama = '$nama'
+        WHERE id = $id
+        "
+    );
+
+    return mysqli_affected_rows($koneksi);
+}
+
+
+function hapusPetugas($id)
+{
+    global $koneksi;
+
+    mysqli_query($koneksi, "DELETE FROM tb_pengguna WHERE id = '$id' AND tingkat = 'petugas'");
+    return mysqli_affected_rows($koneksi);
+}
+
+
+function cariPetugas($kataKunci)
+{
+    $query = "SELECT * FROM tb_pengguna WHERE 
+    nama LIKE '%$kataKunci%' OR
+    email LIKE '%$kataKunci%' OR
+    kata_sandi LIKE '%$kataKunci%'
+    AND tingkat = 'petugas'";
+    return query($query);
 }
