@@ -5,29 +5,25 @@ require '../functions.php';
 $nisn = $_GET['n'];
 
 $siswa = query("SELECT * FROM tb_siswa 
-JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id 
-JOIN tb_spp ON tb_siswa.id_spp = tb_spp.id 
-WHERE tb_siswa.nisn = $nisn")[0];
+                JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id 
+                JOIN tb_spp ON tb_siswa.id_spp = tb_spp.id 
+                WHERE tb_siswa.nisn = $nisn")[0];
 
 $kelas = query("SELECT * FROM tb_kelas");
 $spp = query("SELECT * FROM tb_spp");
 
 if (isset($_POST['ubah'])) {
     if (ubahSiswa($_POST) > 0) {
-        echo ("
-        <script>
-			alert('Data berhasil diubah!');
-			document.location.href = 'index.php';
-		</script>
-        ");
+        echo ("<script>
+                alert('Data berhasil diubah!');
+                document.location.href = 'index.php';
+            </script>");
         exit;
     } else {
-        echo ("
-        <script>
-			alert('Data tidak diubah!');
-			document.location.href = 'index.php';
-		</script>
-        ");
+        echo ("<script>
+                alert('Data tidak diubah!');
+                document.location.href = 'index.php';
+            </script>");
         exit;
     }
 }
@@ -60,8 +56,9 @@ if (isset($_POST['ubah'])) {
         <ul>
             <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
             <li><a href="index.php" class="active"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../petugas/index.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../assets/"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="../pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
         </ul>
     </div>
 

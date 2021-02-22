@@ -16,6 +16,12 @@ function query($query)
     return $folder;
 }
 
+function rupiah($data)
+{
+    $hasil = number_format($data, 2, ',', '.');
+    return $hasil;
+}
+
 // Siswa
 function tambahSiswa($data)
 {
@@ -33,11 +39,9 @@ function tambahSiswa($data)
     $tbNisn = mysqli_query($koneksi, "SELECT nisn FROM tb_nisn WHERE nisn = '$nisn'");
 
     if (!mysqli_fetch_assoc($tbNisn)) {
-        echo ("
-        <script>
-        	alert('NISN tidak terdaftar!');
-        </script>
-        ");
+        echo ("<script>
+                alert('NISN tidak terdaftar!');
+            </script>");
         return false;
     }
 
@@ -45,11 +49,9 @@ function tambahSiswa($data)
     $tbSiswa = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
 
     if (mysqli_fetch_assoc($tbSiswa)) {
-        echo ("
-        <script>
-        	alert('NISN sudah terdaftar!');
-        </script>
-        ");
+        echo ("<script>
+                alert('NISN sudah terdaftar!');
+            </script>");
         return false;
     }
 
@@ -78,8 +80,8 @@ function ubahSiswa($data)
 
     if ($nis !== $nisLama && mysqli_fetch_assoc($hasil)) {
         echo "<script>
-             alert('NIS sudah terdaftar');
-           </script>";
+                alert('NIS sudah terdaftar');
+            </script>";
         return false;
     }
 
@@ -90,8 +92,7 @@ function ubahSiswa($data)
                 alamat = '$alamat',
                 no_telepon = '$no_telepon',
                 id_spp = '$id_spp'
-                WHERE nisn = $nisn
-    ";
+            WHERE nisn = $nisn";
 
     mysqli_query($koneksi, $query);
 
@@ -108,15 +109,16 @@ function hapusSiswa($nisn)
 
 function cariSiswa($kataKunci)
 {
-    $query = "SELECT * FROM tb_siswa JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id WHERE 
-    nama LIKE '%$kataKunci%' OR
-    nisn LIKE '%$kataKunci%' OR
-    nis LIKE '%$kataKunci%' OR
-    alamat LIKE '%$kataKunci%' OR
-    alamat LIKE '%$kataKunci%' OR
-    kelas LIKE '%$kataKunci%' OR
-    no_telepon LIKE '%$kataKunci%'";
-
+    $query = "SELECT * FROM tb_siswa JOIN 
+                tb_kelas ON tb_siswa.id_kelas = tb_kelas.id 
+                WHERE 
+                nama LIKE '%$kataKunci%' OR
+                nisn LIKE '%$kataKunci%' OR
+                nis LIKE '%$kataKunci%' OR
+                alamat LIKE '%$kataKunci%' OR
+                alamat LIKE '%$kataKunci%' OR
+                kelas LIKE '%$kataKunci%' OR
+                no_telepon LIKE '%$kataKunci%'";
     return query($query);
 }
 
@@ -126,7 +128,7 @@ function daftar($data)
 {
     global $koneksi;
 
-    $email = strtolower(stripslashes(htmlspecialchars($data["email"])));
+    $email = htmlspecialchars($data["email"]);
     $kataSandi = htmlspecialchars($data["kata_sandi"]);
     $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
     $nama = htmlspecialchars($data["nama"]);
@@ -191,10 +193,10 @@ function tambahPetugas($data)
 {
     global $koneksi;
 
-    $email = strtolower(stripslashes(htmlspecialchars($data["email"])));
+    $email = htmlspecialchars($data["email"]);
     $kataSandi = htmlspecialchars($data["kata_sandi"]);
     $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
-    $nama = strtolower(stripslashes(htmlspecialchars($data["nama"])));
+    $nama = htmlspecialchars($data["nama"]);
 
     // cek nama_pengguna sudah ada atau belum
     $hasil = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
@@ -210,7 +212,7 @@ function tambahPetugas($data)
     if ($kataSandi !== $kataSandi2) {
         echo "<script>
 				alert('Konfirmasi kata sandi tidak sesuai!');
-		      </script>";
+		    </script>";
         return false;
     }
 
@@ -227,7 +229,7 @@ function ubahPetugas($data)
     $id = $data["id"];
     $emailLama = $data["emailLama"];
 
-    $email = strtolower(stripslashes(htmlspecialchars($data["email"])));
+    $email = htmlspecialchars($data["email"]);
     $kataSandi = htmlspecialchars($data["kata_sandi"]);
     $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
     $nama = htmlspecialchars($data["nama"]);
@@ -238,16 +240,16 @@ function ubahPetugas($data)
 
     if ($email !== $emailLama && mysqli_fetch_assoc($hasil)) {
         echo "<script>
-             alert('Akun sudah terdaftar');
-           </script>";
+                alert('Akun sudah terdaftar');
+            </script>";
         return false;
     }
 
     // cek konfirmasi kata_sandi
     if ($kataSandi !== $kataSandi2) {
         echo "<script>
-             alert('Konfirmasi kata sandi tidak sesuai!');
-           </script>";
+                alert('Konfirmasi kata sandi tidak sesuai!');
+            </script>";
         return false;
     }
 
@@ -257,8 +259,7 @@ function ubahPetugas($data)
             email = '$email', 
             kata_sandi = '$kataSandi',
             nama = '$nama'
-        WHERE id = $id
-        "
+        WHERE id = $id"
     );
 
     return mysqli_affected_rows($koneksi);
@@ -277,10 +278,10 @@ function hapusPetugas($id)
 function cariPetugas($kataKunci)
 {
     $query = "SELECT * FROM tb_pengguna WHERE 
-    nama LIKE '%$kataKunci%' OR
-    email LIKE '%$kataKunci%' OR
-    kata_sandi LIKE '%$kataKunci%'
-    AND tingkat = 'petugas'";
+                nama LIKE '%$kataKunci%' OR
+                email LIKE '%$kataKunci%' OR
+                kata_sandi LIKE '%$kataKunci%'
+            AND tingkat = 'petugas'";
     return query($query);
 }
 
@@ -311,8 +312,7 @@ function ubahKelas($data)
     $query = "UPDATE tb_kelas SET 
                 kelas = '$kelas',
                 kompetensi_keahlian = '$kompetensi_keahlian'
-                WHERE id = $id
-    ";
+            WHERE id = $id";
 
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
@@ -330,8 +330,96 @@ function hapusKelas($id)
 function cariKelas($kataKunci)
 {
     $query = "SELECT * FROM tb_kelas WHERE 
-    kelas LIKE '%$kataKunci%' OR
-    kompetensi_keahlian LIKE '%$kataKunci%'";
+                kelas LIKE '%$kataKunci%' OR
+                kompetensi_keahlian LIKE '%$kataKunci%'";
 
     return query($query);
+}
+
+// pembayaran
+function tambahPembayaran($data)
+{
+    global $koneksi;
+
+    $id_petugas = $data['id_petugas'];
+    $nisn = htmlspecialchars($data['nisn']);
+    $tanggal_bayar = htmlspecialchars($data['tanggal_bayar']);
+    $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
+    $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
+    $id_spp = htmlspecialchars($data['id_spp']);
+    $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
+
+    $hasil = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
+
+    if (!mysqli_fetch_assoc($hasil)) {
+        echo "<script>
+				alert('NISN tidak terdaftar!')
+		      </script>";
+        return false;
+    }
+
+    $query = "INSERT INTO tb_pembayaran VALUES ('','$id_petugas','$nisn','$tanggal_bayar','$bulan_dibayar','$tahun_dibayar','$id_spp','$jumlah_bayar')";
+
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}
+
+
+function caripembayaran($kataKunci)
+{
+    $query = "SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran 
+                JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
+                JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp 
+                WHERE nisn LIKE '%$kataKunci%' OR
+                tanggal_bayar LIKE '%$kataKunci%' OR
+                bulan_dibayar LIKE '%$kataKunci%' OR
+                tahun_dibayar LIKE '%$kataKunci%' OR
+                jumlah_bayar LIKE '%$kataKunci%' OR
+                nama LIKE '%$kataKunci%' OR
+                tahun LIKE '%$kataKunci%'";
+    return query($query);
+}
+
+function ubahPembayaran($data)
+{
+    global $koneksi;
+
+    $id_petugas = $data['id_petugas'];
+    $id_pembayaran = $data['id_pembayaran'];
+    $nisn = htmlspecialchars($data['nisn']);
+    $tanggal_bayar = htmlspecialchars($data['tanggal_bayar']);
+    $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
+    $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
+    $id_spp = htmlspecialchars($data['id_spp']);
+    $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
+
+    $hasil = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
+
+    if (mysqli_fetch_assoc($hasil)) {
+        echo "<script>
+				alert('NISN tidak terdaftar!')
+		      </script>";
+        return false;
+    }
+
+    $query = "UPDATE tb_pembayaran SET
+                id_petugas = '$id_petugas',
+                nisn = '$nisn',
+                tanggal_bayar ='$tanggal_bayar',
+                bulan_dibayar = '$bulan_dibayar',
+                tahun_dibayar = '$tahun_dibayar',
+                id_spp = '$id_spp',
+                jumlah_bayar = '$jumlah_bayar'
+            WHERE id = $id_pembayaran";
+
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}
+
+function hapusPembayaran($id)
+{
+    global $koneksi;
+
+    mysqli_query($koneksi, "DELETE FROM tb_pembayaran WHERE id = '$id'");
+    return mysqli_affected_rows($koneksi);
 }

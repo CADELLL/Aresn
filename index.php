@@ -3,6 +3,7 @@ require 'functions.php';
 $siswa = query("SELECT * FROM tb_siswa");
 $pengguna = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");
+$pembayaran = query("SELECT * FROM tb_pembayaran");
 
 ?>
 <!DOCTYPE html>
@@ -30,9 +31,10 @@ $kelas = query("SELECT * FROM tb_kelas");
         <p id="menu">Menu</p>
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="siswa/index.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="petugas/index.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="kelas/index.php"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="siswa"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
         </ul>
     </div>
 
@@ -42,22 +44,28 @@ $kelas = query("SELECT * FROM tb_kelas");
         </span>
 
         <section id="informasi">
-            <a href="siswa/index.php" class="kartu">
+            <a href="siswa" class="kartu">
                 Jumlah siswa
                 <div class="jumlah">
                     <?= count($siswa); ?>
                 </div>
             </a>
-            <a href="petugas/index.php" class="kartu">
+            <a href="petugas" class="kartu">
                 Jumlah pengguna
                 <div class="jumlah">
                     <?= count($pengguna); ?>
                 </div>
             </a>
-            <a href="kelas/index.php" class="kartu kelas">
+            <a href="kelas" class="kartu">
                 Jumlah kelas
                 <div class="jumlah">
                     <?= count($kelas); ?>
+                </div>
+            </a>
+            <a href="pembayaran" class="kartu">
+                Jumlah pembayaran
+                <div class="jumlah">
+                    <?= count($pembayaran); ?>
                 </div>
             </a>
 

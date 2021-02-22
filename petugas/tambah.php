@@ -9,7 +9,7 @@ if (isset($_POST['tambah'])) {
 			document.location.href = 'index.php';
 		</script>
         ");
-        header("Location: index.php");
+        exit;
     }
 }
 ?>
@@ -59,9 +59,10 @@ if (isset($_POST['tambah'])) {
         <p id="menu">Menu</p>
         <ul>
             <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="../siswa/index.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../siswa"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="index.php" class="active"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../kelas/index.php"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="../pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
         </ul>
     </div>
 
