@@ -50,9 +50,10 @@ if (isset($_POST['tambah'])) {
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="../index.php"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
-            <li><a href="index.php" class="active"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
-            <li><a href="../petugas/index.php"><span class="hide">Petugas </span><i class='bx bx-user'></i></a></li>
+            <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../petugas/index.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../assets/"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
         </ul>
     </div>
 
@@ -61,10 +62,6 @@ if (isset($_POST['tambah'])) {
             <p class="h2">Tambah siswa</p>
             <a href="index.php" class="href">Kembali</a>
         </span>
-
-        <?php if (isset($error)) : ?>
-            <div class="info info-merah">Akun sudah terdaftar</div>
-        <?php endif; ?>
 
         <form action="" method="POST">
             <table>

@@ -83,7 +83,6 @@ audio,
 video {
   margin: 0;
   padding: 0;
-  color: #333;
   border: 0;
   font-size: 100%;
   font: inherit;
@@ -136,20 +135,12 @@ th {
   padding: 14px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
 tr:hover {
-  background-color: #ddd;
+  background-color: #f2f2f2;
 }
 
 a {
   text-decoration: none;
-}
-
-body {
-  background-color: rgb(247, 247, 247);
 }
 
 input[type="text"],
@@ -183,13 +174,13 @@ textarea {
   background-color: #ddd;
   border-radius: 5px;
   margin-right: 2px;
+  color: #333;
 }
 
 .kuning {
-  color: #010101;
+  color: rgb(24, 24, 24);
   background-color: orange;
 }
-
 .merah {
   color: white;
   background-color: crimson;
@@ -223,11 +214,16 @@ nav {
   width: 100%;
   height: 70px;
   background-color: #fff;
+  box-shadow: 0px 0px 30px #f2f2f2;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0px 2% 0px 17%;
+  padding: 0px 2% 0px 19%;
   line-height: 70px;
   position: fixed;
+}
+
+nav a {
+  color: #333;
 }
 
 nav form input[type="text"] {
@@ -262,13 +258,12 @@ nav form input[type="text"] {
 }
 
 #sidebar {
-  background-color: #fff;
-  width: 15%;
+  background-color: #4025a6;
+  width: 17%;
   height: 100%;
   position: fixed;
   left: 0;
   z-index: 2;
-  border: 1px solid #ddd;
   top: 0;
   padding: 25px 10px;
   box-sizing: border-box;
@@ -276,7 +271,9 @@ nav form input[type="text"] {
 
 #sidebar #menu {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  color: #f2f2f2;
+  text-align: center;
 }
 
 #sidebar ul li {
@@ -284,7 +281,7 @@ nav form input[type="text"] {
 }
 
 #sidebar ul li a {
-  background-color: rgb(250, 250, 250);
+  color: #ddd;
   width: 100%;
   padding: 14px 12px;
   box-sizing: border-box;
@@ -292,21 +289,26 @@ nav form input[type="text"] {
   border-radius: 5px;
 }
 
+#sidebar ul li a:hover {
+  background-color: #5836de48;
+}
+
 #sidebar ul li .active {
-  background-color: #ddd;
+  background-color: #5836de;
+  color: #fff;
 }
 
 #konten {
   width: 100%;
   height: 100%;
-  padding: 100px 2% 0px 17%;
+  padding: 100px 2% 0px 19%;
   box-sizing: border-box;
   overflow: auto;
 }
 
 #aksi {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   align-items: center;
   align-content: center;
   justify-content: space-between;
@@ -315,7 +317,12 @@ nav form input[type="text"] {
 #informasi {
   text-align: left;
   display: flex;
+  width: 100%;
   justify-content: space-between;
+}
+
+#informasi a {
+  color: #333;
 }
 
 .jumlah {
@@ -327,35 +334,21 @@ nav form input[type="text"] {
 .kartu {
   display: inline-block;
   padding: 10px;
-  box-sizing: border-box;
   width: 100%;
-  border-radius: 5px;
   height: 100px;
-}
-
-#informasi .siswa {
-  background-color: lightyellow;
-}
-
-#informasi .pembayaran {
-  background-color: lightgreen;
-}
-
-#informasi .kelas {
-  background-color: lightsalmon;
-}
-
-#informasi .pengguna {
-  background-color: lightblue;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: 2px solid #f2f2f2;
 }
 
 @media (max-width: 1024px) {
-  #sidebar ul li a {
-    text-align: center;
+  #sidebar #menu {
+    font-size: 20px;
   }
 
-  .hide {
-    display: none;
+  .kartu {
+    width: 98%;
   }
 
   table .href {
@@ -363,10 +356,14 @@ nav form input[type="text"] {
     margin-bottom: 5px;
   }
 
+  .hide-icon {
+    display: none;
+  }
+
   #informasi {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    height: 240px;
+    height: 220px;
     overflow: hidden;
   }
 }
@@ -386,7 +383,31 @@ nav form input[type="text"] {
     text-align: center;
   }
 
+  #sidebar #menu {
+    font-size: 18px;
+  }
+
+  .h2 {
+    font-size: 20px;
+  }
+
   .hide {
     display: none;
+  }
+
+  .hide-icon {
+    display: block;
+  }
+
+  .kartu {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #informasi {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    height: 220px;
+    overflow: auto;
   }
 }

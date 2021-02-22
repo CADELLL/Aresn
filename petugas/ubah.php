@@ -73,9 +73,10 @@ if (isset($_POST['ubah'])) {
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="../index.php"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
-            <li><a href="index.php"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
-            <li><a href="../petugas/index.php" class="active"><span class="hide">Petugas </span><i class='bx bx-user'></i></a></li>
+            <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
+            <li><a href="../siswa/index.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../kelas/index.php"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
         </ul>
     </div>
 

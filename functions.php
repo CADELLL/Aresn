@@ -283,3 +283,55 @@ function cariPetugas($kataKunci)
     AND tingkat = 'petugas'";
     return query($query);
 }
+
+
+// kelas
+function tambahKelas($data)
+{
+    global $koneksi;
+
+    $kelas = htmlspecialchars($data['nama']);
+    $kompetensi_keahlian = htmlspecialchars($data['kompetensi_keahlian']);
+
+    $query = "INSERT INTO tb_kelas VALUES ('','$kelas','$kompetensi_keahlian')";
+
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}
+
+
+function ubahKelas($data)
+{
+    global $koneksi;
+
+    $id = $data['id'];
+    $kelas = htmlspecialchars($data['nama']);
+    $kompetensi_keahlian = htmlspecialchars($data['kompetensi_keahlian']);
+
+    $query = "UPDATE tb_kelas SET 
+                kelas = '$kelas',
+                kompetensi_keahlian = '$kompetensi_keahlian'
+                WHERE id = $id
+    ";
+
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}
+
+function hapusKelas($id)
+{
+    global $koneksi;
+
+    mysqli_query($koneksi, "DELETE FROM tb_kelas WHERE id = '$id'");
+
+    return mysqli_affected_rows($koneksi);
+}
+
+function cariKelas($kataKunci)
+{
+    $query = "SELECT * FROM tb_kelas WHERE 
+    kelas LIKE '%$kataKunci%' OR
+    kompetensi_keahlian LIKE '%$kataKunci%'";
+
+    return query($query);
+}

@@ -1,7 +1,8 @@
 <?php
 require 'functions.php';
 $siswa = query("SELECT * FROM tb_siswa");
-$uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$pengguna = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
+$kelas = query("SELECT * FROM tb_kelas");
 
 ?>
 <!DOCTYPE html>
@@ -28,11 +29,10 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="index.php" class="active"><span class="hide">Dashboard </span><i class='bx bx-user'></i></a></li>
-            <li><a href="siswa/index.php"><span class="hide">Siswa </span><i class='bx bx-user'></i></a></li>
-            <li><a href="petugas/index.php"><span class="hide">Petugas </span><i class='bx bx-user'></i></a></li>
-            <li><a href="autentikasi/masuk.php"><span class="hide">Masuk </span><i class='bx bx-user'></i></a></li>
-            <li><a href="autentikasi/daftar.php"><span class="hide">Daftar </span><i class='bx bx-user'></i></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
+            <li><a href="siswa/index.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="petugas/index.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="kelas/index.php"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
         </ul>
     </div>
 
@@ -42,22 +42,27 @@ $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         </span>
 
         <section id="informasi">
-            <a href="siswa/index.php" class="kartu siswa">
-                Jumlah Siswa
+            <a href="siswa/index.php" class="kartu">
+                Jumlah siswa
                 <div class="jumlah">
                     <?= count($siswa); ?>
                 </div>
-            </a href="#">
-            <a href="#" class="kartu pembayaran">
-                Pembayaran
-            </a href="#">
-            <a href="#" class="kartu kelas">
-                Kelas
-            </a href="#">
-            <a href="#" class="kartu pengguna">
-                Pengguna
-            </a href="#">
+            </a>
+            <a href="petugas/index.php" class="kartu">
+                Jumlah pengguna
+                <div class="jumlah">
+                    <?= count($pengguna); ?>
+                </div>
+            </a>
+            <a href="kelas/index.php" class="kartu kelas">
+                Jumlah kelas
+                <div class="jumlah">
+                    <?= count($kelas); ?>
+                </div>
+            </a>
+
         </section>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
 </body>

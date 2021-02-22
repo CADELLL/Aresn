@@ -2,11 +2,11 @@
 
 require '../functions.php';
 
-$siswa = query("SELECT * FROM tb_siswa JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id");
+$kelas = query("SELECT * FROM tb_kelas");
 $no = 1;
 
 if (isset($_POST['cari'])) {
-    $siswa = cariSiswa($_POST['kataKunci']);
+    $kelas = cariKelas($_POST['kataKunci']);
 }
 
 ?>
@@ -18,7 +18,7 @@ if (isset($_POST['cari'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar siswa</title>
+    <title>Daftar kelas</title>
     <link rel="stylesheet" href="../style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -36,41 +36,33 @@ if (isset($_POST['cari'])) {
         <p id="menu">Menu</p>
         <ul>
             <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="index.php" class="active"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../siswa/index.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="../petugas/index.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../assets/"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
         </ul>
     </div>
 
     <div id="konten">
         <span id="aksi">
-            <p class="h2">Daftar siswa</p>
+            <p class="h2">Daftar kelas</p>
             <a href="tambah.php" class="href hijau">Tambah</a>
         </span>
 
         <table>
             <tr>
                 <td>No</td>
-                <td>NISN</td>
-                <td>NIS</td>
                 <td>Nama</td>
-                <td>Kelas</td>
-                <td>Alamat</td>
-                <td>No telepon</td>
+                <td>Kompetensi keahlian</td>
                 <td>Pengaturan</td>
             </tr>
-            <?php foreach ($siswa as $s) : ?>
+            <?php foreach ($kelas as $k) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= $s['nisn']; ?></td>
-                    <td><?= $s['nis']; ?></td>
-                    <td><?= $s['nama']; ?></td>
-                    <td><?= $s['kelas']; ?></td>
-                    <td><?= $s['alamat']; ?></td>
-                    <td><?= $s['no_telepon']; ?></td>
+                    <td><?= $k['kelas']; ?></td>
+                    <td><?= $k['kompetensi_keahlian']; ?></td>
                     <td>
-                        <a href="ubah.php?n=<?= $s['nisn'] ?>" class="href kuning">Ubah</a>
-                        <a href="hapus.php?n=<?= $s['nisn'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
+                        <a href="ubah.php?i=<?= $k['id'] ?>" class="href kuning">Ubah</a>
+                        <a href="hapus.php?i=<?= $k['id'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data kelas <?= $k['kelas'] ?>?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
