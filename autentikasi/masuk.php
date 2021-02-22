@@ -22,6 +22,10 @@ if (isset($_POST["masuk"])) {
     <title>Masuk akun</title>
     <link rel="stylesheet" href="../style.css">
     <style>
+        a {
+            color: #333;
+        }
+
         input[type=password],
         input[type=email] {
             border: 0;
@@ -44,7 +48,7 @@ if (isset($_POST["masuk"])) {
 </head>
 
 <body>
-    <form action="" method="POST" style="margin: auto; width: 90%; margin-top: 10%">
+    <form action="" method="POST" style="margin: auto; width: 50%; margin-top: 10%">
         <span id="aksi">
             <p class="h2">Masuk akun</p>
             <a href="daftar.php">Belum punya akun?</a>

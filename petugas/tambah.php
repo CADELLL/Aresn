@@ -49,7 +49,7 @@ if (isset($_POST['tambah'])) {
 <body>
     <nav>
         <form action="index.php" method="POST">
-            <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
+            <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autocomplete="off">
             <button type="submit" name="cari">Cari</button>
         </form>
         <a href="profil.php">Profil</a>
@@ -76,7 +76,7 @@ if (isset($_POST['tambah'])) {
             <table>
                 <tr>
                     <td><label for="nama">Nama</label></td>
-                    <td><input type="text" name="nama" class="input-form" id="nama" placeholder="Masukkan nama!" required autocomplete="off"></td>
+                    <td><input type="text" name="nama" class="input-form" id="nama" placeholder="Masukkan nama!" required autofocus autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email</label></td>

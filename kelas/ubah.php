@@ -70,7 +70,7 @@ if (isset($_POST['ubah'])) {
             <table>
                 <tr>
                     <td><label for="nama">Nama</label></td>
-                    <td><input type="text" name="nama" class="input-form" id="nama" value="<?= $kelas['kelas']; ?>" placeholder="Masukkan nama kelas!" required autocomplete="off"></td>
+                    <td><input type="text" name="nama" class="input-form" id="nama" value="<?= $kelas['kelas']; ?>" placeholder="Masukkan nama kelas!" autofocus required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="kompetensi_keahlian">Kelas</label></td>

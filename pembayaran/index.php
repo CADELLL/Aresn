@@ -48,7 +48,10 @@ if (isset($_POST['cari'])) {
     <div id="konten">
         <span id="aksi">
             <p class="h2">Daftar pembayaran</p>
-            <a href="tambah.php" class="href hijau">Tambah</a>
+            <div>
+                <a href="pdf.php" class="href">Konversi PDF</a>
+                <a href="tambah.php" class="href hijau">Tambah</a>
+            </div>
         </span>
         <table>
             <tr>

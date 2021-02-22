@@ -93,7 +93,7 @@ if (isset($_POST['ubah'])) {
             <table>
                 <tr>
                     <td><label for="nama">Nama</label></td>
-                    <td><input type="text" name="nama" class="input-form" id="nama" placeholder="Masukkan nama!" value="<?= $petugas['nama']; ?>" required autocomplete="off"></td>
+                    <td><input type="text" name="nama" class="input-form" id="nama" placeholder="Masukkan nama!" value="<?= $petugas['nama']; ?>" autofocus required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email</label></td>
