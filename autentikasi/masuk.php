@@ -83,6 +83,7 @@ if (isset($_POST["masuk"])) {
 <body>
     <form action="" method="POST" style="margin: auto; width: 50%; margin-top: 10%">
         <span id="aksi">
+            <a href="#" onclick="kembali()">Kembali</a>
             <p class="h2">Masuk akun</p>
             <a href="daftar.php">Belum punya akun?</a>
         </span>
@@ -116,6 +117,10 @@ if (isset($_POST["masuk"])) {
             } else {
                 x.type = "password";
             }
+        }
+
+        function kembali() {
+            window.history.back();
         }
     </script>
 </body>

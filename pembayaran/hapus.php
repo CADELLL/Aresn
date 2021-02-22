@@ -1,18 +1,29 @@
 <?php
+session_start();
+
+if (isset($_SESSION["tingkat"]) == "") {
+	echo "
+		<script>
+            alert('Tidak dapat mengakses fitur ini!');
+            window.history.back();
+		</script>
+	";
+	exit;
+}
 
 require '../functions.php';
 
 $id = $_GET["i"];
 
 if (hapusPembayaran($id) > 0) {
-    echo "
+	echo "
 		<script>
 			alert('Data berhasil dihapus!');
 			document.location.href = 'index.php';
 		</script>
 	";
 } else {
-    echo "
+	echo "
 		<script>
 			alert('Data gagal dihapus!');
 			document.location.href = 'index.php';

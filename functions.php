@@ -337,7 +337,7 @@ function tambahPembayaran($data)
 }
 
 
-function caripembayaran($kataKunci)
+function cariPembayaran($kataKunci)
 {
     $query = "SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran 
                 JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
@@ -349,6 +349,16 @@ function caripembayaran($kataKunci)
                 jumlah_bayar LIKE '%$kataKunci%' OR
                 nama LIKE '%$kataKunci%' OR
                 tahun LIKE '%$kataKunci%'";
+    return query($query);
+}
+
+function cariPembayaranSiswa($kataKunci)
+{
+    $query = "SELECT * FROM tb_pembayaran
+                JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                WHERE tb_siswa.nisn LIKE '%$kataKunci%' OR
+                tanggal_bayar LIKE '%$kataKunci%' OR
+                nama LIKE '%$kataKunci%'";
     return query($query);
 }
 

@@ -20,7 +20,7 @@ $pembayaran = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembaya
 $no = 1;
 
 if (isset($_POST['cari'])) {
-    $pembayaran = caripembayaran($_POST['kataKunci']);
+    $pembayaran = cariPembayaran($_POST['kataKunci']);
 }
 
 ?>
