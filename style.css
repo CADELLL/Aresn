@@ -103,6 +103,9 @@ nav,
 section {
   display: block;
 }
+* {
+  box-sizing: border-box;
+}
 body {
   line-height: 1;
 }
@@ -127,9 +130,9 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 10px;
-  width: 100%;
   margin: 10px 0px;
   font-size: 16px;
+  width: 100%;
   padding: 10px;
 }
 
@@ -311,11 +314,12 @@ nav form input[type="text"] {
   height: 100%;
   padding: 100px 2% 2% 19%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: auto;
 }
 
 #aksi {
   display: flex;
+  width: 100%;
   margin-bottom: 15px;
   align-items: center;
   align-content: center;

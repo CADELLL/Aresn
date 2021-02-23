@@ -14,8 +14,9 @@ if (!isset($_SESSION["petugas"])) {
 
 require '../functions.php';
 
-$pembayaran = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran
-                    JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
+$pembayaran = query("SELECT *,tb_pembayaran.id AS id_pembayaran, tb_siswa.nama AS nama_siswa FROM tb_pembayaran
+                    JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                    JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas
                     JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp");
 $no = 1;
 
@@ -66,7 +67,8 @@ if (isset($_POST['cari'])) {
         <table>
             <tr>
                 <td>No</td>
-                <td>Nama</td>
+                <td>Petugas</td>
+                <td>Siswa</td>
                 <th>NISN</th>
                 <td>Tanggal</td>
                 <td>Bulan</td>
@@ -79,6 +81,7 @@ if (isset($_POST['cari'])) {
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $p['nama']; ?></td>
+                    <td><?= $p['nama_siswa']; ?></td>
                     <td><?= $p['nisn']; ?></td>
                     <td><?= $p['tanggal_bayar']; ?></td>
                     <td><?= $p['bulan_dibayar']; ?></td>

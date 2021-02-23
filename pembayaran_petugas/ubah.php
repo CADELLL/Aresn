@@ -16,7 +16,6 @@ require '../functions.php';
 $id = $_GET['i'];
 
 $pembayaran = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran 
-                    -- JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
                     JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp
                     WHERE tb_pembayaran.id = $id")[0];
 

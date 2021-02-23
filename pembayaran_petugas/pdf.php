@@ -10,14 +10,16 @@ if (!isset($_SESSION["petugas"])) {
 	";
     exit;
 }
+
 require '../functions.php';
 require_once '../assets/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 
-$pembayaran = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran
-                JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
-                JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp");
+$pembayaran = query("SELECT *,tb_pembayaran.id AS id_pembayaran, tb_siswa.nama AS nama_siswa FROM tb_pembayaran
+                    JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                    JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas
+                    JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp");
 
 $dompdf = new Dompdf();
 
@@ -27,7 +29,8 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
             <thead>
                 <tr>
                     <td>No</td>
-                    <td>Nama</td>
+                    <td>Petugas</td>
+                    <td>Siswa</td>
                     <th>NISN</th>
                     <td>Tanggal</td>
                     <td>Bulan</td>
@@ -43,11 +46,12 @@ foreach ($pembayaran as $p) {
     $html .= "<tr>
                 <td>" . $i . "</td>
                 <td>" . $p['nama'] . "</td>
+                <td>" . $p['nama_siswa'] . "</td>
                 <td>" . $p['nisn'] . "</td>        
                 <td>" . $p['tanggal_bayar'] . "</td>        
                 <td>" . $p['bulan_dibayar'] . "</td>        
                 <td>" . $p['tahun_dibayar'] . "</td>        
-                <td>" . "Tahun " .  $p['tahun'] . "</br>" . "Nominal " . rupiah($p['nominal']) . "</td>        
+                <td>" . "Tahun " .  $p['tahun'] . "<br>" . " Nominal " . rupiah($p['nominal']) . "</td>        
                 <td>" . $p['jumlah_bayar'] . "</td>        
             </tr>";
     $i++;

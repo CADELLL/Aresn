@@ -10,25 +10,23 @@ if (!isset($_SESSION["admin"])) {
 	";
     exit;
 }
+
 require '../functions.php';
 
-$id = $_GET['i'];
-$kelas = query("SELECT * FROM tb_kelas WHERE id = $id")[0];
-
-if (isset($_POST['ubah'])) {
-    if (ubahKelas($_POST) > 0) {
+if (isset($_POST['tambah'])) {
+    if (tambahSPP($_POST) > 0) {
         echo ("
         <script>
-			alert('Data berhasil diubah!');
-			document.location.href = 'index.php';
-		</script>
+    		alert('Data berhasil ditambahkan!');
+    		document.location.href = 'index.php';
+    	</script>
         ");
     } else {
         echo ("
         <script>
-			alert('Data tidak diubah!');
-			document.location.href = 'index.php';
-		</script>
+    		alert('Data gagal ditambahkan!');
+    		document.location.href = 'index.php';
+    	</script>
         ");
     }
 }
@@ -42,7 +40,7 @@ if (isset($_POST['ubah'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubah kelas</title>
+    <title>Tambah SPP</title>
     <link rel="stylesheet" href="../style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -62,8 +60,8 @@ if (isset($_POST['ubah'])) {
             <li><a href="../admin.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
             <li><a href="../siswa"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="index.php" class="active"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
-            <li><a href="../spp"><span class="hide">SPP </span><span class="hide-icon"><i class='bx bx-purchase-tag-alt'></i></span></a></li>
+            <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="index.php" class="active"><span class="hide">SPP </span><span class="hide-icon"><i class='bx bx-purchase-tag-alt'></i></span></a></li>
             <li><a href="../pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
             <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
@@ -71,30 +69,22 @@ if (isset($_POST['ubah'])) {
 
     <div id="konten">
         <span id="aksi">
-            <p class="h2">Ubah kelas</p>
+            <p class="h2">Tambah SPP</p>
             <a href="index.php" class="href">Kembali</a>
         </span>
 
         <form action="" method="POST">
-            <input type="hidden" name="id" value="<?= $kelas['id'] ?>">
             <table>
                 <tr>
-                    <td><label for="nama">Nama</label></td>
-                    <td><input type="text" name="nama" class="input-form" id="nama" value="<?= $kelas['kelas']; ?>" placeholder="Masukkan nama kelas!" autofocus required autocomplete="off"></td>
+                    <td><label for="tahun">Tahun</label></td>
+                    <td><input type="number" name="tahun" class="input-form" id="tahun" placeholder="Masukkan tahun!" maxlength="4" required autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><label for="kompetensi_keahlian">Kelas</label></td>
-                    <td>
-                        <select name="kompetensi_keahlian" id="kompetensi_keahlian" required>
-                            <option value="<?= $kelas['kompetensi_keahlian'] ?>"><?= $kelas['kompetensi_keahlian'] ?></option>
-                            <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                            <option value="Multimedia">Multimedia</option>
-                            <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
-                        </select>
-                    </td>
+                    <td><label for="nominal">Nominal</label></td>
+                    <td><input type="number" name="nominal" class="input-form" id="nominal" placeholder="Masukkan nominal!" autofocus required autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="text-align: center;"><button type="submit" name="ubah" class="hijau">Ubah</button></td>
+                    <td colspan="2" style="text-align: center;"><button type="submit" name="tambah" class="hijau">Tambah</button></td>
                 </tr>
             </table>
 

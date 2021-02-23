@@ -49,7 +49,6 @@ if (isset($_POST['ubah'])) {
     <link rel="stylesheet" href="../style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        input[type=password],
         input[type=email] {
             border: 0;
             font-family: "Poppins", Arial, Helvetica, sans-serif;
@@ -59,13 +58,6 @@ if (isset($_POST['ubah'])) {
             box-sizing: border-box;
             background-color: rgb(250, 250, 250);
             border-radius: 5px;
-        }
-
-        input[type=checkbox] {
-            cursor: pointer;
-            width: 16px;
-            height: 16px;
-            margin-top: 8px
         }
     </style>
 </head>
@@ -86,6 +78,7 @@ if (isset($_POST['ubah'])) {
             <li><a href="../siswa"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="index.php" class="active"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
             <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="../spp"><span class="hide">SPP </span><span class="hide-icon"><i class='bx bx-purchase-tag-alt'></i></span></a></li>
             <li><a href="../pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
             <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
@@ -110,16 +103,8 @@ if (isset($_POST['ubah'])) {
                     <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" value="<?= $petugas['email']; ?>" required autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><label for="kata_sandi2">Kata sandi</label></td>
-                    <td><input type="password" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" value="<?= $petugas['kata_sandi']; ?>" required autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td><label for="kata_sandi2">Ulangi kata sandi</label></td>
-                    <td>
-                        <input type="password" name="kata_sandi2" class="input-form" id="kata_sandi2" placeholder="Masukkan kata sandi!" value="<?= $petugas['kata_sandi']; ?>" required autocomplete="off">
-                        <br>
-                        <input type="checkbox" onclick="lihatPassword()"><label style="font-size:14px; color: #333;">Lihat password</label>
-                    </td>
+                    <td><label for="kata_sandi">Kata sandi</label></td>
+                    <td><input type="text" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" value="<?= $petugas['kata_sandi']; ?>" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: center;"><button type="submit" name="ubah" class="hijau">Ubah</button></td>
@@ -128,20 +113,6 @@ if (isset($_POST['ubah'])) {
 
         </form>
     </div>
-
-    <script>
-        function lihatPassword() {
-            var kataSandi1 = document.getElementById("kata_sandi");
-            var kataSandi2 = document.getElementById("kata_sandi2");
-            if (kataSandi1.type === "password" && kataSandi1.type === "password") {
-                kataSandi1.type = "text";
-                kataSandi2.type = "text";
-            } else {
-                kataSandi1.type = "password";
-                kataSandi2.type = "password";
-            }
-        }
-    </script>
 </body>
 
 </html>

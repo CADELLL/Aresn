@@ -92,9 +92,11 @@ if (isset($_POST['cari'])) {
                 </div>
             </a>
         </section>
+
         <span id="aksi" style="margin-top: 40px;">
             <p class="h2">Gallery</p>
         </span>
+
         <section id="responsive">
             <div class="gallery">
                 <a target="_blank" href="https://dummyimage.com/600x400/f2f2f2/333">
