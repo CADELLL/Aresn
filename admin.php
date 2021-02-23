@@ -1,10 +1,9 @@
 <?php
 session_start();
-
-if (isset($_SESSION["tingkat"]) !== 'admin') {
+if (!isset($_SESSION["admin"])) {
     echo "
 		<script>
-			alert('Tidak dapat mengakses fitur!');
+            alert('Tidak dapat mengakses fitur ini!');
             window.history.back();
 		</script>
 	";

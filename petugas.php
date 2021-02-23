@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-if (isset($_SESSION["tingkat"]) !== "petugas") {
+if (!isset($_SESSION["petugas"])) {
     echo "
 		<script>
 			alert('Tidak dapat mengakses fitur!');
@@ -43,7 +42,7 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
         <p id="menu">Menu</p>
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
+            <li><a href="pembayaran_petugas"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
             <li><a href="autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
     </div>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["tingkat"]) !== 'admin') {
+if (!isset($_SESSION["admin"])) {
     echo "
 		<script>
         alert('Tidak dapat mengakses fitur ini!');
@@ -23,7 +23,6 @@ if (isset($_POST['ubah'])) {
 			document.location.href = 'index.php';
 		</script>
         ");
-        exit;
     } else {
         echo ("
         <script>
@@ -31,7 +30,6 @@ if (isset($_POST['ubah'])) {
 			document.location.href = 'index.php';
 		</script>
         ");
-        exit;
     }
 }
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION["admin"])) {
+
+if (!isset($_SESSION["petugas"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -12,26 +13,16 @@ if (!isset($_SESSION["admin"])) {
 
 require '../functions.php';
 
-$id = $_GET['i'];
-
-$pembayaran = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran 
-                    -- JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
-                    JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp
-                    WHERE tb_pembayaran.id = $id")[0];
-
 $spp = query('SELECT * FROM tb_spp');
 
-if (isset($_POST['ubah'])) {
-    if (ubahPembayaran($_POST) > 0) {
-        echo ("<script>
-                alert('Data berhasil diubah!');
-                document.location.href = 'index.php';
-            </script>");
-    } else {
-        echo ("<script>
-                alert('Data tidak diubah!');
-                document.location.href = 'index.php';
-            </script>");
+if (isset($_POST['tambah'])) {
+    if (tambahPembayaran($_POST) > 0) {
+        echo ("
+        <script>
+    		alert('Data berhasil ditambahkan!');
+    		document.location.href = 'index.php';
+    	</script>
+        ");
     }
 }
 ?>
@@ -72,10 +63,7 @@ if (isset($_POST['ubah'])) {
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="../admin.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="../siswa"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="../petugas.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
             <li><a href="index.php" class="active"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
             <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
@@ -83,28 +71,25 @@ if (isset($_POST['ubah'])) {
 
     <div id="konten">
         <span id="aksi">
-            <p class="h2">Ubah petugas</p>
+            <p class="h2">Tambah petugas</p>
             <a href="index.php" class="href">Kembali</a>
         </span>
 
         <form action="" method="POST">
             <input type="hidden" name="id_petugas" value="<?= $_SESSION['id'] ?>">
-            <input type="hidden" name="id_pembayaran" value="<?= $pembayaran['id_pembayaran'] ?>">
-            <input type="hidden" name="nisn_lama" value="<?= $pembayaran['nisn'] ?>">
             <table>
                 <tr>
                     <td><label for="nisn">NISN</label></td>
-                    <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" maxlength="10" value="<?= $pembayaran['nisn'] ?>" required autofocus autocomplete="off"></td>
+                    <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" required autofocus autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="tanggal_bayar">Tanggal bayar</label></td>
-                    <td><input type="date" name="tanggal_bayar" class="input-form" id="tanggal_bayar" placeholder="Masukkan tanggal!" value="<?= $pembayaran['tanggal_bayar'] ?>" required autocomplete="off"></td>
+                    <td><input type="date" name="tanggal_bayar" class="input-form" id="tanggal_bayar" placeholder="Masukkan tanggal!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="bulan_dibayar">Bulan dibayar</label></td>
                     <td>
                         <select name="bulan_dibayar" id="bulan_dibayar" required>
-                            <option value="<?= $pembayaran['bulan_dibayar'] ?>"><?= $pembayaran['bulan_dibayar'] ?></option>
                             <option value="Januari">Januari</option>
                             <option value="Februari">Februari</option>
                             <option value="Maret">Maret</option>
@@ -122,27 +107,24 @@ if (isset($_POST['ubah'])) {
                 </tr>
                 <tr>
                     <td><label for="tahun_dibayar">Tahun dibayar</label></td>
-                    <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" value="<?= $pembayaran['tahun_dibayar'] ?>" maxlength="4" required autofocus autocomplete="off"></td>
+                    <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" maxlength="4" required autofocus autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="id_spp">SPP</label></td>
                     <td>
                         <select name="id_spp" id="id_spp" required>
-                            <option value="<?= $pembayaran['id_spp'] ?>">Tahun <?= $pembayaran['tahun'] ?> - Nominal <?= rupiah($pembayaran['nominal']) ?></option>
                             <?php foreach ($spp as $s) : ?>
-                                <?php if ($s['id'] != $pembayaran['id_spp']) : ?>
-                                    <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Nominal <?= rupiah($s['nominal']) ?></option>
-                                <?php endif; ?>
+                                <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Nominal <?= rupiah($s['nominal']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="jumlah_bayar">Jumlah bayar</label></td>
-                    <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan Jumlah!" value="<?= $pembayaran['jumlah_bayar']; ?>" required autocomplete="off"></td>
+                    <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan Jumlah!" required autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="text-align: center;"><button type="submit" name="ubah" class="hijau">Ubah</button></td>
+                    <td colspan="2" style="text-align: center;"><button type="submit" name="tambah" class="hijau">Tambah</button></td>
                 </tr>
             </table>
 

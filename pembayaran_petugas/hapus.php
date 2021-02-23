@@ -1,20 +1,21 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["petugas"])) {
 	echo "
 		<script>
-			alert('Tidak dapat mengakses fitur!');
+            alert('Tidak dapat mengakses fitur ini!');
             window.history.back();
 		</script>
 	";
 	exit;
 }
+
 require '../functions.php';
 
 $id = $_GET["i"];
 
-if (hapusKelas($id) > 0) {
+if (hapusPembayaran($id) > 0) {
 	echo "
 		<script>
 			alert('Data berhasil dihapus!');

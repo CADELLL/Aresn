@@ -1,22 +1,11 @@
 <?php
 session_start();
-
-if (isset($_SESSION["tingkat"]) == 'admin') {
-    echo "
-		<script>
-			alert('Tidak dapat mengakses fitur!');
-            document.location.href = '../admin.php';
-		</script>
-	";
+if (isset($_SESSION["admin"])) {
+    header("Location: ../admin.php");
     exit;
 }
-if (isset($_SESSION["tingkat"]) == 'petugas') {
-    echo "
-		<script>
-			alert('Tidak dapat mengakses fitur!');
-            document.location.href = '../petugas.php';
-		</script>
-	";
+if (isset($_SESSION["petugas"])) {
+    header("Location: ../petugas.php");
     exit;
 }
 
@@ -40,13 +29,13 @@ if (isset($_POST["masuk"])) {
             if ($row["tingkat"] == "admin") {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
-                $_SESSION["tingkat"] = "admin";
+                $_SESSION["admin"] = true;
                 header('Location: ../admin.php');
                 exit;
             } else if ($row["tingkat"] == "petugas") {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
-                $_SESSION["tingkat"] = "petugas";
+                $_SESSION["petugas"] = true;
                 header('Location: ../petugas.php');
                 exit;
                 // } else if ($row["tingkat"] == "siswa") {
@@ -100,9 +89,9 @@ if (isset($_POST["masuk"])) {
 </head>
 
 <body>
-    <form action="" method="POST" style="margin: auto; width: 50%; margin-top: 10%">
+    <form action="" method="POST" style="margin: auto; width: 90%; margin-top: 10%">
         <span id="aksi">
-            <a href="#" onclick="kembali()">Kembali</a>
+            <a href="index.php">Halaman utama</a>
             <p class="h2">Masuk akun</p>
             <a href="daftar.php">Belum punya akun?</a>
         </span>
@@ -136,10 +125,6 @@ if (isset($_POST["masuk"])) {
             } else {
                 x.type = "password";
             }
-        }
-
-        function kembali() {
-            window.history.back();
         }
     </script>
 </body>

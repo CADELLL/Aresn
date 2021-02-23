@@ -1,24 +1,15 @@
 <?php
 
 session_start();
-if (isset($_SESSION["tingkat"]) == 'admin') {
-    echo "
-		<script>
-			alert('Tidak dapat mengakses fitur!');
-            document.location.href = 'admin.php';
-		</script>
-	";
+if (isset($_SESSION["admin"])) {
+    header("Location: admin.php");
     exit;
 }
-if (isset($_SESSION["tingkat"]) == 'petugas') {
-    echo "
-		<script>
-			alert('Tidak dapat mengakses fitur!');
-            document.location.href = 'petugas.php';
-		</script>
-	";
+if (isset($_SESSION["petugas"])) {
+    header("Location: petugas.php");
     exit;
 }
+
 
 require 'functions.php';
 $siswa = query("SELECT * FROM tb_siswa");
@@ -52,7 +43,7 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
         <p id="menu">Menu</p>
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="pembayaran/siswa.php"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
+            <li><a href="siswa.php"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
             <li><a href="autentikasi/masuk.php"><span class="hide">Masuk </span><span class="hide-icon"><i class='bx bx-log-in'></i></span></a></li>
         </ul>
     </div>

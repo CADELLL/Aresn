@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["petugas"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -10,7 +10,6 @@ if (!isset($_SESSION["admin"])) {
 	";
     exit;
 }
-
 require '../functions.php';
 require_once '../assets/dompdf/autoload.inc.php';
 
