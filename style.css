@@ -222,7 +222,7 @@ nav {
   width: 100%;
   height: 70px;
   background-color: #fff;
-  box-shadow: 0px 0px 30px #f2f2f2;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0px 2% 0px 19%;
@@ -309,9 +309,9 @@ nav form input[type="text"] {
 #konten {
   width: 100%;
   height: 100%;
-  padding: 100px 2% 0px 19%;
+  padding: 100px 2% 2% 19%;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
 }
 
 #aksi {
@@ -346,8 +346,40 @@ nav form input[type="text"] {
   height: 100px;
   box-sizing: border-box;
   border-radius: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   border: 2px solid #f2f2f2;
+}
+
+.kartu:hover {
+  border: 2px solid #ddd;
+}
+
+#responsive {
+  text-align: left;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.gallery {
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 2px solid #ddd;
+}
+
+.gallery:hover {
+  border: 2px solid rgb(177, 177, 177);
+}
+
+.gallery img {
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100%;
+}
+
+.gallery .desc {
+  padding: 10px;
 }
 
 @media (max-width: 1024px) {
@@ -373,6 +405,16 @@ nav form input[type="text"] {
     grid-template-columns: repeat(2, 1fr);
     height: 220px;
     overflow: hidden;
+  }
+
+  #responsive {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery {
+    margin-right: 8px;
+    margin-top: 10px;
   }
 }
 

@@ -13,7 +13,7 @@ if (isset($_SESSION["petugas"])) {
 require 'functions.php';
 
 $siswa = query("SELECT * FROM tb_siswa");
-$pengguna = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
+$petugas = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");
 $pembayaran = query("SELECT * FROM tb_pembayaran");
 
@@ -37,6 +37,7 @@ if (isset($_POST['cari'])) {
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body>
@@ -52,6 +53,10 @@ if (isset($_POST['cari'])) {
         <p id="menu">Menu</p>
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
+            <li><a href="user/siswa.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="user/petugas.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="user/kelas.php"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="user/pembayaran.php"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
             <li><a href="autentikasi/masuk.php"><span class="hide">Masuk </span><span class="hide-icon"><i class='bx bx-log-in'></i></span></a></li>
         </ul>
     </div>
@@ -62,61 +67,60 @@ if (isset($_POST['cari'])) {
         </span>
 
         <section id="informasi">
-            <a href="siswa" class="kartu">
+            <a href="user/siswa.php" class="kartu">
                 Jumlah siswa
                 <div class="jumlah">
                     <?= count($siswa); ?>
                 </div>
             </a>
-            <a href="petugas" class="kartu">
-                Jumlah pengguna
+            <a href="user/petugas.php" class="kartu">
+                Jumlah petugas
                 <div class="jumlah">
-                    <?= count($pengguna); ?>
+                    <?= count($petugas); ?>
                 </div>
             </a>
-            <a href="kelas" class="kartu">
+            <a href="user/kelas.php" class="kartu">
                 Jumlah kelas
                 <div class="jumlah">
                     <?= count($kelas); ?>
                 </div>
             </a>
-            <a href="pembayaran" class="kartu">
+            <a href="user/pembayaran.php" class="kartu">
                 Jumlah pembayaran
                 <div class="jumlah">
                     <?= count($pembayaran); ?>
                 </div>
             </a>
-
         </section>
         <span id="aksi" style="margin-top: 40px;">
-            <p class="h2">Daftar pembayaran</p>
+            <p class="h2">Gallery</p>
         </span>
-        <table>
-            <tr>
-                <td>No</td>
-                <td>Nama</td>
-                <th>Kelas</th>
-                <td>Tanggal</td>
-                <td>Pengaturan</td>
-            </tr>
-            <?php foreach ($pembayaranSiswa as $p) : ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $p['nama']; ?></td>
-                    <td><?= $p['kelas']; ?></td>
-                    <td><?= $p['tanggal_bayar']; ?></td>
-                    <td>
-                        <form action="detail.php" method="POST">
-                            <input type="hidden" name="nisn" id="nisn">
-                            <button class="href hijau" onclick="cekNISN()">Detail</button>
-                        </form>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            <?php if ($pembayaranSiswa  == []) : ?>
-                <div class="info info-merah">Data tidak ada!</div>
-            <?php endif; ?>
-        </table>
+        <section id="responsive">
+            <div class="gallery">
+                <a target="_blank" href="https://dummyimage.com/600x400/f2f2f2/333">
+                    <img src="https://dummyimage.com/600x400/f2f2f2/333" alt="Cinque Terre" width="600" height="400">
+                </a>
+                <div class="desc">Add a description of the image here</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="https://dummyimage.com/600x400/f2f2f2/333">
+                    <img src="https://dummyimage.com/600x400/f2f2f2/333" alt="Cinque Terre" width="600" height="400">
+                </a>
+                <div class="desc">Add a description of the image here</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="https://dummyimage.com/600x400/f2f2f2/333">
+                    <img src="https://dummyimage.com/600x400/f2f2f2/333" alt="Cinque Terre" width="600" height="400">
+                </a>
+                <div class="desc">Add a description of the image here</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="https://dummyimage.com/600x400/f2f2f2/333">
+                    <img src="https://dummyimage.com/600x400/f2f2f2/333" alt="Cinque Terre" width="600" height="400">
+                </a>
+                <div class="desc">Add a description of the image here</div>
+            </div>
+        </section>
     </div>
 
     <script>

@@ -13,7 +13,7 @@ if (!isset($_SESSION["admin"])) {
 require 'functions.php';
 
 $siswa = query("SELECT * FROM tb_siswa");
-$pengguna = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
+$petugas = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");
 $pembayaran = query("SELECT * FROM tb_pembayaran");
 
@@ -64,9 +64,9 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
                 </div>
             </a>
             <a href="petugas" class="kartu">
-                Jumlah pengguna
+                Jumlah petugas
                 <div class="jumlah">
-                    <?= count($pengguna); ?>
+                    <?= count($petugas); ?>
                 </div>
             </a>
             <a href="kelas" class="kartu">

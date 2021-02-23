@@ -371,3 +371,44 @@ function hapusPembayaran($id)
     mysqli_query($koneksi, "DELETE FROM tb_pembayaran WHERE id = '$id'");
     return mysqli_affected_rows($koneksi);
 }
+
+// User
+
+function cariUserSiswa($kataKunci)
+{
+    $query = "SELECT * FROM tb_siswa JOIN 
+                tb_kelas ON tb_siswa.id_kelas = tb_kelas.id 
+                WHERE 
+                nama LIKE '%$kataKunci%' OR
+                kelas LIKE '%$kataKunci%'";
+    return query($query);
+}
+
+function cariUserPetugas($kataKunci)
+{
+    $query = "SELECT * FROM tb_pengguna WHERE 
+                nama LIKE '%$kataKunci%'
+            AND tingkat = 'petugas'";
+    return query($query);
+}
+
+function cariUserKelas($kataKunci)
+{
+    $query = "SELECT * FROM tb_kelas WHERE 
+                kelas LIKE '%$kataKunci%' OR
+                kompetensi_keahlian LIKE '%$kataKunci%'";
+    return query($query);
+}
+
+
+function cariUserPembayaran($kataKunci)
+{
+    $query = "SELECT * FROM tb_pembayaran
+                JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id
+                WHERE tb_siswa.nisn LIKE '%$kataKunci%' OR
+                tanggal_bayar LIKE '%$kataKunci%' OR
+                kelas LIKE '%$kataKunci%' OR
+                nama LIKE '%$kataKunci%'";
+    return query($query);
+}
