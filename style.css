@@ -320,6 +320,7 @@ nav form input[type="text"] {
 #aksi {
   display: flex;
   width: 100%;
+  background-color: red;
   margin-bottom: 15px;
   align-items: center;
   align-content: center;

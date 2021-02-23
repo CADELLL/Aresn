@@ -36,6 +36,16 @@ if (isset($_POST['cari'])) {
     <title>Daftar pembayaran</title>
     <link rel="stylesheet" href="../style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .kuning {
+            margin-bottom: 4px;
+        }
+
+        .kuning,
+        .merah {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -86,8 +96,8 @@ if (isset($_POST['cari'])) {
                     <td><?= $p['tanggal_bayar']; ?></td>
                     <td><?= $p['bulan_dibayar']; ?></td>
                     <td><?= $p['tahun_dibayar']; ?></td>
-                    <td>Tahun <?= $p['tahun'] ?> <br>Nominal <?= rupiah($p['nominal']) ?></td>
-                    <td><?= $p['jumlah_bayar']; ?></td>
+                    <td>Tahun <?= $p['tahun'] ?> <br>Nominal <?= rupiah($p['nominal'], 2, ',', '.') ?></td>
+                    <td><?= rupiah($p['jumlah_bayar']); ?></td>
                     <td>
                         <a href="ubah.php?i=<?= $p['id_pembayaran'] ?>" class="href kuning">Ubah</a>
                         <a href="hapus.php?i=<?= $p['id_pembayaran'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data petugas <?= $p['nama'] ?>?')">Hapus</a>

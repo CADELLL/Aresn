@@ -16,10 +16,11 @@ function query($query)
     return $folder;
 }
 
-function rupiah($data)
+function rupiah($angka)
 {
-    $hasil = number_format($data, 2, ',', '.');
-    return $hasil;
+
+    $hasil_rupiah = number_format($angka, 2, ',', '.');
+    return $hasil_rupiah;
 }
 
 // Siswa
