@@ -32,6 +32,11 @@ if (isset($_POST['cari'])) {
     <title>Daftar pembayaran</title>
     <link rel="stylesheet" href="../style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .href {
+            padding: 2px 8px;
+        }
+    </style>
 </head>
 
 <body>
@@ -80,7 +85,7 @@ if (isset($_POST['cari'])) {
                     <td>
                         <form action="detail.php" method="POST">
                             <input type="hidden" name="nisn" id="nisn">
-                            <button class="hijau" onclick="cekNISN()">Detail</button>
+                            <button class="href hijau" onclick="cekNISN()">Detail</button>
                         </form>
                     </td>
                 </tr>
