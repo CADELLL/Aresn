@@ -68,13 +68,16 @@ if (isset($_POST['tambah'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Tambah SPP</p>
-            <a href="index.php" class="href">Kembali</a>
-        </span>
-
         <form action="" method="POST">
             <table>
+                <tr>
+                    <td colspan="2">
+                        <span id="aksi">
+                            <p class="h2">Tambah SPP</p>
+                            <a href="index.php" class="href">Kembali</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="tahun">Tahun</label></td>
                     <td><input type="number" name="tahun" class="input-form" id="tahun" placeholder="Masukkan tahun!" maxlength="4" required autocomplete="off"></td>

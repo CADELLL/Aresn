@@ -67,13 +67,17 @@ if (isset($_POST['tambah'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Tambah siswa</p>
-            <a href="index.php" class="href">Kembali</a>
-        </span>
 
         <form action="" method="POST">
             <table>
+                <tr>
+                    <td colspan="2">
+                        <span id="aksi">
+                            <p class="h2">Tambah siswa</p>
+                            <a href="index.php" class="href">Kembali</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="nisn">NISN</label></td>
                     <td><input type="number" name="nisn" class="input-form" id="nisn" maxlength="10" placeholder="Masukkan NISN!" autofocus required autocomplete="off"></td>

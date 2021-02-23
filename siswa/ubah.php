@@ -74,15 +74,18 @@ if (isset($_POST['ubah'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p><?= $_SESSION["nama"] ?? 'Profile' ?></p>
-            <a href="index.php" class="href">Kembali</a>
-        </span>
-
         <form action="" method="POST">
             <input type="hidden" name="nisn" value="<?= $siswa['nisn'] ?>">
             <input type="hidden" name="nisLama" value="<?= $siswa['nis'] ?>">
             <table>
+                <tr>
+                    <td colspan="2">
+                        <span id="aksi">
+                            <p class="h2"><?= $_SESSION["nama"] ?? 'Profile' ?></p>
+                            <a href="index.php" class="href">Kembali</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="nis">NIS</label></td>
                     <td><input type="number" name="nis" class="input-form" id="nis" value="<?= $siswa['nis']; ?>" maxlength="8" placeholder="Masukkan NIS!" autofocus required autocomplete="off"></td>

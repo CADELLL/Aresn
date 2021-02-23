@@ -85,15 +85,19 @@ if (isset($_POST['ubah'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Ubah petugas</p>
-            <a href="index.php" class="href">Kembali</a>
-        </span>
-
         <form action="" method="POST">
             <input type="hidden" name="id" value="<?= $petugas['id'] ?>">
             <input type="hidden" name="email_lama" value="<?= $petugas['email'] ?>">
+
             <table>
+                <tr>
+                    <td colspan="2">
+                        <span id="aksi">
+                            <p class="h2">Ubah petugas</p>
+                            <a href="index.php" class="href">Kembali</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="nama">Nama</label></td>
                     <td><input type="text" name="nama" class="input-form" id="nama" placeholder="Masukkan nama!" value="<?= $petugas['nama']; ?>" autofocus required autocomplete="off"></td>

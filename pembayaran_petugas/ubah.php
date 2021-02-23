@@ -79,16 +79,19 @@ if (isset($_POST['ubah'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Ubah petugas</p>
-            <a href="index.php" class="href">Kembali</a>
-        </span>
-
         <form action="" method="POST">
             <input type="hidden" name="id_petugas" value="<?= $_SESSION['id'] ?>">
             <input type="hidden" name="id_pembayaran" value="<?= $pembayaran['id_pembayaran'] ?>">
             <input type="hidden" name="nisn_lama" value="<?= $pembayaran['nisn'] ?>">
             <table>
+                <tr>
+                    <td colspan="2">
+                        <span id="aksi">
+                            <p class="h2">Ubah petugas</p>
+                            <a href="index.php" class="href">Kembali</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="nisn">NISN</label></td>
                     <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" maxlength="10" value="<?= $pembayaran['nisn'] ?>" required autofocus autocomplete="off"></td>

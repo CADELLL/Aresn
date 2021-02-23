@@ -70,14 +70,17 @@ if (isset($_POST['ubah'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Ubah SPP</p>
-            <a href="index.php" class="href">Kembali</a>
-        </span>
-
         <form action="" method="POST">
             <input type="hidden" name="id" value="<?= $spp['id'] ?>">
             <table>
+                <tr>
+                    <td colspan="2">
+                        <span id="aksi">
+                            <p class="h2">Ubah SPP</p>
+                            <a href="index.php" class="href">Kembali</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="tahun">Tahun</label></td>
                     <td><input type="number" name="tahun" class="input-form" id="tahun" value="<?= $spp['tahun']; ?>" placeholder="Masukkan tahun!" autofocus required autocomplete="off"></td>

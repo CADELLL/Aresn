@@ -72,13 +72,16 @@ if (isset($_POST['tambah'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Tambah petugas</p>
-            <a href="index.php" class="href">Kembali</a>
-        </span>
-
         <form action="" method="POST">
             <table>
+                <tr>
+                    <td colspan="2">
+                        <span id="aksi">
+                            <p class="h2">Tambah petugas</p>
+                            <a href="index.php" class="href">Kembali</a>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="nama">Nama</label></td>
                     <td><input type="text" name="nama" class="input-form" id="nama" placeholder="Masukkan nama!" required autofocus autocomplete="off"></td>

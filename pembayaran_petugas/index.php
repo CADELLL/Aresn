@@ -67,14 +67,18 @@ if (isset($_POST['cari'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Daftar pembayaran</p>
-            <div>
-                <a href="pdf.php" class="href">Konversi PDF</a>
-                <a href="tambah.php" class="href hijau">Tambah</a>
-            </div>
-        </span>
         <table>
+            <tr>
+                <td colspan="10">
+                    <span id="aksi">
+                        <p class="h2">Daftar pembayaran</p>
+                        <div>
+                            <a href="pdf.php" class="href">Konversi PDF</a>
+                            <a href="tambah.php" class="href hijau">Tambah</a>
+                        </div>
+                    </span>
+                </td>
+            </tr>
             <tr>
                 <td>No</td>
                 <td>Petugas</td>
