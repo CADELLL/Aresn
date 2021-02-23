@@ -122,43 +122,6 @@ function cariSiswa($kataKunci)
     return query($query);
 }
 
-// Autentikasi
-
-function daftar($data)
-{
-    global $koneksi;
-
-    $email = htmlspecialchars($data["email"]);
-    $kataSandi = htmlspecialchars($data["kata_sandi"]);
-    $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
-    $nama = htmlspecialchars($data["nama"]);
-
-
-    // cek nama_pengguna sudah ada atau belum
-    $hasil = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
-
-    if (mysqli_fetch_assoc($hasil)) {
-        echo "<script>
-				alert('Akun sudah terdaftar!')
-		      </script>";
-        return false;
-    }
-
-
-    // cek konfirmasi kata_sandi
-    if ($kataSandi !== $kataSandi2) {
-        echo "<script>
-				alert('Konfirmasi kata sandi tidak sesuai!');
-		      </script>";
-        return false;
-    }
-
-    // tambahkan userbaru ke database
-    mysqli_query($koneksi, "INSERT INTO tb_pengguna VALUES('', '$email', '$kataSandi','$nama', 'siswa')");
-
-    return mysqli_affected_rows($koneksi);
-}
-
 // Petugas
 
 function tambahPetugas($data)
@@ -356,8 +319,10 @@ function cariPembayaranSiswa($kataKunci)
 {
     $query = "SELECT * FROM tb_pembayaran
                 JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id
                 WHERE tb_siswa.nisn LIKE '%$kataKunci%' OR
                 tanggal_bayar LIKE '%$kataKunci%' OR
+                kelas LIKE '%$kataKunci%' OR
                 nama LIKE '%$kataKunci%'";
     return query($query);
 }

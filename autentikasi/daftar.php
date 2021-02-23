@@ -1,27 +1,62 @@
-<?php
-session_start();
-if (isset($_SESSION["admin"])) {
-    header("Location: ../admin.php");
-    exit;
-}
-if (isset($_SESSION["petugas"])) {
-    header("Location: ../petugas.php");
-    exit;
-}
+<!-- <?php
+        session_start();
+        if (isset($_SESSION["admin"])) {
+            header("Location: ../admin.php");
+            exit;
+        }
+        if (isset($_SESSION["petugas"])) {
+            header("Location: ../petugas.php");
+            exit;
+        }
 
-require '../functions.php';
+        require '../functions.php';
 
-if (isset($_POST["daftar"])) {
-    if (daftar($_POST) > 0) {
-        echo "<script>
+        if (isset($_POST["daftar"])) {
+            if (daftar($_POST) > 0) {
+                echo "<script>
 				alert('User baru berhasil ditambahkan!');
                 document.location.href = 'masuk.php';
 			  </script>";
-    } else {
-        echo mysqli_error($koneksi);
-    }
-}
-?>
+            } else {
+                echo mysqli_error($koneksi);
+            }
+        }
+
+        function daftar($data)
+        {
+            global $koneksi;
+
+            $email = htmlspecialchars($data["email"]);
+            $kataSandi = htmlspecialchars($data["kata_sandi"]);
+            $kataSandi2 = htmlspecialchars($data["kata_sandi2"]);
+            $nama = htmlspecialchars($data["nama"]);
+
+
+            // cek nama_pengguna sudah ada atau belum
+            $hasil = mysqli_query($koneksi, "SELECT email FROM tb_pengguna WHERE email = '$email'");
+
+            if (mysqli_fetch_assoc($hasil)) {
+                echo "<script>
+				alert('Akun sudah terdaftar!')
+		      </script>";
+                return false;
+            }
+
+
+            // cek konfirmasi kata_sandi
+            if ($kataSandi !== $kataSandi2) {
+                echo "<script>
+				alert('Konfirmasi kata sandi tidak sesuai!');
+		      </script>";
+                return false;
+            }
+
+            // tambahkan userbaru ke database
+            mysqli_query($koneksi, "INSERT INTO tb_pengguna VALUES('', '$email', '$kataSandi','$nama', '')");
+
+            return mysqli_affected_rows($koneksi);
+        }
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +95,7 @@ if (isset($_POST["daftar"])) {
 <body>
     <form action="" method="POST" style="margin: auto; width: 90%; margin-top: 100px">
         <span id="aksi">
-            <a href="index.php">Halaman utama</a>
+            <a href="../index.php">Halaman utama</a>
             <p class="h2">Buat akun</p>
             <a href="masuk.php">Sudah punya akun?</a>
         </span>
@@ -106,4 +141,4 @@ if (isset($_POST["daftar"])) {
     </script>
 </body>
 
-</html>
+</html> -->

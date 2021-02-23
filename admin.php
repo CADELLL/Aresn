@@ -11,6 +11,7 @@ if (!isset($_SESSION["admin"])) {
 }
 
 require 'functions.php';
+
 $siswa = query("SELECT * FROM tb_siswa");
 $pengguna = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");

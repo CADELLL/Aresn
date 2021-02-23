@@ -6,7 +6,7 @@ if (!isset($_SESSION["admin"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
-            window.history.back();
+			document.location.href = '../index.php';
 		</script>
 	";
     exit;

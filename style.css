@@ -106,6 +106,9 @@ section {
 body {
   line-height: 1;
 }
+html {
+  scroll-behavior: smooth;
+}
 ol,
 ul {
   list-style: none;
@@ -295,7 +298,7 @@ nav form input[type="text"] {
 }
 
 #sidebar ul li a:hover {
-  background-color: #5836de48;
+  background-color: #5836de80;
 }
 
 #sidebar ul li .active {

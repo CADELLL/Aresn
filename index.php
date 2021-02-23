@@ -10,12 +10,21 @@ if (isset($_SESSION["petugas"])) {
     exit;
 }
 
-
 require 'functions.php';
+
 $siswa = query("SELECT * FROM tb_siswa");
 $pengguna = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");
 $pembayaran = query("SELECT * FROM tb_pembayaran");
+
+$pembayaranSiswa = query("SELECT * FROM tb_pembayaran
+                    JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                    JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id");
+
+$no = 1;
+if (isset($_POST['cari'])) {
+    $pembayaranSiswa = cariPembayaranSiswa($_POST['kataKunci']);
+}
 
 ?>
 <!DOCTYPE html>
@@ -36,14 +45,13 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
             <button type="submit" name="cari">Cari</button>
         </form>
-        <p>SMKN 1 Kepanjen</p>
+        <p>SMK</p>
     </nav>
 
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
             <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="siswa.php"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
             <li><a href="autentikasi/masuk.php"><span class="hide">Masuk </span><span class="hide-icon"><i class='bx bx-log-in'></i></span></a></li>
         </ul>
     </div>
@@ -80,8 +88,49 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
             </a>
 
         </section>
+        <span id="aksi" style="margin-top: 40px;">
+            <p class="h2">Daftar pembayaran</p>
+        </span>
+        <table>
+            <tr>
+                <td>No</td>
+                <td>Nama</td>
+                <th>Kelas</th>
+                <td>Tanggal</td>
+                <td>Pengaturan</td>
+            </tr>
+            <?php foreach ($pembayaranSiswa as $p) : ?>
+                <tr>
+                    <td><?= $no++; ?></td>
+                    <td><?= $p['nama']; ?></td>
+                    <td><?= $p['kelas']; ?></td>
+                    <td><?= $p['tanggal_bayar']; ?></td>
+                    <td>
+                        <form action="detail.php" method="POST">
+                            <input type="hidden" name="nisn" id="nisn">
+                            <button class="href hijau" onclick="cekNISN()">Detail</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <?php if ($pembayaranSiswa  == []) : ?>
+                <div class="info info-merah">Data tidak ada!</div>
+            <?php endif; ?>
+        </table>
     </div>
 
+    <script>
+        function cekNISN() {
+            let nisn = prompt("Masukkan NISN!");
+            if (nisn < 9999999999) {
+                document.getElementById("nisn").value = nisn;
+            } else if (isNaN(nisn)) {
+                parseInt(prompt("Masukkan nomer NISN!"));
+            } else {
+                parseInt(prompt("Maksimal nomber NISN 10 digit!", ""));
+            }
+        }
+    </script>
 </body>
 
 </html>

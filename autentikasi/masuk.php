@@ -91,13 +91,14 @@ if (isset($_POST["masuk"])) {
 <body>
     <form action="" method="POST" style="margin: auto; width: 90%; margin-top: 10%">
         <span id="aksi">
-            <a href="index.php">Halaman utama</a>
             <p class="h2">Masuk akun</p>
-            <a href="daftar.php">Belum punya akun?</a>
+            <a href="../index.php">Halaman utama</a>
         </span>
+
         <?php if (isset($error)) : ?>
             <div class="info info-merah">Email/Kata sandi salah</div>
         <?php endif; ?>
+
         <table>
             <tr>
                 <td><label for="email">Email</label></td>
