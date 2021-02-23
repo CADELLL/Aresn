@@ -80,11 +80,11 @@ if (isset($_POST['tambah'])) {
                 </tr>
                 <tr>
                     <td><label for="tahun">Tahun</label></td>
-                    <td><input type="number" name="tahun" class="input-form" id="tahun" placeholder="Masukkan tahun!" maxlength="4" required autocomplete="off"></td>
+                    <td><input type="number" name="tahun" class="input-form" id="tahun" placeholder="Masukkan tahun!" maxlength="4" autofocus required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="nominal">Nominal</label></td>
-                    <td><input type="number" name="nominal" class="input-form" id="nominal" placeholder="Masukkan nominal!" autofocus required autocomplete="off"></td>
+                    <td><input type="number" name="nominal" class="input-form" id="nominal" placeholder="Masukkan nominal!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: center;"><button type="submit" name="tambah" class="hijau">Tambah</button></td>

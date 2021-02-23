@@ -70,9 +70,9 @@ if (isset($_POST["masuk"])) {
         input[type=password],
         input[type=email] {
             border: 0;
-            font-family: "Poppins", Arial, Helvetica, sans-serif;
             height: 38px;
             width: 100%;
+            font-family: "Poppins", Arial, Helvetica, sans-serif;
             padding: 6px 10px;
             box-sizing: border-box;
             background-color: rgb(250, 250, 250);
@@ -89,17 +89,21 @@ if (isset($_POST["masuk"])) {
 </head>
 
 <body>
-    <form action="" method="POST" style="margin: auto; width: 90%; margin-top: 10%">
-        <span id="aksi">
-            <p class="h2">Masuk akun</p>
-            <a href="../index.php">Halaman utama</a>
-        </span>
+    <form action="" method="POST" style="margin: auto; width: 90%; margin-top: 150px">
 
         <?php if (isset($error)) : ?>
             <div class="info info-merah">Email/Kata sandi salah</div>
         <?php endif; ?>
 
         <table>
+            <tr>
+                <td colspan="2">
+                    <span id="aksi">
+                        <p class="h2">Masuk akun</p>
+                        <a href="../index.php">Halaman utama</a>
+                    </span>
+                </td>
+            </tr>
             <tr>
                 <td><label for="email">Email</label></td>
                 <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" required autocomplete="off"></td>

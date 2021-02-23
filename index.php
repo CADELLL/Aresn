@@ -37,7 +37,6 @@ if (isset($_POST['cari'])) {
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 
 <body>
@@ -62,7 +61,7 @@ if (isset($_POST['cari'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
+        <span id="aksi" style="margin-bottom: 10px;">
             <p class="h2">Informasi singkat</p>
         </span>
 
@@ -93,7 +92,7 @@ if (isset($_POST['cari'])) {
             </a>
         </section>
 
-        <span id="aksi" style="margin-top: 40px;">
+        <span id="aksi" style="margin: 20px 0px 10px">
             <p class="h2">Gallery</p>
         </span>
 

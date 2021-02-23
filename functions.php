@@ -265,7 +265,6 @@ function tambahPembayaran($data)
     $tanggal_bayar = htmlspecialchars($data['tanggal_bayar']);
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
     $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
-    $id_spp = htmlspecialchars($data['id_spp']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
     $hasil = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
@@ -273,12 +272,14 @@ function tambahPembayaran($data)
     if (!mysqli_fetch_assoc($hasil)) {
         echo "<script>
 				alert('NISN tidak terdaftar!')
-		      </script>";
+                </script>";
         return false;
     }
 
-    $query = "INSERT INTO tb_pembayaran VALUES ('','$id_petugas','$nisn','$tanggal_bayar','$bulan_dibayar','$tahun_dibayar','$id_spp','$jumlah_bayar')";
+    $hasilNISN = query("SELECT id_spp FROM tb_siswa WHERE nisn = '$nisn'")[0];
+    $id_spp = (int)$hasilNISN;
 
+    $query = "INSERT INTO tb_pembayaran VALUES ('','$id_petugas','$nisn','$tanggal_bayar','$bulan_dibayar','$tahun_dibayar','$id_spp','$jumlah_bayar')";
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }

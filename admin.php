@@ -53,7 +53,7 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
     </div>
 
     <div id="konten">
-        <span id="aksi">
+        <span id="aksi" style="margin-bottom: 10px;">
             <p class="h2">Informasi singkat</p>
         </span>
 

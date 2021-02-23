@@ -117,16 +117,6 @@ if (isset($_POST['tambah'])) {
                     <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" maxlength="4" required autofocus autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><label for="id_spp">SPP</label></td>
-                    <td>
-                        <select name="id_spp" id="id_spp" required>
-                            <?php foreach ($spp as $s) : ?>
-                                <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Nominal <?= rupiah($s['nominal']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <td><label for="jumlah_bayar">Jumlah bayar</label></td>
                     <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan Jumlah!" required autocomplete="off"></td>
                 </tr>

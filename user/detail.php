@@ -66,14 +66,18 @@ $no = 1;
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Detail pembayaran</p>
-            <span>
-                <a href="pembayaran.php" class="href">Kembali</a>
-                <a href="pdf.php?n=<?= $nisn ?>" class="href hijau">Konversi PDF</a>
-            </span>
-        </span>
         <table>
+            <tr>
+                <td colspan="8">
+                    <span id="aksi">
+                        <p class="h2">Detail pembayaran</p>
+                        <span>
+                            <a href="pembayaran.php" class="href">Kembali</a>
+                            <a href="pdf.php?n=<?= $nisn ?>" class="href hijau">Konversi PDF</a>
+                        </span>
+                    </span>
+                </td>
+            </tr>
             <tr>
                 <td>No</td>
                 <td>Nama</td>

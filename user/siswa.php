@@ -54,10 +54,14 @@ if (isset($_POST['cari'])) {
     </div>
 
     <div id="konten">
-        <span id="aksi">
-            <p class="h2">Daftar siswa</p>
-        </span>
         <table>
+            <tr>
+                <td colspan="3">
+                    <span id="aksi">
+                        <p class="h2">Daftar siswa</p>
+                    </span>
+                </td>
+            </tr>
             <tr>
                 <td>No</td>
                 <td>Nama</td>
