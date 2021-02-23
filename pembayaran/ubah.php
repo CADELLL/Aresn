@@ -15,11 +15,11 @@ require '../functions.php';
 $id = $_GET['i'];
 
 $pembayaran = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran 
-                    -- JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
                     JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp
                     WHERE tb_pembayaran.id = $id")[0];
 
 $spp = query('SELECT * FROM tb_spp');
+$bulan = bulan();
 
 if (isset($_POST['ubah'])) {
     if (ubahPembayaran($_POST) > 0) {
@@ -109,18 +109,11 @@ if (isset($_POST['ubah'])) {
                     <td>
                         <select name="bulan_dibayar" id="bulan_dibayar" required>
                             <option value="<?= $pembayaran['bulan_dibayar'] ?>"><?= $pembayaran['bulan_dibayar'] ?></option>
-                            <option value="Januari">Januari</option>
-                            <option value="Februari">Februari</option>
-                            <option value="Maret">Maret</option>
-                            <option value="April">April</option>
-                            <option value="Mei">Mei</option>
-                            <option value="Juni">Juni</option>
-                            <option value="Juli">Juli</option>
-                            <option value="Agustus">Agustus</option>
-                            <option value="September">September</option>
-                            <option value="Oktober">Oktober</option>
-                            <option value="November">November</option>
-                            <option value="Desember">Desember</option>
+                            <?php for ($i = 0; $i < count($bulan); $i++) : ?>
+                                <?php if ($bulan[$i][0] != $pembayaran['bulan_dibayar']) : ?>
+                                    <option value="<?= $bulan[$i][0] ?>"><?= $bulan[$i][0] ?></option>
+                                <?php endif; ?>
+                            <?php endfor ?>
                         </select>
                     </td>
                 </tr>
@@ -132,7 +125,7 @@ if (isset($_POST['ubah'])) {
                     <td><label for="id_spp">SPP</label></td>
                     <td>
                         <select name="id_spp" id="id_spp" required>
-                            <option value="<?= $pembayaran['id_spp'] ?>">Tahun <?= $pembayaran['tahun'] ?> - Nominal <?= rupiah($pembayaran['nominal']) ?></option>
+                            <option selected value="<?= $pembayaran['id_spp'] ?>">Tahun <?= $pembayaran['tahun'] ?> - Nominal <?= rupiah($pembayaran['nominal']) ?></option>
                             <?php foreach ($spp as $s) : ?>
                                 <?php if ($s['id'] != $pembayaran['id_spp']) : ?>
                                     <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Nominal <?= rupiah($s['nominal']) ?></option>

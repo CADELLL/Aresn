@@ -76,7 +76,7 @@ if (isset($_POST['cari'])) {
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $s['tahun']; ?></td>
-                    <td><?= $s['nominal']; ?></td>
+                    <td><?= rupiah($s['nominal']); ?></td>
                     <td>
                         <a href="ubah.php?i=<?= $s['id'] ?>" class="href kuning">Ubah</a>
                         <a href="hapus.php?i=<?= $s['id'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data spp & pembayaran tahun <?= $s['tahun'] ?>?')">Hapus</a>

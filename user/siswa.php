@@ -56,7 +56,7 @@ if (isset($_POST['cari'])) {
     <div id="konten">
         <table>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <span id="aksi">
                         <p class="h2">Daftar siswa</p>
                     </span>
@@ -66,12 +66,14 @@ if (isset($_POST['cari'])) {
                 <td>No</td>
                 <td>Nama</td>
                 <td>Kelas</td>
+                <td>Kompetensi Keahlian</td>
             </tr>
             <?php foreach ($siswa as $s) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $s['nama']; ?></td>
                     <td><?= $s['kelas']; ?></td>
+                    <td><?= $s['kompetensi_keahlian']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>

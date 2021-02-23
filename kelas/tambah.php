@@ -84,13 +84,7 @@ if (isset($_POST['tambah'])) {
                 </tr>
                 <tr>
                     <td><label for="kompetensi_keahlian">Kompetensi keahlian</label></td>
-                    <td>
-                        <select name="kompetensi_keahlian" id="kompetensi_keahlian">
-                            <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                            <option value="Multimedia">Multimedia</option>
-                            <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
-                        </select>
-                    </td>
+                    <td><input type="text" name="kompetensi_keahlian" class="input-form" id="kompetensi_keahlian" placeholder="Masukkan kompetensi keahlian!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: center;"><button type="submit" name="tambah" class="hijau">Tambah</button></td>

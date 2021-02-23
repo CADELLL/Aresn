@@ -80,7 +80,7 @@ if (isset($_POST['cari'])) {
                     <td>
                         <form action="detail.php" method="POST">
                             <input type="hidden" name="nisn" id="nisn">
-                            <button class="href hijau" onclick="cekNISN()">Detail</button>
+                            <button class="hijau" onclick="cekNISN()">Detail</button>
                         </form>
                     </td>
                 </tr>

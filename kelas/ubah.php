@@ -87,14 +87,7 @@ if (isset($_POST['ubah'])) {
                 </tr>
                 <tr>
                     <td><label for="kompetensi_keahlian">Kelas</label></td>
-                    <td>
-                        <select name="kompetensi_keahlian" id="kompetensi_keahlian" required>
-                            <option value="<?= $kelas['kompetensi_keahlian'] ?>"><?= $kelas['kompetensi_keahlian'] ?></option>
-                            <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                            <option value="Multimedia">Multimedia</option>
-                            <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
-                        </select>
-                    </td>
+                    <td><input type="text" name="kompetensi_keahlian" class="input-form" id="kompetensi_keahlian" placeholder="Masukkan kompetensi keahlian!" value="<?= $kelas['kompetensi_keahlian'] ?>" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: center;"><button type="submit" name="ubah" class="hijau">Ubah</button></td>

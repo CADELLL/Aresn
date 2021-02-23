@@ -1,17 +1,18 @@
 <?php
 
 session_start();
-if (isset($_SESSION["admin"])) {
-    header("Location: admin.php");
-    exit;
-}
-if (isset($_SESSION["petugas"])) {
-    header("Location: petugas.php");
+if (!isset($_SESSION["admin"])) {
+    echo "
+		<script>
+			alert('Tidak dapat mengakses fitur!');
+			document.location.href = '../index.php';
+		</script>
+	";
     exit;
 }
 require '../functions.php';
 
-$nisn = $_POST['nisn'] ?? 0;
+$nisn = $_GET['n'] ?? 0;
 
 if ($nisn == '') {
     echo "
@@ -25,8 +26,9 @@ if ($nisn == '') {
 }
 
 $no = 1;
-$pembayaranSiswa = query("SELECT * FROM tb_pembayaran
-                    JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
+$pembayaranSiswa = query("SELECT *,tb_pembayaran.id AS id_pembayaran, tb_siswa.nama AS nama_siswa FROM tb_pembayaran
+                    JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                    JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas
                     JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp
                     WHERE tb_pembayaran.nisn = $nisn");
 $cekPembayaran = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran WHERE tb_pembayaran.nisn = $nisn");
@@ -63,19 +65,20 @@ $bulan = bulan();
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="siswa.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="petugas.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="kelas.php"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
-            <li><a href="pembayaran.php" class="active"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
-            <li><a href="../autentikasi/masuk.php"><span class="hide">Masuk </span><span class="hide-icon"><i class='bx bx-log-in'></i></span></a></li>
+            <li><a href="../admin.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
+            <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
+            <li><a href="../spp"><span class="hide">SPP </span><span class="hide-icon"><i class='bx bx-purchase-tag-alt'></i></span></a></li>
+            <li><a href="../pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
+            <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
         </ul>
     </div>
 
     <div id="konten">
         <table>
             <tr>
-                <td colspan="8">
+                <td colspan="9">
                     <span id="aksi">
                         <p class="h2">Detail pembayaran</p>
                         <span>
@@ -88,6 +91,7 @@ $bulan = bulan();
             <tr>
                 <td>No</td>
                 <td>Petugas</td>
+                <td>Siswa</td>
                 <td>NISN</td>
                 <td>Tanggal</td>
                 <td>Bulan</td>
@@ -99,6 +103,7 @@ $bulan = bulan();
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $p['nama']; ?></td>
+                    <td><?= $p['nama_siswa']; ?></td>
                     <td><?= $p['nisn']; ?></td>
                     <td><?= $p['tanggal_bayar']; ?></td>
                     <td><?= $p['bulan_dibayar']; ?></td>
@@ -110,7 +115,7 @@ $bulan = bulan();
 
             <tr>
                 <td colspan="2">Daftar bulan dibayar</td>
-                <td colspan="6">
+                <td colspan="7">
                     <?php for ($i = 0; $i < count($bulan); $i++) : ?>
                         <?php foreach ($cekPembayaran as $p) : ?>
                             <?php if ($bulan[$i][0] != $p['bulan_dibayar']) : ?>
@@ -123,7 +128,7 @@ $bulan = bulan();
 
             <tr>
                 <td colspan="2">Total belum dibayar</td>
-                <td colspan="6">
+                <td colspan="7">
                     <p style="color: brown; font-weight: bold">Rp. <?= rupiah($total); ?></p>
                 </td>
             </tr>

@@ -51,8 +51,8 @@ foreach ($pembayaran as $p) {
                 <td>" . $p['tanggal_bayar'] . "</td>        
                 <td>" . $p['bulan_dibayar'] . "</td>        
                 <td>" . $p['tahun_dibayar'] . "</td>        
-                <td>" . "Tahun " .  $p['tahun'] . "<br>" . " Nominal " . rupiah($p['nominal']) . "</td>        
-                <td>" . $p['jumlah_bayar'] . "</td>        
+                <td>" . "Tahun " .  $p['tahun'] . "<br>" . " Nominal Rp. " . rupiah($p['nominal']) . "</td>        
+                <td>" . "Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
             </tr>";
     $i++;
 }

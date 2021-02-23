@@ -86,6 +86,7 @@ if (isset($_POST['cari'])) {
                     <td><?= $s['alamat']; ?></td>
                     <td><?= $s['no_telepon']; ?></td>
                     <td>
+                        <a href="detail.php?n=<?= $s['nisn'] ?>" class="href">Detail</a>
                         <a href="ubah.php?n=<?= $s['nisn'] ?>" class="href kuning">Ubah</a>
                         <a href="hapus.php?n=<?= $s['nisn'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
                     </td>

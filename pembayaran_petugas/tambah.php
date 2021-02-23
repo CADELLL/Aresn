@@ -14,6 +14,7 @@ if (!isset($_SESSION["petugas"])) {
 require '../functions.php';
 
 $spp = query('SELECT * FROM tb_spp');
+$bulan = bulan();
 
 if (isset($_POST['tambah'])) {
     if (tambahPembayaran($_POST) > 0) {
@@ -94,18 +95,9 @@ if (isset($_POST['tambah'])) {
                     <td><label for="bulan_dibayar">Bulan dibayar</label></td>
                     <td>
                         <select name="bulan_dibayar" id="bulan_dibayar" required>
-                            <option value="Januari">Januari</option>
-                            <option value="Februari">Februari</option>
-                            <option value="Maret">Maret</option>
-                            <option value="April">April</option>
-                            <option value="Mei">Mei</option>
-                            <option value="Juni">Juni</option>
-                            <option value="Juli">Juli</option>
-                            <option value="Agustus">Agustus</option>
-                            <option value="September">September</option>
-                            <option value="Oktober">Oktober</option>
-                            <option value="November">November</option>
-                            <option value="Desember">Desember</option>
+                            <?php for ($i = 0; $i < count($bulan); $i++) : ?>
+                                <option value="<?= $bulan[$i][0] ?>"><?= $bulan[$i][0] ?></option>
+                            <?php endfor ?>
                         </select>
                     </td>
                 </tr>
