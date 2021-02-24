@@ -267,19 +267,43 @@ function tambahPembayaran($data)
     $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
-    $hasil = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
+    $cekNISN = mysqli_query($koneksi, "SELECT nisn FROM tb_siswa WHERE nisn = '$nisn'");
+    if (!mysqli_fetch_assoc($cekNISN)) {
+        echo "
+            <script>
+                alert('NISN tidak terdaftar!')
+            </script>
+            ";
+        return false;
+    }
 
-    if (!mysqli_fetch_assoc($hasil)) {
+    $cekBulan = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran WHERE nisn = '$nisn'");
+    foreach ($cekBulan as $cb) {
+        if ($cb['bulan_dibayar'] == $bulan_dibayar) {
+            echo "
+                <script>
+                    alert('Anda sudah membayar SPP bulan $bulan_dibayar')
+                </script>
+                ";
+            return false;
+        }
+    }
+
+
+    $hasilSiswaSPP = query("SELECT * FROM tb_siswa JOIN tb_spp ON tb_siswa.id_spp = tb_spp.id WHERE nisn = '$nisn'")[0];
+    $id_spp = (int)['id_spp'];
+    $nominal = (int)$hasilSiswaSPP['nominal'];
+
+    if ((int)$jumlah_bayar <= $nominal) {
+        $rupiah = rupiah($nominal);
         echo "<script>
-				alert('NISN tidak terdaftar!')
+				alert('Nominal kurang dari Rp. $rupiah')
                 </script>";
         return false;
     }
 
-    $hasilNISN = query("SELECT id_spp FROM tb_siswa WHERE nisn = '$nisn'")[0];
-    $id_spp = (int)$hasilNISN;
-
     $query = "INSERT INTO tb_pembayaran VALUES ('','$id_petugas','$nisn','$tanggal_bayar','$bulan_dibayar','$tahun_dibayar','$id_spp','$jumlah_bayar')";
+
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }

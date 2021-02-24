@@ -43,7 +43,7 @@ if (isset($_POST['cari'])) {
     <nav>
         <form action="" method="POST">
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
-            <button type="submit" name="cari">Cari</button>
+            <button type="submit" name="cari"><span class="hide">Cari </span><i class="bx bx-search hide-icon"></i></button>
         </form>
         <p>SMK</p>
     </nav>
@@ -51,12 +51,12 @@ if (isset($_POST['cari'])) {
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="../index.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="siswa.php"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="petugas.php"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="kelas.php"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
-            <li><a href="pembayaran.php" class="active"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
-            <li><a href="../autentikasi/masuk.php"><span class="hide">Masuk </span><span class="hide-icon"><i class='bx bx-log-in'></i></span></a></li>
+            <li><a href="../index.php"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
+            <li><a href="siswa.php"><span class="hide">Siswa </span><i class='bx bx-user hide-icon'></i></a></li>
+            <li><a href="petugas.php"><span class="hide">Petugas </span><i class='bx bx-user hide-icon'></i></a></li>
+            <li><a href="kelas.php"><span class="hide">Kelas </span><i class='bx bx-home-alt hide-icon'></i></a></li>
+            <li><a href="pembayaran.php" class="active"><span class="hide">Pembayaran </span><i class='bx bx-money hide-icon'></i></a></li>
+            <li><a href="../autentikasi/masuk.php"><span class="hide">Masuk </span><i class='bx bx-log-in hide-icon'></i></a></li>
         </ul>
     </div>
 

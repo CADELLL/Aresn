@@ -64,7 +64,7 @@ if (isset($_POST['ubah'])) {
     <nav>
         <form action="index.php" method="POST">
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autocomplete="off">
-            <button type="submit" name="cari">Cari</button>
+            <button type="submit" name="cari"><span class="hide">Cari </span><i class="bx bx-search hide-icon"></i></button>
         </form>
         <p><?= $_SESSION["nama"] ?></p>
     </nav>

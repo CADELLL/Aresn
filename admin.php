@@ -16,7 +16,8 @@ $siswa = query("SELECT * FROM tb_siswa");
 $petugas = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");
 $pembayaran = query("SELECT * FROM tb_pembayaran");
-
+$cekPembayaran = query("SELECT * FROM tb_siswa JOIN tb_pembayaran ON tb_siswa.nisn = tb_pembayaran.nisn");
+$bulan = bulan();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +35,7 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
     <nav>
         <form action="" method="POST">
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
-            <button type="submit" name="cari">Cari</button>
+            <button type="submit" name="cari"><span class="hide">Cari </span><i class='bx bx-search hide-icon'></i></button>
         </form>
         <p><?= $_SESSION["nama"] ?></p>
     </nav>
@@ -42,18 +43,18 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="index.php" class="active"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="siswa"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
-            <li><a href="spp"><span class="hide">SPP </span><span class="hide-icon"><i class='bx bx-purchase-tag-alt'></i></span></a></li>
-            <li><a href="pembayaran"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
-            <li><a href="autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
+            <li><a href="siswa"><span class="hide">Siswa </span><i class='bx bx-user hide-icon'></i></a></li>
+            <li><a href="petugas"><span class="hide">Petugas </span><i class='bx bx-user hide-icon'></i></a></li>
+            <li><a href="kelas"><span class="hide">Kelas </span><i class='bx bx-home-alt hide-icon'></i></a></li>
+            <li><a href="spp"><span class="hide">SPP </span><i class='bx bx-purchase-tag-alt hide-icon'></i></a></li>
+            <li><a href="pembayaran"><span class="hide">Pembayaran </span><i class='bx bx-money hide-icon'></i></a></li>
+            <li><a href="autentikasi/keluar.php"><span class="hide">Keluar </span><i class='bx bx-log-out hide-icon'></i></a></li>
         </ul>
     </div>
 
     <div id="konten">
-        <span id="aksi" style="margin-bottom: 10px;">
+        <span id="aksi" style="margin-bottom: 15px;">
             <p class="h2">Informasi singkat</p>
         </span>
 
@@ -84,6 +85,31 @@ $pembayaran = query("SELECT * FROM tb_pembayaran");
             </a>
 
         </section>
+
+        <span id="aksi" style="margin: 30px 0px 15px;">
+            <p class="h2">Daftar siswa SPP</p>
+        </span>
+
+        <table>
+            <tr>
+                <th>Nama</th>
+                <?php for ($i = 0; $i < count($bulan); $i++) : ?>
+                    <th><?= $bulan[$i][0] ?></th>
+                <?php endfor; ?>
+            </tr>
+            <tr>
+                <?php foreach ($cekPembayaran as $c) : ?>
+                    <th><?= $c['nama'] ?></th>
+                    <?php for ($i = 0; $i < count($bulan); $i++) : ?>
+                        <?php if ($bulan[$i][0] == $c['bulan_dibayar']) : ?>
+                            <td><i class='bx bx-check'></i></td>
+                        <?php else : ?>
+                            <td><?= ''; ?></td>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                <?php endforeach; ?>
+            </tr>
+        </table>
     </div>
 
 </body>

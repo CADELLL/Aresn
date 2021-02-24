@@ -21,20 +21,16 @@ if ($nisn == '') {
     </script>
     ";
     exit;
-    die;
 }
 
 $no = 1;
+$total = 0;
 $pembayaranSiswa = query("SELECT * FROM tb_pembayaran
                     JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
                     JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp
                     WHERE tb_pembayaran.nisn = $nisn");
 $cekPembayaran = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran WHERE tb_pembayaran.nisn = $nisn");
-
-$total = 0;
-foreach ($pembayaranSiswa as $p) {
-    $total += ($p['nominal'] - $p['jumlah_bayar']);
-}
+$rows = mysqli_num_rows($cekPembayaran);
 
 $bulan = bulan();
 ?>
@@ -88,32 +84,32 @@ $bulan = bulan();
             <tr>
                 <td>No</td>
                 <td>Petugas</td>
-                <td>NISN</td>
                 <td>Tanggal</td>
                 <td>Bulan</td>
                 <td>Tahun</td>
                 <td>SPP</td>
                 <td>Jumlah</td>
+                <td>Uang kembali</td>
             </tr>
             <?php foreach ($pembayaranSiswa as $p) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $p['nama']; ?></td>
-                    <td><?= $p['nisn']; ?></td>
                     <td><?= $p['tanggal_bayar']; ?></td>
                     <td><?= $p['bulan_dibayar']; ?></td>
                     <td><?= $p['tahun_dibayar']; ?></td>
-                    <td>Tahun <?= $p['tahun'] ?> <br>Nominal Rp. <?= rupiah($p['nominal']) ?></td>
+                    <td>Rp. <?= rupiah($p['nominal']) ?></td>
                     <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
+                    <td>Rp. <?= rupiah($p['jumlah_bayar'] - 150000); ?></td>
                 </tr>
             <?php endforeach; ?>
 
             <tr>
-                <td colspan="2">Daftar bulan dibayar</td>
+                <td colspan="2">Daftar SPP belum dibayar</td>
                 <td colspan="6">
                     <?php for ($i = 0; $i < count($bulan); $i++) : ?>
-                        <?php foreach ($cekPembayaran as $p) : ?>
-                            <?php if ($bulan[$i][0] != $p['bulan_dibayar']) : ?>
+                        <?php foreach ($cekPembayaran as $c) : ?>
+                            <?php if ($bulan[$i][0] != $c['bulan_dibayar']) : ?>
                                 <?= $bulan[$i][0] . '. ' ?>
                             <?php endif; ?>
                         <?php endforeach; ?>
@@ -122,7 +118,7 @@ $bulan = bulan();
             </tr>
 
             <tr>
-                <td colspan="2">Total belum dibayar</td>
+                <td colspan="2"><?= rupiah($total) < 0 ? 'Lunas, Uang kembali' : 'Total belum dibayar' ?></td>
                 <td colspan="6">
                     <p style="color: brown; font-weight: bold">Rp. <?= rupiah($total); ?></p>
                 </td>

@@ -16,10 +16,13 @@ require_once '../assets/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 
+$nisn = $_GET['n'] ?? 0;
+
 $pembayaran = query("SELECT *,tb_pembayaran.id AS id_pembayaran, tb_siswa.nama AS nama_siswa FROM tb_pembayaran
                     JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
                     JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas
-                    JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp");
+                    JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp
+                    WHERE tb_pembayaran.nisn = $nisn");
 
 $dompdf = new Dompdf();
 
@@ -51,8 +54,8 @@ foreach ($pembayaran as $p) {
                 <td>" . $p['tanggal_bayar'] . "</td>        
                 <td>" . $p['bulan_dibayar'] . "</td>        
                 <td>" . $p['tahun_dibayar'] . "</td>        
-                <td>" . "Tahun " .  $p['tahun'] . "<br>" . " Nominal " . rupiah($p['nominal']) . "</td>        
-                <td>" . $p['jumlah_bayar'] . "</td>        
+                <td>" . "Tahun " . $p['tahun'] . "<br> Nominal Rp." . rupiah($p['nominal']) . "</td>        
+                <td>" . rupiah($p['jumlah_bayar']) . "</td>        
             </tr>";
     $i++;
 }

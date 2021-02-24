@@ -81,7 +81,7 @@ if (isset($_POST['ubah'])) {
                 <tr>
                     <td colspan="2">
                         <span id="aksi">
-                            <p class="h2"><?= $_SESSION["nama"] ?? 'Profile' ?></p>
+                            <p class="h2">Ubah siswa</p>
                             <a href="index.php" class="href">Kembali</a>
                         </span>
                     </td>

@@ -12,8 +12,6 @@ if (!isset($_SESSION["admin"])) {
 }
 
 require '../functions.php';
-
-$spp = query('SELECT * FROM tb_spp');
 $bulan = bulan();
 
 if (isset($_POST['tambah'])) {
@@ -81,7 +79,7 @@ if (isset($_POST['tambah'])) {
                 <tr>
                     <td colspan="2">
                         <span id="aksi">
-                            <p class="h2">Tambah petugas</p>
+                            <p class="h2">Tambah pembayaran</p>
                             <a href="index.php" class="href">Kembali</a>
                         </span>
                     </td>
@@ -106,7 +104,7 @@ if (isset($_POST['tambah'])) {
                 </tr>
                 <tr>
                     <td><label for="tahun_dibayar">Tahun dibayar</label></td>
-                    <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" maxlength="4" required autofocus autocomplete="off"></td>
+                    <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" required autofocus autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="jumlah_bayar">Jumlah bayar</label></td>
