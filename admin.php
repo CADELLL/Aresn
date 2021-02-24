@@ -12,13 +12,11 @@ if (!isset($_SESSION["admin"])) {
 
 require 'functions.php';
 
+$bulan = bulan();
 $siswa = query("SELECT * FROM tb_siswa");
 $petugas = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");
 $pembayaran = query("SELECT * FROM tb_pembayaran");
-$cekPembayaran = query("SELECT * FROM tb_siswa JOIN tb_pembayaran ON tb_siswa.nisn = tb_pembayaran.nisn");
-$bulan = bulan();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,30 +85,6 @@ $bulan = bulan();
 
         </section>
 
-        <span id="aksi" style="margin: 30px 0px 15px;">
-            <p class="h2">Daftar siswa SPP</p>
-        </span>
-
-        <table>
-            <tr>
-                <th>Nama</th>
-                <?php for ($i = 0; $i < count($bulan); $i++) : ?>
-                    <th><?= $bulan[$i][0] ?></th>
-                <?php endfor; ?>
-            </tr>
-            <tr>
-                <?php foreach ($cekPembayaran as $c) : ?>
-                    <th><?= $c['nama'] ?></th>
-                    <?php for ($i = 0; $i < count($bulan); $i++) : ?>
-                        <?php if ($bulan[$i][0] == $c['bulan_dibayar']) : ?>
-                            <td><i class='bx bx-check'></i></td>
-                        <?php else : ?>
-                            <td><?= ''; ?></td>
-                        <?php endif; ?>
-                    <?php endfor; ?>
-                <?php endforeach; ?>
-            </tr>
-        </table>
     </div>
 
 </body>

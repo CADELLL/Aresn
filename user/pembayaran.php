@@ -12,7 +12,7 @@ if (isset($_SESSION["petugas"])) {
 
 require '../functions.php';
 
-$pembayaranSiswa = query("SELECT * FROM tb_pembayaran
+$pembayaranSiswa = query("SELECT *, tb_pembayaran.id AS id_pembayaran FROM tb_pembayaran
                     JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
                     JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id");
 
@@ -104,7 +104,7 @@ if (isset($_POST['cari'])) {
             } else if (isNaN(nisn)) {
                 parseInt(prompt("Masukkan nomer NISN!"));
             } else {
-                parseInt(prompt("Maksimal nomber NISN 10 digit!", ""));
+                parseInt(prompt("Maksimal nomber NISN 10 digit!"));
             }
         }
     </script>
