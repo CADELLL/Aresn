@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (isset($_SESSION["admin"])) {
     header("Location: admin.php");
@@ -12,16 +11,15 @@ if (isset($_SESSION["petugas"])) {
 
 require 'functions.php';
 
+$no = 1;
 $siswa = query("SELECT * FROM tb_siswa");
 $petugas = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");
 $pembayaran = query("SELECT * FROM tb_pembayaran");
-
 $pembayaranSiswa = query("SELECT * FROM tb_pembayaran
-                    JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
-                    JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id");
+                            JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
+                            JOIN tb_kelas ON tb_siswa.id_kelas = tb_kelas.id");
 
-$no = 1;
 if (isset($_POST['cari'])) {
     $pembayaranSiswa = cariPembayaranSiswa($_POST['kataKunci']);
 }

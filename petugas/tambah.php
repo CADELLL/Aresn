@@ -1,13 +1,12 @@
 <?php
 session_start();
-
 if (!isset($_SESSION["admin"])) {
     echo "
 		<script>
 			alert('Tidak dapat mengakses fitur ini!');
 			document.location.href = '../index.php';
 		</script>
-	";
+	    ";
     exit;
 }
 
@@ -15,12 +14,12 @@ require '../functions.php';
 
 if (isset($_POST['tambah'])) {
     if (tambahPetugas($_POST) > 0) {
-        echo ("
+        echo "
         <script>
 			alert('Data berhasil ditambahkan!');
 			document.location.href = 'index.php';
 		</script>
-        ");
+        ";
     }
 }
 ?>

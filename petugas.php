@@ -6,11 +6,12 @@ if (!isset($_SESSION["petugas"])) {
 			alert('Tidak dapat mengakses fitur!');
             window.history.back();
 		</script>
-	";
+	    ";
     exit;
 }
 
 require 'functions.php';
+
 $siswa = query("SELECT * FROM tb_siswa");
 $pengguna = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 $kelas = query("SELECT * FROM tb_kelas");

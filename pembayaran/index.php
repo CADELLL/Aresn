@@ -1,24 +1,25 @@
 <?php
-
 session_start();
-
 if (!isset($_SESSION["admin"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
 			document.location.href = '../index.php';
 		</script>
-	";
+	    ";
     exit;
 }
 
 require '../functions.php';
 
-$pembayaran = query("SELECT *,tb_pembayaran.id AS id_pembayaran, tb_siswa.nama AS nama_siswa FROM tb_pembayaran
+$no = 1;
+$pembayaran = query("SELECT *,
+                    tb_pembayaran.id AS id_pembayaran, 
+                    tb_siswa.nama AS nama_siswa FROM tb_pembayaran
                     JOIN tb_siswa ON tb_siswa.nisn = tb_pembayaran.nisn
                     JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas
                     JOIN tb_spp ON tb_spp.id = tb_pembayaran.id_spp");
-$no = 1;
+
 
 if (isset($_POST['cari'])) {
     $pembayaran = cariPembayaran($_POST['kataKunci']);
@@ -52,7 +53,7 @@ if (isset($_POST['cari'])) {
     <nav>
         <form action="" method="POST">
             <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
-            <button type="submit" name="cari">Cari</button>
+            <button type="submit" name="cari"><span class="hide">Cari </span><i class="bx bx-search hide-icon"></i></button>
         </form>
         <p><?= $_SESSION["nama"] ?></p>
     </nav>
@@ -60,13 +61,13 @@ if (isset($_POST['cari'])) {
     <div id="sidebar">
         <p id="menu">Menu</p>
         <ul>
-            <li><a href="../admin.php"><span class="hide">Dashboard </span><span class="hide-icon"><i class='bx bxs-dashboard'></i></span></a></li>
-            <li><a href="../siswa"><span class="hide">Siswa </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../petugas"><span class="hide">Petugas </span><span class="hide-icon"><i class='bx bx-user'></i></span></a></li>
-            <li><a href="../kelas"><span class="hide">Kelas </span><span class="hide-icon"><i class='bx bx-home-alt'></i></span></a></li>
-            <li><a href="../spp"><span class="hide">SPP </span><span class="hide-icon"><i class='bx bx-purchase-tag-alt'></i></span></a></li>
-            <li><a href="index.php" class="active"><span class="hide">Pembayaran </span><span class="hide-icon"><i class='bx bx-money'></i></span></a></li>
-            <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><span class="hide-icon"><i class='bx bx-log-out'></i></span></a></li>
+            <li><a href="../admin.php"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
+            <li><a href="../siswa"><span class="hide">Siswa </span><i class='bx bx-user hide-icon'></i></a></li>
+            <li><a href="../petugas"><span class="hide">Petugas </span><i class='bx bx-user hide-icon'></i></a></li>
+            <li><a href="../kelas"><span class="hide">Kelas </span><i class='bx bx-home-alt hide-icon'></i></a></li>
+            <li><a href="../spp"><span class="hide">SPP </span><i class='bx bx-purchase-tag-alt hide-icon'></i></a></li>
+            <li><a href="index.php" class="active"><span class="hide">Pembayaran </span><i class='bx bx-money hide-icon'></i></a></li>
+            <li><a href="../autentikasi/keluar.php"><span class="hide">Keluar </span><i class='bx bx-log-out hide-icon'></i></a></li>
         </ul>
     </div>
 
@@ -107,7 +108,7 @@ if (isset($_POST['cari'])) {
                     <td>Tahun <?= $p['tahun'] ?> <br>Nominal Rp. <?= rupiah($p['nominal']) ?></td>
                     <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
                     <td>
-                        <a href="ubah.php?i=<?= $p['nisn'] ?>" class="href kuning">Ubah</a>
+                        <a href="ubah.php?i=<?= $p['id_pembayaran'] ?>" class="href kuning">Ubah</a>
                         <a href="hapus.php?i=<?= $p['id_pembayaran'] ?>" class="href merah" onclick="return confirm('Apakah yakin menghapus data petugas <?= $p['nama'] ?>?')">Hapus</a>
                     </td>
                 </tr>

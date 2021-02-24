@@ -6,7 +6,7 @@ if (!isset($_SESSION["admin"])) {
             alert('Tidak dapat mengakses fitur ini!');
             window.history.back();
 		</script>
-	";
+	    ";
     exit;
 }
 
@@ -18,6 +18,7 @@ $kelas = query("SELECT * FROM tb_kelas");
 $pembayaran = query("SELECT * FROM tb_pembayaran");
 $cekPembayaran = query("SELECT * FROM tb_siswa JOIN tb_pembayaran ON tb_siswa.nisn = tb_pembayaran.nisn");
 $bulan = bulan();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
