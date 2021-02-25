@@ -13,7 +13,6 @@ if (!isset($_SESSION["petugas"])) {
 
 require '../functions.php';
 
-$spp = query('SELECT * FROM tb_spp');
 $bulan = bulan();
 
 if (isset($_POST['tambah'])) {
@@ -72,7 +71,6 @@ if (isset($_POST['tambah'])) {
 
     <div id="konten">
         <form action="" method="POST">
-            <input type="hidden" name="id_petugas" value="<?= $_SESSION['id'] ?>">
             <table>
                 <tr>
                     <td colspan="2">
@@ -88,10 +86,6 @@ if (isset($_POST['tambah'])) {
                     <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" required autofocus autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><label for="tanggal_bayar">Tanggal bayar</label></td>
-                    <td><input type="date" name="tanggal_bayar" class="input-form" id="tanggal_bayar" placeholder="Masukkan tanggal!" required autocomplete="off"></td>
-                </tr>
-                <tr>
                     <td><label for="bulan_dibayar">Bulan dibayar</label></td>
                     <td>
                         <select name="bulan_dibayar" id="bulan_dibayar" required>
@@ -104,16 +98,6 @@ if (isset($_POST['tambah'])) {
                 <tr>
                     <td><label for="tahun_dibayar">Tahun dibayar</label></td>
                     <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" maxlength="4" required autofocus autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td><label for="id_spp">SPP</label></td>
-                    <td>
-                        <select name="id_spp" id="id_spp" required>
-                            <?php foreach ($spp as $s) : ?>
-                                <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Nominal <?= rupiah($s['nominal']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
                 </tr>
                 <tr>
                     <td><label for="jumlah_bayar">Jumlah bayar</label></td>

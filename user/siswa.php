@@ -76,6 +76,9 @@ if (isset($_POST['cari'])) {
                     <td><?= $s['kompetensi_keahlian']; ?></td>
                 </tr>
             <?php endforeach; ?>
+            <?php if ($siswa == []) : ?>
+                <div class="info info-merah">Data tidak ada!</div>
+            <?php endif; ?>
         </table>
     </div>
 </body>

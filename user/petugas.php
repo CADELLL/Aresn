@@ -72,6 +72,9 @@ if (isset($_POST['cari'])) {
                     <td><?= $p['nama']; ?></td>
                 </tr>
             <?php endforeach; ?>
+            <?php if ($petugas == []) : ?>
+                <div class="info info-merah">Data tidak ada!</div>
+            <?php endif; ?>
         </table>
     </div>
 </body>

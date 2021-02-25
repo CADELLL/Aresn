@@ -80,9 +80,9 @@ if (isset($_POST['ubah'])) {
 
     <div id="konten">
         <form action="" method="POST">
-            <input type="hidden" name="id_petugas" value="<?= $_SESSION['id'] ?>">
             <input type="hidden" name="id_pembayaran" value="<?= $pembayaran['id_pembayaran'] ?>">
             <input type="hidden" name="nisn_lama" value="<?= $pembayaran['nisn'] ?>">
+            <input type="hidden" name="bulan_lama" value="<?= $pembayaran['bulan_dibayar'] ?>">
             <table>
                 <tr>
                     <td colspan="2">
@@ -95,10 +95,6 @@ if (isset($_POST['ubah'])) {
                 <tr>
                     <td><label for="nisn">NISN</label></td>
                     <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" maxlength="10" value="<?= $pembayaran['nisn'] ?>" required autofocus autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td><label for="tanggal_bayar">Tanggal bayar</label></td>
-                    <td><input type="date" name="tanggal_bayar" class="input-form" id="tanggal_bayar" placeholder="Masukkan tanggal!" value="<?= $pembayaran['tanggal_bayar'] ?>" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="bulan_dibayar">Bulan dibayar</label></td>
@@ -123,19 +119,6 @@ if (isset($_POST['ubah'])) {
                 <tr>
                     <td><label for="tahun_dibayar">Tahun dibayar</label></td>
                     <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" value="<?= $pembayaran['tahun_dibayar'] ?>" maxlength="4" required autofocus autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td><label for="id_spp">SPP</label></td>
-                    <td>
-                        <select name="id_spp" id="id_spp" required>
-                            <option value="<?= $pembayaran['id_spp'] ?>">Tahun <?= $pembayaran['tahun'] ?> - Nominal <?= rupiah($pembayaran['nominal']) ?></option>
-                            <?php foreach ($spp as $s) : ?>
-                                <?php if ($s['id'] != $pembayaran['id_spp']) : ?>
-                                    <option value="<?= $s['id'] ?>">Tahun <?= $s['tahun'] ?> - Nominal <?= rupiah($s['nominal']) ?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
                 </tr>
                 <tr>
                     <td><label for="jumlah_bayar">Jumlah bayar</label></td>

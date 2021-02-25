@@ -74,7 +74,6 @@ if (isset($_POST['tambah'])) {
 
     <div id="konten">
         <form action="" method="POST">
-            <input type="hidden" name="id_petugas" value="<?= $_SESSION['id'] ?>">
             <table>
                 <tr>
                     <td colspan="2">
@@ -87,10 +86,6 @@ if (isset($_POST['tambah'])) {
                 <tr>
                     <td><label for="nisn">NISN</label></td>
                     <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" required autofocus autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td><label for="tanggal_bayar">Tanggal bayar</label></td>
-                    <td><input type="date" name="tanggal_bayar" class="input-form" id="tanggal_bayar" placeholder="Masukkan tanggal!" required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="bulan_dibayar">Bulan dibayar</label></td>

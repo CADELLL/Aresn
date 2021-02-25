@@ -273,9 +273,9 @@ function tambahPembayaran($data)
 {
     global $koneksi;
 
-    $id_petugas = $data['id_petugas'];
+    $id_petugas =  $_SESSION['id'];
     $nisn = htmlspecialchars($data['nisn']);
-    $tanggal_bayar = htmlspecialchars($data['tanggal_bayar']);
+    $tanggal_bayar = date("Y-m-d H:i:s");
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
     $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
@@ -293,15 +293,12 @@ function tambahPembayaran($data)
 
     // cek bulan
     $cekBulan = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran WHERE nisn = '$nisn'");
-    foreach ($cekBulan as $cb) {
-        if ($cb['bulan_dibayar'] == $bulan_dibayar) {
-            echo "
-                <script>
+    if (mysqli_fetch_assoc($cekBulan)) {
+        echo "<script>
                     alert('Anda sudah membayar SPP bulan $bulan_dibayar')
                 </script>
                 ";
-            return false;
-        }
+        return false;
     }
 
     // cek nominal pembayaran
@@ -309,7 +306,7 @@ function tambahPembayaran($data)
     $id_spp = (int)['id_spp'];
     $nominal = (int)$hasilSiswaSPP['nominal'];
 
-    if ((int)$jumlah_bayar <= $nominal) {
+    if ((int)$jumlah_bayar < $nominal) {
         $rupiah = rupiah($nominal);
         echo "
             <script>
@@ -364,14 +361,13 @@ function ubahPembayaran($data)
 {
     global $koneksi;
 
-    $id_petugas = $data['id_petugas'];
+    $id_petugas = $_SESSION['id'];
+    $bulan_lama = $data['bulan_lama'];
     $id_pembayaran = $data['id_pembayaran'];
     $nisn_lama = $data['nisn_lama'];
     $nisn = htmlspecialchars($data['nisn']);
-    $tanggal_bayar = htmlspecialchars($data['tanggal_bayar']);
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
     $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
-    $id_spp = htmlspecialchars($data['id_spp']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
     // cek nisn
@@ -385,14 +381,37 @@ function ubahPembayaran($data)
         return false;
     }
 
+    // cek bulan
+    $cekBulan = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran WHERE nisn = '$nisn'");
+    if ($bulan_dibayar !== $bulan_lama && mysqli_fetch_all($cekBulan)) {
+        echo "<script>
+                    alert('Anda sudah membayar SPP bulan $bulan_dibayar')
+                </script>
+                ";
+        return false;
+    }
+
+
+    // cek nominal pembayaran
+    $hasilSiswaSPP = query("SELECT * FROM tb_siswa JOIN tb_spp ON tb_siswa.id_spp = tb_spp.id WHERE nisn = '$nisn_lama'")[0];
+    $nominal = $hasilSiswaSPP['nominal'];
+
+    if ((int)$jumlah_bayar < $nominal) {
+        $rupiah = rupiah($nominal);
+        echo "
+             <script>
+                 alert('Nominal kurang dari Rp. $rupiah')
+             </script>
+             ";
+        return false;
+    }
+
     $query = "UPDATE tb_pembayaran 
                 SET
                     id_petugas = '$id_petugas',
                     nisn = '$nisn',
-                    tanggal_bayar ='$tanggal_bayar',
                     bulan_dibayar = '$bulan_dibayar',
                     tahun_dibayar = '$tahun_dibayar',
-                    id_spp = '$id_spp',
                     jumlah_bayar = '$jumlah_bayar'
                 WHERE id = $id_pembayaran";
 

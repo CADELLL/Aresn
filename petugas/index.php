@@ -16,7 +16,7 @@ $no = 1;
 $petugas = query("SELECT * FROM tb_pengguna WHERE tingkat = 'petugas'");
 
 if (isset($_POST['cari'])) {
-    $petugas = cariPetugas($_POST['kataKunci']);
+    $petugas = cariUserPetugas($_POST['kataKunci']);
 }
 
 ?>

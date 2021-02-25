@@ -90,7 +90,7 @@ if (isset($_POST['cari'])) {
                     </td>
                 </tr>
             <?php endforeach; ?>
-            <?php if ($pembayaranSiswa  == []) : ?>
+            <?php if ($pembayaranSiswa == []) : ?>
                 <div class="info info-merah">Data tidak ada!</div>
             <?php endif; ?>
         </table>

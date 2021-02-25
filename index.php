@@ -40,7 +40,7 @@ if (isset($_POST['cari'])) {
 <body>
     <nav>
         <form action="" method="POST">
-            <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autofocus autocomplete="off">
+            <input type="text" name="kataKunci" placeholder="Masukkan kata kunci..." autocomplete="off">
             <button type="submit" name="cari"><span class="hide">Cari </span><i class="bx bx-search hide-icon"></i></button>
         </form>
         <p>SMK</p>

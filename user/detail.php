@@ -25,6 +25,7 @@ if ($nisn == '') {
 
 $no = 1;
 $total = 0;
+$spp = 0;
 $bulan = bulan();
 $pembayaranSiswa = query("SELECT * FROM tb_pembayaran
                     JOIN tb_pengguna ON tb_pengguna.id = tb_pembayaran.id_petugas 
@@ -35,7 +36,7 @@ $cekPembayaran = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran
 $cekSPP = mysqli_query($koneksi, "SELECT nominal FROM tb_siswa JOIN tb_spp ON tb_siswa.id_spp = tb_spp.id WHERE tb_siswa.nisn = $nisn");
 
 foreach ($cekSPP as $c) {
-    $spp = $c['nominal'];
+    $spp += $c['nominal'];
 }
 
 $total += ($spp * mysqli_num_rows($cekPembayaran)) - $spp * 12;
@@ -110,19 +111,19 @@ $total += ($spp * mysqli_num_rows($cekPembayaran)) - $spp * 12;
                 </tr>
             <?php endforeach; ?>
 
-            <tr>
+            <!-- <tr>
                 <td colspan="2">Daftar SPP belum dibayar</td>
                 <td colspan="6"></td>
-            </tr>
+            </tr> -->
 
             <tr>
-                <td colspan="2"><?= rupiah($total) >  $spp * 12 ? 'Lunas, Uang kembali' : 'Total belum dibayar' ?></td>
+                <td colspan="2">Total belum dibayar</td>
                 <td colspan="6">
                     <p style="color: brown; font-weight: bold">Rp. <?= rupiah($total); ?></p>
                 </td>
             </tr>
 
-            <?php if ($pembayaranSiswa  == []) : ?>
+            <?php if ($pembayaranSiswa == []) : ?>
                 <div class="info info-merah">NISN tidak terdaftar!</div>
             <?php endif; ?>
         </table>
