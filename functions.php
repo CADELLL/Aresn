@@ -293,12 +293,14 @@ function tambahPembayaran($data)
 
     // cek bulan
     $cekBulan = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran WHERE nisn = '$nisn'");
-    if (mysqli_fetch_assoc($cekBulan)) {
-        echo "<script>
-                    alert('Anda sudah membayar SPP bulan $bulan_dibayar')
-                </script>
-                ";
-        return false;
+    foreach ($cekBulan as $cB) {
+        if ($cB['bulan_dibayar'] == $bulan_dibayar) {
+            echo "<script>
+                        alert('Anda sudah membayar SPP bulan $bulan_dibayar')
+                    </script>
+                    ";
+            return false;
+        }
     }
 
     // cek nominal pembayaran
@@ -383,12 +385,14 @@ function ubahPembayaran($data)
 
     // cek bulan
     $cekBulan = mysqli_query($koneksi, "SELECT bulan_dibayar FROM tb_pembayaran WHERE nisn = '$nisn'");
-    if ($bulan_dibayar !== $bulan_lama && mysqli_fetch_all($cekBulan)) {
-        echo "<script>
-                    alert('Anda sudah membayar SPP bulan $bulan_dibayar')
-                </script>
-                ";
-        return false;
+    foreach ($cekBulan as $cB) {
+        if ($bulan_dibayar !== $bulan_lama && $cB['bulan_dibayar'] == $bulan_dibayar) {
+            echo "<script>
+                        alert('Anda sudah membayar SPP bulan $bulan_dibayar')
+                    </script>
+                    ";
+            return false;
+        }
     }
 
 
