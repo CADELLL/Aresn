@@ -1,4 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"); */
 @font-face {
   font-family: "Poppins";
   src: url("assets/fonts/Poppins-Regular.woff2");
@@ -11,12 +10,6 @@ span,
 applet,
 object,
 iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 p,
 blockquote,
 pre,
@@ -107,9 +100,6 @@ nav,
 section {
   display: block;
 }
-* {
-  box-sizing: border-box;
-}
 body {
   line-height: 1;
 }
@@ -131,142 +121,128 @@ q:after {
   content: "";
   content: none;
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 10px;
-  font-size: 16px;
-  width: 100%;
-  padding: 10px;
-}
-
-td,
-th {
-  border: 1px solid #ddd;
-  padding: 14px;
-}
-
-tr:hover {
-  background-color: #f2f2f2;
-}
-
 a {
   text-decoration: none;
 }
-
-input[type="text"],
-input[type="number"],
-select {
-  border: 0;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  height: 42px;
-  width: 100%;
-  padding: 6px 10px;
-  box-sizing: border-box;
-  background-color: rgb(250, 250, 250);
-  border-radius: 5px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+td,
+th,
+label {
+  color: #333;
 }
 
-select {
+/* * DEFAULT CUSTOM STYLE * */
+.table {
+  border-collapse: collapse;
+  border-spacing: 10px;
+  width: 100%;
+}
+
+.table td,
+.table th {
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+.table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.input {
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+.dropdown {
   cursor: pointer;
 }
 
-textarea {
-  border: 0;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  padding: 6px 12px;
-  box-sizing: border-box;
-  background-color: rgb(250, 250, 250);
-  border-radius: 5px;
-}
-
-.href {
-  text-align: center;
+.badge {
   padding: 6px 8px;
   display: inline-block;
   font-size: 14px;
   box-sizing: border-box;
-  background-color: #f2f2f2;
   border-radius: 5px;
   margin-right: 2px;
-  color: #333;
 }
 
-.kuning {
-  color: rgb(24, 24, 24);
+.yellow {
+  color: #222;
   background-color: orange;
 }
-.merah {
+
+.yellow:hover {
+  background-color: rgb(247, 160, 0);
+}
+
+.red {
   color: white;
   background-color: crimson;
 }
 
-.hijau {
+.red:hover {
+  background-color: rgb(202, 18, 55);
+}
+
+.green {
   color: white;
   background-color: green;
 }
 
-.biru {
-  color: white;
-  background-color: #0075fa;
+.green:hover {
+  background-color: rgb(0, 105, 0);
 }
 
-button {
-  padding: 11px 22px;
+.grey {
+  color: #222;
+  background-color: #f2f2f2;
+}
+
+.grey:hover {
+  background-color: #e2e2e2;
+}
+
+.button {
+  padding: 8px 14px;
   border: 0;
   box-sizing: border-box;
-  background-color: #f2f2f2;
   cursor: pointer;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 600;
   border-radius: 5px;
-  font-weight: 500;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+.link {
   color: #333;
 }
 
-nav {
-  z-index: 1;
-  display: flex;
+/* * STYLE */
+
+#navbar {
   width: 100%;
   height: 70px;
-  line-height: 65px;
+  box-sizing: border-box;
   background-color: #fff;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
+  line-height: 70px;
   padding: 0px 2% 0px 19%;
-  justify-items: center;
   position: fixed;
-}
-
-nav form input[type="text"] {
-  width: 65%;
-}
-
-/* Style */
-
-.h2 {
-  color: #333;
-  font-size: 24px;
-}
-
-.info {
-  border-radius: 5px;
-  padding: 0px 10px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  width: 100%;
-  height: 50px;
-  font-size: 14px;
-  line-height: 50px;
-}
-
-.info-merah {
-  background-color: #f8d7da;
-  color: darkred;
-}
-
-.info-hijau {
-  background-color: #d1e7dd;
-  color: darkgreen;
+  z-index: 1;
 }
 
 #sidebar {
@@ -275,15 +251,15 @@ nav form input[type="text"] {
   height: 100%;
   position: fixed;
   left: 0;
-  z-index: 2;
   top: 0;
+  z-index: 2;
   padding: 25px 10px;
   box-sizing: border-box;
 }
 
 #sidebar #menu {
   font-size: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   color: #f2f2f2;
   text-align: center;
 }
@@ -293,9 +269,9 @@ nav form input[type="text"] {
 }
 
 #sidebar ul li a {
-  color: #ddd;
+  color: #f2f2f2;
   width: 100%;
-  padding: 14px 12px;
+  padding: 16px 12px;
   box-sizing: border-box;
   display: block;
   border-radius: 5px;
@@ -310,179 +286,10 @@ nav form input[type="text"] {
   color: #fff;
 }
 
-#konten {
+#content {
   width: 100%;
   height: 100%;
-  padding: 120px 2% 2% 19%;
+  padding: 100px 2% 2% 19%;
   box-sizing: border-box;
   overflow: auto;
-}
-
-#aksi {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  align-content: center;
-  justify-content: space-between;
-}
-
-#informasi {
-  text-align: left;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
-#informasi a {
-  color: #333;
-}
-
-.jumlah {
-  margin-top: 10px;
-  font-size: 58px;
-  font-weight: 700;
-}
-
-.kartu {
-  display: inline-block;
-  padding: 10px;
-  width: 100%;
-  height: 100px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  margin-right: 10px;
-  border: 2px solid #f2f2f2;
-}
-
-.kartu:hover {
-  border: 2px solid #ddd;
-}
-
-#responsive {
-  text-align: left;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.gallery {
-  margin-right: 10px;
-  border-radius: 5px;
-  border: 2px solid #ddd;
-}
-
-.gallery:hover {
-  border: 2px solid rgb(177, 177, 177);
-}
-
-.gallery img {
-  height: auto;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  width: 100%;
-}
-
-.gallery .desc {
-  padding: 10px;
-}
-
-@media (max-width: 1024px) {
-  ul a {
-    font-size: 14px;
-  }
-
-  #sidebar #menu,
-  nav p {
-    overflow: hidden;
-    font-size: 16px;
-  }
-
-  .kartu {
-    width: 98%;
-  }
-
-  table .href {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  #sidebar ul li .hide-icon,
-  button .hide-icon {
-    display: none;
-  }
-
-  #informasi {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: 220px;
-    overflow: hidden;
-  }
-
-  #responsive {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gallery {
-    margin-right: 8px;
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 720px) {
-  nav form button {
-    padding: 14px 16px;
-  }
-
-  nav form button .hide-icon {
-    margin-bottom: 2px;
-  }
-
-  #konten {
-    padding: 100px 2% 2% 19%;
-  }
-
-  table .href {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  #sidebar ul li a {
-    text-align: center;
-  }
-
-  #sidebar #menu,
-  nav p {
-    overflow: hidden;
-    font-size: 14px;
-  }
-
-  nav p {
-    width: 60px;
-  }
-
-  .h2 {
-    font-size: 20px;
-  }
-
-  .hide {
-    display: none;
-  }
-
-  #sidebar ul li .hide-icon,
-  button .hide-icon {
-    display: block;
-  }
-
-  .kartu {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  #informasi {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    height: 220px;
-    overflow: auto;
-  }
 }
