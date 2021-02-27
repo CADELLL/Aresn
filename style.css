@@ -133,6 +133,7 @@ h6,
 p,
 td,
 th,
+a,
 label {
   color: #333;
 }
@@ -154,7 +155,7 @@ label {
   background-color: #f2f2f2;
 }
 
-.input {
+.input-form {
   border-radius: 5px;
   width: 100%;
   padding: 10px 12px;
@@ -164,6 +165,10 @@ label {
   font-size: 14px;
   color: #333;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }
 
 .dropdown {
@@ -229,7 +234,45 @@ label {
   color: #333;
 }
 
+.action {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.info {
+  border-radius: 5px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 50px;
+  font-size: 14px;
+  line-height: 50px;
+}
+
+.info-red {
+  background-color: #f8d7da;
+  color: darkred;
+}
+
+.info-green {
+  background-color: #d1e7dd;
+  color: darkgreen;
+}
+
 /* * STYLE */
+
+#container {
+  margin: auto;
+  width: 90%;
+}
+
+#container form {
+  margin-top: 25vh;
+}
 
 #navbar {
   width: 100%;
@@ -292,4 +335,61 @@ label {
   padding: 100px 2% 2% 19%;
   box-sizing: border-box;
   overflow: auto;
+}
+
+#action {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 1024px) {
+  #sidebar #menu,
+  #sidebar ul li a,
+  #navbar {
+    overflow: hidden;
+    font-size: 16px;
+  }
+
+  #table .href {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  #sidebar ul li .hide-icon,
+  .button .hide-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  #sidebar #menu,
+  #navbar {
+    overflow: hidden;
+    font-size: 14px;
+  }
+
+  #sidebar ul li .hide-icon,
+  .button .hide-icon {
+    display: block;
+  }
+
+  #sidebar ul li .hide {
+    display: none;
+  }
+
+  #sidebar ul li {
+    text-align: center;
+  }
+
+  #content {
+    padding: 100px 2% 2% 19%;
+  }
+
+  #table .href {
+    display: block;
+    margin-bottom: 5px;
+  }
 }

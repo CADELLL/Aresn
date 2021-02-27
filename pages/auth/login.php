@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["level"]) != "") {
+if (isset($_SESSION["tingkat"]) != "") {
     echo "
     <script>
         alert('Tidak dapat mengakses fitur ini!');
@@ -11,49 +11,38 @@ if (isset($_SESSION["level"]) != "") {
     exit;
 }
 
-require '../../functions.php';
-
 if (isset($_POST["login"])) {
-    $koneksi = mysqli_connect("localhost", "root", "", "db_spp");
+    $conn = mysqli_connect("localhost", "root", "", "spp");
 
     $email = $_POST["email"];
-    $password = $_POST["password"];
+    $kataSandi = $_POST["kataSandi"];
 
-    $hasil = mysqli_query($koneksi, "SELECT * FROM tb_users WHERE email = '$email'");
+    $results = mysqli_query($conn, "SELECT * FROM pengguna WHERE email = '$email'");
 
     // cek email
-    if (mysqli_num_rows($hasil) === 1) {
+    if (mysqli_num_rows($results) === 1) {
 
-        // cek password
-        $row = mysqli_fetch_assoc($hasil);
+        // cek kataSandi
+        $row = mysqli_fetch_assoc($results);
 
-        if ($password == $row["password"]) {
+        if ($kataSandi == $row["kataSandi"]) {
             if ($row["tingkat"] == "admin") {
                 $_SESSION["id"] = $row['id'];
-                $_SESSION["name"] = $row['name'];
-                $_SESSION["level"] = "admin";
+                $_SESSION["nama"] = $row['nama'];
+                $_SESSION["tingkat"] = "admin";
                 header('Location: ../admin');
-                exit;
             } else if ($row["tingkat"] == "petugas") {
                 $_SESSION["id"] = $row['id'];
-                $_SESSION["name"] = $row['name'];
-                $_SESSION["level"] = "officer";
+                $_SESSION["nama"] = $row['nama'];
+                $_SESSION["tingkat"] = "petugas";
                 header('Location: ../petugas');
-                exit;
-                // } else if ($row["tingkat"] == "siswa") {
-                //     $_SESSION["id"] = $row['id'];
-                //     $_SESSION["nama"] = $row['nama'];
-                //     $_SESSION["tingkat"] = "siswa";
-                //     header('Location: ../siswa.php');
-                //     exit;
             } else {
                 header('Location: ../index.php');
-                exit;
             }
         }
     }
 
-    $error = true;
+    $info = true;
 }
 ?>
 
@@ -72,7 +61,7 @@ if (isset($_POST["login"])) {
     <div id="container">
         <form action="" method="POST">
 
-            <?php if (isset($error)) : ?>
+            <?php if (isset($info)) : ?>
                 <div class="info info-merah">Email/Kata sandi salah</div>
             <?php endif; ?>
 
@@ -90,11 +79,11 @@ if (isset($_POST["login"])) {
                     <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" required autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><label for="password">Kata sandi</label></td>
+                    <td><label for="kataSandi">Kata sandi</label></td>
                     <td>
-                        <input type="password" name="password" class="input-form password" id="password" placeholder="Masukkan kata sandi!" required autocomplete="off">
+                        <input type="password" name="kataSandi" class="input-form" id="kataSandi" placeholder="Masukkan kata sandi!" required autocomplete="off">
                         <br>
-                        <input type="checkbox" onclick="readPassword()"><label>Lihat password</label>
+                        <input type="checkbox" onclick="showPassword()"><label>Lihat password</label>
                     </td>
                 </tr>
                 <tr>
@@ -105,13 +94,13 @@ if (isset($_POST["login"])) {
     </div>
 
     <script>
-        function readPassword() {
-            var x = document.getElementById("password");
+        function showPassword() {
+            let result = document.getElementById("kataSandi");
 
-            if (x.type === "password") {
-                x.type = "text";
+            if (result.type === "password") {
+                result.type = "text";
             } else {
-                x.type = "password";
+                result.type = "password";
             }
         }
     </script>
