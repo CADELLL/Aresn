@@ -21,16 +21,18 @@ function query($query)
 $url = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
 
 // active menu sidebar
-function active_menu($file)
+function activeMenu($file)
 {
     global $url;
+
     return $url == '/spp/' . $file ? 'active' : '';
 }
 
 // dynamic title
-function dynamic_title()
+function dynamicTitle()
 {
     global $url;
+
     switch ($url) {
         case '/spp/example.php':
             return 'Example Page';

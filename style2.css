@@ -155,7 +155,7 @@ label {
   background-color: #f2f2f2;
 }
 
-.input {
+.input-form {
   border-radius: 5px;
   width: 100%;
   padding: 10px 12px;
@@ -165,6 +165,10 @@ label {
   font-size: 14px;
   color: #333;
   font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }
 
 .dropdown {
@@ -230,7 +234,24 @@ label {
   color: #333;
 }
 
+.action {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+}
+
 /* * STYLE */
+
+#container {
+  margin: auto;
+  width: 90%;
+}
+
+#container form {
+  margin-top: 25vh;
+}
 
 #navbar {
   width: 100%;

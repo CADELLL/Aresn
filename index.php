@@ -13,7 +13,7 @@
     <tr>
         <td>Nama</td>
         <td>
-            <input type="text" class="input" placeholder="Masukkan nama!" required>
+            <input type="text" class="input-form" placeholder="Masukkan nama!" required>
         </td>
     </tr>
     <tr>
