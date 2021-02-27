@@ -16,3 +16,29 @@ function query($query)
 
     return $rows;
 }
+
+// get url
+$url = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
+
+// active menu sidebar
+function active_menu($file)
+{
+    global $url;
+    return $url == '/spp/' . $file ? 'active' : '';
+}
+
+// dynamic title
+function dynamic_title()
+{
+    global $url;
+    switch ($url) {
+        case '/spp/example.php':
+            return 'Example Page';
+            break;
+        case '/spp/app/admin/index.php':
+            return 'Admin Page';
+            break;
+        default;
+            return;
+    }
+}

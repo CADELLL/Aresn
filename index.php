@@ -1,5 +1,5 @@
-<?php include_once('layouts/navbar.php'); ?>
-<?php include_once('layouts/sidebar.php'); ?>
+<?php include_once('app/layouts/navbar.php'); ?>
+<?php include_once('app/layouts/sidebar.php'); ?>
 
 <h1>Komponen</h1>
 <h3>Table dan Input</h3>
@@ -35,4 +35,4 @@
 <button class="button red">Merah</button>
 <button class="button grey">Abu-abu</button>
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('app/layouts/footer.php'); ?>

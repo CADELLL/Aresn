@@ -1,32 +1,12 @@
 <?php
-$url = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
-
-function active_menu($file)
-{
-    global $url;
-    return $url == '/spp/' . $file ? 'active' : '';
-}
-
-function dynamic_title()
-{
-    global $url;
-    switch ($url) {
-        case '/spp/example.php':
-            return 'Example Page';
-            break;
-        case '/spp/admin/index.php':
-            return 'Admin Page';
-            break;
-        default;
-            return;
-    }
-}
 
 function location_file()
 {
-    global $url;
-    return $url == '/spp/index.php' ? './' : '../';
+    $url = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
+    return $url == '/spp/index.php' ? '' : '../../';
 }
+
+require location_file() . 'functions.php';
 
 $level = isset($_SESSION['level']);
 ?>
@@ -39,7 +19,7 @@ $level = isset($_SESSION['level']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= dynamic_title(); ?></title>
-    <link rel="stylesheet" href="<?= location_file(); ?>style.css">
+    <link rel="stylesheet" href="<?= location_file(); ?>style2.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
