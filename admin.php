@@ -1,6 +1,13 @@
 <?php
 include_once('layouts/navbar.php');
 
+// check sesssion
+if (!isset($_SESSION['tingkat'])) {
+    header('Location: ../auth/login.php');
+    exit;
+}
+
+// check level
 if (isset($_SESSION['tingkat']) != 'admin') {
     echo "
 		<script>

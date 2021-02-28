@@ -1,7 +1,14 @@
 <?php
 include_once('../layouts/navbar.php');
 
-if (isset($_SESSION['tingkat']) != 'admin') {
+// check sesssion
+if (!isset($_SESSION['tingkat'])) {
+    header('Location: ../auth/login.php');
+    exit;
+}
+
+// check level
+if ($_SESSION['tingkat'] != 'admin') {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
