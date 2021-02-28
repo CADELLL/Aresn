@@ -304,3 +304,47 @@ function deleteStudent($nisn)
 
     return mysqli_affected_rows($conn);
 }
+
+// Spp
+function createSpp($data)
+{
+    global $conn;
+
+    $tahun = htmlspecialchars($data['tahun']);
+    $nominal = htmlspecialchars($data['nominal']);
+
+    $query = "INSERT INTO spp VALUES ('','$tahun','$nominal')";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function updateSpp($data)
+{
+    global $conn;
+
+    $id = $data['id'];
+    $tahun = htmlspecialchars($data['tahun']);
+    $nominal = htmlspecialchars($data['nominal']);
+
+    $query = "UPDATE spp SET
+                tahun = '$tahun',
+                nominal = '$nominal'
+                WHERE id = $id";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function deleteSpp($id)
+{
+    global $conn;
+
+    $query = "DELETE FROM spp WHERE id = $id";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
