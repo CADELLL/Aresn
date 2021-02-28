@@ -12,7 +12,10 @@ include_once('../layouts/sidebar.php');
         <td colspan="4">
             <span id="action">
                 <h2>Daftar Kelas</h2>
-                <a href="create.php" class="badge green">Tambah</a>
+                <div>
+                    <a href="pdf.php" class="badge grey">File PDF</a>
+                    <a href="create.php" class="badge green">Tambah</a>
+                </div>
             </span>
         </td>
     </tr>
