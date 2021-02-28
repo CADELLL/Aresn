@@ -66,6 +66,12 @@ function dynamicTitle()
     }
 }
 
+// convert money to rupiah
+function rupiah($money)
+{
+    return number_format($money, 2, ',', '.');
+}
+
 // class
 function createClass($data)
 {

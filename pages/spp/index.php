@@ -26,7 +26,7 @@ include_once('../layouts/sidebar.php');
         <tr>
             <td><?= $no++; ?></td>
             <td><?= $s['tahun']; ?></td>
-            <td><?= $s['nominal']; ?></td>
+            <td><?= rupiah($s['nominal']); ?></td>
             <td>
                 <a href="update.php?i=<?= $s['id'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $s['id'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data SPP tahun <?= $s['tahun'] ?>?')">Hapus</a>
