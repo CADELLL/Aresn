@@ -37,28 +37,28 @@ function dynamicTitle()
     $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
     switch ($url) {
-        case $folder . 'pages/class/':
+        case $folder . 'class/':
             return 'Daftar Kelas';
             break;
-        case $folder . 'pages/class/index.php':
+        case $folder . 'class/index.php':
             return 'Daftar Kelas';
             break;
-        case $folder . 'pages/class/create.php':
+        case $folder . 'class/create.php':
             return 'Tambah Kelas';
             break;
-        case $folder . 'pages/class/update.php':
+        case $folder . 'class/update.php':
             return 'Ubah Kelas';
             break;
-        case $folder . 'pages/users/':
+        case $folder . 'users/':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'pages/users/index.php':
+        case $folder . 'users/index.php':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'pages/users/create.php':
+        case $folder . 'users/create.php':
             return 'Tambah Pengguna';
             break;
-        case $folder . 'pages/users/update.php':
+        case $folder . 'users/update.php':
             return 'Ubah Pengguna';
             break;
         default;

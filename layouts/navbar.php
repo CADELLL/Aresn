@@ -8,7 +8,7 @@ function locationFile()
 
     $folder = '/spp/index.php';
 
-    return $mainUrl == $folder ? '' : '../../';
+    return $mainUrl == $folder ? '' : '../';
 }
 
 function activeMainMenu($file)
