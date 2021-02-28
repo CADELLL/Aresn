@@ -34,7 +34,7 @@ include_once('../layouts/sidebar.php');
         </tr>
         <tr>
             <td><label for="kelas">Nama kelas</label></td>
-            <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" autofocus required autocomplete="off"></td>
+            <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
             <td><label for="kompetensiKeahlian">Kompetensi keahlian</label></td>

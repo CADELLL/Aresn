@@ -1,15 +1,25 @@
 <?php
 $level = isset($_SESSION['level']);
+$mainUrl = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
 
 function locationFile()
 {
-    global $folder;
+    global $mainUrl;
 
-    $url = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
-    return $url == $folder . 'index.php' ? '' : '../../';
+    $folder = '/spp/index.php';
+
+    return $mainUrl == $folder ? '' : '../../';
+}
+
+function activeMainMenu($file)
+{
+    global $mainUrl;
+
+    return $mainUrl == '/spp/' . $file ? 'active' : '';
 }
 
 require locationFile() . 'functions.php';
+
 ?>
 
 <!DOCTYPE html>

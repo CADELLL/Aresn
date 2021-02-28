@@ -25,7 +25,7 @@ if (isset($_POST["login"])) {
         // cek kataSandi
         $row = mysqli_fetch_assoc($results);
 
-        if ($kataSandi == $row["kataSandi"]) {
+        if ($kataSandi == $row["kata_sandi"]) {
             if ($row["tingkat"] == "admin") {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
@@ -76,12 +76,12 @@ if (isset($_POST["login"])) {
                 </tr>
                 <tr>
                     <td><label for="email">Email</label></td>
-                    <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" required autocomplete="off"></td>
+                    <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" autocomplete="off" autofocus required></td>
                 </tr>
                 <tr>
                     <td><label for="kataSandi">Kata sandi</label></td>
                     <td>
-                        <input type="password" name="kataSandi" class="input-form" id="kataSandi" placeholder="Masukkan kata sandi!" required autocomplete="off">
+                        <input type="password" name="kataSandi" class="input-form" id="kataSandi" placeholder="Masukkan kata sandi!" autocomplete="off" required>
                         <br>
                         <input type="checkbox" onclick="showPassword()"><label>Lihat password</label>
                     </td>

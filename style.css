@@ -179,6 +179,7 @@ input[type="checkbox"] {
   padding: 6px 8px;
   display: inline-block;
   font-size: 14px;
+  text-align: center;
   box-sizing: border-box;
   border-radius: 5px;
   margin-right: 2px;
@@ -353,7 +354,7 @@ input[type="checkbox"] {
     font-size: 16px;
   }
 
-  #table .href {
+  .table .badge {
     display: block;
     margin-bottom: 5px;
   }
@@ -386,10 +387,5 @@ input[type="checkbox"] {
 
   #content {
     padding: 100px 2% 2% 19%;
-  }
-
-  #table .href {
-    display: block;
-    margin-bottom: 5px;
   }
 }

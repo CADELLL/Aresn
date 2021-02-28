@@ -40,13 +40,13 @@ include_once('../layouts/sidebar.php');
         </tr>
         <tr>
             <td><label for="kelas">Nama kelas</label></td>
-            <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" value="<?= $kelas['kelas']; ?>" autofocus required autocomplete="off"></td>
+            <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" value="<?= $kelas['kelas']; ?>" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
             <td><label for="kompetensiKeahlian">Kompetensi keahlian</label></td>
             <td>
                 <select name="kompetensiKeahlian" id="kompetensiKeahlian" class="input-form">
-                    <option value="<?= $kelas['kompetensiKeahlian'] ?>"><?= $kelas['kompetensiKeahlian'] ?></option>
+                    <option value="<?= $kelas['kompetensi_keahlian'] ?>"><?= $kelas['kompetensi_keahlian'] ?></option>
                     <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                     <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
                     <option value="Teknik Industri">Teknik Industri</option>

@@ -26,7 +26,7 @@ include_once('../layouts/sidebar.php');
         <tr>
             <td><?= $no++; ?></td>
             <td><?= $k['kelas']; ?></td>
-            <td><?= $k['kompetensiKeahlian']; ?></td>
+            <td><?= $k['kompetensi_keahlian']; ?></td>
             <td>
                 <a href="edit.php?i=<?= $k['id'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $k['id'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data kelas <?= $k['kelas'] ?>?')">Hapus</a>
