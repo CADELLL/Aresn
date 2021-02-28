@@ -1,14 +1,8 @@
 <?php
 session_start();
 
-// check sesssion
-if (!isset($_SESSION['tingkat'])) {
-    header('Location: ../auth/login.php');
-    exit;
-}
-
 // check level
-if ($_SESSION['tingkat'] == 'student') {
+if (!isset($_SESSION["admin"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');

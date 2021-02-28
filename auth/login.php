@@ -29,12 +29,12 @@ if (isset($_POST["login"])) {
             if ($row["tingkat"] == "admin") {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
-                $_SESSION["tingkat"] = "admin";
+                $_SESSION["admin"] = true;
                 header('Location: ../admin.php');
             } else if ($row["tingkat"] == "petugas") {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
-                $_SESSION["tingkat"] = "petugas";
+                $_SESSION["petugas"] = true;
                 header('Location: ../officer.php');
             } else {
                 header('Location: ../index.php');
