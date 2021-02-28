@@ -1,5 +1,5 @@
 <?php
-require '../../functions.php';
+require '../functions.php';
 
 // get & check value
 $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];

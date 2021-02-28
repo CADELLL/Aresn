@@ -72,6 +72,26 @@ function rupiah($money)
     return number_format($money, 2, ',', '.');
 }
 
+// month
+function month()
+{
+    $data = [
+        ['Januari'],
+        ['Februari'],
+        ['Maret'],
+        ['April'],
+        ['Mei'],
+        ['Juni'],
+        ['Juli'],
+        ['Agustus'],
+        ['September'],
+        ['Oktober'],
+        ['November'],
+        ['Desember']
+    ];
+    return $data;
+}
+
 // class
 function createClass($data)
 {
@@ -127,9 +147,9 @@ function createUser($data)
     $tingkat = htmlspecialchars($data["tingkat"]);
 
     // check email
-    $hasil = mysqli_query($conn, "SELECT email FROM pengguna WHERE email = '$email'");
+    $result = mysqli_query($conn, "SELECT email FROM pengguna WHERE email = '$email'");
 
-    if (mysqli_fetch_assoc($hasil)) {
+    if (mysqli_fetch_assoc($result)) {
         echo "
             <script>
 				alert('Akun sudah terdaftar!')
@@ -204,9 +224,9 @@ function createStudent($data)
     $id_spp = htmlspecialchars($data['id_spp']);
 
     // check nisn from tb nisn
-    $tbNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
+    $resultNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
 
-    if (!mysqli_fetch_assoc($tbNisn)) {
+    if (!mysqli_fetch_assoc($resultNisn)) {
         echo "
             <script>
                 alert('NISN tidak terdaftar!');
@@ -216,9 +236,9 @@ function createStudent($data)
     }
 
     // check nisn student
-    $tbSiswa = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
+    $resultStudent = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
 
-    if (mysqli_fetch_assoc($tbSiswa)) {
+    if (mysqli_fetch_assoc($resultStudent)) {
         echo ("
             <script>
                 alert('NISN sudah terdaftar!');
@@ -351,6 +371,143 @@ function deleteSpp($id)
     $query = "DELETE FROM spp WHERE id = $id";
 
     mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+
+// payment 
+function createPayment($data)
+{
+    global $conn;
+
+    $id_petugas = 1;
+    $nisn = htmlspecialchars($data['nisn']);
+    $tanggal_bayar = date("Y-m-d H:i:s");
+    $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
+    $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
+    $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
+
+    // check nisn
+    $resultSiswa = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
+
+    if (!mysqli_fetch_assoc($resultSiswa)) {
+        echo "
+            <script>
+                alert('NISN tidak terdaftar!')
+            </script>
+            ";
+        return false;
+    }
+
+    // check month
+    $resultMonth = mysqli_query($conn, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
+
+    foreach ($resultMonth as $rm) {
+        if ($rm['bulan_dibayar'] == $bulan_dibayar) {
+            echo "<script>
+                    alert('Anda sudah membayar SPP bulan $bulan_dibayar')
+                </script>
+                ";
+            return false;
+        }
+    }
+
+    // check nominal pembayaran
+    $resultSpp = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn'")[0];
+
+    $id_spp = (int)['id_spp'];
+    $nominal = (int)$resultSpp['nominal'];
+
+    if ((int)$jumlah_bayar < $nominal) {
+        $rupiah = rupiah($nominal);
+        echo "
+            <script>
+				alert('Nominal kurang dari Rp. $rupiah')
+            </script>
+            ";
+        return false;
+    }
+
+    $query = "INSERT INTO pembayaran VALUES ('','$id_petugas','$nisn','$tanggal_bayar','$bulan_dibayar','$tahun_dibayar','$id_spp','$jumlah_bayar')";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function updatePayment($data)
+{
+    global $conn;
+
+    $id_petugas = 1;
+    $bulan_lama = $data['bulan_lama'];
+    $id_pembayaran = $data['id_pembayaran'];
+    $nisn_lama = $data['nisn_lama'];
+    $nisn = htmlspecialchars($data['nisn']);
+    $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
+    $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
+    $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
+
+    // check nisn
+    $resultNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
+
+    if ($nisn !== $nisn_lama && mysqli_fetch_assoc($resultNisn)) {
+        echo "
+            <script>
+				alert('NISN tidak terdaftar!')
+		    </script>
+            ";
+        return false;
+    }
+
+    // check bulan
+    $resultMonth = mysqli_query($conn, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
+
+    foreach ($resultMonth as $rm) {
+        if ($bulan_dibayar !== $bulan_lama && $rm['bulan_dibayar'] == $bulan_dibayar) {
+            echo "
+                <script>
+                    alert('Anda sudah membayar SPP bulan $bulan_dibayar')
+                </script>
+                ";
+            return false;
+        }
+    }
+
+    // check nominal
+    $resultSpp = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn_lama'")[0];
+    $nominal = $resultSpp['nominal'];
+
+    if ((int)$jumlah_bayar < $nominal) {
+        $rupiah = rupiah($nominal);
+        echo "
+             <script>
+                 alert('Nominal kurang dari Rp. $rupiah')
+             </script>
+             ";
+        return false;
+    }
+
+    $query = "UPDATE pembayaran 
+                SET
+                    id_petugas = '$id_petugas',
+                    nisn = '$nisn',
+                    bulan_dibayar = '$bulan_dibayar',
+                    tahun_dibayar = '$tahun_dibayar',
+                    jumlah_bayar = '$jumlah_bayar'
+                WHERE id = $id_pembayaran";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function deletePayment($id)
+{
+    global $conn;
+
+    mysqli_query($conn, "DELETE FROM pembayaran WHERE id = '$id'");
 
     return mysqli_affected_rows($conn);
 }

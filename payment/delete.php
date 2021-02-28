@@ -2,9 +2,9 @@
 require '../functions.php';
 
 // get & check value
-$nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
+$id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 
-if (deleteStudent($nisn) > 0) {
+if (deletePayment($id) > 0) {
 	echo "
 		<script>
 			alert('Data berhasil dihapus!');

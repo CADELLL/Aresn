@@ -10,10 +10,8 @@ span,
 applet,
 object,
 iframe,
-p,
 blockquote,
 pre,
-a,
 abbr,
 acronym,
 address,
@@ -39,6 +37,8 @@ var,
 b,
 u,
 i,
+a,
+p,
 center,
 dl,
 dt,
@@ -171,6 +171,11 @@ label {
   font-family: "Poppins", Arial, Helvetica, sans-serif;
 }
 
+.search {
+  padding: 8px 14px;
+  width: 80%;
+}
+
 input[type="checkbox"] {
   cursor: pointer;
 }
@@ -218,11 +223,11 @@ input[type="checkbox"] {
 
 .grey {
   color: #222;
-  background-color: #f2f2f2;
+  background-color: #e2e2e2;
 }
 
 .grey:hover {
-  background-color: #e2e2e2;
+  background-color: #ddd;
 }
 
 .button {
@@ -350,6 +355,40 @@ input[type="checkbox"] {
   justify-content: space-between;
 }
 
+#short {
+  text-align: left;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.card {
+  display: inline-block;
+  padding: 10px;
+  width: 100%;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: 2px solid #f2f2f2;
+}
+
+.card:hover {
+  border: 2px solid #ddd;
+}
+
+.total {
+  margin-top: 10px;
+  font-size: 58px;
+  font-weight: 700;
+}
+
+.block-mb-5 {
+  display: block;
+  margin-bottom: 5px;
+}
+
 @media (max-width: 1024px) {
   #sidebar #menu,
   #sidebar ul li a,
@@ -366,6 +405,17 @@ input[type="checkbox"] {
   #sidebar ul li .hide-icon,
   .button .hide-icon {
     display: none;
+  }
+
+  #short {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 98%;
   }
 }
 
@@ -391,5 +441,17 @@ input[type="checkbox"] {
 
   #content {
     padding: 100px 2% 2% 19%;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #short {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    height: 220px;
+    overflow: auto;
   }
 }
