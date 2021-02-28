@@ -1,5 +1,6 @@
 <?php
 include_once('../layouts/navbar.php');
+include_once('../layouts/sidebar.php');
 
 // check payment
 if (!isset($_SESSION["payment"])) {
@@ -24,7 +25,6 @@ if (isset($_POST['create'])) {
             ";
     }
 }
-include_once('../layouts/sidebar.php');
 ?>
 
 <form accept="" method="POST">

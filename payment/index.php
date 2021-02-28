@@ -1,5 +1,6 @@
 <?php
 include_once('../layouts/navbar.php');
+include_once('../layouts/sidebar.php');
 
 // check payment
 if (!isset($_SESSION["payment"])) {
@@ -19,8 +20,6 @@ $pembayaran = query("SELECT *,
                     JOIN siswa ON siswa.nisn = pembayaran.nisn
                     JOIN pengguna ON pengguna.id = pembayaran.id_petugas
                     JOIN spp ON spp.id = pembayaran.id_spp");
-
-include_once('../layouts/sidebar.php');
 ?>
 
 <table class="table">

@@ -48,7 +48,7 @@ require locationFile() . 'functions.php';
 
 <body>
     <nav id="navbar">
-        <p><?= $_SESSION["name"] ?? "Web SPP" ?></p>
+        <p><?= $_SESSION["name"] ?? "" ?></p>
         <a href="/spp/auth/<?= $name ? 'logout.php' : 'login.php' ?>"><?= $name ? 'Keluar' : 'Masuk' ?></a>
     </nav>
     <div id="content">

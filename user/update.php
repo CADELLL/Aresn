@@ -1,5 +1,6 @@
 <?php
 include_once('../layouts/navbar.php');
+include_once('../layouts/sidebar.php');
 
 //check level
 if (!isset($_SESSION["admin"])) {
@@ -34,8 +35,6 @@ if (isset($_POST['edit'])) {
         ";
     }
 }
-
-include_once('../layouts/sidebar.php');
 ?>
 
 <form action="" method="POST">

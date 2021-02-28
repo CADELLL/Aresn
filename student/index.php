@@ -1,5 +1,6 @@
 <?php
 include_once('../layouts/navbar.php');
+include_once('../layouts/sidebar.php');
 
 // check level
 if (!isset($_SESSION["admin"])) {
@@ -14,8 +15,6 @@ if (!isset($_SESSION["admin"])) {
 
 $no = 1;
 $siswa = query("SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id");
-
-include_once('../layouts/sidebar.php');
 ?>
 
 <table class="table">
