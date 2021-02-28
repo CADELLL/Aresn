@@ -30,12 +30,12 @@ if (isset($_POST["login"])) {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
                 $_SESSION["tingkat"] = "admin";
-                header('Location: ../admin');
+                header('Location: ../admin.php');
             } else if ($row["tingkat"] == "petugas") {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
                 $_SESSION["tingkat"] = "petugas";
-                header('Location: ../petugas');
+                header('Location: ../officer.php');
             } else {
                 header('Location: ../index.php');
             }
@@ -54,7 +54,7 @@ if (isset($_POST["login"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk akun</title>
-    <link rel="stylesheet" href="../../style2.css">
+    <link rel="stylesheet" href="../style2.css">
 </head>
 
 <body>
@@ -62,7 +62,7 @@ if (isset($_POST["login"])) {
         <form action="" method="POST">
 
             <?php if (isset($info)) : ?>
-                <div class="info info-merah">Email/Kata sandi salah</div>
+                <div class="info info-red">Email/Kata sandi salah</div>
             <?php endif; ?>
 
             <table class="table">
@@ -70,18 +70,18 @@ if (isset($_POST["login"])) {
                     <td colspan="2">
                         <span class="action">
                             <h2>Masuk akun</h2>
-                            <a href="../../index.php">Halaman utama</a>
+                            <a href="../index.php">Halaman utama</a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="email">Email</label></td>
-                    <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" autocomplete="off" autofocus required></td>
+                    <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" autofocus required autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><label for="kata_sandi">Kata sandi</label></td>
                     <td>
-                        <input type="password" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" autocomplete="off" required>
+                        <input type="password" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" required autocomplete="off">
                         <br>
                         <input type="checkbox" onclick="showPassword()"><label>Lihat password</label>
                     </td>

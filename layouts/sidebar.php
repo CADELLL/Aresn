@@ -1,7 +1,9 @@
 <div id="sidebar">
     <p id="menu">Menu</p>
     <ul>
-        <li><a href="<?= locationFile(); ?>index.php" class="<?= activeMainMenu('index.php'); ?>"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
+        <?php if (isset($_SESSION['tingkat']) == '') : ?>
+            <li><a href="<?= locationFile(); ?>index.php" class="<?= activeMainMenu('index.php'); ?>"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
+        <?php endif; ?>
         <li><a href="<?= locationFile(); ?>admin.php" class="<?= activeMainMenu('admin.php'); ?>"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
         <li><a href="<?= locationFile(); ?>class" class="<?= activeMenu('class'); ?>"><span class="hide">Kelas </span><i class='bx bx-home hide-icon'></i></a></li>
         <li><a href="<?= locationFile(); ?>student" class="<?= activeMenu('student'); ?>"><span class="hide">Siswa </span><i class='bx bx-user hide-icon'></i></a></li>

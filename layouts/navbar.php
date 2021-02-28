@@ -1,5 +1,7 @@
 <?php
-$level = isset($_SESSION['level']);
+session_start();
+
+$tingkat = isset($_SESSION['tingkat']);
 $mainUrl = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
 
 function locationFile()
@@ -30,7 +32,6 @@ function activeMainMenu($file = '',)
 }
 
 require locationFile() . 'functions.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +48,7 @@ require locationFile() . 'functions.php';
 
 <body>
     <nav id="navbar">
-        <p><?= $_SESSION["name"] ?? "Web SPP" ?></p>
-        <a href="pages/auth/<?= $level ? 'logout.php' : 'login.php' ?>"><?= $level ? 'Keluar' : 'Masuk' ?></a>
+        <p><?= $_SESSION["nama"] ?? "Web SPP" ?></p>
+        <a href="auth/<?= $tingkat ? 'logout.php' : 'login.php' ?>"><?= $tingkat ? 'Keluar' : 'Masuk' ?></a>
     </nav>
     <div id="content">

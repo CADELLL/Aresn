@@ -1,6 +1,16 @@
 <?php
 include_once('../layouts/navbar.php');
 
+if (isset($_SESSION['tingkat']) != 'admin') {
+    echo "
+		<script>
+            alert('Tidak dapat mengakses fitur ini!');
+            window.history.back();
+		</script>
+		";
+    exit;
+}
+
 $no = 1;
 $siswa = query("SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id");
 

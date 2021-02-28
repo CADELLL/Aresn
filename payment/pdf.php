@@ -1,4 +1,15 @@
 <?php
+
+if (isset($_SESSION['tingkat']) != 'admin') {
+    echo "
+		<script>
+            alert('Tidak dapat mengakses fitur ini!');
+            window.history.back();
+		</script>
+		";
+    exit;
+}
+
 require '../functions.php';
 require_once '../assets/dompdf/autoload.inc.php';
 
