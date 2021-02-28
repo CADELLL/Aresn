@@ -1,8 +1,8 @@
 <?php
 include_once('../layouts/navbar.php');
 
-// check level
-if (!isset($_SESSION["admin"])) {
+// check payment
+if (!isset($_SESSION["payment"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');

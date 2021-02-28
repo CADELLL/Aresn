@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$tingkat = isset($_SESSION['tingkat']);
+$name = isset($_SESSION['name']);
 $mainUrl = parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH);
 
 function locationFile()
@@ -42,13 +42,13 @@ require locationFile() . 'functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= dynamicTitle(); ?></title>
-    <link rel="stylesheet" href="<?= locationFile(); ?>style.css">
+    <link rel="stylesheet" href="<?= locationFile(); ?>style2.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
     <nav id="navbar">
-        <p><?= $_SESSION["nama"] ?? "Web SPP" ?></p>
-        <a href="/spp/auth/<?= $tingkat ? 'logout.php' : 'login.php' ?>"><?= $tingkat ? 'Keluar' : 'Masuk' ?></a>
+        <p><?= $_SESSION["name"] ?? "Web SPP" ?></p>
+        <a href="/spp/auth/<?= $name ? 'logout.php' : 'login.php' ?>"><?= $name ? 'Keluar' : 'Masuk' ?></a>
     </nav>
     <div id="content">

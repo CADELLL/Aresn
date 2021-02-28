@@ -31,14 +31,14 @@ include_once('../layouts/sidebar.php');
         </td>
     </tr>
     <tr>
-        <td>No</td>
-        <td>NISN</td>
-        <td>NIS</td>
-        <td>Nama</td>
-        <td>Kelas</td>
-        <td>Alamat</td>
-        <td>No telepon</td>
-        <td>Pengaturan</td>
+        <th>No</th>
+        <th>NISN</th>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>Alamat</th>
+        <th>No telepon</th>
+        <th>Pengaturan</th>
     </tr>
     <?php foreach ($siswa as $s) : ?>
         <tr>

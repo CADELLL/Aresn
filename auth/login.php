@@ -28,13 +28,15 @@ if (isset($_POST["login"])) {
         if ($kata_sandi == $row["kata_sandi"]) {
             if ($row["tingkat"] == "admin") {
                 $_SESSION["id"] = $row['id'];
-                $_SESSION["nama"] = $row['nama'];
+                $_SESSION["name"] = $row['nama'];
                 $_SESSION["admin"] = true;
+                $_SESSION["payment"] = true;
                 header('Location: ../admin.php');
             } else if ($row["tingkat"] == "petugas") {
                 $_SESSION["id"] = $row['id'];
-                $_SESSION["nama"] = $row['nama'];
-                $_SESSION["petugas"] = true;
+                $_SESSION["name"] = $row['nama'];
+                $_SESSION["officer"] = true;
+                $_SESSION["payment"] = true;
                 header('Location: ../officer.php');
             } else {
                 header('Location: ../index.php');

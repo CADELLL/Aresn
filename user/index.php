@@ -31,12 +31,12 @@ include_once('../layouts/sidebar.php');
         </td>
     </tr>
     <tr>
-        <td>No</td>
-        <td>Nama</td>
-        <td>Email</td>
-        <td>Kata sandi</td>
-        <td>Tingkat</td>
-        <td>Pengaturan</td>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Kata sandi</th>
+        <th>Tingkat</th>
+        <th>Pengaturan</th>
     </tr>
     <?php foreach ($pengguna as $p) : ?>
         <tr>

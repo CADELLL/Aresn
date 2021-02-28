@@ -56,7 +56,6 @@ tbody,
 tfoot,
 thead,
 tr,
-th,
 td,
 article,
 aside,
@@ -223,11 +222,11 @@ input[type="checkbox"] {
 
 .grey {
   color: #222;
-  background-color: red;
+  background-color: #e2e2e2;
 }
 
 .grey:hover {
-  background-color: #e2e2e2;
+  background-color: #ddd;
 }
 
 .button {
@@ -384,12 +383,21 @@ input[type="checkbox"] {
   font-weight: 700;
 }
 
+.block-mb-5 {
+  margin-bottom: 4px;
+  display: block;
+}
+
 @media (max-width: 1024px) {
   #sidebar #menu,
   #sidebar ul li a,
   #navbar {
     overflow: hidden;
     font-size: 16px;
+  }
+
+  #sidebar #menu {
+    margin-bottom: 28px;
   }
 
   .table .badge {
@@ -419,6 +427,10 @@ input[type="checkbox"] {
   #navbar {
     overflow: hidden;
     font-size: 14px;
+  }
+
+  #sidebar #menu {
+    margin-bottom: 30px;
   }
 
   #sidebar ul li .hide-icon,

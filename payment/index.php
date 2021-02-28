@@ -1,8 +1,8 @@
 <?php
 include_once('../layouts/navbar.php');
 
-// check level
-if (!isset($_SESSION["admin"])) {
+// check payment
+if (!isset($_SESSION["payment"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -36,16 +36,16 @@ include_once('../layouts/sidebar.php');
         </td>
     </tr>
     <tr>
-        <td>No</td>
-        <td>Petugas</td>
-        <td>Siswa</td>
+        <th>No</th>
+        <th>Petugas</th>
+        <th>Siswa</th>
         <th>NISN</th>
-        <td>Tanggal</td>
-        <td>Bulan</td>
-        <td>Tahun</td>
-        <td>SPP</td>
-        <td>Jumlah</td>
-        <td>Pengaturan</td>
+        <th>Tanggal</th>
+        <th>Bulan</th>
+        <th>Tahun</th>
+        <th>SPP</th>
+        <th>Jumlah</th>
+        <th>Pengaturan</th>
     </tr>
     <?php foreach ($pembayaran as $p) : ?>
         <tr>

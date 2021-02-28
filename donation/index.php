@@ -28,10 +28,10 @@ include_once('../layouts/sidebar.php');
         </td>
     </tr>
     <tr>
-        <td>No</td>
-        <td>Tahun</td>
-        <td>Nominal</td>
-        <td>Pengaturan</td>
+        <th>No</th>
+        <th>Tahun</th>
+        <th>Nominal</th>
+        <th>Pengaturan</th>
     </tr>
     <?php foreach ($spp as $s) : ?>
         <tr>

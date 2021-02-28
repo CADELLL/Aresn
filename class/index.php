@@ -31,10 +31,10 @@ include_once('../layouts/sidebar.php');
         </td>
     </tr>
     <tr>
-        <td>No</td>
-        <td>Nama</td>
-        <td>Kompetensi keahlian</td>
-        <td>Pengaturan</td>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Kompetensi keahlian</th>
+        <th>Pengaturan</th>
     </tr>
     <?php foreach ($kelas as $k) : ?>
         <tr>

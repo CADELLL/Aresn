@@ -381,7 +381,7 @@ function createPayment($data)
 {
     global $conn;
 
-    $id_petugas = 1;
+    $id_petugas = $_SESSION['id'];
     $nisn = htmlspecialchars($data['nisn']);
     $tanggal_bayar = date("Y-m-d H:i:s");
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
@@ -440,7 +440,7 @@ function updatePayment($data)
 {
     global $conn;
 
-    $id_petugas = 1;
+    $id_petugas = $_SESSION['id'];
     $bulan_lama = $data['bulan_lama'];
     $id_pembayaran = $data['id_pembayaran'];
     $nisn_lama = $data['nisn_lama'];
