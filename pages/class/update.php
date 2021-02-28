@@ -6,8 +6,8 @@ $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 
 $kelas = query("SELECT * FROM kelas WHERE id = $id")[0];
 
-if (isset($_POST['edit'])) {
-    if (editClass($_POST) > 0) {
+if (isset($_POST['update'])) {
+    if (updateClass($_POST) > 0) {
         echo "
         <script>
 			alert('Data berhasil diubah!');
@@ -33,7 +33,7 @@ include_once('../layouts/sidebar.php');
         <tr>
             <td colspan="2">
                 <span id="action">
-                    <h2>Edit Kelas</h2>
+                    <h2>Ubah Kelas</h2>
                     <a href="index.php" class="href">Kembali</a>
                 </span>
             </td>
@@ -43,9 +43,9 @@ include_once('../layouts/sidebar.php');
             <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" value="<?= $kelas['kelas']; ?>" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
-            <td><label for="kompetensiKeahlian">Kompetensi keahlian</label></td>
+            <td><label for="kompetensi_keahlian">Kompetensi keahlian</label></td>
             <td>
-                <select name="kompetensiKeahlian" id="kompetensiKeahlian" class="input-form">
+                <select name="kompetensi_keahlian" id="kompetensi_keahlian" class="input-form">
                     <option value="<?= $kelas['kompetensi_keahlian'] ?>"><?= $kelas['kompetensi_keahlian'] ?></option>
                     <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                     <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
@@ -54,7 +54,7 @@ include_once('../layouts/sidebar.php');
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center;"><button type="submit" name="edit" class="button yellow">Ubah</button></td>
+            <td colspan="2" class="center"><button type="submit" name="update" class="button yellow">Ubah</button></td>
         </tr>
     </table>
 </form>

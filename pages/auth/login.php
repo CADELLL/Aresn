@@ -15,17 +15,17 @@ if (isset($_POST["login"])) {
     $conn = mysqli_connect("localhost", "root", "", "spp");
 
     $email = $_POST["email"];
-    $kataSandi = $_POST["kataSandi"];
+    $kata_sandi = $_POST["kata_sandi"];
 
     $results = mysqli_query($conn, "SELECT * FROM pengguna WHERE email = '$email'");
 
     // cek email
     if (mysqli_num_rows($results) === 1) {
 
-        // cek kataSandi
+        // cek kata_sandi
         $row = mysqli_fetch_assoc($results);
 
-        if ($kataSandi == $row["kata_sandi"]) {
+        if ($kata_sandi == $row["kata_sandi"]) {
             if ($row["tingkat"] == "admin") {
                 $_SESSION["id"] = $row['id'];
                 $_SESSION["nama"] = $row['nama'];
@@ -79,9 +79,9 @@ if (isset($_POST["login"])) {
                     <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" autocomplete="off" autofocus required></td>
                 </tr>
                 <tr>
-                    <td><label for="kataSandi">Kata sandi</label></td>
+                    <td><label for="kata_sandi">Kata sandi</label></td>
                     <td>
-                        <input type="password" name="kataSandi" class="input-form" id="kataSandi" placeholder="Masukkan kata sandi!" autocomplete="off" required>
+                        <input type="password" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" autocomplete="off" required>
                         <br>
                         <input type="checkbox" onclick="showPassword()"><label>Lihat password</label>
                     </td>
@@ -95,7 +95,7 @@ if (isset($_POST["login"])) {
 
     <script>
         function showPassword() {
-            let result = document.getElementById("kataSandi");
+            let result = document.getElementById("kata_sandi");
 
             if (result.type === "password") {
                 result.type = "text";

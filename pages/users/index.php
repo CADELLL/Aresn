@@ -12,7 +12,7 @@ include_once('../layouts/sidebar.php');
         <td colspan="6">
             <span id="action">
                 <h2>Daftar Pengguna</h2>
-                <a href="add.php" class="badge green">Tambah</a>
+                <a href="create.php" class="badge green">Tambah</a>
             </span>
         </td>
     </tr>
@@ -32,8 +32,8 @@ include_once('../layouts/sidebar.php');
             <td><?= $p['kata_sandi']; ?></td>
             <td><?= $p['tingkat']; ?></td>
             <td>
-                <a href="edit.php?i=<?= $p['id'] ?>" class="badge yellow">Ubah</a>
-                <a href="delete.php?i=<?= $p['id'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data kelas <?= $k['kelas'] ?>?')">Hapus</a>
+                <a href="update.php?i=<?= $p['id'] ?>" class="badge yellow">Ubah</a>
+                <a href="delete.php?i=<?= $p['id'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data user <?= $p['nama'] ?>?')">Hapus</a>
             </td>
         </tr>
     <?php endforeach; ?>

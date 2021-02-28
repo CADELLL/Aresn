@@ -1,8 +1,8 @@
 <?php
 include_once('../layouts/navbar.php');
 
-if (isset($_POST['add'])) {
-    if (addClass($_POST) > 0) {
+if (isset($_POST['create'])) {
+    if (createClass($_POST) > 0) {
         echo "
         <script>
 			alert('Data berhasil ditambahkan!');
@@ -37,9 +37,9 @@ include_once('../layouts/sidebar.php');
             <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
-            <td><label for="kompetensiKeahlian">Kompetensi keahlian</label></td>
+            <td><label for="kompetensi_keahlian">Kompetensi keahlian</label></td>
             <td>
-                <select name="kompetensiKeahlian" id="kompetensiKeahlian" class="input-form">
+                <select name="kompetensi_keahlian" id="kompetensi_keahlian" class="input-form">
                     <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                     <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
                     <option value="Teknik Industri">Teknik Industri</option>
@@ -47,7 +47,7 @@ include_once('../layouts/sidebar.php');
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: center;"><button type="submit" name="add" class="button green">Tambah</button></td>
+            <td colspan="2" class="center"><button type="submit" name="create" class="button green">Tambah</button></td>
         </tr>
     </table>
 </form>

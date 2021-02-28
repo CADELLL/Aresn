@@ -12,7 +12,7 @@ include_once('../layouts/sidebar.php');
         <td colspan="4">
             <span id="action">
                 <h2>Daftar Kelas</h2>
-                <a href="add.php" class="badge green">Tambah</a>
+                <a href="create.php" class="badge green">Tambah</a>
             </span>
         </td>
     </tr>
@@ -28,7 +28,7 @@ include_once('../layouts/sidebar.php');
             <td><?= $k['kelas']; ?></td>
             <td><?= $k['kompetensi_keahlian']; ?></td>
             <td>
-                <a href="edit.php?i=<?= $k['id'] ?>" class="badge yellow">Ubah</a>
+                <a href="update.php?i=<?= $k['id'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $k['id'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data kelas <?= $k['kelas'] ?>?')">Hapus</a>
             </td>
         </tr>
