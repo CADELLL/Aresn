@@ -37,6 +37,15 @@ function dynamicTitle()
     $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
     switch ($url) {
+        case $folder . 'index.php':
+            return 'Dashboard';
+            break;
+        case $folder . 'admin.php':
+            return 'Dashboard Admin';
+            break;
+        case $folder . 'officer.php':
+            return 'Dashboard Petugas';
+            break;
         case $folder . 'class/':
             return 'Daftar Kelas';
             break;
@@ -49,17 +58,50 @@ function dynamicTitle()
         case $folder . 'class/update.php':
             return 'Ubah Kelas';
             break;
-        case $folder . 'users/':
+        case $folder . 'user/':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'users/index.php':
+        case $folder . 'user/index.php':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'users/create.php':
+        case $folder . 'user/create.php':
             return 'Tambah Pengguna';
             break;
-        case $folder . 'users/update.php':
+        case $folder . 'user/update.php':
             return 'Ubah Pengguna';
+            break;
+        case $folder . 'payment/':
+            return 'Daftar Pembayaran';
+            break;
+        case $folder . 'payment/index.php':
+            return 'Daftar Pembayaran';
+            break;
+        case $folder . 'payment/create.php':
+            return 'Tambah Pembayaran';
+            break;
+        case $folder . 'payment/update.php':
+            return 'Ubah Pembayaran';
+            break;
+        case $folder . 'donation/':
+            return 'Daftar SPP';
+            break;
+        case $folder . 'donation/index.php':
+            return 'Daftar SPP';
+            break;
+        case $folder . 'donation/create.php':
+            return 'Tambah SPP';
+            break;
+        case $folder . 'donation/update.php':
+            return 'Ubah SPP';
+            break;
+        case $folder . 'general/':
+            return 'Daftar Pembayaran';
+            break;
+        case $folder . 'general/index.php':
+            return 'Daftar Pembayaran';
+            break;
+        case $folder . 'general/detail.php':
+            return 'Detail Pembayaran';
             break;
         default;
             return;
