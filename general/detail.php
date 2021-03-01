@@ -19,6 +19,7 @@ $nisn = htmlspecialchars($_POST['nisn']);
 $no = 1;
 $total = 0;
 $spp = 0;
+$totalBayar = 0;
 $pembayaran = query("SELECT * FROM pembayaran
                     JOIN pengguna ON pengguna.id = pembayaran.id_petugas 
                     JOIN spp ON spp.id = pembayaran.id_spp
@@ -26,6 +27,10 @@ $pembayaran = query("SELECT * FROM pembayaran
 
 foreach ($pembayaran as $p) {
     $spp += $p['nominal'];
+}
+
+foreach ($pembayaran as $p) {
+    $totalBayar += $p['jumlah_bayar'];
 }
 
 $total += $spp * count($pembayaran);
@@ -66,9 +71,13 @@ $total += $spp * count($pembayaran);
         </tr>
     <?php endforeach; ?>
     <tr>
-        <td colspan="5">Total belum dibayar</td>
-        <td colspan="4">
-            <p style="color: brown; font-weight: bold">Rp. <?= rupiah($total); ?></p>
+        <td colspan="3">Total belum dibayar</td>
+        <td colspan="2">
+            <p class="text-bold text-red">Rp. <?= rupiah($total); ?></p>
+        </td>
+        <td>Total bayar</td>
+        <td colspan="2">
+            <p class="text-bold text-green">Rp. <?= rupiah($totalBayar); ?></p>
         </td>
     </tr>
     <?php if ($pembayaran == []) : ?>

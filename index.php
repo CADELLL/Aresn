@@ -36,4 +36,59 @@ $pembayaran = query("SELECT * FROM pembayaran");
     </a>
 </section>
 
+<table class="table">
+    <tr>
+        <td>
+            <h3>
+                SMKN 1 KEPANJEN</br>
+                STRUKTUR PEMBAYARAN SPP
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <hr>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Nama : Hafid Ardiansyah</br>
+            NISN : 23443223213</br>
+            Kelas : XII RPL 3
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Bulan sudah dibayar: Agustus, Juli</td>
+    </tr>
+    <tr>
+        <td>Tanggal: 15 Juli 2020</td>
+    </tr>
+    <tr>
+        <td>Total bayar: 200</td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Malang, 25 Juli 2020</td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td style="text-align:right">
+            <hr style="width: 100px;">
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:right">Petugas Hafid Ardiansyah</td>
+    </tr>
+</table>
+
 <?php include_once('layouts/footer.php'); ?>

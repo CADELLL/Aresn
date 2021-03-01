@@ -23,6 +23,7 @@ $date = date("Y-m-d");
 $no = 1;
 $total = 0;
 $spp = 0;
+$totalBayar = 0;
 $pembayaran = query("SELECT *,
                         pembayaran.id AS id_pembayaran, 
                         siswa.nama AS nama_siswa FROM pembayaran
@@ -31,9 +32,12 @@ $pembayaran = query("SELECT *,
                     JOIN spp ON spp.id = pembayaran.id_spp
                     WHERE pembayaran.nisn = $nisn");
 
-
 foreach ($pembayaran as $p) {
     $spp += $p['nominal'];
+}
+
+foreach ($pembayaran as $p) {
+    $totalBayar += $p['jumlah_bayar'];
 }
 
 $total += $spp * count($pembayaran);
@@ -50,13 +54,13 @@ $html = "<style>
     }
     table td,
     table th {
-        border: 1px solid #ddd;
+        border: 0px solid #ddd;
         padding: 12px;
         color: #333;
     }
 </style>";
 
-$html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto'>
+$html .= "<table style='margin: auto'>
                 <tr>
                     <td colspan='9'>
                         <h2>Daftar Pembayaran</h2>
@@ -91,11 +95,15 @@ foreach ($pembayaran as $p) {
     $no++;
 }
 $html .= "<tr>
-            <td colspan='5'>Total belum dibayar</td>
-            <td colspan='4'>    
-                <p style='color: brown; font-weight: bold'>Rp. " . rupiah($total) . "</p>
+            <td colspan='3'>Total belum dibayar</td>
+            <td colspan='2'>    
+                <p style='font-weight: bold; color: red;'>Rp. " . rupiah($total) . "</p>
             </td>
-            </tr>";
+            <td colspan='2'>Total bayar</td>
+            <td colspan='2'>    
+                <p style='font-weight: bold; color: green;'>Rp. " . rupiah($totalBayar) . "</p>
+            </td>
+        </tr>";
 $no++;
 
 $html .= "</table>

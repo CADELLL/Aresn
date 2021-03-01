@@ -171,8 +171,11 @@ label {
 }
 
 .search {
-  padding: 8px 14px;
-  width: 80%;
+  width: 200px;
+}
+
+#search .button {
+  padding: 11px 14px;
 }
 
 input[type="checkbox"] {
@@ -227,6 +230,18 @@ input[type="checkbox"] {
 
 .grey:hover {
   background-color: #ddd;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-red {
+  color: red;
 }
 
 .button {
@@ -403,6 +418,12 @@ input[type="checkbox"] {
   .table .badge {
     display: block;
     margin-bottom: 5px;
+  }
+
+  .table #action .button {
+    display: block;
+    margin-top: 5px;
+    width: 100%;
   }
 
   #sidebar ul li .hide-icon,

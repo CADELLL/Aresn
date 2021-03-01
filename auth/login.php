@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// check user
 if (isset($_SESSION["tingkat"])) {
     echo "
         <script>
@@ -12,19 +13,19 @@ if (isset($_SESSION["tingkat"])) {
 }
 
 if (isset($_POST["login"])) {
-    $conn = mysqli_connect("localhost", "root", "", "spp");
+    $conn = mysqli_connect("localhost", "root", "", "db_spp_88");
 
     $email = $_POST["email"];
     $kata_sandi = $_POST["kata_sandi"];
 
+    // get user
     $results = mysqli_query($conn, "SELECT * FROM pengguna WHERE email = '$email'");
 
-    // cek email
+    // check email
     if (mysqli_num_rows($results) === 1) {
 
-        // cek kata_sandi
         $row = mysqli_fetch_assoc($results);
-
+        // check kata_sandi
         if ($kata_sandi == $row["kata_sandi"]) {
             if ($row["tingkat"] == "admin") {
                 $_SESSION["id"] = $row['id'];
