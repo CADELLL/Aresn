@@ -60,6 +60,7 @@ if (isset($_POST['create'])) {
                 <select name="tingkat" id="tingkat" class="input-form">
                     <option value="admin">Admin</option>
                     <option value="petugas">Petugas</option>
+                    <option value="siswa">Siswa</option>
                 </select>
             </td>
         </tr>

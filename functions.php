@@ -40,6 +40,9 @@ function dynamicTitle()
         case $folder . 'index.php':
             return 'Dashboard';
             break;
+        case $folder . 'student.php':
+            return 'Dashboard Siswa';
+            break;
         case $folder . 'admin.php':
             return 'Dashboard Admin';
             break;

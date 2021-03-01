@@ -13,13 +13,12 @@ if (isset($_SESSION["payment"])) {
     exit;
 }
 
-// get & check value
-$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : $_POST['nisn'];
+// get value
+$nisn = htmlspecialchars($_POST['nisn']);
 
 $no = 1;
 $total = 0;
 $spp = 0;
-$bulan = month();
 $pembayaran = query("SELECT * FROM pembayaran
                     JOIN pengguna ON pengguna.id = pembayaran.id_petugas 
                     JOIN spp ON spp.id = pembayaran.id_spp
@@ -67,8 +66,8 @@ $total += $spp * count($pembayaran);
         </tr>
     <?php endforeach; ?>
     <tr>
-        <td colspan="2">Total belum dibayar</td>
-        <td colspan="6">
+        <td colspan="5">Total belum dibayar</td>
+        <td colspan="4">
             <p style="color: brown; font-weight: bold">Rp. <?= rupiah($total); ?></p>
         </td>
     </tr>

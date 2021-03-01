@@ -53,7 +53,7 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                     <td colspan='9'>
                         <h2>Daftar Pembayaran</h2>
                         <p>Tanggal: " . $date . "</p>
-                        <p>Total: " . $total . "</p>
+                        <p>Total pembayaran: " . $total . "</p>
                     </td>
                 </tr>
                 <tr>

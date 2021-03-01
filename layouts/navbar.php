@@ -12,6 +12,9 @@ function locationFile()
         case '/spp/index.php':
             return '';
             break;
+        case '/spp/student.php':
+            return '';
+            break;
         case '/spp/admin.php':
             return '';
             break;

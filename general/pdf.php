@@ -20,6 +20,24 @@ $nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
 $dompdf = new Dompdf();
 $date = date("Y-m-d");
 
+$no = 1;
+$total = 0;
+$spp = 0;
+$pembayaran = query("SELECT *,
+                        pembayaran.id AS id_pembayaran, 
+                        siswa.nama AS nama_siswa FROM pembayaran
+                    JOIN siswa ON siswa.nisn = pembayaran.nisn
+                    JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+                    JOIN spp ON spp.id = pembayaran.id_spp
+                    WHERE pembayaran.nisn = $nisn");
+
+
+foreach ($pembayaran as $p) {
+    $spp += $p['nominal'];
+}
+
+$total += $spp * count($pembayaran);
+
 $html = "<style>
     *{
         font-family:  Arial, Helvetica, sans-serif;
@@ -37,16 +55,6 @@ $html = "<style>
         color: #333;
     }
 </style>";
-
-$pembayaran = query("SELECT *,
-                        pembayaran.id AS id_pembayaran, 
-                        siswa.nama AS nama_siswa FROM pembayaran
-                    JOIN siswa ON siswa.nisn = pembayaran.nisn
-                    JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                    JOIN spp ON spp.id = pembayaran.id_spp
-                    WHERE pembayaran.nisn = $nisn");
-
-$html .= "<h1 style='text-align: center;'>Data Siswa</h1>";
 
 $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto'>
                 <tr>
@@ -67,11 +75,10 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                     <th>Jumlah dibayar</th>
                 </tr>";
 
-$i = 1;
 
 foreach ($pembayaran as $p) {
     $html .= "<tr>
-                <td>" . $i . "</td>
+                <td>" . $no . "</td>
                 <td>" . $p['nama'] . "</td>
                 <td>" . $p['nama_siswa'] . "</td>
                 <td>" . $p['nisn'] . "</td>        
@@ -81,8 +88,15 @@ foreach ($pembayaran as $p) {
                 <td>" . "Tahun " . $p['tahun'] . "<br>Rp." . rupiah($p['nominal']) . "</td>        
                 <td>Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
             </tr>";
-    $i++;
+    $no++;
 }
+$html .= "<tr>
+            <td colspan='5'>Total belum dibayar</td>
+            <td colspan='4'>    
+                <p style='color: brown; font-weight: bold'>Rp. " . rupiah($total) . "</p>
+            </td>
+            </tr>";
+$no++;
 
 $html .= "</table>
         </body>
