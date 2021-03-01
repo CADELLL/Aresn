@@ -57,11 +57,11 @@ if (isset($_POST['update'])) {
         </tr>
         <tr>
             <td><label for="nisn">NISN (+00)</label></td>
-            <td><input type="number" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" value="<?= $siswa['nisn']; ?>" minlength="10" autocomplete="off" autofocus required></td>
+            <td><input type="number" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" value="<?= $siswa['nisn']; ?>" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
             <td><label for="nis">NIS</label></td>
-            <td><input type="number" name="nis" class="input-form" id="nis" placeholder="Masukkan NIS!" value="<?= $siswa['nis']; ?>" minlength="8" autocomplete="off" required></td>
+            <td><input type="number" name="nis" class="input-form" id="nis" placeholder="Masukkan NIS!" value="<?= $siswa['nis']; ?>" autocomplete="off" required></td>
         </tr>
         <tr>
             <td><label for="nama">Nama</label></td>
@@ -88,7 +88,7 @@ if (isset($_POST['update'])) {
         </tr>
         <tr>
             <td><label for="no_telepon">No telepon (+62)</label></td>
-            <td><input type="number" name="no_telepon" class="input-form" id="no_telepon" minlength="12" placeholder="Masukkan no telepon!" value="<?= $siswa['no_telepon']; ?>" autocomplete="off" required></td>
+            <td><input type="number" name="no_telepon" class="input-form" id="no_telepon" placeholder="Masukkan no telepon!" value="<?= $siswa['no_telepon']; ?>" autocomplete="off" required></td>
         </tr>
         <tr>
             <td><label for="id_spp">SPP</label></td>
