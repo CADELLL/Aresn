@@ -36,21 +36,21 @@ $siswa = query("SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id");
         <th>Nama</th>
         <th>Kelas</th>
         <th>Alamat</th>
-        <th>No telepon</th>
+        <th>No telepon(+62)</th>
         <th>Pengaturan</th>
     </tr>
     <?php foreach ($siswa as $s) : ?>
         <tr>
             <td><?= $no++; ?></td>
-            <td><?= $s['nisn']; ?></td>
+            <td>00<?= $s['nisn']; ?></td>
             <td><?= $s['nis']; ?></td>
             <td><?= $s['nama']; ?></td>
             <td><?= $s['kelas']; ?></td>
             <td><?= $s['alamat']; ?></td>
             <td><?= $s['no_telepon']; ?></td>
             <td>
-                <a href="update.php?n=<?= $s['nisn'] ?>" class="badge yellow">Ubah</a>
-                <a href="delete.php?n=<?= $s['nisn'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
+                <a href="update.php?n=<?= $s['nisn'] ?>" class="badge yellow block-mb-2">Ubah</a>
+                <a href="delete.php?n=<?= $s['nisn'] ?>" class="badge red block-mb-2" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
             </td>
         </tr>
     <?php endforeach; ?>

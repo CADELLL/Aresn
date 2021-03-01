@@ -35,20 +35,20 @@ for ($i = 0; $i < $sisa; $i++) {
 //     echo $resultMonth[$i];
 // }
 
-for ($i = 0; $i < count($bulan); $i++) {
-    if ($bulan[$i][0] != 'Februari' || 'Juni') {
-        echo $bulan[$i][0];
-    }
-    echo '</br>';
-}
-
-// $i = 0;
-// $x = 0;
-// while ($i < count($resultMonth)) {
-//     if ($resultMonth[$x] != $bulan[$i][0]) {
+// for ($i = 0; $i < count($bulan); $i++) {
+//     if ($bulan[$i][0] != $) {
 //         echo $bulan[$i][0];
 //     }
 //     echo '</br>';
-//     $x = 0;
-//     $i++;
 // }
+
+$i = 0;
+$x = 0;
+while ($i < count($resultMonth)) {
+    if ($resultMonth[$x] != $bulan[$i][0]) {
+        echo $bulan[$i][0];
+    }
+    echo '</br>';
+    $x = 0;
+    $i++;
+}

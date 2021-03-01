@@ -400,9 +400,12 @@ function createPayment($data)
         return false;
     }
 
-    // check month
-    $resultMonth = mysqli_query($conn, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
+    $resultSpp = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn'")[0];
+    $id_spp = (int)$resultSpp['id_spp'];
 
+    $resultMonth = mysqli_query($conn, "SELECT * FROM pembayaran WHERE nisn = '$nisn' ");
+
+    // check month
     foreach ($resultMonth as $rm) {
         if ($rm['bulan_dibayar'] == $bulan_dibayar) {
             echo "<script>
@@ -412,11 +415,8 @@ function createPayment($data)
             return false;
         }
     }
+    // die;
 
-    // check nominal pembayaran
-    $resultSpp = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn'")[0];
-
-    $id_spp = (int)['id_spp'];
     $nominal = (int)$resultSpp['nominal'];
 
     if ((int)$jumlah_bayar < $nominal) {

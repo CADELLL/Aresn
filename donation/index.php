@@ -36,7 +36,7 @@ $spp = query("SELECT * FROM spp");
         <tr>
             <td><?= $no++; ?></td>
             <td><?= $s['tahun']; ?></td>
-            <td><?= rupiah($s['nominal']); ?></td>
+            <td>Rp. <?= rupiah($s['nominal']); ?></td>
             <td>
                 <a href="update.php?i=<?= $s['id'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $s['id'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data SPP tahun <?= $s['tahun'] ?>?')">Hapus</a>

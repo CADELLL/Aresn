@@ -24,15 +24,12 @@ $pembayaran = query("SELECT * FROM pembayaran
                     JOIN pengguna ON pengguna.id = pembayaran.id_petugas 
                     JOIN spp ON spp.id = pembayaran.id_spp
                     WHERE pembayaran.nisn = $nisn");
-$cekPembayaran = query("SELECT bulan_dibayar FROM pembayaran WHERE pembayaran.nisn = $nisn");
-$cekSPP = query("SELECT nominal FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE siswa.nisn = $nisn");
 
-foreach ($cekSPP as $cp) {
-    $spp += $cp['nominal'];
+foreach ($pembayaran as $p) {
+    $spp += $p['nominal'];
 }
 
-$total += ($spp * count($cekPembayaran)) - $spp * 12;
-
+$total += $spp * count($pembayaran);
 ?>
 
 <table class="table">
@@ -54,7 +51,8 @@ $total += ($spp * count($cekPembayaran)) - $spp * 12;
         <th>Bulan</th>
         <th>Tahun</th>
         <th>SPP</th>
-        <th>Jumlah</th>
+        <th>Jumlah dibayar</th>
+        <th>Uang kembali</th>
     </tr>
     <?php foreach ($pembayaran as $p) : ?>
         <tr>
@@ -63,8 +61,9 @@ $total += ($spp * count($cekPembayaran)) - $spp * 12;
             <td><?= $p['tanggal_bayar']; ?></td>
             <td><?= $p['bulan_dibayar']; ?></td>
             <td><?= $p['tahun_dibayar']; ?></td>
-            <td>Rp. <?= rupiah($p['nominal']) ?></td>
+            <td>Tahun <?= $p['tahun'] ?><br>Rp. <?= rupiah($p['nominal']) ?></td>
             <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
+            <td>Rp. <?= rupiah($p['jumlah_bayar'] - $p['nominal']); ?></td>
         </tr>
     <?php endforeach; ?>
     <tr>
@@ -74,7 +73,7 @@ $total += ($spp * count($cekPembayaran)) - $spp * 12;
         </td>
     </tr>
     <?php if ($pembayaran == []) : ?>
-        <div class="info info-merah">NISN tidak terdaftar!</div>
+        <div class="info info-red">NISN tidak terdaftar!</div>
     <?php endif; ?>
 </table>
 
