@@ -75,7 +75,7 @@ function rupiah($money)
 // month
 function month()
 {
-    $data = [
+    $month = [
         ['Januari'],
         ['Februari'],
         ['Maret'],
@@ -89,7 +89,7 @@ function month()
         ['November'],
         ['Desember']
     ];
-    return $data;
+    return $month;
 }
 
 // class

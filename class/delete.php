@@ -1,8 +1,7 @@
 <?php
-require '../functions.php';
-
-// check level
-if (!isset($_SESSION["admin"])) {
+session_start();
+// check payment
+if (!isset($_SESSION["payment"])) {
 	echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -11,6 +10,8 @@ if (!isset($_SESSION["admin"])) {
 		";
 	exit;
 }
+
+require '../functions.php';
 
 // get & check value
 $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];

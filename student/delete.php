@@ -1,6 +1,5 @@
 <?php
-require '../functions.php';
-
+session_start();
 // check level
 if (!isset($_SESSION["admin"])) {
 	echo "
@@ -11,6 +10,8 @@ if (!isset($_SESSION["admin"])) {
 		";
 	exit;
 }
+
+require '../functions.php';
 
 // get & check value
 $nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];

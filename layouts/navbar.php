@@ -28,7 +28,9 @@ function activeMainMenu($file = '',)
 {
     global $mainUrl;
 
-    return $mainUrl == '/spp/' . $file ? 'active' : '';
+    if ($mainUrl == '/spp/' . $file) {
+        return 'active';
+    }
 }
 
 require locationFile() . 'functions.php';

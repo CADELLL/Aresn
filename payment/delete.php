@@ -1,6 +1,5 @@
 <?php
-require '../functions.php';
-
+session_start();
 // check payment
 if (!isset($_SESSION["payment"])) {
 	echo "
@@ -11,6 +10,8 @@ if (!isset($_SESSION["payment"])) {
 		";
 	exit;
 }
+
+require '../functions.php';
 
 // get & check value
 $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
