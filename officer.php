@@ -50,21 +50,4 @@ include_once('layouts/sidebar.php');
     </a>
 </section>
 
-<table class="table">
-    <tr>
-        <td colspan="10">
-            <span id="action">
-                <h2>Daftar Tidak Lunas</h2>
-                <div>
-                    <input type="text" class="input-form search" name="keyword">
-                    <a href="create.php" class="button green"><i class="bx bx-search"></i></a>
-                </div>
-            </span>
-        </td>
-    </tr>
-    <tr>
-        <td>No</td>
-    </tr>
-</table>
-
 <?php include_once('layouts/footer.php'); ?>

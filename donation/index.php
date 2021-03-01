@@ -15,6 +15,10 @@ if (!isset($_SESSION["admin"])) {
 
 $no = 1;
 $spp = query("SELECT * FROM spp");
+
+if (isset($_POST['search'])) {
+    $spp = searchDonation($_POST['keyword']);
+}
 ?>
 
 <table class="table">

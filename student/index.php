@@ -15,6 +15,10 @@ if (!isset($_SESSION["admin"])) {
 
 $no = 1;
 $siswa = query("SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id");
+
+if (isset($_POST['search'])) {
+    $siswa = searchStudent($_POST['keyword']);
+}
 ?>
 
 <table class="table">

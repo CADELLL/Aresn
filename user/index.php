@@ -15,6 +15,10 @@ if (!isset($_SESSION["admin"])) {
 
 $no = 1;
 $pengguna = query("SELECT * FROM pengguna");
+
+if (isset($_POST['search'])) {
+    $pengguna = searchUser($_POST['keyword']);
+}
 ?>
 
 <table class="table">

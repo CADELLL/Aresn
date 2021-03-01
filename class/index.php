@@ -15,6 +15,10 @@ if (!isset($_SESSION["admin"])) {
 
 $no = 1;
 $kelas = query("SELECT * FROM kelas");
+
+if (isset($_POST['search'])) {
+    $kelas = searchClass($_POST['keyword']);
+}
 ?>
 
 <table class="table">

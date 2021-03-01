@@ -16,10 +16,15 @@ if (!isset($_SESSION["payment"])) {
 $no = 1;
 $pembayaran = query("SELECT *,
                         pembayaran.id AS id_pembayaran, 
-                        siswa.nama AS nama_siswa FROM pembayaran
+                        siswa.nama AS nama_siswa 
+                    FROM pembayaran
                     JOIN siswa ON siswa.nisn = pembayaran.nisn
                     JOIN pengguna ON pengguna.id = pembayaran.id_petugas
                     JOIN spp ON spp.id = pembayaran.id_spp");
+
+if (isset($_POST['search'])) {
+    $pembayaran = searchPayment($_POST['keyword']);
+}
 ?>
 
 <table class="table">

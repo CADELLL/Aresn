@@ -16,7 +16,7 @@ require '../functions.php';
 // get & check value
 $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 
-if (deleteSpp($id) > 0) {
+if (deleteDonation($id) > 0) {
 	echo "
 		<script>
 			alert('Data berhasil dihapus!');

@@ -19,7 +19,7 @@ $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 $spp = query("SELECT * FROM spp WHERE id = $id")[0];
 
 if (isset($_POST['update'])) {
-    if (updateSpp($_POST) > 0) {
+    if (updateDonation($_POST) > 0) {
         echo "
         <script>
 			alert('Data berhasil diubah!');

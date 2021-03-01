@@ -161,8 +161,8 @@ function updateClass($data)
     $kompetensi_keahlian = htmlspecialchars($data['kompetensi_keahlian']);
 
     $query = "UPDATE kelas SET
-                kelas = '$kelas',
-                kompetensi_keahlian = '$kompetensi_keahlian'
+                    kelas = '$kelas',
+                    kompetensi_keahlian = '$kompetensi_keahlian'
                 WHERE id = $id";
 
     mysqli_query($conn, $query);
@@ -179,6 +179,16 @@ function deleteClass($id)
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
+}
+
+
+function searchClass($keyword)
+{
+    $query = "SELECT * FROM kelas 
+                WHERE kelas LIKE '%$keyword%' OR
+                    kompetensi_keahlian LIKE '%$keyword%'";
+
+    return query($query);
 }
 
 // users
@@ -255,6 +265,16 @@ function deleteUser($id)
     return mysqli_affected_rows($conn);
 }
 
+function searchUser($keyword)
+{
+    $query = "SELECT * FROM pengguna 
+                WHERE nama LIKE '%$keyword%' OR
+                    email LIKE '%$keyword%' OR
+                    kata_sandi LIKE '%$keyword%'";
+
+    return query($query);
+}
+
 // Student
 function createStudent($data)
 {
@@ -291,6 +311,18 @@ function createStudent($data)
             ");
         return false;
     }
+
+    $resultStudentNis = mysqli_query($conn, "SELECT nis FROM siswa WHERE nis = '$nis'");
+
+    if (mysqli_fetch_assoc($resultStudentNis)) {
+        echo ("
+            <script>
+                alert('NIS sudah terdaftar!');
+            </script>
+            ");
+        return false;
+    }
+
 
     $query = "INSERT INTO siswa VALUES ('$nisn','$nis','$nama','$id_kelas','$alamat','$no_telepon','$id_spp')";
 
@@ -376,8 +408,22 @@ function deleteStudent($nisn)
     return mysqli_affected_rows($conn);
 }
 
+function searchStudent($keyword)
+{
+    $query = "SELECT * FROM siswa 
+                JOIN kelas ON siswa.id_kelas = kelas.id 
+                WHERE nama LIKE '%$keyword%' OR
+                    nisn LIKE '%$keyword%' OR
+                    nis LIKE '%$keyword%' OR
+                    alamat LIKE '%$keyword%' OR
+                    kelas LIKE '%$keyword%' OR
+                    no_telepon LIKE '%$keyword%'";
+
+    return query($query);
+}
+
 // Spp
-function createSpp($data)
+function createDonation($data)
 {
     global $conn;
 
@@ -391,7 +437,7 @@ function createSpp($data)
     return mysqli_affected_rows($conn);
 }
 
-function updateSpp($data)
+function updateDonation($data)
 {
     global $conn;
 
@@ -400,8 +446,8 @@ function updateSpp($data)
     $nominal = htmlspecialchars($data['nominal']);
 
     $query = "UPDATE spp SET
-                tahun = '$tahun',
-                nominal = '$nominal'
+                    tahun = '$tahun',
+                    nominal = '$nominal'
                 WHERE id = $id";
 
     mysqli_query($conn, $query);
@@ -409,7 +455,7 @@ function updateSpp($data)
     return mysqli_affected_rows($conn);
 }
 
-function deleteSpp($id)
+function deleteDonation($id)
 {
     global $conn;
 
@@ -420,6 +466,14 @@ function deleteSpp($id)
     return mysqli_affected_rows($conn);
 }
 
+function searchDonation($keyword)
+{
+    $query = "SELECT * FROM spp WHERE 
+                tahun LIKE '%$keyword%' OR
+                nominal LIKE '%$keyword%'";
+
+    return query($query);
+}
 
 // payment 
 function createPayment($data)
@@ -555,4 +609,25 @@ function deletePayment($id)
     mysqli_query($conn, "DELETE FROM pembayaran WHERE id = '$id'");
 
     return mysqli_affected_rows($conn);
+}
+
+function searchPayment($keyword)
+{
+    $query = "SELECT *,
+                    pembayaran.id AS id_pembayaran, 
+                    siswa.nama AS nama_siswa 
+                FROM pembayaran
+                JOIN siswa ON siswa.nisn = pembayaran.nisn
+                JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+                JOIN spp ON spp.id = pembayaran.id_spp
+                WHERE siswa.nama LIKE '%$keyword%' OR
+                    pembayaran.nisn LIKE '%$keyword%' OR
+                    tanggal_bayar LIKE '%$keyword%' OR
+                    tahun_dibayar LIKE '%$keyword%' OR
+                    tahun LIKE '%$keyword%' OR
+                    nominal LIKE '%$keyword%' OR
+                    jumlah_bayar LIKE '%$keyword%' OR
+                    bulan_dibayar LIKE '%$keyword%'";
+
+    return query($query);
 }

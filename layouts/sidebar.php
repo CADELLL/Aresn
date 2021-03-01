@@ -17,5 +17,11 @@
             <li><a href="<?= locationFile(); ?>officer.php" class="<?= activeMainMenu('officer.php'); ?>"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
             <li><a href="<?= locationFile(); ?>payment" class="<?= activeMenu('payment'); ?>"><span class="hide">Pembayaran </span><i class='bx bx-money hide-icon'></i></a></li>
         <?php endif; ?>
+        <?php if (isset($_SESSION['payment'])) : ?>
+            <li><a href="<?= locationFile(); ?>auth/logout.php" class="<?= activeMenu('auth/logout.php'); ?>"><span class="hide">Keluar </span><i class='bx bx-exit hide-icon'></i></a></li>
+        <?php endif; ?>
+        <?php if (!isset($_SESSION['payment'])) : ?>
+            <li><a href="<?= locationFile(); ?>auth/login.php" class="<?= activeMenu('auth/login.php'); ?>"><span class="hide">Masuk </span><i class='bx bx-log-in hide-icon'></i></a></li>
+        <?php endif; ?>
     </ul>
 </div>

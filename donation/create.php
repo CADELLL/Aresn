@@ -14,7 +14,7 @@ if (!isset($_SESSION["admin"])) {
 }
 
 if (isset($_POST['create'])) {
-    if (createSpp($_POST) > 0) {
+    if (createDonation($_POST) > 0) {
         echo "
         <script>
 			alert('Data berhasil ditambahkan!');
