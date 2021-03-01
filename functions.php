@@ -4,7 +4,7 @@ $conn = mysqli_connect("localhost", "root", "", "db_spp_88");
 
 // get url & folder
 $url = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-$folder = '/spp/';
+$folder = '/spp_88/';
 
 // function query for query sintaks SQL
 function query($query)
@@ -60,6 +60,18 @@ function dynamicTitle()
             break;
         case $folder . 'class/update.php':
             return 'Ubah Kelas';
+            break;
+        case $folder . 'student/':
+            return 'Daftar Siswa';
+            break;
+        case $folder . 'student/index.php':
+            return 'Daftar Siswa';
+            break;
+        case $folder . 'student/create.php':
+            return 'Tambah Siswa';
+            break;
+        case $folder . 'student/update.php':
+            return 'Ubah Siswa';
             break;
         case $folder . 'user/':
             return 'Daftar Pengguna';

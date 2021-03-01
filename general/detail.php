@@ -55,7 +55,7 @@ $total += $spp * count($pembayaran);
         <th>Bulan</th>
         <th>Tahun</th>
         <th>SPP</th>
-        <th>Jumlah dibayar</th>
+        <th>Jumlah bayar</th>
         <th>Uang kembali</th>
     </tr>
     <?php foreach ($pembayaran as $p) : ?>

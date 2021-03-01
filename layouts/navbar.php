@@ -9,16 +9,16 @@ function locationFile()
     global $mainUrl;
 
     switch ($mainUrl) {
-        case '/spp/index.php':
+        case '/spp_88/index.php':
             return '';
             break;
-        case '/spp/student.php':
+        case '/spp_88/student.php':
             return '';
             break;
-        case '/spp/admin.php':
+        case '/spp_88/admin.php':
             return '';
             break;
-        case '/spp/officer.php':
+        case '/spp_88/officer.php':
             return '';
             break;
         default:
@@ -31,7 +31,7 @@ function activeMainMenu($file = '',)
 {
     global $mainUrl;
 
-    if ($mainUrl == '/spp/' . $file) {
+    if ($mainUrl == '/spp_88/' . $file) {
         return 'active';
     }
 }
@@ -47,7 +47,7 @@ require locationFile() . 'functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= dynamicTitle(); ?></title>
-    <link rel="stylesheet" href="<?= locationFile(); ?>style.css">
+    <link rel="stylesheet" href="<?= locationFile(); ?>style2.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -57,7 +57,7 @@ require locationFile() . 'functions.php';
         <!-- <a href="/spp/auth/<?= $name ? 'logout.php' : 'login.php' ?>"><?= $name ? 'Keluar' : 'Masuk' ?></a> -->
         <div id="search">
             <form action="" method="POST">
-                <input type="text" class="input-form search" name="keyword" autocomplete="off" placeholder="Masukkan kata kunci.." autofocus>
+                <input type="text" class="input-form search" name="keyword" autocomplete="off" placeholder="Masukkan kata kunci..">
                 <button type="submit" name="search" class="button green">Cari</button>
             </form>
         </div>

@@ -35,18 +35,18 @@ if (isset($_POST['search'])) {
     </tr>
     <tr>
         <th>No</th>
-        <th>NISN</th>
+        <th>NISN (+00)</th>
         <th>NIS</th>
         <th>Nama</th>
         <th>Kelas</th>
         <th>Alamat</th>
-        <th>No telepon(+62)</th>
+        <th>No telepon (+62)</th>
         <th>Pengaturan</th>
     </tr>
     <?php foreach ($siswa as $s) : ?>
         <tr>
             <td><?= $no++; ?></td>
-            <td>00<?= $s['nisn']; ?></td>
+            <td><?= $s['nisn']; ?></td>
             <td><?= $s['nis']; ?></td>
             <td><?= $s['nama']; ?></td>
             <td><?= $s['kelas']; ?></td>

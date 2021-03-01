@@ -52,12 +52,12 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                 </tr>
                 <tr>
                     <th>No</th>
-                    <th>NISN</th>
+                    <th>NISN (+00)</th>
                     <th>NIS</th>
                     <th>Nama</th>
                     <th>Kelas</th>
                     <th>Alamat</th>
-                    <th>No telepon</th>
+                    <th>No telepon (+62)</th>
                 </tr>";
 
 foreach ($siswa as $s) {

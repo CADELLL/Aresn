@@ -65,7 +65,7 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                     <th>Bulan</th>
                     <th>Tahun</th>
                     <th>SPP</th>
-                    <th>Jumlah</th>
+                    <th>Jumlah bayar</th>
                 </tr>";
 
 foreach ($pembayaran as $p) {

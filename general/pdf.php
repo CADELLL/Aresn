@@ -54,7 +54,7 @@ $html = "<style>
     }
     table td,
     table th {
-        border: 0px solid #ddd;
+        border: 1px solid #ddd;
         padding: 12px;
         color: #333;
     }
@@ -76,7 +76,7 @@ $html .= "<table style='margin: auto'>
                     <th>Bulan</th>
                     <th>Tahun</th>
                     <th>SPP</th>
-                    <th>Jumlah dibayar</th>
+                    <th>Jumlah bayar</th>
                 </tr>";
 
 

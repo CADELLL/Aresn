@@ -48,7 +48,7 @@ if (isset($_POST['search'])) {
         <th>Bulan</th>
         <th>Tahun</th>
         <th>SPP</th>
-        <th>Jumlah</th>
+        <th>Jumlah bayar</th>
         <th>Pengaturan</th>
     </tr>
     <?php foreach ($pembayaran as $p) : ?>
