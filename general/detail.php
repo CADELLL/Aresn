@@ -39,7 +39,7 @@ $total += $spp * count($pembayaran);
                 <h2>Detail Pembayaran</h2>
                 <span>
                     <a href="index.php" class="badge grey">Kembali</a>
-                    <!-- <a href="pdf.php?n=<?= $nisn ?>" class="badge green">File PDF</a> -->
+                    <a href="pdf.php?n=<?= $nisn ?>" class="badge green">File PDF</a>
                 </span>
             </span>
         </td>

@@ -1,8 +1,7 @@
 <?php
 session_start();
-
-// check payment
-if (!isset($_SESSION["payment"])) {
+// check level
+if (isset($_SESSION["payment"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -17,18 +16,9 @@ require_once '../assets/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 
-$totalPembayaran = query("SELECT * FROM pembayaran");
-$pembayaran = query("SELECT *,
-                        pembayaran.id AS id_pembayaran, 
-                        siswa.nama AS nama_siswa FROM pembayaran
-                    JOIN siswa ON siswa.nisn = pembayaran.nisn
-                    JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                    JOIN spp ON spp.id = pembayaran.id_spp");
-
-$i = 1;
+$nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
 $dompdf = new Dompdf();
 $date = date("Y-m-d");
-$total = count($totalPembayaran);
 
 $html = "<style>
     *{
@@ -48,12 +38,21 @@ $html = "<style>
     }
 </style>";
 
+$pembayaran = query("SELECT *,
+                        pembayaran.id AS id_pembayaran, 
+                        siswa.nama AS nama_siswa FROM pembayaran
+                    JOIN siswa ON siswa.nisn = pembayaran.nisn
+                    JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+                    JOIN spp ON spp.id = pembayaran.id_spp
+                    WHERE pembayaran.nisn = $nisn");
+
+$html .= "<h1 style='text-align: center;'>Data Siswa</h1>";
+
 $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto'>
                 <tr>
                     <td colspan='9'>
                         <h2>Daftar Pembayaran</h2>
                         <p>Tanggal: " . $date . "</p>
-                        <p>Total: " . $total . "</p>
                     </td>
                 </tr>
                 <tr>
@@ -65,8 +64,10 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                     <th>Bulan</th>
                     <th>Tahun</th>
                     <th>SPP</th>
-                    <th>Jumlah</th>
+                    <th>Jumlah dibayar</th>
                 </tr>";
+
+$i = 1;
 
 foreach ($pembayaran as $p) {
     $html .= "<tr>
@@ -77,8 +78,8 @@ foreach ($pembayaran as $p) {
                 <td>" . $p['tanggal_bayar'] . "</td>        
                 <td>" . $p['bulan_dibayar'] . "</td>        
                 <td>" . $p['tahun_dibayar'] . "</td>        
-                <td>" . "Tahun" .  $p['tahun'] . "<br>Rp. " . rupiah($p['nominal']) . "</td>        
-                <td>" . "Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
+                <td>" . "Tahun " . $p['tahun'] . "<br>Rp." . rupiah($p['nominal']) . "</td>        
+                <td>Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
             </tr>";
     $i++;
 }
