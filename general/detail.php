@@ -14,26 +14,38 @@ if (isset($_SESSION["payment"])) {
 }
 
 // get value
-$nisn = htmlspecialchars($_POST['nisn']);
+$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['nisn']);
 
 $no = 1;
-$total = 0;
 $spp = 0;
 $totalBayar = 0;
+$totalTidakBayar = 0;
+$bulan = month();
+$bulanDiBayar = [];
 $pembayaran = query("SELECT * FROM pembayaran
                     JOIN pengguna ON pengguna.id = pembayaran.id_petugas 
                     JOIN spp ON spp.id = pembayaran.id_spp
                     WHERE pembayaran.nisn = $nisn");
 
+if ($pembayaran == []) {
+    echo "
+        <script>
+            alert('NISN tidak terdaftar!');
+            window.history.back();
+        </script>
+        ";
+    exit;
+}
+
+$totalPembayaran = count($pembayaran);
+
 foreach ($pembayaran as $p) {
     $spp += $p['nominal'];
-}
-
-foreach ($pembayaran as $p) {
     $totalBayar += $p['jumlah_bayar'];
+    $bulanDiBayar[] = $p['bulan_dibayar'];
 }
 
-$total += $spp * count($pembayaran);
+$totalTidakBayar += $spp * $totalPembayaran;
 ?>
 
 <table class="table">
@@ -73,16 +85,13 @@ $total += $spp * count($pembayaran);
     <tr>
         <td colspan="3">Total belum dibayar</td>
         <td colspan="2">
-            <p class="text-bold text-red">Rp. <?= rupiah($total); ?></p>
+            <p class="text-bold text-red">Rp. <?= rupiah($totalTidakBayar); ?></p>
         </td>
         <td>Total bayar</td>
         <td colspan="2">
             <p class="text-bold text-green">Rp. <?= rupiah($totalBayar); ?></p>
         </td>
     </tr>
-    <?php if ($pembayaran == []) : ?>
-        <div class="info info-red">NISN tidak terdaftar!</div>
-    <?php endif; ?>
 </table>
 
 <?php include_once('../layouts/footer.php'); ?>

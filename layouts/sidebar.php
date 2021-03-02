@@ -3,7 +3,7 @@
     <ul>
         <?php if (!isset($_SESSION['payment'])) : ?>
             <li><a href="<?= locationFile(); ?>index.php" class="<?= activeMainMenu('index.php'); ?>"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>
-            <li><a href="<?= locationFile(); ?>general" class="<?= activeMenu('general'); ?>"><span class="hide">Pembayaran </span><i class='bx bx-money hide-icon'></i></a></li>
+            <li><a href="<?= locationFile(); ?>general" class="<?= activeMenu('general'); ?>"><span class="hide">SPP </span><i class='bx bx-money hide-icon'></i></a></li>
         <?php endif; ?>
         <?php if (isset($_SESSION['admin'])) : ?>
             <li><a href="<?= locationFile(); ?>admin.php" class="<?= activeMainMenu('admin.php'); ?>"><span class="hide">Dashboard </span><i class='bx bxs-dashboard hide-icon'></i></a></li>

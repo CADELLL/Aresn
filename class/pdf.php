@@ -26,6 +26,7 @@ $total = count($kelas);
 $html = "<style>
     *{
         font-family:  Arial, Helvetica, sans-serif;
+        color: #333;
     }
     table {
         border-collapse: collapse;
@@ -41,14 +42,16 @@ $html = "<style>
     }
 </style>";
 
+$html .= "<h3>
+                SMKN 1 Kepanjen<br>
+                Daftar Kelas
+            </h3>
+            <p>
+                Tanggal: " . $date . "<br>
+                Total: " . $total . "
+            </p>";
+
 $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto'>
-                <tr>
-                    <td colspan='3'>
-                        <h2>Daftar Kelas</h2>
-                        <p>Tanggal: " . $date . "</p>
-                        <p>Total: " . $total . "</p>
-                    </td>
-                </tr>
                 <tr>
                     <th>No</th>
                     <th>Nama</th>

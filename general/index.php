@@ -19,13 +19,13 @@ if (isset($_SESSION["payment"])) {
         <tr>
             <td colspan="2">
                 <span id="action">
-                    <h2>Cek Pembayaran</h2>
+                    <h2>Cek SPP</h2>
                 </span>
             </td>
         </tr>
         <tr>
-            <td><label for="nisn">NISN</label></td>
-            <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" required></td>
+            <td><label for="nisn">NISN (+00)</label></td>
+            <td><input type="number" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" required></td>
         </tr>
         <tr>
             <td colspan="2" class="center"><button type="submit" class="button green">Cek</button></td>

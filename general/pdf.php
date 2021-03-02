@@ -18,7 +18,7 @@ use Dompdf\Dompdf;
 
 $nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
 $dompdf = new Dompdf();
-$date = date("Y-m-d");
+$date = date("d-M-Y");
 
 $no = 1;
 $total = 0;
@@ -31,6 +31,10 @@ $pembayaran = query("SELECT *,
                     JOIN pengguna ON pengguna.id = pembayaran.id_petugas
                     JOIN spp ON spp.id = pembayaran.id_spp
                     WHERE pembayaran.nisn = $nisn");
+
+$siswa = query("SELECT * FROM siswa
+                    JOIN kelas ON kelas.id = siswa.id_kelas
+                    WHERE siswa.nisn = $nisn")[0];
 
 foreach ($pembayaran as $p) {
     $spp += $p['nominal'];
@@ -45,6 +49,7 @@ $total += $spp * count($pembayaran);
 $html = "<style>
     *{
         font-family:  Arial, Helvetica, sans-serif;
+        color: #333;
     }
     table {
         border-collapse: collapse;
@@ -58,20 +63,27 @@ $html = "<style>
         padding: 12px;
         color: #333;
     }
+    hr{
+        color: #f2f2f2;
+    }
 </style>";
+
+$html .= "<h3>
+            SMKN 1 Kepanjen<br>
+            Struktur Pembayaran
+        </h3>
+        <hr>
+        <p>
+            NISN: 00" . $siswa['nisn'] . "<br>
+            Nama: " . $siswa['nama'] . "<br>
+            Kelas: " . $siswa['kelas'] . "
+        </p>
+        <h3>Detail Pembayaran</h3>";
 
 $html .= "<table style='margin: auto'>
                 <tr>
-                    <td colspan='9'>
-                        <h2>Daftar Pembayaran</h2>
-                        <p>Tanggal: " . $date . "</p>
-                    </td>
-                </tr>
-                <tr>
                     <th>No</th>
                     <th>Petugas</th>
-                    <th>Siswa</th>
-                    <th>NISN</th>
                     <th>Tanggal</th>
                     <th>Bulan</th>
                     <th>Tahun</th>
@@ -79,13 +91,10 @@ $html .= "<table style='margin: auto'>
                     <th>Jumlah bayar</th>
                 </tr>";
 
-
 foreach ($pembayaran as $p) {
     $html .= "<tr>
                 <td>" . $no . "</td>
                 <td>" . $p['nama'] . "</td>
-                <td>" . $p['nama_siswa'] . "</td>
-                <td>" . $p['nisn'] . "</td>        
                 <td>" . $p['tanggal_bayar'] . "</td>        
                 <td>" . $p['bulan_dibayar'] . "</td>        
                 <td>" . $p['tahun_dibayar'] . "</td>        
@@ -95,22 +104,33 @@ foreach ($pembayaran as $p) {
     $no++;
 }
 $html .= "<tr>
-            <td colspan='3'>Total belum dibayar</td>
-            <td colspan='2'>    
-                <p style='font-weight: bold; color: red;'>Rp. " . rupiah($total) . "</p>
-            </td>
-            <td colspan='2'>Total bayar</td>
-            <td colspan='2'>    
-                <p style='font-weight: bold; color: green;'>Rp. " . rupiah($totalBayar) . "</p>
-            </td>
-        </tr>";
-$no++;
+                <td colspan='2'>Total belum dibayar</td>
+                <td colspan='2'>    
+                    <p style='font-weight: bold; color: red;'>Rp. " . rupiah($total) . "</p>
+                </td>
+                <td colspan='2'>Total bayar</td>
+                <td>    
+                    <p style='font-weight: bold; color: green;'>Rp. " . rupiah($totalBayar) . "</p>
+                </td>
+            </tr>";
+
+$html .= "
+<div style='margin-left: 70%;'>
+    <div style='text-align:center;'>
+        <p>Malang, " . $date . "</p>
+        <br><br><br>
+        <hr style='width: 200px;'>
+        <p>Hafid Ardiansyah</p>
+    </div>
+</div>
+<br><br>
+";
 
 $html .= "</table>
-        </body>
+            </body>
     </html>";
 
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A4', 'potrait');
 $dompdf->render();
-$dompdf->stream('daftar-pembayaran-' . $date);
+$dompdf->stream('struktur-pembayaran-' . $date);
