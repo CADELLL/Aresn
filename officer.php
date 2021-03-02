@@ -1,5 +1,6 @@
 <?php
 include_once('layouts/navbar.php');
+include_once('layouts/sidebar.php');
 
 // check level
 if (!isset($_SESSION["officer"])) {
@@ -18,8 +19,6 @@ $siswa = query("SELECT * FROM siswa");
 $pengguna = query("SELECT * FROM pengguna");
 $kelas = query("SELECT * FROM kelas");
 $pembayaran = query("SELECT * FROM pembayaran");
-
-include_once('layouts/sidebar.php');
 ?>
 
 <h2>Informasi Singkat</h2>

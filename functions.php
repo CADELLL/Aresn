@@ -277,16 +277,6 @@ function deleteUser($id)
     return mysqli_affected_rows($conn);
 }
 
-function searchUser($keyword)
-{
-    $query = "SELECT * FROM pengguna 
-                WHERE nama LIKE '%$keyword%' OR
-                    email LIKE '%$keyword%' OR
-                    kata_sandi LIKE '%$keyword%'";
-
-    return query($query);
-}
-
 // Student
 function createStudent($data)
 {

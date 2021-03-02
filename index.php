@@ -2,6 +2,26 @@
 include_once('layouts/navbar.php');
 include_once('layouts/sidebar.php');
 
+if (isset($_SESSION["admin"])) {
+    echo "
+		<script>
+            alert('Tidak dapat mengakses fitur ini!');
+            document.location.href = 'admin.php';
+		</script>
+		";
+    exit;
+}
+
+if (isset($_SESSION["officer"])) {
+    echo "
+		<script>
+            alert('Tidak dapat mengakses fitur ini!');
+            document.location.href = 'officer.php';
+		</script>
+		";
+    exit;
+}
+
 $siswa = query("SELECT * FROM siswa");
 $pengguna = query("SELECT * FROM pengguna");
 $kelas = query("SELECT * FROM kelas");

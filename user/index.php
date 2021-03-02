@@ -13,12 +13,44 @@ if (!isset($_SESSION["admin"])) {
     exit;
 }
 
-$no = 1;
-$pengguna = query("SELECT * FROM pengguna");
-
 if (isset($_POST['search'])) {
-    $pengguna = searchUser($_POST['keyword']);
+    $keyword = $_POST['keyword'];
+} else {
+    $keyword = '';
 }
+
+$pengguna = mysqli_query($conn, "SELECT * FROM pengguna 
+                        WHERE nama LIKE '%$keyword%' OR
+                            email LIKE '%$keyword%' OR
+                            kata_sandi LIKE '%$keyword%'");
+// pagination
+$limit = 10;
+$totalData = mysqli_num_rows($pengguna);
+$totalPage = ceil($totalData / $limit);
+$activePage = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$curretPage = $activePage ? $activePage : 1;
+$startData = ($activePage * $limit) - $limit;
+
+$link = 3;
+if ($activePage > $link) {
+    $startNumber = $activePage - $link;
+} else {
+    $startNumber = 1;
+}
+
+if ($activePage < ($totalPage - $link)) {
+    $endNumber = $activePage + $link;
+} else {
+    $endNumber = $totalPage;
+}
+
+$pengguna = mysqli_query($conn, "SELECT * FROM pengguna 
+                        WHERE nama LIKE '%$keyword%' OR
+                            email LIKE '%$keyword%' OR
+                            kata_sandi LIKE '%$keyword%'
+                        LIMIT $startData, $limit");
+// data no
+$no = 1 + ($limit * ($curretPage - 1));
 ?>
 
 <table class="table">
@@ -43,7 +75,7 @@ if (isset($_POST['search'])) {
     </tr>
     <?php foreach ($pengguna as $p) : ?>
         <tr>
-            <td><?= $no++; ?></td>
+            <td><?= $no++;  ?></td>
             <td><?= $p['nama']; ?></td>
             <td><?= $p['email']; ?></td>
             <td><?= $p['kata_sandi']; ?></td>
@@ -58,5 +90,27 @@ if (isset($_POST['search'])) {
         <div class="info info-red">Data tidak ada!</div>
     <?php endif; ?>
 </table>
+
+<div class="pagination">
+    <a href="?page=1" class="badge grey">Awal</a>
+
+    <?php if ($activePage > 1) : ?>
+        <a href="?page=<?= $activePage - 1; ?>"><i class='bx bx-caret-left badge grey'></i></a>
+    <?php endif; ?>
+
+    <?php for ($i = $startNumber; $i <= $endNumber; $i++) : ?>
+        <?php if ($i == $activePage) : ?>
+            <a href="?page=<?= $i; ?>" class="badge green"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="?page=<?= $i; ?>" class="badge grey"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if ($activePage < $totalPage) : ?>
+        <a href="?page=<?= $activePage + 1; ?>"><i class='bx bx-caret-right badge grey'></i></a>
+    <?php endif; ?>
+
+    <a href="?page=<?= $totalPage; ?>" class="badge grey">Akhir</a>
+</div>
 
 <?php include_once('../layouts/footer.php'); ?>

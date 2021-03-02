@@ -68,7 +68,7 @@ if (isset($_POST['edit'])) {
                     <option value="<?= $pengguna['tingkat'] ?>"><?= $pengguna['tingkat'] ?></option>
                     <option value="admin">Admin</option>
                     <option value="petugas">Petugas</option>
-                    <option value="siswa">Siswa</option>
+                    <!-- <option value="siswa">Siswa</option> -->
                 </select>
             </td>
         </tr>
