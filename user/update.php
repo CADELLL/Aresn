@@ -64,12 +64,15 @@ if (isset($_POST['edit'])) {
         <tr>
             <td><label for="tingkat">Tingkat</label></td>
             <td>
-                <select name="tingkat" id="tingkat" class="input-form">
+                <label for="admin">Admin</label>
+                <input type="radio" name="tingkat" id="admin" value="admin" <?= $pengguna['tingkat'] == 'admin' ? 'checked' : '' ?>>
+                <label for="petugas">Petugas</label>
+                <input type="radio" name="tingkat" id="petugas" value="petugas" <?= $pengguna['tingkat'] == 'petugas' ? 'checked' : '' ?>>
+                <!-- <select name="tingkat" id="tingkat" class="input-form">
                     <option value="<?= $pengguna['tingkat'] ?>"><?= $pengguna['tingkat'] ?></option>
                     <option value="admin">Admin</option>
                     <option value="petugas">Petugas</option>
-                    <!-- <option value="siswa">Siswa</option> -->
-                </select>
+                </select> -->
             </td>
         </tr>
         <tr>

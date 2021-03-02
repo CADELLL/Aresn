@@ -149,12 +149,43 @@ function month()
     return $month;
 }
 
+// pagination
+function queryPagination($query)
+{
+    global $conn;
+
+    $result = mysqli_query($conn, $query);
+
+    return mysqli_num_rows($result);
+}
+
+function startNumber($activePage, $link)
+{
+    if ($activePage > $link) {
+        return $activePage - $link;
+    }
+    return 1;
+}
+
+function endNumber($activePage, $link, $totalPage)
+{
+    if ($activePage < ($totalPage - $link)) {
+        return $activePage + $link;
+    }
+    return $totalPage;
+}
+
+function numberData($limit, $curretPage)
+{
+    return 1 + ($limit * ($curretPage - 1));
+}
+
 // class
 function createClass($data)
 {
     global $conn;
 
-    $kelas = htmlspecialchars($data['kelas']);
+    $kelas = htmlspecialchars($data["kelas"]);
     $kompetensi_keahlian = htmlspecialchars($data['kompetensi_keahlian']);
 
     $query = "INSERT INTO kelas VALUES ('','$kelas','$kompetensi_keahlian')";
@@ -290,6 +321,17 @@ function createStudent($data)
     $no_telepon = htmlspecialchars($data['no_telepon']);
     $id_spp = htmlspecialchars($data['id_spp']);
 
+    // check no telepon
+    $strNoTlp = strlen((string)$no_telepon);
+    if ($strNoTlp < 11) {
+        echo "
+            <script>
+                alert('No telepon minimum 11 karakter');
+            </script>
+            ";
+        return false;
+    }
+
     // check nisn from tb nisn
     $resultNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
 
@@ -347,6 +389,17 @@ function updateStudent($data)
     $alamat = htmlspecialchars($data['alamat']);
     $no_telepon = htmlspecialchars($data['no_telepon']);
     $id_spp = htmlspecialchars($data['id_spp']);
+
+    // check no telepon
+    $strNoTlp = strlen((string)$no_telepon);
+    if ($strNoTlp < 11) {
+        echo "
+            <script>
+                alert('No telepon minimum 11 karakter');
+            </script>
+            ";
+        return false;
+    }
 
     // check nisn from tb nisn
     $resultTbNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
@@ -408,20 +461,6 @@ function deleteStudent($nisn)
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
-}
-
-function searchStudent($keyword)
-{
-    $query = "SELECT * FROM siswa 
-                JOIN kelas ON siswa.id_kelas = kelas.id 
-                WHERE nama LIKE '%$keyword%' OR
-                    nisn LIKE '%$keyword%' OR
-                    nis LIKE '%$keyword%' OR
-                    alamat LIKE '%$keyword%' OR
-                    kelas LIKE '%$keyword%' OR
-                    no_telepon LIKE '%$keyword%'";
-
-    return query($query);
 }
 
 // Spp

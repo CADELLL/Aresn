@@ -182,7 +182,12 @@ label {
   padding: 11px 14px;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
+.pointer {
   cursor: pointer;
 }
 

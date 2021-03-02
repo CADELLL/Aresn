@@ -53,6 +53,12 @@ if (isset($_POST['create'])) {
                     <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                     <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
                     <option value="Teknik Industri">Teknik Industri</option>
+                    <option value="Teknik Otomotif">Teknik Otomotif</option>
+                    <option value="Teknik Elektronika">Teknik Elektronika</option>
+                    <option value="Multimedia">Multimedia</option>
+                    <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
+                    <option value="Akuntansi">Akuntansi</option>
+                    <option value="Tata Boga">Tata Boga</option>
                 </select>
             </td>
         </tr>

@@ -155,3 +155,9 @@ for ($i = 0; $i < 12; $i++) {
 //             break;
 //     }
 // }
+
+$data = '81343775142';
+if (preg_match('/^\+\d(\d{3})(\d{3})(\d{4})$/', $data,  $matches)) {
+    $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3];
+    echo $result;
+}

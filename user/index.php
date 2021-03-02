@@ -27,11 +27,12 @@ $pengguna = mysqli_query($conn, "SELECT * FROM pengguna
 $limit = 10;
 $totalData = mysqli_num_rows($pengguna);
 $totalPage = ceil($totalData / $limit);
+// convert high value to number of rounds
 $activePage = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $curretPage = $activePage ? $activePage : 1;
 $startData = ($activePage * $limit) - $limit;
 
-$link = 3;
+$link = 2;
 if ($activePage > $link) {
     $startNumber = $activePage - $link;
 } else {
