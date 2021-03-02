@@ -40,12 +40,16 @@ $html = "<style>
         padding: 12px;
         color: #333;
     }
+    hr{
+        color: #f2f2f2;
+    }
 </style>";
 
-$html .= "<h3>
+$html .= "<h2>
                 SMKN 1 Kepanjen<br>
                 Daftar Pengguna
-            </h3>
+            </h2>
+            <hr>
             <p>
                 Tanggal: " . $date . "<br>
                 Total: " . $total . "

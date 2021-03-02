@@ -13,18 +13,57 @@ if (!isset($_SESSION["payment"])) {
     exit;
 }
 
-$no = 1;
-$pembayaran = query("SELECT *,
-                        pembayaran.id AS id_pembayaran, 
-                        siswa.nama AS nama_siswa 
-                    FROM pembayaran
-                    JOIN siswa ON siswa.nisn = pembayaran.nisn
-                    JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                    JOIN spp ON spp.id = pembayaran.id_spp");
-
 if (isset($_POST['search'])) {
-    $pembayaran = searchPayment($_POST['keyword']);
+    $keyword = $_POST['keyword'];
+} else {
+    $keyword = '';
 }
+
+$totalData = queryPagination("SELECT *,
+                                pembayaran.id AS id_pembayaran, 
+                                siswa.nama AS nama_siswa 
+                            FROM pembayaran
+                            JOIN siswa ON siswa.nisn = pembayaran.nisn
+                            JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+                            JOIN spp ON spp.id = pembayaran.id_spp
+                            WHERE siswa.nama LIKE '%$keyword%' OR
+                                pembayaran.nisn LIKE '%$keyword%' OR
+                                tanggal_bayar LIKE '%$keyword%' OR
+                                tahun_dibayar LIKE '%$keyword%' OR
+                                tahun LIKE '%$keyword%' OR
+                                nominal LIKE '%$keyword%' OR
+                                jumlah_bayar LIKE '%$keyword%' OR
+                                bulan_dibayar LIKE '%$keyword%'");
+// pagination
+$limit = 10;
+$totalPage = ceil($totalData / $limit);
+// convert high value to number of rounds
+$activePage = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$curretPage = $activePage ? $activePage : 1;
+$startData = ($activePage * $limit) - $limit;
+
+$link = 2;
+$startNumber = startNumber($activePage, $link);
+$endNumber = endNumber($activePage, $link, $totalPage);
+
+$pembayaran = mysqli_query($conn, "SELECT *,
+                                    pembayaran.id AS id_pembayaran, 
+                                    siswa.nama AS nama_siswa 
+                                FROM pembayaran
+                                JOIN siswa ON siswa.nisn = pembayaran.nisn
+                                JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+                                JOIN spp ON spp.id = pembayaran.id_spp
+                                WHERE siswa.nama LIKE '%$keyword%' OR
+                                    pembayaran.nisn LIKE '%$keyword%' OR
+                                    tanggal_bayar LIKE '%$keyword%' OR
+                                    tahun_dibayar LIKE '%$keyword%' OR
+                                    tahun LIKE '%$keyword%' OR
+                                    nominal LIKE '%$keyword%' OR
+                                    jumlah_bayar LIKE '%$keyword%' OR
+                                    bulan_dibayar LIKE '%$keyword%'
+                                LIMIT $startData, $limit");
+// data no
+$no = numberData($limit, $curretPage);
 ?>
 
 <table class="table">
@@ -47,8 +86,8 @@ if (isset($_POST['search'])) {
         <th>Tanggal</th>
         <th>Bulan</th>
         <th>Tahun</th>
-        <th>SPP</th>
-        <th>Jumlah bayar</th>
+        <!-- <th>SPP</th> -->
+        <!-- <th>Jumlah bayar</th> -->
         <th>Pengaturan</th>
     </tr>
     <?php foreach ($pembayaran as $p) : ?>
@@ -60,11 +99,11 @@ if (isset($_POST['search'])) {
             <td><?= $p['tanggal_bayar']; ?></td>
             <td><?= $p['bulan_dibayar']; ?></td>
             <td><?= $p['tahun_dibayar']; ?></td>
-            <td>Tahun <?= $p['tahun'] ?><br>Rp. <?= rupiah($p['nominal']) ?></td>
-            <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
+            <!-- <td>Tahun <?= $p['tahun'] ?><br>Rp. <?= rupiah($p['nominal']) ?></td> -->
+            <!-- <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td> -->
             <td>
-                <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow block-mb-2">Ubah</a>
-                <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red block-mb-2" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
+                <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow">Ubah</a>
+                <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
             </td>
         </tr>
     <?php endforeach; ?>
@@ -73,5 +112,27 @@ if (isset($_POST['search'])) {
         <div class="info info-red">Data tidak ada!</div>
     <?php endif; ?>
 </table>
+
+<div class="pagination">
+    <a href="?page=1" class="badge grey">Awal</a>
+
+    <?php if ($activePage > 1) : ?>
+        <a href="?page=<?= $activePage - 1; ?>"><i class='bx bx-caret-left badge grey'></i></a>
+    <?php endif; ?>
+
+    <?php for ($i = $startNumber; $i <= $endNumber; $i++) : ?>
+        <?php if ($i == $activePage) : ?>
+            <a href="?page=<?= $i; ?>" class="badge green"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="?page=<?= $i; ?>" class="badge grey"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if ($activePage < $totalPage) : ?>
+        <a href="?page=<?= $activePage + 1; ?>"><i class='bx bx-caret-right badge grey'></i></a>
+    <?php endif; ?>
+
+    <a href="?page=<?= $totalPage; ?>" class="badge grey">Akhir</a>
+</div>
 
 <?php include_once('../layouts/footer.php'); ?>

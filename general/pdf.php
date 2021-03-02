@@ -34,13 +34,11 @@ $pembayaran = query("SELECT *,
 
 $siswa = query("SELECT * FROM siswa
                     JOIN kelas ON kelas.id = siswa.id_kelas
+                    JOIN spp ON spp.id = siswa.id_spp
                     WHERE siswa.nisn = $nisn")[0];
 
 foreach ($pembayaran as $p) {
     $spp += $p['nominal'];
-}
-
-foreach ($pembayaran as $p) {
     $totalBayar += $p['jumlah_bayar'];
 }
 
@@ -76,7 +74,8 @@ $html .= "<h3>
         <p>
             NISN: 00" . $siswa['nisn'] . "<br>
             Nama: " . $siswa['nama'] . "<br>
-            Kelas: " . $siswa['kelas'] . "
+            Kelas: " . $siswa['kelas'] . "<br>
+            SPP: Tahun " . $siswa['tahun'] . " - Rp. " . rupiah($p['nominal']) . "
         </p>
         <h3>Detail Pembayaran</h3>";
 
@@ -87,7 +86,6 @@ $html .= "<table style='margin: auto'>
                     <th>Tanggal</th>
                     <th>Bulan</th>
                     <th>Tahun</th>
-                    <th>SPP</th>
                     <th>Jumlah bayar</th>
                 </tr>";
 
@@ -98,7 +96,6 @@ foreach ($pembayaran as $p) {
                 <td>" . $p['tanggal_bayar'] . "</td>        
                 <td>" . $p['bulan_dibayar'] . "</td>        
                 <td>" . $p['tahun_dibayar'] . "</td>        
-                <td>" . "Tahun " . $p['tahun'] . "<br>Rp." . rupiah($p['nominal']) . "</td>        
                 <td>Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
             </tr>";
     $no++;
@@ -108,7 +105,7 @@ $html .= "<tr>
                 <td colspan='2'>    
                     <p style='font-weight: bold; color: red;'>Rp. " . rupiah($total) . "</p>
                 </td>
-                <td colspan='2'>Total bayar</td>
+                <td colspan='1'>Total bayar</td>
                 <td>    
                     <p style='font-weight: bold; color: green;'>Rp. " . rupiah($totalBayar) . "</p>
                 </td>

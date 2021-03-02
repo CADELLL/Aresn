@@ -224,16 +224,6 @@ function deleteClass($id)
     return mysqli_affected_rows($conn);
 }
 
-
-function searchClass($keyword)
-{
-    $query = "SELECT * FROM kelas 
-                WHERE kelas LIKE '%$keyword%' OR
-                    kompetensi_keahlian LIKE '%$keyword%'";
-
-    return query($query);
-}
-
 // users
 function createUser($data)
 {
@@ -650,25 +640,4 @@ function deletePayment($id)
     mysqli_query($conn, "DELETE FROM pembayaran WHERE id = '$id'");
 
     return mysqli_affected_rows($conn);
-}
-
-function searchPayment($keyword)
-{
-    $query = "SELECT *,
-                    pembayaran.id AS id_pembayaran, 
-                    siswa.nama AS nama_siswa 
-                FROM pembayaran
-                JOIN siswa ON siswa.nisn = pembayaran.nisn
-                JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                JOIN spp ON spp.id = pembayaran.id_spp
-                WHERE siswa.nama LIKE '%$keyword%' OR
-                    pembayaran.nisn LIKE '%$keyword%' OR
-                    tanggal_bayar LIKE '%$keyword%' OR
-                    tahun_dibayar LIKE '%$keyword%' OR
-                    tahun LIKE '%$keyword%' OR
-                    nominal LIKE '%$keyword%' OR
-                    jumlah_bayar LIKE '%$keyword%' OR
-                    bulan_dibayar LIKE '%$keyword%'";
-
-    return query($query);
 }

@@ -13,12 +13,33 @@ if (!isset($_SESSION["admin"])) {
     exit;
 }
 
-$no = 1;
-$kelas = query("SELECT * FROM kelas");
-
 if (isset($_POST['search'])) {
-    $kelas = searchClass($_POST['keyword']);
+    $keyword = $_POST['keyword'];
+} else {
+    $keyword = '';
 }
+
+$totalData = queryPagination("SELECT * FROM kelas 
+                                WHERE kelas LIKE '%$keyword%' OR
+                                    kompetensi_keahlian LIKE '%$keyword%'");
+// pagination
+$limit = 10;
+$totalPage = ceil($totalData / $limit);
+// convert high value to number of rounds
+$activePage = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$curretPage = $activePage ? $activePage : 1;
+$startData = ($activePage * $limit) - $limit;
+
+$link = 2;
+$startNumber = startNumber($activePage, $link);
+$endNumber = endNumber($activePage, $link, $totalPage);
+
+$kelas = mysqli_query($conn, "SELECT * FROM kelas 
+                                WHERE kelas LIKE '%$keyword%' OR
+                                    kompetensi_keahlian LIKE '%$keyword%'
+                                LIMIT $startData, $limit");
+// data no
+$no = numberData($limit, $curretPage);
 ?>
 
 <table class="table">
@@ -54,5 +75,27 @@ if (isset($_POST['search'])) {
         <div class="info info-red">Data tidak ada!</div>
     <?php endif; ?>
 </table>
+
+<div class="pagination">
+    <a href="?page=1" class="badge grey">Awal</a>
+
+    <?php if ($activePage > 1) : ?>
+        <a href="?page=<?= $activePage - 1; ?>"><i class='bx bx-caret-left badge grey'></i></a>
+    <?php endif; ?>
+
+    <?php for ($i = $startNumber; $i <= $endNumber; $i++) : ?>
+        <?php if ($i == $activePage) : ?>
+            <a href="?page=<?= $i; ?>" class="badge green"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="?page=<?= $i; ?>" class="badge grey"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if ($activePage < $totalPage) : ?>
+        <a href="?page=<?= $activePage + 1; ?>"><i class='bx bx-caret-right badge grey'></i></a>
+    <?php endif; ?>
+
+    <a href="?page=<?= $totalPage; ?>" class="badge grey">Akhir</a>
+</div>
 
 <?php include_once('../layouts/footer.php'); ?>

@@ -19,13 +19,12 @@ if (isset($_POST['search'])) {
     $keyword = '';
 }
 
-$pengguna = mysqli_query($conn, "SELECT * FROM pengguna 
+$totalData = queryPagination("SELECT * FROM pengguna 
                         WHERE nama LIKE '%$keyword%' OR
                             email LIKE '%$keyword%' OR
                             kata_sandi LIKE '%$keyword%'");
 // pagination
 $limit = 10;
-$totalData = mysqli_num_rows($pengguna);
 $totalPage = ceil($totalData / $limit);
 // convert high value to number of rounds
 $activePage = (isset($_GET['page'])) ? $_GET['page'] : 1;
@@ -33,17 +32,8 @@ $curretPage = $activePage ? $activePage : 1;
 $startData = ($activePage * $limit) - $limit;
 
 $link = 2;
-if ($activePage > $link) {
-    $startNumber = $activePage - $link;
-} else {
-    $startNumber = 1;
-}
-
-if ($activePage < ($totalPage - $link)) {
-    $endNumber = $activePage + $link;
-} else {
-    $endNumber = $totalPage;
-}
+$startNumber = startNumber($activePage, $link);
+$endNumber = endNumber($activePage, $link, $totalPage);
 
 $pengguna = mysqli_query($conn, "SELECT * FROM pengguna 
                         WHERE nama LIKE '%$keyword%' OR
@@ -51,7 +41,7 @@ $pengguna = mysqli_query($conn, "SELECT * FROM pengguna
                             kata_sandi LIKE '%$keyword%'
                         LIMIT $startData, $limit");
 // data no
-$no = 1 + ($limit * ($curretPage - 1));
+$no = numberData($limit, $curretPage);
 ?>
 
 <table class="table">

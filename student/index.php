@@ -18,7 +18,15 @@ if (isset($_POST['search'])) {
 } else {
     $keyword = '';
 }
-$totalData = queryPagination("SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id");
+
+$totalData = queryPagination("SELECT * FROM siswa 
+                            JOIN kelas ON siswa.id_kelas = kelas.id 
+                            WHERE nama LIKE '%$keyword%' OR
+                                nisn LIKE '%$keyword%' OR
+                                nis LIKE '%$keyword%' OR
+                                alamat LIKE '%$keyword%' OR
+                                kelas LIKE '%$keyword%' OR
+                                no_telepon LIKE '%$keyword%'");
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -42,8 +50,6 @@ $siswa = mysqli_query($conn, "SELECT * FROM siswa
                                 LIMIT $startData, $limit");
 // data no
 $no = numberData($limit, $curretPage);
-
-
 ?>
 
 <table class="table">
@@ -64,8 +70,6 @@ $no = numberData($limit, $curretPage);
         <th>NIS</th>
         <th>Nama</th>
         <th>Kelas</th>
-        <th>Alamat</th>
-        <th>No telepon (+62)</th>
         <th>Pengaturan</th>
     </tr>
     <?php foreach ($siswa as $s) : ?>
@@ -75,11 +79,9 @@ $no = numberData($limit, $curretPage);
             <td><?= $s['nis']; ?></td>
             <td><?= $s['nama']; ?></td>
             <td><?= $s['kelas']; ?></td>
-            <td><?= $s['alamat']; ?></td>
-            <td><?= $s['no_telepon']; ?></td>
             <td>
-                <a href="update.php?n=<?= $s['nisn'] ?>" class="badge yellow block-mb-2">Ubah</a>
-                <a href="delete.php?n=<?= $s['nisn'] ?>" class="badge red block-mb-2" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
+                <a href="update.php?n=<?= $s['nisn'] ?>" class="badge yellow">Ubah</a>
+                <a href="delete.php?n=<?= $s['nisn'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
             </td>
         </tr>
     <?php endforeach; ?>
@@ -109,6 +111,5 @@ $no = numberData($limit, $curretPage);
 
     <a href="?page=<?= $totalPage; ?>" class="badge grey">Akhir</a>
 </div>
-
 
 <?php include_once('../layouts/footer.php'); ?>
