@@ -24,7 +24,7 @@ if (isset($_SESSION["payment"])) {
             </td>
         </tr>
         <tr>
-            <td><label for="nisn">NISN (+00)</label></td>
+            <td><label class="text-bold" for="nisn">NISN (+00)</label></td>
             <td><input type="number" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" required></td>
         </tr>
         <tr>

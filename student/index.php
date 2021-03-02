@@ -24,9 +24,7 @@ $totalData = queryPagination("SELECT * FROM siswa
                             WHERE nama LIKE '%$keyword%' OR
                                 nisn LIKE '%$keyword%' OR
                                 nis LIKE '%$keyword%' OR
-                                alamat LIKE '%$keyword%' OR
-                                kelas LIKE '%$keyword%' OR
-                                no_telepon LIKE '%$keyword%'");
+                                alamat LIKE '%$keyword%'");
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -44,9 +42,7 @@ $siswa = mysqli_query($conn, "SELECT * FROM siswa
                                 WHERE nama LIKE '%$keyword%' OR
                                     nisn LIKE '%$keyword%' OR
                                     nis LIKE '%$keyword%' OR
-                                    alamat LIKE '%$keyword%' OR
-                                    kelas LIKE '%$keyword%' OR
-                                    no_telepon LIKE '%$keyword%'
+                                    alamat LIKE '%$keyword%'
                                 LIMIT $startData, $limit");
 // data no
 $no = numberData($limit, $curretPage);
@@ -80,6 +76,7 @@ $no = numberData($limit, $curretPage);
             <td><?= $s['nama']; ?></td>
             <td><?= $s['kelas']; ?></td>
             <td>
+                <a href="detail.php?n=<?= $s['nisn'] ?>" class="badge grey">Detail</a>
                 <a href="update.php?n=<?= $s['nisn'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?n=<?= $s['nisn'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
             </td>

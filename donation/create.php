@@ -43,11 +43,11 @@ if (isset($_POST['create'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="tahun">Tahun</label></td>
+            <td><label class="text-bold" for="tahun">Tahun</label></td>
             <td><input type="number" name="tahun" class="input-form" id="tahun" placeholder="Masukkan tahun!" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
-            <td><label for="nominal">Nominal</label></td>
+            <td><label class="text-bold" for="nominal">Nominal</label></td>
             <td><input type="number" name="nominal" class="input-form" id="nominal" placeholder="Masukkan nominal!" autocomplete="off" required></td>
         </tr>
         <tr>

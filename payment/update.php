@@ -55,11 +55,11 @@ if (isset($_POST['update'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="nisn">NISN</label></td>
+            <td><label class="text-bold" for="nisn">NISN</label></td>
             <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" value="<?= $pembayaran['nisn'] ?>" required autofocus></td>
         </tr>
         <tr>
-            <td><label for="bulan_dibayar">Bulan dibayar</label></td>
+            <td><label class="text-bold" for="bulan_dibayar">Bulan dibayar</label></td>
             <td>
                 <select name="bulan_dibayar" id="bulan_dibayar" class="input-form">
                     <option value="<?= $pembayaran['bulan_dibayar'] ?>"><?= $pembayaran['bulan_dibayar'] ?></option>
@@ -70,11 +70,11 @@ if (isset($_POST['update'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="tahun_dibayar">Tahun dibayar</label></td>
+            <td><label class="text-bold" for="tahun_dibayar">Tahun dibayar</label></td>
             <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" autocomplete="off" value="<?= $pembayaran['tahun_dibayar'] ?>" required autofocus></td>
         </tr>
         <tr>
-            <td><label for="jumlah_bayar">Jumlah bayar</label></td>
+            <td><label class="text-bold" for="jumlah_bayar">Jumlah bayar</label></td>
             <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar!" autocomplete="off" value="<?= $pembayaran['jumlah_bayar']; ?>" required></td>
         </tr>
         <tr>

@@ -78,11 +78,11 @@ if (isset($_POST["login"])) {
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="email">Email</label></td>
+                    <td><label class="text-bold" for="email">Email</label></td>
                     <td><input type="email" name="email" class="input-form" id="email" placeholder="Masukkan email!" autofocus required autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><label for="kata_sandi">Kata sandi</label></td>
+                    <td><label class="text-bold" for="kata_sandi">Kata sandi</label></td>
                     <td>
                         <input type="password" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" required autocomplete="off">
                         <br>

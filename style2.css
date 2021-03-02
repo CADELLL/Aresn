@@ -467,8 +467,13 @@ input[type="radio"] {
     display: block;
   }
 
-  #sidebar ul li .hide {
+  #sidebar ul li .hide,
+  .button .hide {
     display: none;
+  }
+
+  #search .button {
+    padding: 14px 14px;
   }
 
   #sidebar ul li {

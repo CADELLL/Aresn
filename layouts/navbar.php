@@ -54,11 +54,10 @@ require locationFile() . 'functions.php';
 <body>
     <nav id="navbar">
         <p><?= $_SESSION["name"] ?? "" ?></p>
-        <!-- <a href="/spp/auth/<?= $name ? 'logout.php' : 'login.php' ?>"><?= $name ? 'Keluar' : 'Masuk' ?></a> -->
         <div id="search">
             <form action="" method="POST">
                 <input type="text" class="input-form search" name="keyword" autocomplete="off" placeholder="Masukkan kata kunci..">
-                <button type="submit" name="search" class="button green">Cari</button>
+                <button type="submit" name="search" class="button green"><span class="hide">Cari </span><i class='bx bx-search hide-icon'></i></button>
             </form>
         </div>
     </nav>

@@ -56,19 +56,19 @@ if (isset($_POST['update'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="nisn">NISN (+00)</label></td>
+            <td><label class="text-bold" for="nisn">NISN (+00)</label></td>
             <td><input type="number" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" value="<?= $siswa['nisn']; ?>" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
-            <td><label for="nis">NIS</label></td>
+            <td><label class="text-bold" for="nis">NIS</label></td>
             <td><input type="number" name="nis" class="input-form" id="nis" placeholder="Masukkan NIS!" value="<?= $siswa['nis']; ?>" autocomplete="off" required></td>
         </tr>
         <tr>
-            <td><label for="nama">Nama</label></td>
+            <td><label class="text-bold" for="nama">Nama</label></td>
             <td><input type="text" name="nama" class="input-form" id="nama" placeholder="Masukkan nama!" value="<?= $siswa['nama']; ?>" maxlength="35" autocomplete="off" required></td>
         </tr>
         <tr>
-            <td><label for="id_kelas">Kelas</label></td>
+            <td><label class="text-bold" for="id_kelas">Kelas</label></td>
             <td>
                 <select name="id_kelas" id="id_kelas" class="input-form">
                     <option value="<?= $siswa['id_kelas'] ?>"><?= $siswa['kelas'] ?></option>
@@ -81,17 +81,17 @@ if (isset($_POST['update'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="alamat">Alamat</label></td>
+            <td><label class="text-bold" for="alamat">Alamat</label></td>
             <td>
                 <input type="text" name="alamat" class="input-form" id="alamat" placeholder="Masukkan alamat!" value="<?= $siswa['alamat']; ?>" autocomplete="off" required>
             </td>
         </tr>
         <tr>
-            <td><label for="no_telepon">No telepon (+62)</label></td>
+            <td><label class="text-bold" for="no_telepon">No telepon (+62)</label></td>
             <td><input type="number" name="no_telepon" class="input-form" id="no_telepon" placeholder="Masukkan no telepon!" value="<?= $siswa['no_telepon']; ?>" autocomplete="off" required></td>
         </tr>
         <tr>
-            <td><label for="id_spp">SPP</label></td>
+            <td><label class="text-bold" for="id_spp">SPP</label></td>
             <td>
                 <select name="id_spp" id="id_spp" class="input-form">
                     <option value="<?= $siswa['id_spp'] ?>">Tahun <?= $siswa['tahun'] ?> - Rp. <?= number_format($siswa['nominal'], 2, ',', '.') ?></option>

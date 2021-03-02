@@ -38,11 +38,11 @@ if (isset($_POST['create'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="nisn">NISN (+00)</label></td>
+            <td><label class="text-bold" for="nisn">NISN (+00)</label></td>
             <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" required autofocus></td>
         </tr>
         <tr>
-            <td><label for="bulan_dibayar">Bulan dibayar</label></td>
+            <td><label class="text-bold" for="bulan_dibayar">Bulan dibayar</label></td>
             <td>
                 <select name="bulan_dibayar" id="bulan_dibayar" class="input-form">
                     <?php for ($i = 0; $i < count($bulan); $i++) : ?>
@@ -52,11 +52,11 @@ if (isset($_POST['create'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="tahun_dibayar">Tahun dibayar</label></td>
+            <td><label class="text-bold" for="tahun_dibayar">Tahun dibayar</label></td>
             <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" autocomplete="off" required autofocus></td>
         </tr>
         <tr>
-            <td><label for="jumlah_bayar">Jumlah bayar</label></td>
+            <td><label class="text-bold" for="jumlah_bayar">Jumlah bayar</label></td>
             <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar!" autocomplete="off" required></td>
         </tr>
         <tr>

@@ -49,11 +49,11 @@ if (isset($_POST['update'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="tahun">Tahun</label></td>
+            <td><label class="text-bold" for="tahun">Tahun</label></td>
             <td><input type="number" name="tahun" class="input-form" id="tahun" placeholder="Masukkan tahun!" autocomplete="off" value="<?= $spp['tahun']; ?>" autofocus required></td>
         </tr>
         <tr>
-            <td><label for="nominal">Nominal</label></td>
+            <td><label class="text-bold" for="nominal">Nominal</label></td>
             <td><input type="number" name="nominal" class="input-form" id="nominal" placeholder="Masukkan nominal!" value="<?= $spp['nominal']; ?>" autocomplete="off" required></td>
         </tr>
         <td colspan="2" class="center"><button type="submit" name="update" class="button yellow">Ubah</button></td>

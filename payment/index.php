@@ -25,13 +25,10 @@ $totalData = queryPagination("SELECT *,
                             FROM pembayaran
                             JOIN siswa ON siswa.nisn = pembayaran.nisn
                             JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                            JOIN spp ON spp.id = pembayaran.id_spp
                             WHERE siswa.nama LIKE '%$keyword%' OR
                                 pembayaran.nisn LIKE '%$keyword%' OR
                                 tanggal_bayar LIKE '%$keyword%' OR
                                 tahun_dibayar LIKE '%$keyword%' OR
-                                tahun LIKE '%$keyword%' OR
-                                nominal LIKE '%$keyword%' OR
                                 jumlah_bayar LIKE '%$keyword%' OR
                                 bulan_dibayar LIKE '%$keyword%'");
 // pagination
@@ -52,13 +49,10 @@ $pembayaran = mysqli_query($conn, "SELECT *,
                                 FROM pembayaran
                                 JOIN siswa ON siswa.nisn = pembayaran.nisn
                                 JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                                JOIN spp ON spp.id = pembayaran.id_spp
                                 WHERE siswa.nama LIKE '%$keyword%' OR
                                     pembayaran.nisn LIKE '%$keyword%' OR
                                     tanggal_bayar LIKE '%$keyword%' OR
                                     tahun_dibayar LIKE '%$keyword%' OR
-                                    tahun LIKE '%$keyword%' OR
-                                    nominal LIKE '%$keyword%' OR
                                     jumlah_bayar LIKE '%$keyword%' OR
                                     bulan_dibayar LIKE '%$keyword%'
                                 LIMIT $startData, $limit");
@@ -82,12 +76,11 @@ $no = numberData($limit, $curretPage);
         <th>No</th>
         <th>Petugas</th>
         <th>Siswa</th>
-        <th>NISN</th>
+        <th>NISN (+00)</th>
         <th>Tanggal</th>
         <th>Bulan</th>
         <th>Tahun</th>
-        <!-- <th>SPP</th> -->
-        <!-- <th>Jumlah bayar</th> -->
+        <th>Jumlah bayar</th>
         <th>Pengaturan</th>
     </tr>
     <?php foreach ($pembayaran as $p) : ?>
@@ -95,13 +88,13 @@ $no = numberData($limit, $curretPage);
             <td><?= $no++; ?></td>
             <td><?= $p['nama']; ?></td>
             <td><?= $p['nama_siswa']; ?></td>
-            <td>00<?= $p['nisn']; ?></td>
+            <td><?= $p['nisn']; ?></td>
             <td><?= $p['tanggal_bayar']; ?></td>
             <td><?= $p['bulan_dibayar']; ?></td>
             <td><?= $p['tahun_dibayar']; ?></td>
-            <!-- <td>Tahun <?= $p['tahun'] ?><br>Rp. <?= rupiah($p['nominal']) ?></td> -->
-            <!-- <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td> -->
+            <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
             <td>
+                <a href="detail.php?i=<?= $p['id_pembayaran'] ?>" class="badge grey">Detail</a>
                 <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
             </td>
