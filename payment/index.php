@@ -94,7 +94,7 @@ $no = numberData($limit, $curretPage);
             <td><?= $p['tahun_dibayar']; ?></td>
             <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
             <td>
-                <a href="detail.php?i=<?= $p['id_pembayaran'] ?>" class="badge grey">Detail</a>
+                <a href="detail.php?i=<?= $p['id_pembayaran'] ?>" class="badge grey block-mb-2">Detail</a>
                 <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
             </td>

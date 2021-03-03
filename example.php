@@ -1,163 +1,66 @@
 <?php
-$bulan = [
-    ['Januari'],
-    ['Februari'],
-    ['Maret'],
-    ['April'],
-    ['Mei'],
-    ['Juni'],
-    ['Juli'],
-    ['Agustus'],
-    ['September'],
-    ['Oktober'],
-    ['November'],
-    ['Desember']
-];
+require 'functions.php';
 
-$bulanDiBayar = ['Januari', 'Maret'];
+// ambil data
+$bulan = month();
+$pembayaran = query("SELECT * FROM pembayaran WHERE nisn = '18672619'");
 
-$total = 12 - count($bulanDiBayar);
-for ($i = 0; $i < $total; $i++) {
-    $bulanDiBayar[] = [''];
+// masukkan data bulan dibayar
+$bulanBayar = [];
+foreach ($pembayaran as $p) {
+    $bulanBayar[] = $p['bulan_dibayar'];
 }
 
-// var_dump($bulanDiBayar);
+// hitung kurang bulan belum dibayar
+$minus = 12 - count($pembayaran);
 
-// for ($i = 0; $i < count($bulan); $i++) {
-//     // echo $bulan[$i][0];
-//     // echo '</br>';
-//     if ($bulan[$i][0] == $bulanDiBayar[$i][0]) {
-//         echo $bulan[$i][0] . ' Lunas';
-//     } else {
-//         echo $bulan[$i][0] . ' Tidak lunas';
-//     }
-//     echo '</br>';
-// }
+// masukkan data kedalam bulan bayar
+for ($i = 0; $i < $minus; $i++) {
+    $bulanBayar[] = '';
+}
 
-
-
-// var_dump($bulanDiBayar);
+// cek bulan apakah samadengan bulan sesuai dengan indexnya
 for ($i = 0; $i < 12; $i++) {
-    switch ($bulanDiBayar[$i]) {
-        case 'Januari':
-            echo 'Januari Lunas';
+    switch ($bulan[$i]) {
+        case $bulan[$i] == $bulanBayar[0]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Februari':
-            echo 'Februari Lunas';
+        case $bulan[$i] == $bulanBayar[1]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Maret':
-            echo 'Maret Lunas';
+        case $bulan[$i] == $bulanBayar[2]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'April':
-            echo 'April Lunas';
+        case $bulan[$i] == $bulanBayar[3]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Mei':
-            echo 'Mei Lunas';
+        case $bulan[$i] == $bulanBayar[4]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Juni':
-            echo 'JuniLunas';
+        case $bulan[$i] == $bulanBayar[5]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Juli':
-            echo 'Juli Lunas';
+        case $bulan[$i] == $bulanBayar[6]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Agustus':
-            echo 'AgustusLunas';
+        case $bulan[$i] == $bulanBayar[7]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'September':
-            echo 'September Lunas';
+        case $bulan[$i] == $bulanBayar[8]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Oktober':
-            echo 'Oktober Lunas';
+        case $bulan[$i] == $bulanBayar[9]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'November':
-            echo 'November Lunas';
+        case $bulan[$i] == $bulanBayar[10]:
+            echo  $bulan[$i] . ' Lunas';
             break;
-        case 'Desember':
-            echo 'Desember Lunas';
+        case $bulan[$i] == $bulanBayar[11]:
+            echo  $bulan[$i] . ' Lunas';
             break;
         default:
+            echo  $bulan[$i] . ' Tidak lunas';
             break;
     }
     echo '<br>';
-}
-
-// echo $bulanDiBayar[0] != 'Januari' ? 'oke' : 'sama aja';
-
-for ($i = 0; $i < 12; $i++) {
-    echo $i;
-    if ($bulanDiBayar[$i] == 'Januari') {
-        echo '';
-    } else {
-        echo 'Januari';
-        break;
-    }
-    if ($bulanDiBayar[$i] == 'Februari') {
-        echo '';
-    } else {
-        echo 'Februari';
-        break;
-    }
-    if ($bulanDiBayar[$i] == 'Maret') {
-        echo '';
-    } else {
-        echo 'Maret';
-        break;
-    }
-    if ($bulanDiBayar[$i] == 'April') {
-        echo '';
-    } else {
-        echo 'April';
-        break;
-    }
-}
-
-// function bulanBayar($data)
-// {
-//     switch ($data) {
-//         case 'Januari':
-//             return 'Januari';
-//             break;
-//         case 'Februari':
-//             return 'Februari';
-//             break;
-//         case 'Maret':
-//             return 'Maret';
-//             break;
-//         case 'April':
-//             return 'April';
-//             break;
-//         case 'Mei':
-//             return 'Mei';
-//             break;
-//         case 'Juni':
-//             return 'Juni';
-//             break;
-//         case 'Juli':
-//             return 'Juli';
-//             break;
-//         case 'Agustus':
-//             return 'Agustus';
-//             break;
-//         case 'September':
-//             return 'September';
-//             break;
-//         case 'Oktober':
-//             return 'Oktober';
-//             break;
-//         case 'November':
-//             return 'November';
-//             break;
-//         case 'Desember':
-//             return 'Desember';
-//             break;
-//         default:
-//             return '';
-//             break;
-//     }
-// }
-
-$data = '81343775142';
-if (preg_match('/^\+\d(\d{3})(\d{3})(\d{4})$/', $data,  $matches)) {
-    $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3];
-    echo $result;
 }

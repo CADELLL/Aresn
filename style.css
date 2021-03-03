@@ -175,11 +175,14 @@ label {
 }
 
 .search {
+  padding: 8px 10px;
   width: 200px;
+  font-size: 13px;
 }
 
 #search .button {
-  padding: 11px 14px;
+  font-size: 13px;
+  padding: 9px 12px;
 }
 
 input[type="checkbox"],
@@ -459,7 +462,7 @@ input[type="radio"] {
   }
 
   #navbar #name {
-    width: 10px;
+    width: 50px;
     overflow: hidden;
   }
 
@@ -477,8 +480,12 @@ input[type="radio"] {
     display: none;
   }
 
+  .search {
+    padding: 8px 10px;
+  }
+
   #search .button {
-    padding: 14px 14px;
+    padding: 13px 13px;
   }
 
   #sidebar ul li {

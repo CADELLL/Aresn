@@ -77,7 +77,7 @@ $html .= "<h3>
             Kelas: " . $siswa['kelas'] . "<br>
             SPP: Tahun " . $siswa['tahun'] . " - Rp. " . rupiah($p['nominal']) . "
         </p>
-        <h3>Detail Pembayaran</h3>";
+        <h3>Daftar Pembayaran</h3>";
 
 $html .= "<table style='margin: auto'>
                 <tr>

@@ -73,6 +73,9 @@ function dynamicTitle()
         case $folder . 'student/update.php':
             return 'Ubah Siswa';
             break;
+        case $folder . 'student/detail.php':
+            return 'Detail Siswa';
+            break;
         case $folder . 'user/':
             return 'Daftar Pengguna';
             break;
@@ -96,6 +99,9 @@ function dynamicTitle()
             break;
         case $folder . 'payment/update.php':
             return 'Ubah Pembayaran';
+            break;
+        case $folder . 'payment/detail.php':
+            return 'Detail Pembayaran';
             break;
         case $folder . 'donation/':
             return 'Daftar SPP';
@@ -133,18 +139,18 @@ function rupiah($money)
 function month()
 {
     $month = [
-        ['Januari'],
-        ['Februari'],
-        ['Maret'],
-        ['April'],
-        ['Mei'],
-        ['Juni'],
-        ['Juli'],
-        ['Agustus'],
-        ['September'],
-        ['Oktober'],
-        ['November'],
-        ['Desember']
+        'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
     ];
     return $month;
 }

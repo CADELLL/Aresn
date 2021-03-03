@@ -21,6 +21,7 @@ $pembayaran = query("SELECT *,
                 FROM pembayaran
                 JOIN siswa ON siswa.nisn = pembayaran.nisn
                 JOIN kelas ON kelas.id = siswa.id_kelas
+                JOIN spp ON spp.id = siswa.id_spp
                 JOIN pengguna ON pengguna.id = pembayaran.id_petugas
                 WHERE pembayaran.id = $id")[0];
 ?>
@@ -35,20 +36,20 @@ $pembayaran = query("SELECT *,
         </td>
     </tr>
     <tr>
-        <td class="text-bold">NISN (+00)</td>
-        <td><?= $pembayaran['nisn']; ?></td>
-    </tr>
-    <tr>
-        <td class="text-bold">NIS</td>
-        <td><?= $pembayaran['nis']; ?></td>
-    </tr>
-    <tr>
         <td class="text-bold">Nama petugas</td>
         <td><?= $pembayaran['nama']; ?></td>
     </tr>
     <tr>
         <td class="text-bold">Nama siswa</td>
         <td><?= $pembayaran['nama_siswa']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">NISN (+00)</td>
+        <td><?= $pembayaran['nisn']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">NIS</td>
+        <td><?= $pembayaran['nis']; ?></td>
     </tr>
     <tr>
         <td class="text-bold">Kelas</td>
@@ -73,6 +74,10 @@ $pembayaran = query("SELECT *,
     <tr>
         <td class="text-bold">Tahun dibayar</td>
         <td><?= $pembayaran['tahun_dibayar']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">SPP</td>
+        <td>Tahun. <?= $pembayaran['tahun']; ?> - Rp. <?= rupiah($pembayaran['nominal']); ?></td>
     </tr>
     <tr>
         <td class="text-bold">Jumlah bayar</td>

@@ -47,7 +47,8 @@ require locationFile() . 'functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= dynamicTitle(); ?></title>
-    <link rel="stylesheet" href="<?= locationFile(); ?>style3.css">
+    <link rel="stylesheet" href="<?= locationFile(); ?>style.css">
+    <link rel="shortcut icon" href="../assets/images/1614756140.ico">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 

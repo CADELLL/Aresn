@@ -46,7 +46,7 @@ if (isset($_POST['create'])) {
             <td>
                 <select name="bulan_dibayar" id="bulan_dibayar" class="input-form">
                     <?php for ($i = 0; $i < count($bulan); $i++) : ?>
-                        <option value="<?= $bulan[$i][0] ?>"><?= $bulan[$i][0] ?></option>
+                        <option value="<?= $bulan[$i] ?>"><?= $bulan[$i] ?></option>
                     <?php endfor ?>
                 </select>
             </td>

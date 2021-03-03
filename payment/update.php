@@ -30,16 +30,14 @@ if (isset($_POST['update'])) {
                 document.location.href = 'index.php';
             </script>
             ";
-    } else {
-        echo "
-            <script>
-                alert('Data tidak diubah!');
-                document.location.href = 'index.php';
-            </script>
-            ";
     }
+    $error = 1;
 }
 ?>
+
+<?php if (isset($error)) : ?>
+    <div class="info info-red">Data tidak diubah!</div>
+<?php endif; ?>
 
 <form accept="" method="POST">
     <input type="hidden" name="id_pembayaran" value="<?= $pembayaran['id_pembayaran'] ?>">
@@ -49,7 +47,7 @@ if (isset($_POST['update'])) {
         <tr>
             <td colspan="2">
                 <span id="action">
-                    <h2>Tambah Pembayaran</h2>
+                    <h2>Ubah Pembayaran</h2>
                     <a href="index.php" class="badge grey">Kembali</a>
                 </span>
             </td>
@@ -64,7 +62,7 @@ if (isset($_POST['update'])) {
                 <select name="bulan_dibayar" id="bulan_dibayar" class="input-form">
                     <option value="<?= $pembayaran['bulan_dibayar'] ?>"><?= $pembayaran['bulan_dibayar'] ?></option>
                     <?php for ($i = 0; $i < count($bulan); $i++) : ?>
-                        <option value="<?= $bulan[$i][0] ?>"><?= $bulan[$i][0] ?></option>
+                        <option value="<?= $bulan[$i] ?>"><?= $bulan[$i] ?></option>
                     <?php endfor ?>
                 </select>
             </td>
@@ -78,7 +76,7 @@ if (isset($_POST['update'])) {
             <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar!" autocomplete="off" value="<?= $pembayaran['jumlah_bayar']; ?>" required></td>
         </tr>
         <tr>
-            <td colspan="2" class="center"><button type="submit" name="update" class="button yellow">Update</button></td>
+            <td colspan="2" class="center"><button type="submit" name="update" class="button yellow">Ubah</button></td>
         </tr>
     </table>
 </form>
