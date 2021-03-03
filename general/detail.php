@@ -61,10 +61,10 @@ $totalPembayaran = count($pembayaran);
 </h2>
 <hr>
 <p>
-    NISN: 00<?= $siswa['nisn'] ?><br>
-    Nama: <?= $siswa['nama'] ?><br>
-    Kelas: <?= $siswa['kelas'] ?><br>
-    SPP: Tahun <?= $siswa['tahun'] ?> - Rp. <?= rupiah($siswa['nominal']) ?>
+    NISN : 00<?= $siswa['nisn'] ?><br>
+    Nama : <?= $siswa['nama'] ?><br>
+    Kelas : <?= $siswa['kelas'] ?><br>
+    SPP : Tahun <?= $siswa['tahun'] ?> - Rp. <?= rupiah($siswa['nominal']) ?>
 </p>
 <br><br>
 <table class="table">
@@ -82,9 +82,9 @@ $totalPembayaran = count($pembayaran);
     <tr>
         <th>No</th>
         <th>Bulan</th>
-        <th>Status</th>
+        <th>Jumlah bayar</th>
     </tr>
-    <?php for ($i = 0; $i < $minus; $i++) : ?>
+    <?php for ($i = 0; $i < 12; $i++) : ?>
         <tr>
             <td><?= $no++; ?></td>
             <td><?= $bulan[$i]; ?></td>

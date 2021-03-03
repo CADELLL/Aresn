@@ -39,16 +39,11 @@ $html = "<style>
         border-collapse: collapse;
         border-spacing: 10px;
         width: 100%;
-        color: #333;
     }
     table td,
     table th {
-        border: 1px solid #ddd;
+        border: 1px solid #333;
         padding: 12px;
-        color: #333;
-    }
-    hr{
-        color: #f2f2f2;
     }
 </style>";
 
@@ -67,7 +62,7 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                     <th>No</th>
                     <th>Petugas</th>
                     <th>Siswa</th>
-                    <th>NISN</th>
+                    <th>NISN (+00)</th>
                     <th>Tanggal</th>
                     <th>Bulan</th>
                     <th>Tahun</th>
@@ -85,7 +80,7 @@ foreach ($pembayaran as $p) {
                 <td>" . $p['bulan_dibayar'] . "</td>        
                 <td>" . $p['tahun_dibayar'] . "</td>        
                 <td>" . "Tahun" .  $p['tahun'] . "<br>Rp. " . rupiah($p['nominal']) . "</td>        
-                <td>" . "Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
+                <td style='font-weight: bold; color: green;'>" . "Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
             </tr>";
     $i++;
 }

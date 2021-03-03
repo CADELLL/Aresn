@@ -17,6 +17,7 @@ $nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
 
 $siswa = query("SELECT * FROM siswa
                 JOIN kelas ON siswa.id_kelas = kelas.id
+                JOIN spp ON siswa.id_spp = spp.id
                 WHERE nisn = $nisn")[0];
 
 $pembayaran = query("SELECT * FROM pembayaran WHERE pembayaran.nisn = $nisn");
@@ -68,8 +69,12 @@ $no = 1;
         <td class="text-bold">No telepon (+62)</td>
         <td><?= $siswa['no_telepon']; ?></td>
     </tr>
+    <tr>
+        <td class="text-bold">SPP</td>
+        <td>Tahun <?= $siswa['tahun']; ?> - Nominal Rp. <?= rupiah($siswa['nominal']); ?></td>
+    </tr>
 </table>
-
+<br>
 <table class="table">
     <tr>
         <td colspan="8">

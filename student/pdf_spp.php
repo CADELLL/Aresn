@@ -11,12 +11,13 @@ if (!isset($_SESSION["admin"])) {
     exit;
 }
 
+$nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
+
 require '../functions.php';
 require_once '../assets/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 
-$nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
 $dompdf = new Dompdf();
 $date = date("d-M-Y");
 
@@ -38,11 +39,11 @@ $siswa = query("SELECT * FROM siswa
                     WHERE siswa.nisn = $nisn")[0];
 
 foreach ($pembayaran as $p) {
-    $spp += $p['nominal'];
     $totalBayar += $p['jumlah_bayar'];
 }
 
-$total += $spp * count($pembayaran);
+$spp = $siswa['nominal'];
+$total += ($spp * 12) - $spp * count($pembayaran);
 
 $html = "<style>
     *{
@@ -53,16 +54,11 @@ $html = "<style>
         border-collapse: collapse;
         border-spacing: 10px;
         width: 100%;
-        color: #333;
     }
     table td,
     table th {
-        border: 1px solid #ddd;
+        border: 1px solid #333;
         padding: 12px;
-        color: #333;
-    }
-    hr{
-        color: #f2f2f2;
     }
 </style>";
 
@@ -75,7 +71,7 @@ $html .= "<h3>
             NISN: 00" . $siswa['nisn'] . "<br>
             Nama: " . $siswa['nama'] . "<br>
             Kelas: " . $siswa['kelas'] . "<br>
-            SPP: Tahun " . $siswa['tahun'] . " - Rp. " . rupiah($p['nominal']) . "
+            SPP: Tahun " . $siswa['tahun'] . " - Nominal Rp. " . rupiah($p['nominal']) . "
         </p>
         <h3>Daftar Pembayaran</h3>";
 

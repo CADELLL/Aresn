@@ -24,25 +24,20 @@ $date = date("Y-m-d");
 $total = count($kelas);
 
 $html = "<style>
-    *{
-        font-family:  Arial, Helvetica, sans-serif;
-        color: #333;
-    }
-    table {
-        border-collapse: collapse;
-        border-spacing: 10px;
-        width: 100%;
-        color: #333;
-    }
-    table td,
-    table th {
-        border: 1px solid #ddd;
-        padding: 12px;
-        color: #333;
-    }
-    hr{
-        color: #f2f2f2;
-    }
+        *{
+            font-family:  Arial, Helvetica, sans-serif;
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 10px;
+            width: 100%;
+        }
+        table td,
+        table th {
+            border: 1px solid #333;
+            padding: 12px;
+        }
 </style>";
 
 $html .= "<h2>

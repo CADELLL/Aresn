@@ -3,7 +3,7 @@ include_once('../layouts/navbar.php');
 include_once('../layouts/sidebar.php');
 
 // check level
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["payment"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -44,6 +44,10 @@ $pembayaran = query("SELECT *,
         <td><?= $pembayaran['nama_siswa']; ?></td>
     </tr>
     <tr>
+        <td class="text-bold">SPP</td>
+        <td>Tahun. <?= $pembayaran['tahun']; ?> - Rp. <?= rupiah($pembayaran['nominal']); ?></td>
+    </tr>
+    <tr>
         <td class="text-bold">NISN (+00)</td>
         <td><?= $pembayaran['nisn']; ?></td>
     </tr>
@@ -76,12 +80,12 @@ $pembayaran = query("SELECT *,
         <td><?= $pembayaran['tahun_dibayar']; ?></td>
     </tr>
     <tr>
-        <td class="text-bold">SPP</td>
-        <td>Tahun. <?= $pembayaran['tahun']; ?> - Rp. <?= rupiah($pembayaran['nominal']); ?></td>
+        <td class="text-bold">Jumlah bayar</td>
+        <td class="text-green text-bold">Rp. <?= rupiah($pembayaran['jumlah_bayar']); ?></td>
     </tr>
     <tr>
-        <td class="text-bold">Jumlah bayar</td>
-        <td>Rp. <?= rupiah($pembayaran['jumlah_bayar']); ?></td>
+        <td class="text-bold">Uang kembali</td>
+        <td class="text-red text-bold">Rp. <?= rupiah($pembayaran['jumlah_bayar'] - $pembayaran['nominal']); ?></td>
     </tr>
 </table>
 

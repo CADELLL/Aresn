@@ -503,15 +503,6 @@ function deleteDonation($id)
     return mysqli_affected_rows($conn);
 }
 
-function searchDonation($keyword)
-{
-    $query = "SELECT * FROM spp WHERE 
-                tahun LIKE '%$keyword%' OR
-                nominal LIKE '%$keyword%'";
-
-    return query($query);
-}
-
 // payment 
 function createPayment($data)
 {
@@ -521,7 +512,6 @@ function createPayment($data)
     $nisn = htmlspecialchars($data['nisn']);
     $tanggal_bayar = date("Y-m-d H:i:s");
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
-    $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
     // check nisn
@@ -538,6 +528,7 @@ function createPayment($data)
 
     $resultSpp = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn'")[0];
     $id_spp = (int)$resultSpp['id_spp'];
+    $tahun_dibayar = $resultSpp['tahun'];
 
     $resultMonth = mysqli_query($conn, "SELECT * FROM pembayaran WHERE nisn = '$nisn' ");
 
@@ -551,10 +542,10 @@ function createPayment($data)
             return false;
         }
     }
-    // die;
 
     $nominal = (int)$resultSpp['nominal'];
 
+    // check jumlah bayar
     if ((int)$jumlah_bayar < $nominal) {
         $rupiah = rupiah($nominal);
         echo "
@@ -582,7 +573,6 @@ function updatePayment($data)
     $nisn_lama = $data['nisn_lama'];
     $nisn = htmlspecialchars($data['nisn']);
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
-    $tahun_dibayar = htmlspecialchars($data['tahun_dibayar']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
     // check nisn
@@ -630,7 +620,6 @@ function updatePayment($data)
                     id_petugas = '$id_petugas',
                     nisn = '$nisn',
                     bulan_dibayar = '$bulan_dibayar',
-                    tahun_dibayar = '$tahun_dibayar',
                     jumlah_bayar = '$jumlah_bayar'
                 WHERE id = $id_pembayaran";
 

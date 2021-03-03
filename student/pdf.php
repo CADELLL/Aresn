@@ -19,31 +19,29 @@ use Dompdf\Dompdf;
 
 $i = 1;
 $dompdf = new Dompdf();
-$siswa = query("SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id");
+
+$siswa = query("SELECT * FROM siswa 
+                JOIN kelas ON siswa.id_kelas = kelas.id
+                JOIN spp ON spp.id = siswa.id_spp");
 $totalSiswa = query("SELECT * FROM siswa");
 $date = date("Y-m-d");
 $total = count($totalSiswa);
 
 $html = "<style>
-    *{
-        font-family:  Arial, Helvetica, sans-serif;
-        color: #333;
-    }
-    table {
-        border-collapse: collapse;
-        border-spacing: 10px;
-        width: 100%;
-        color: #333;
-    }
-    table td,
-    table th {
-        border: 1px solid #ddd;
-        padding: 12px;
-        color: #333;
-    }
-    hr{
-        color: #f2f2f2;
-    }
+        *{
+            font-family:  Arial, Helvetica, sans-serif;
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 10px;
+            width: 100%;
+        }
+        table td,
+        table th {
+            border: 1px solid #333;
+            padding: 12px;
+        }
 </style>";
 
 $html .= "<h2>
@@ -65,6 +63,7 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                     <th>Kelas</th>
                     <th>Alamat</th>
                     <th>No telepon (+62)</th>
+                    <th>SPP</th>
                 </tr>";
 
 foreach ($siswa as $s) {
@@ -76,6 +75,7 @@ foreach ($siswa as $s) {
                 <td>" . $s['kelas'] . "</td>        
                 <td>" . $s['alamat'] . "</td>     
                 <td>" . $s['no_telepon'] . "</td>     
+                <td>Tahun " . $s['tahun'] . "<br>Nominal Rp. " . rupiah($s['nominal']) . "</td>     
             </tr>";
     $i++;
 }

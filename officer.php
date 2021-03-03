@@ -13,12 +13,11 @@ if (!isset($_SESSION["officer"])) {
     exit;
 }
 
-$no = 1;
-$month = month();
 $siswa = query("SELECT * FROM siswa");
 $pengguna = query("SELECT * FROM pengguna");
 $kelas = query("SELECT * FROM kelas");
 $pembayaran = query("SELECT * FROM pembayaran");
+$spp = query("SELECT * FROM spp");
 ?>
 
 <h2>Informasi Singkat</h2>
@@ -27,6 +26,21 @@ $pembayaran = query("SELECT * FROM pembayaran");
         Jumlah Siswa
         <p class="total">
             <?= count($siswa); ?>
+        </p>
+    </a>
+    <a href="payment" class="card">
+        Jumlah Pembayaran
+        <p class="total">
+            <?= count($pembayaran); ?>
+        </p>
+    </a>
+</section>
+
+<section id="short">
+    <a href="spp" class="card">
+        Jumlah SPP
+        <p class="total">
+            <?= count($spp); ?>
         </p>
     </a>
     <a href="user" class="card">
@@ -39,12 +53,6 @@ $pembayaran = query("SELECT * FROM pembayaran");
         Jumlah Kelas
         <p class="total">
             <?= count($kelas); ?>
-        </p>
-    </a>
-    <a href="payment" class="card">
-        Jumlah Pembayaran
-        <p class="total">
-            <?= count($pembayaran); ?>
         </p>
     </a>
 </section>
