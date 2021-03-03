@@ -49,11 +49,11 @@ if (isset($_POST['update'])) {
             </td>
         </tr>
         <tr>
-            <td><label for="kelas">Nama kelas</label></td>
+            <td><label class="text-bold" for="kelas">Nama kelas</label></td>
             <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" value="<?= $kelas['kelas']; ?>" autocomplete="off" autofocus required></td>
         </tr>
         <tr>
-            <td><label for="kompetensi_keahlian">Kompetensi keahlian</label></td>
+            <td><label class="text-bold" for="kompetensi_keahlian">Kompetensi keahlian</label></td>
             <td>
                 <select name="kompetensi_keahlian" id="kompetensi_keahlian" class="input-form">
                     <option value="<?= $kelas['kompetensi_keahlian'] ?>"><?= $kelas['kompetensi_keahlian'] ?></option>

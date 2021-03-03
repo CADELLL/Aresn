@@ -50,13 +50,9 @@ $siswa = query("SELECT * FROM siswa
         <td><?= $siswa['alamat']; ?></td>
     </tr>
     <tr>
-        <td class="text-bold">No telepon</td>
+        <td class="text-bold">No telepon (+62)</td>
         <td><?= $siswa['no_telepon']; ?></td>
     </tr>
-
-    <?php if ($siswa == []) : ?>
-        <div class="info info-red">Data tidak ada!</div>
-    <?php endif; ?>
 </table>
 
 <?php include_once('../layouts/footer.php'); ?>

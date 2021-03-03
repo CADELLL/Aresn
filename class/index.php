@@ -56,7 +56,7 @@ $no = numberData($limit, $curretPage);
     </tr>
     <tr>
         <th>No</th>
-        <th>Nama</th>
+        <th>Nama kelas</th>
         <th>Kompetensi keahlian</th>
         <th>Pengaturan</th>
     </tr>

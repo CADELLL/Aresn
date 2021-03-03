@@ -47,13 +47,13 @@ require locationFile() . 'functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= dynamicTitle(); ?></title>
-    <link rel="stylesheet" href="<?= locationFile(); ?>style2.css">
+    <link rel="stylesheet" href="<?= locationFile(); ?>style3.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
     <nav id="navbar">
-        <p><?= $_SESSION["name"] ?? "" ?></p>
+        <p id="name"><?= $_SESSION["name"] ?? "" ?></p>
         <div id="search">
             <form action="" method="POST">
                 <input type="text" class="input-form search" name="keyword" autocomplete="off" placeholder="Masukkan kata kunci..">

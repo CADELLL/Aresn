@@ -100,10 +100,6 @@ $no = numberData($limit, $curretPage);
             </td>
         </tr>
     <?php endforeach; ?>
-
-    <?php if ($pembayaran == []) : ?>
-        <div class="info info-red">Data tidak ada!</div>
-    <?php endif; ?>
 </table>
 
 <div class="pagination">
