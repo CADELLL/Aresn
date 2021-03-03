@@ -26,6 +26,7 @@ $totalData = queryPagination("SELECT *,
                             JOIN siswa ON siswa.nisn = pembayaran.nisn
                             JOIN pengguna ON pengguna.id = pembayaran.id_petugas
                             WHERE siswa.nama LIKE '%$keyword%' OR
+                                pengguna.nama LIKE '%$keyword%' OR
                                 pembayaran.nisn LIKE '%$keyword%' OR
                                 tanggal_bayar LIKE '%$keyword%' OR
                                 tahun_dibayar LIKE '%$keyword%' OR
@@ -50,6 +51,7 @@ $pembayaran = mysqli_query($conn, "SELECT *,
                                 JOIN siswa ON siswa.nisn = pembayaran.nisn
                                 JOIN pengguna ON pengguna.id = pembayaran.id_petugas
                                 WHERE siswa.nama LIKE '%$keyword%' OR
+                                    pengguna.nama LIKE '%$keyword%' OR
                                     pembayaran.nisn LIKE '%$keyword%' OR
                                     tanggal_bayar LIKE '%$keyword%' OR
                                     tahun_dibayar LIKE '%$keyword%' OR

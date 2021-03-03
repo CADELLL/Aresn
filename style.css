@@ -384,7 +384,7 @@ input[type="radio"] {
   text-align: left;
   display: flex;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   justify-content: space-between;
 }
 

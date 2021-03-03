@@ -16,10 +16,13 @@ if (isset($_SESSION["payment"])) {
 // get value
 $nisn = $_POST['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['nisn']);
 
+// deklarasi
 $no = 1;
+// get month data
 $bulan = month();
 $pembayaran = query("SELECT * FROM pembayaran WHERE pembayaran.nisn = $nisn");
 
+// check pembayaran
 if ($pembayaran == []) {
     echo "
         <script>
@@ -30,24 +33,28 @@ if ($pembayaran == []) {
     exit;
 }
 
+// add month to bulanbayar
 $bulanBayar = [];
 foreach ($pembayaran as $p) {
     $bulanBayar[] = $p['bulan_dibayar'];
 }
 
+// add minus month to bulanbayar 
 $minus = 12 - count($pembayaran);
-
 for ($i = 0; $i < $minus; $i++) {
     $bulanBayar[] = '';
 }
 
+// get data
 $siswa = query("SELECT * FROM siswa
         JOIN kelas ON kelas.id = siswa.id_kelas
         JOIN spp ON spp.id = siswa.id_spp
         WHERE siswa.nisn = $nisn")[0];
 
+// totalpembayaran
 $totalPembayaran = count($pembayaran);
 ?>
+
 <h2>
     SMKN 1 Kepanjen<br>
     Struktur SPP
