@@ -21,7 +21,8 @@ if (isset($_POST['search'])) {
 
 $totalData = queryPagination("SELECT * FROM spp WHERE 
                             tahun LIKE '%$keyword%' OR
-                            nominal LIKE '%$keyword%'");
+                            nominal LIKE '%$keyword%'
+                            ORDER BY tahun DESC");
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -37,6 +38,7 @@ $endNumber = endNumber($activePage, $link, $totalPage);
 $spp = mysqli_query($conn, "SELECT * FROM spp WHERE 
                                 tahun LIKE '%$keyword%' OR
                                 nominal LIKE '%$keyword%'
+                                ORDER BY tahun DESC
                                 LIMIT $startData, $limit");
 // data no
 $no = numberData($limit, $curretPage);

@@ -16,14 +16,22 @@ if (isset($_SESSION["payment"])) {
 // get value
 $nisn = $_POST['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['nisn']);
 
-// deklarasi
-$no = 1;
-// get month data
-$bulan = month();
-$pembayaran = query("SELECT * FROM pembayaran WHERE pembayaran.nisn = $nisn");
+// check no nisn
+$strNisn = strlen((string)$nisn);
+if ($strNisn < 8) {
+    echo "
+          <script>
+              alert('NISN minimum 8 karakter');
+              window.history.back();
+          </script>
+          ";
+    return false;
+}
 
-// check pembayaran
-if ($pembayaran == []) {
+$siswa = query("SELECT * FROM siswa WHERE siswa.nisn = $nisn");
+
+// check siswa
+if ($siswa == []) {
     echo "
         <script>
             alert('NISN tidak terdaftar!');
@@ -33,10 +41,16 @@ if ($pembayaran == []) {
     exit;
 }
 
+// deklarasi
+$no = 1;
+// get month data
+$bulan = month();
+$pembayaran = query("SELECT * FROM pembayaran WHERE pembayaran.nisn = $nisn");
+
 // add month to bulanbayar
 $bulanBayar = [];
 foreach ($pembayaran as $p) {
-    $bulanBayar[] = $p['bulan_dibayar'];
+    $bulanBayar[] = $p['bulan_dibayar'] ?? '';
 }
 
 // add minus month to bulanbayar 
@@ -64,7 +78,7 @@ $totalPembayaran = count($pembayaran);
     NISN : 00<?= $siswa['nisn'] ?><br>
     Nama : <?= $siswa['nama'] ?><br>
     Kelas : <?= $siswa['kelas'] ?><br>
-    SPP : Tahun <?= $siswa['tahun'] ?> - Rp. <?= rupiah($siswa['nominal']) ?>
+    SPP : Tahun <?= $siswa['tahun'] ?> - Nominal Rp. <?= rupiah($siswa['nominal']) ?>
 </p>
 <br><br>
 <table class="table">
@@ -82,7 +96,7 @@ $totalPembayaran = count($pembayaran);
     <tr>
         <th>No</th>
         <th>Bulan</th>
-        <th>Jumlah bayar</th>
+        <th>Status</th>
     </tr>
     <?php for ($i = 0; $i < 12; $i++) : ?>
         <tr>

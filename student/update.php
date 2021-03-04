@@ -21,8 +21,8 @@ $siswa = query("SELECT * FROM siswa
                 JOIN spp ON siswa.id_spp = spp.id 
                 WHERE siswa.nisn = $nisn")[0];
 
-$kelas = query("SELECT * FROM kelas");
-$spp = query("SELECT * FROM spp");
+$kelas = query("SELECT * FROM kelas ORDER BY kelas ASC");
+$spp = query("SELECT * FROM spp ORDER BY tahun DESC");
 
 if (isset($_POST['update'])) {
     if (updateStudent($_POST) > 0) {

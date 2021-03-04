@@ -13,8 +13,8 @@ if (!isset($_SESSION["admin"])) {
     exit;
 }
 
-$kelas = query("SELECT * FROM kelas");
-$spp = query("SELECT * FROM spp");
+$kelas = query("SELECT * FROM kelas ORDER BY kelas ASC");
+$spp = query("SELECT * FROM spp ORDER BY tahun DESC");
 
 if (isset($_POST['create'])) {
     if (createStudent($_POST) > 0) {

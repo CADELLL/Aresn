@@ -18,6 +18,8 @@ $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 
 $kelas = query("SELECT * FROM kelas WHERE id = $id")[0];
 
+$jurusan = departement();
+
 if (isset($_POST['update'])) {
     if (updateClass($_POST) > 0) {
         echo "
@@ -57,15 +59,11 @@ if (isset($_POST['update'])) {
             <td>
                 <select name="kompetensi_keahlian" id="kompetensi_keahlian" class="input-form">
                     <option value="<?= $kelas['kompetensi_keahlian'] ?>"><?= $kelas['kompetensi_keahlian'] ?></option>
-                    <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                    <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
-                    <option value="Teknik Industri">Teknik Industri</option>
-                    <option value="Teknik Otomotif">Teknik Otomotif</option>
-                    <option value="Teknik Elektronika">Teknik Elektronika</option>
-                    <option value="Multimedia">Multimedia</option>
-                    <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
-                    <option value="Akuntansi">Akuntansi</option>
-                    <option value="Tata Boga">Tata Boga</option>
+                    <?php for ($i = 0; $i < count($jurusan); $i++) : ?>
+                        <?php if ($jurusan[$i] != $kelas['kompetensi_keahlian']) : ?>
+                            <option value="<?= $jurusan[$i] ?>"><?= $jurusan[$i] ?></option>
+                        <?php endif; ?>
+                    <?php endfor; ?>
                 </select>
             </td>
         </tr>

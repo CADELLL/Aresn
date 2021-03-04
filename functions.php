@@ -155,6 +155,19 @@ function month()
     return $month;
 }
 
+// departement
+function departement()
+{
+    $departement = [
+        'Rekayasa Perangkat Lunak',
+        'Teknik Komputer dan Jaringan',
+        'Teknik Elektronika Industri',
+        'Teknik Kendarangan Ringan',
+        'Teknik Sepeda Motor',
+    ];
+    return $departement;
+}
+
 // pagination
 function queryPagination($query)
 {
@@ -317,12 +330,34 @@ function createStudent($data)
     $no_telepon = htmlspecialchars($data['no_telepon']);
     $id_spp = htmlspecialchars($data['id_spp']);
 
-    // check no telepon
-    $strNoTlp = strlen((string)$no_telepon);
-    if ($strNoTlp < 11) {
+    // check no nisn
+    $strNisn = strlen((string)$nisn);
+    if ($strNisn < 8) {
         echo "
             <script>
-                alert('No telepon minimum 11 karakter');
+                alert('NISN minimum 8 karakter');
+            </script>
+            ";
+        return false;
+    }
+
+    // check nis
+    $strNis = strlen((string)$nis);
+    if ($strNis < 4) {
+        echo "
+            <script>
+                alert('NIS minimum 4 karakter');
+            </script>
+            ";
+        return false;
+    }
+
+    // check no telepon
+    $strNoTlp = strlen((string)$no_telepon);
+    if ($strNoTlp < 10) {
+        echo "
+            <script>
+                alert('No telepon minimum 10 karakter');
             </script>
             ";
         return false;
@@ -386,12 +421,34 @@ function updateStudent($data)
     $no_telepon = htmlspecialchars($data['no_telepon']);
     $id_spp = htmlspecialchars($data['id_spp']);
 
+    // check no nisn
+    $strNisn = strlen((string)$nisn);
+    if ($strNisn < 8) {
+        echo "
+                <script>
+                    alert('NISN minimum 8 karakter');
+                </script>
+                ";
+        return false;
+    }
+
+    // check nis
+    $strNis = strlen((string)$nis);
+    if ($strNis < 4) {
+        echo "
+         <script>
+             alert('NIS minimum 4 karakter');
+         </script>
+         ";
+        return false;
+    }
+
     // check no telepon
     $strNoTlp = strlen((string)$no_telepon);
-    if ($strNoTlp < 11) {
+    if ($strNoTlp < 10) {
         echo "
             <script>
-                alert('No telepon minimum 11 karakter');
+                alert('No telepon minimum 10 karakter');
             </script>
             ";
         return false;

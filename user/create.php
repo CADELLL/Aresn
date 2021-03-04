@@ -52,13 +52,13 @@ if (isset($_POST['create'])) {
         </tr>
         <tr>
             <td><label for="kata_sandi">Kata sandi</label></td>
-            <td><input type="text" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" autocomplete="off" min="3" required></td>
+            <td><input type="text" name="kata_sandi" class="input-form" id="kata_sandi" placeholder="Masukkan kata sandi!" autocomplete="off" minlength="3" required></td>
         </tr>
         <tr>
             <td><label for="tingkat">Tingkat</label></td>
             <td>
                 <label for="admin">Admin</label>
-                <input type="radio" name="tingkat" id="admin" value="admin">
+                <input type="radio" name="tingkat" id="admin" value="admin" checked>
                 <label for="petugas">Petugas</label>
                 <input type="radio" name="tingkat" id="petugas" value="petugas">
             </td>

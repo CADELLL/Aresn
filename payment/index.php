@@ -31,7 +31,8 @@ $totalData = queryPagination("SELECT *,
                                 tanggal_bayar LIKE '%$keyword%' OR
                                 tahun_dibayar LIKE '%$keyword%' OR
                                 jumlah_bayar LIKE '%$keyword%' OR
-                                bulan_dibayar LIKE '%$keyword%'");
+                                bulan_dibayar LIKE '%$keyword%'
+                            ORDER BY id_pembayaran DESC");
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -57,6 +58,7 @@ $pembayaran = mysqli_query($conn, "SELECT *,
                                     tahun_dibayar LIKE '%$keyword%' OR
                                     jumlah_bayar LIKE '%$keyword%' OR
                                     bulan_dibayar LIKE '%$keyword%'
+                                ORDER BY id_pembayaran DESC
                                 LIMIT $startData, $limit");
 // data no
 $no = numberData($limit, $curretPage);
@@ -96,7 +98,7 @@ $no = numberData($limit, $curretPage);
             <td><?= $p['tahun_dibayar']; ?></td>
             <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
             <td>
-                <a href="detail.php?i=<?= $p['id_pembayaran'] ?>" class="badge grey block-mb-2">Detail</a>
+                <a href="detail.php?i=<?= $p['id_pembayaran'] ?>" class="badge grey">Detail</a>
                 <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
             </td>

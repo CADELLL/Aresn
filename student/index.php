@@ -24,7 +24,8 @@ $totalData = queryPagination("SELECT * FROM siswa
                             WHERE nama LIKE '%$keyword%' OR
                                 nisn LIKE '%$keyword%' OR
                                 nis LIKE '%$keyword%' OR
-                                alamat LIKE '%$keyword%'");
+                                alamat LIKE '%$keyword%'
+                                ORDER BY nama ASC");
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -43,6 +44,7 @@ $siswa = mysqli_query($conn, "SELECT * FROM siswa
                                     nisn LIKE '%$keyword%' OR
                                     nis LIKE '%$keyword%' OR
                                     alamat LIKE '%$keyword%'
+                                ORDER BY nama ASC
                                 LIMIT $startData, $limit");
 // data no
 $no = numberData($limit, $curretPage);

@@ -22,7 +22,8 @@ if (isset($_POST['search'])) {
 $totalData = queryPagination("SELECT * FROM pengguna 
                         WHERE nama LIKE '%$keyword%' OR
                             email LIKE '%$keyword%' OR
-                            kata_sandi LIKE '%$keyword%'");
+                            kata_sandi LIKE '%$keyword%'
+                        ORDER BY tingkat ASC");
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -39,6 +40,7 @@ $pengguna = mysqli_query($conn, "SELECT * FROM pengguna
                         WHERE nama LIKE '%$keyword%' OR
                             email LIKE '%$keyword%' OR
                             kata_sandi LIKE '%$keyword%'
+                        ORDER BY tingkat ASC
                         LIMIT $startData, $limit");
 // data no
 $no = numberData($limit, $curretPage);

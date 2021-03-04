@@ -25,7 +25,6 @@ if (isset($_SESSION["officer"])) {
 $siswa = query("SELECT * FROM siswa");
 $pengguna = query("SELECT * FROM pengguna");
 $kelas = query("SELECT * FROM kelas");
-$pembayaran = query("SELECT * FROM pembayaran");
 ?>
 
 <h2>Informasi Singkat</h2>
@@ -46,12 +45,6 @@ $pembayaran = query("SELECT * FROM pembayaran");
         Jumlah Kelas
         <p class="total">
             <?= count($kelas); ?>
-        </p>
-    </a>
-    <a href="payment" class="card">
-        Jumlah Pembayaran
-        <p class="total">
-            <?= count($pembayaran); ?>
         </p>
     </a>
 </section>

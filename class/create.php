@@ -13,6 +13,8 @@ if (!isset($_SESSION["admin"])) {
     exit;
 }
 
+$jurusan = departement();
+
 if (isset($_POST['create'])) {
     if (createClass($_POST) > 0) {
         echo "
@@ -44,21 +46,15 @@ if (isset($_POST['create'])) {
         </tr>
         <tr>
             <td><label class="text-bold" for="kelas">Nama kelas</label></td>
-            <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" autocomplete="off" autofocus required></td>
+            <td><input type="text" name="kelas" class="input-form" id="kelas" placeholder="Masukkan nama kelas!" autocomplete="off" required></td>
         </tr>
         <tr>
             <td><label class="text-bold" for="kompetensi_keahlian">Kompetensi keahlian</label></td>
             <td>
                 <select name="kompetensi_keahlian" id="kompetensi_keahlian" class="input-form">
-                    <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                    <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
-                    <option value="Teknik Industri">Teknik Industri</option>
-                    <option value="Teknik Otomotif">Teknik Otomotif</option>
-                    <option value="Teknik Elektronika">Teknik Elektronika</option>
-                    <option value="Multimedia">Multimedia</option>
-                    <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
-                    <option value="Akuntansi">Akuntansi</option>
-                    <option value="Tata Boga">Tata Boga</option>
+                    <?php for ($i = 0; $i < count($jurusan); $i++) : ?>
+                        <option value="<?= $jurusan[$i] ?>"><?= $jurusan[$i] ?></option>
+                    <?php endfor; ?>
                 </select>
             </td>
         </tr>

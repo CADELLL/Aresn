@@ -37,7 +37,7 @@ $pembayaran = query("SELECT *,
     </tr>
     <tr>
         <td class="text-bold">Nama petugas</td>
-        <td><?= $pembayaran['nama']; ?></td>
+        <td><?= $pembayaran['nama']; ?> (<?= $pembayaran['tingkat']; ?>)</td>
     </tr>
     <tr>
         <td class="text-bold">Nama siswa</td>
