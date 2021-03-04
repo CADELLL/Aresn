@@ -3,7 +3,7 @@ include_once('../layouts/navbar.php');
 include_once('../layouts/sidebar.php');
 
 // check payment
-if (!isset($_SESSION["payment"])) {
+if (!isset($_SESSION["officer"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');

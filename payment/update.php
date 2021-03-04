@@ -2,8 +2,8 @@
 include_once('../layouts/navbar.php');
 include_once('../layouts/sidebar.php');
 
-// check payment
-if (!isset($_SESSION["payment"])) {
+// check 
+if (!isset($_SESSION["officer"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -41,6 +41,7 @@ if (isset($_POST['update'])) {
 
 <form accept="" method="POST">
     <input type="hidden" name="id_pembayaran" value="<?= $pembayaran['id_pembayaran'] ?>">
+    <input type="hidden" name="id_petugas" value="<?= $_SESSION['id'] ?>">
     <input type="hidden" name="nisn_lama" value="<?= $pembayaran['nisn'] ?>">
     <input type="hidden" name="bulan_lama" value="<?= $pembayaran['bulan_dibayar']; ?>">
     <table class="table">
@@ -62,7 +63,9 @@ if (isset($_POST['update'])) {
                 <select name="bulan_dibayar" id="bulan_dibayar" class="input-form">
                     <option value="<?= $pembayaran['bulan_dibayar'] ?>"><?= $pembayaran['bulan_dibayar'] ?></option>
                     <?php for ($i = 0; $i < count($bulan); $i++) : ?>
-                        <option value="<?= $bulan[$i] ?>"><?= $bulan[$i] ?></option>
+                        <?php if ($pembayaran['bulan_dibayar'] != $bulan[$i]) : ?>
+                            <option value="<?= $bulan[$i] ?>"><?= $bulan[$i] ?></option>
+                        <?php endif; ?>
                     <?php endfor ?>
                 </select>
             </td>

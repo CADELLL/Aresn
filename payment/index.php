@@ -19,20 +19,36 @@ if (isset($_POST['search'])) {
     $keyword = '';
 }
 
-$totalData = queryPagination("SELECT *,
-                                pembayaran.id AS id_pembayaran, 
-                                siswa.nama AS nama_siswa 
-                            FROM pembayaran
-                            JOIN siswa ON siswa.nisn = pembayaran.nisn
-                            JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                            WHERE siswa.nama LIKE '%$keyword%' OR
-                                pengguna.nama LIKE '%$keyword%' OR
-                                pembayaran.nisn LIKE '%$keyword%' OR
-                                tanggal_bayar LIKE '%$keyword%' OR
-                                tahun_dibayar LIKE '%$keyword%' OR
-                                jumlah_bayar LIKE '%$keyword%' OR
-                                bulan_dibayar LIKE '%$keyword%'
-                            ORDER BY id_pembayaran DESC");
+$name = $_SESSION['name'];
+
+if (isset($_SESSION['admin'])) {
+    $query = "SELECT *,
+                pembayaran.id AS id_pembayaran, 
+                siswa.nama AS nama_siswa 
+            FROM pembayaran
+            JOIN siswa ON siswa.nisn = pembayaran.nisn
+            JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+            WHERE siswa.nama LIKE '%$keyword%' OR
+                pengguna.nama LIKE '%$keyword%' OR
+                pembayaran.nisn LIKE '%$keyword%' OR
+                tanggal_bayar LIKE '%$keyword%' OR
+                tahun_dibayar LIKE '%$keyword%' OR
+                jumlah_bayar LIKE '%$keyword%' OR
+                bulan_dibayar LIKE '%$keyword%'
+            ORDER BY id_pembayaran DESC";
+} else {
+    $query = "SELECT *,
+                pembayaran.id AS id_pembayaran, 
+                siswa.nama AS nama_siswa 
+            FROM pembayaran
+            JOIN siswa ON siswa.nisn = pembayaran.nisn
+            JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+            WHERE pengguna.nama = '$name'
+            ORDER BY id_pembayaran DESC";
+}
+
+
+$totalData = queryPagination($query);
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -45,21 +61,8 @@ $link = 2;
 $startNumber = startNumber($activePage, $link);
 $endNumber = endNumber($activePage, $link, $totalPage);
 
-$pembayaran = mysqli_query($conn, "SELECT *,
-                                    pembayaran.id AS id_pembayaran, 
-                                    siswa.nama AS nama_siswa 
-                                FROM pembayaran
-                                JOIN siswa ON siswa.nisn = pembayaran.nisn
-                                JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                                WHERE siswa.nama LIKE '%$keyword%' OR
-                                    pengguna.nama LIKE '%$keyword%' OR
-                                    pembayaran.nisn LIKE '%$keyword%' OR
-                                    tanggal_bayar LIKE '%$keyword%' OR
-                                    tahun_dibayar LIKE '%$keyword%' OR
-                                    jumlah_bayar LIKE '%$keyword%' OR
-                                    bulan_dibayar LIKE '%$keyword%'
-                                ORDER BY id_pembayaran DESC
-                                LIMIT $startData, $limit");
+$pembayaran = mysqli_query($conn, $query . " LIMIT $startData, $limit");
+
 // data no
 $no = numberData($limit, $curretPage);
 ?>
@@ -70,8 +73,10 @@ $no = numberData($limit, $curretPage);
             <span id="action">
                 <h2>Daftar Pembayaran</h2>
                 <div>
-                    <a href="pdf.php" class="badge grey">File PDF</a>
-                    <a href="create.php" class="badge green">Tambah</a>
+                    <a href="pdf.php" class="badge <?= isset($_SESSION['admin']) ? 'green' : 'grey' ?>">File PDF</a>
+                    <?php if (isset($_SESSION['officer'])) : ?>
+                        <a href="create.php" class="badge green">Tambah</a>
+                    <?php endif; ?>
                 </div>
             </span>
         </td>
@@ -99,8 +104,10 @@ $no = numberData($limit, $curretPage);
             <td>Rp. <?= rupiah($p['jumlah_bayar']); ?></td>
             <td>
                 <a href="detail.php?i=<?= $p['id_pembayaran'] ?>" class="badge grey">Detail</a>
-                <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow">Ubah</a>
-                <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
+                <?php if (isset($_SESSION['officer'])) : ?>
+                    <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow">Ubah</a>
+                    <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
+                <?php endif; ?>
             </td>
         </tr>
     <?php endforeach; ?>

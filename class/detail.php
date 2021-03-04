@@ -13,19 +13,11 @@ if (!isset($_SESSION["admin"])) {
     exit;
 }
 
-if (isset($_POST['search'])) {
-    $keyword = $_POST['keyword'];
-} else {
-    $keyword = '';
-}
+$id_kelas = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 
-$totalData = queryPagination("SELECT * FROM siswa 
-                            JOIN kelas ON siswa.id_kelas = kelas.id 
-                            WHERE nama LIKE '%$keyword%' OR
-                                nisn LIKE '%$keyword%' OR
-                                nis LIKE '%$keyword%' OR
-                                alamat LIKE '%$keyword%'
-                            ORDER BY nama ASC");
+$kelas = query("SELECT * FROM kelas WHERE id = $id_kelas")[0];
+$totalData = queryPagination("SELECT * FROM siswa WHERE id_kelas = $id_kelas ORDER BY nama ASC");
+
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);
@@ -38,14 +30,8 @@ $link = 2;
 $startNumber = startNumber($activePage, $link);
 $endNumber = endNumber($activePage, $link, $totalPage);
 
-$siswa = mysqli_query($conn, "SELECT * FROM siswa 
-                                JOIN kelas ON siswa.id_kelas = kelas.id 
-                                WHERE nama LIKE '%$keyword%' OR
-                                    nisn LIKE '%$keyword%' OR
-                                    nis LIKE '%$keyword%' OR
-                                    alamat LIKE '%$keyword%'
-                                ORDER BY nama ASC
-                                LIMIT $startData, $limit");
+$siswa = query("SELECT * FROM siswa WHERE id_kelas = $id_kelas ORDER BY nama ASC");
+
 // data no
 $no = numberData($limit, $curretPage);
 ?>
@@ -54,10 +40,10 @@ $no = numberData($limit, $curretPage);
     <tr>
         <td colspan="10">
             <span id="action">
-                <h2>Daftar Siswa</h2>
+                <h2>Kelas <?= $kelas['kelas']; ?></h2>
                 <div>
-                    <a href="pdf.php" class="badge grey">File PDF</a>
-                    <a href="create.php" class="badge green">Tambah</a>
+                    <a href="index.php" class="badge grey">Kembali</a>
+                    <a href="pdf_siswa.php?i=<?= $id_kelas ?>" class="badge green">File PDF</a>
                 </div>
             </span>
         </td>
@@ -67,8 +53,8 @@ $no = numberData($limit, $curretPage);
         <th>NISN (+00)</th>
         <th>NIS</th>
         <th>Nama</th>
-        <th>Kelas</th>
-        <th>Pengaturan</th>
+        <th>Alamat</th>
+        <th>No telepon</th>
     </tr>
     <?php foreach ($siswa as $s) : ?>
         <tr>
@@ -76,16 +62,12 @@ $no = numberData($limit, $curretPage);
             <td><?= $s['nisn']; ?></td>
             <td><?= $s['nis']; ?></td>
             <td><?= $s['nama']; ?></td>
-            <td><?= $s['kelas']; ?></td>
-            <td>
-                <a href="detail.php?n=<?= $s['nisn'] ?>" class="badge grey">Detail</a>
-                <a href="update.php?n=<?= $s['nisn'] ?>" class="badge yellow">Ubah</a>
-                <a href="delete.php?n=<?= $s['nisn'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data siswa <?= $s['nama'] ?>?')">Hapus</a>
-            </td>
+            <td><?= $s['alamat']; ?></td>
+            <td><?= $s['no_telepon']; ?></td>
         </tr>
     <?php endforeach; ?>
     <?php if ($siswa == []) : ?>
-        <div class="info info-red">Data tidak ada!</div>
+        <div class="info info-red">Data siswa tidak ada!</div>
     <?php endif; ?>
 </table>
 

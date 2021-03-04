@@ -79,9 +79,8 @@ $html .= "<table style='margin: auto'>
                 <tr>
                     <th>No</th>
                     <th>Petugas</th>
-                    <th>Tanggal</th>
-                    <th>Bulan</th>
-                    <th>Tahun</th>
+                    <th>Tanggal bayar</th>
+                    <th>Bulan dibayar</th>
                     <th>Jumlah bayar</th>
                 </tr>";
 
@@ -91,14 +90,13 @@ foreach ($pembayaran as $p) {
                 <td>" . $p['nama'] . "</td>
                 <td>" . $p['tanggal_bayar'] . "</td>        
                 <td>" . $p['bulan_dibayar'] . "</td>        
-                <td>" . $p['tahun_dibayar'] . "</td>        
                 <td>Rp. " . rupiah($p['jumlah_bayar']) . "</td>        
             </tr>";
     $no++;
 }
 $html .= "<tr>
                 <td colspan='2'>Total belum dibayar</td>
-                <td colspan='2'>    
+                <td>    
                     <p style='font-weight: bold; color: red;'>Rp. " . rupiah($total) . "</p>
                 </td>
                 <td colspan='1'>Total bayar</td>
@@ -116,7 +114,7 @@ $html .= "
         <p>Hafid Ardiansyah</p>
     </div>
 </div>
-<br><br>
+<br><br><br>
 ";
 
 $html .= "</table>

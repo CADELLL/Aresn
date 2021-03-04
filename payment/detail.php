@@ -44,10 +44,6 @@ $pembayaran = query("SELECT *,
         <td><?= $pembayaran['nama_siswa']; ?></td>
     </tr>
     <tr>
-        <td class="text-bold">SPP</td>
-        <td>Tahun. <?= $pembayaran['tahun']; ?> - Rp. <?= rupiah($pembayaran['nominal']); ?></td>
-    </tr>
-    <tr>
         <td class="text-bold">NISN (+00)</td>
         <td><?= $pembayaran['nisn']; ?></td>
     </tr>
@@ -68,6 +64,10 @@ $pembayaran = query("SELECT *,
         <td><?= $pembayaran['no_telepon']; ?></td>
     </tr>
     <tr>
+        <td class="text-bold">SPP</td>
+        <td>Tahun <?= $pembayaran['tahun']; ?> - Rp. <?= rupiah($pembayaran['nominal']); ?></td>
+    </tr>
+    <tr>
         <td class="text-bold">Tanggal bayar</td>
         <td><?= $pembayaran['tanggal_bayar']; ?></td>
     </tr>
@@ -75,10 +75,10 @@ $pembayaran = query("SELECT *,
         <td class="text-bold">Bulan dibayar</td>
         <td><?= $pembayaran['bulan_dibayar']; ?></td>
     </tr>
-    <tr>
+    <!-- <tr>
         <td class="text-bold">Tahun dibayar</td>
         <td><?= $pembayaran['tahun_dibayar']; ?></td>
-    </tr>
+    </tr> -->
     <tr>
         <td class="text-bold">Jumlah bayar</td>
         <td class="text-green text-bold">Rp. <?= rupiah($pembayaran['jumlah_bayar']); ?></td>

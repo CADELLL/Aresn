@@ -624,7 +624,7 @@ function updatePayment($data)
 {
     global $conn;
 
-    $id_petugas = $_SESSION['id'];
+    $id_petugas = $data['id_petugas'];
     $bulan_lama = $data['bulan_lama'];
     $id_pembayaran = $data['id_pembayaran'];
     $nisn_lama = $data['nisn_lama'];
@@ -632,16 +632,43 @@ function updatePayment($data)
     $bulan_dibayar = htmlspecialchars($data['bulan_dibayar']);
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
-    // check nisn
-    $resultNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
+    $resultId = query("SELECT * FROM pembayaran WHERE id = '$id_pembayaran'")[0];
 
-    if ($nisn !== $nisn_lama && mysqli_fetch_assoc($resultNisn)) {
+    if ($resultId['id_petugas'] !== $id_petugas) {
+        echo "
+            <script>
+				alert('Akun tidak sesuai!')
+                document.location.href = 'index.php';
+		    </script>
+            ";
+        return false;
+    }
+
+
+    // check nisn
+    $resultNisn = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
+
+    if ($nisn !== $nisn_lama && !mysqli_fetch_assoc($resultNisn)) {
         echo "
             <script>
 				alert('NISN tidak terdaftar!')
 		    </script>
             ";
         return false;
+
+        // check bulan
+        $resultMonth = mysqli_query($conn, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
+
+        foreach ($resultMonth as $rm) {
+            if ($rm['bulan_dibayar'] == $bulan_dibayar) {
+                echo "
+                <script>
+                    alert('Siswa sudah membayar SPP bulan $bulan_dibayar')
+                </script>
+                ";
+                return false;
+            }
+        }
     }
 
     // check bulan
@@ -651,7 +678,7 @@ function updatePayment($data)
         if ($bulan_dibayar !== $bulan_lama && $rm['bulan_dibayar'] == $bulan_dibayar) {
             echo "
                 <script>
-                    alert('Anda sudah membayar SPP bulan $bulan_dibayar')
+                    alert('Siswa sudah membayar SPP bulan $bulan_dibayar')
                 </script>
                 ";
             return false;
@@ -688,6 +715,20 @@ function updatePayment($data)
 function deletePayment($id)
 {
     global $conn;
+
+    $id_petugas = $_SESSION['id'];
+
+    $resultId = query("SELECT * FROM pembayaran WHERE id = '$id'")[0];
+
+    if ($resultId['id_petugas'] !== $id_petugas) {
+        echo "
+            <script>
+				alert('Akun tidak sesuai!')
+                document.location.href = 'index.php';
+		    </script>
+            ";
+        return false;
+    }
 
     mysqli_query($conn, "DELETE FROM pembayaran WHERE id = '$id'");
 

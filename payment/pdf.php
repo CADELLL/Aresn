@@ -17,13 +17,27 @@ require_once '../assets/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 
-$totalPembayaran = query("SELECT * FROM pembayaran");
-$pembayaran = query("SELECT *,
-                        pembayaran.id AS id_pembayaran, 
-                        siswa.nama AS nama_siswa FROM pembayaran
-                    JOIN siswa ON siswa.nisn = pembayaran.nisn
-                    JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                    JOIN spp ON spp.id = pembayaran.id_spp");
+$name = $_SESSION['name'];
+
+if (isset($_SESSION['admin'])) {
+    $query = "SELECT *,
+                pembayaran.id AS id_pembayaran, 
+                siswa.nama AS nama_siswa FROM pembayaran
+            JOIN siswa ON siswa.nisn = pembayaran.nisn
+            JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+            JOIN spp ON spp.id = pembayaran.id_spp";
+} else {
+    $query = "SELECT *,
+                pembayaran.id AS id_pembayaran, 
+                siswa.nama AS nama_siswa FROM pembayaran
+            JOIN siswa ON siswa.nisn = pembayaran.nisn
+            JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+            JOIN spp ON spp.id = pembayaran.id_spp
+            WHERE pengguna.nama = '$name'";
+}
+
+$totalPembayaran = query($query);
+$pembayaran = query($query);
 
 $i = 1;
 $dompdf = new Dompdf();

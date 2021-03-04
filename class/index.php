@@ -68,6 +68,7 @@ $no = numberData($limit, $curretPage);
             <td><?= $k['kelas']; ?></td>
             <td><?= $k['kompetensi_keahlian']; ?></td>
             <td>
+                <a href="detail.php?i=<?= $k['id'] ?>" class="badge grey">Detail</a>
                 <a href="update.php?i=<?= $k['id'] ?>" class="badge yellow">Ubah</a>
                 <a href="delete.php?i=<?= $k['id'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data kelas <?= $k['kelas'] ?>?')">Hapus</a>
             </td>
