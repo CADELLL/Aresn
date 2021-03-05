@@ -73,9 +73,9 @@ $no = numberData($limit, $curretPage);
             <span id="action">
                 <h2>Daftar Pembayaran</h2>
                 <div>
-                    <a href="pdf.php" class="badge <?= isset($_SESSION['admin']) ? 'green' : 'grey' ?>">File PDF</a>
+                    <a href="pdf.php" class="badge <?= isset($_SESSION['admin']) ? 'green' : 'grey' ?>">Unduh</a>
                     <?php if (isset($_SESSION['officer'])) : ?>
-                        <a href="preview.php" class="badge green">Tambah</a>
+                        <a href="check.php" class="badge green">Tambah</a>
                     <?php endif; ?>
                 </div>
             </span>

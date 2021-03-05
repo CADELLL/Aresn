@@ -76,7 +76,7 @@ if (isset($_POST['update'])) {
         </tr> -->
         <tr>
             <td><label class="text-bold" for="jumlah_bayar">Jumlah bayar</label></td>
-            <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar!" autocomplete="off" value="<?= $pembayaran['jumlah_bayar']; ?>" required></td>
+            <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar nominal Rp. <?= rupiah($pembayaran['nominal']); ?>!" autocomplete="off" value="<?= $pembayaran['jumlah_bayar']; ?>" required></td>
         </tr>
         <tr>
             <td colspan="2" class="center"><button type="submit" name="update" class="button yellow">Ubah</button></td>

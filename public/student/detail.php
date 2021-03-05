@@ -81,7 +81,7 @@ $no = 1;
             <span id="action">
                 <h2>Daftar SPP</h2>
                 <span>
-                    <a href="pdf_spp.php?n=<?= $nisn ?>" class="badge green">File PDF</a>
+                    <a href="pdf_spp.php?n=<?= $nisn ?>" class="badge green">Unduh</a>
                 </span>
             </span>
         </td>

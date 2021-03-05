@@ -50,7 +50,7 @@ $no = numberData($limit, $curretPage);
             <span id="action">
                 <h2>Daftar Kelas</h2>
                 <div>
-                    <a href="pdf.php" class="badge grey">File PDF</a>
+                    <a href="pdf.php" class="badge grey">Unduh</a>
                     <a href="create.php" class="badge green">Tambah</a>
                 </div>
             </span>

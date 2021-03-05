@@ -24,7 +24,7 @@ if (isset($_POST['create'])) {
         echo "
             <script>
                 alert('Data berhasil ditambahkan!');
-                document.location.href = 'student.php?nisn=$nisn';
+                document.location.href = 'spp.php?nisn=$nisn';
             </script>
             ";
     }
@@ -49,7 +49,7 @@ if (isset($_POST['create'])) {
         </tr>
         <tr>
             <td><label class="text-bold" for="jumlah_bayar">Jumlah bayar</label></td>
-            <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar minimum <?= rupiah($siswa['nominal']) ?>!" autocomplete="off" required></td>
+            <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar minimum Rp. <?= rupiah($siswa['nominal']) ?>!" autocomplete="off" required></td>
         </tr>
         <tr>
             <td colspan="2" class="center"><button type="submit" name="create" class="button green">Tambah</button></td>

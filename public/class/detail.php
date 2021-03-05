@@ -43,7 +43,7 @@ $no = numberData($limit, $curretPage);
                 <h2>Kelas <?= $kelas['kelas']; ?></h2>
                 <div>
                     <a href="index.php" class="badge grey">Kembali</a>
-                    <a href="pdf_siswa.php?i=<?= $id_kelas ?>" class="badge green">File PDF</a>
+                    <a href="pdf_siswa.php?i=<?= $id_kelas ?>" class="badge green">Unduh</a>
                 </div>
             </span>
         </td>

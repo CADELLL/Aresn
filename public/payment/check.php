@@ -14,7 +14,7 @@ if (!isset($_SESSION["officer"])) {
 }
 ?>
 
-<form action="student.php" method="GET">
+<form action="spp.php" method="GET">
     <table class="table">
         <tr>
             <td colspan="2">

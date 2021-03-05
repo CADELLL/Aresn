@@ -40,7 +40,7 @@ if (isset($_POST['create'])) {
             <td colspan="2">
                 <span id="action">
                     <h2>Tambah Kelas</h2>
-                    <a href="index.php" class="href">Kembali</a>
+                    <a href="index.php" class="badge grey">Kembali</a>
                 </span>
             </td>
         </tr>

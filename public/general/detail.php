@@ -88,7 +88,7 @@ $totalPembayaran = count($pembayaran);
                 <h3>Daftar SPP</h3>
                 <span>
                     <a href="index.php" class="badge grey">Kembali</a>
-                    <a href="pdf.php?n=<?= $nisn ?>" class="badge green">File PDF</a>
+                    <a href="pdf.php?n=<?= $nisn ?>" class="badge green">Unduh</a>
                 </span>
             </span>
         </td>
