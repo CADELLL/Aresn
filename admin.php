@@ -22,13 +22,13 @@ $spp = query("SELECT * FROM spp");
 
 <h2>Informasi Singkat</h2>
 <section id="short">
-    <a href="student" class="card">
+    <a href="public/student" class="card">
         Jumlah Siswa
         <p class="total">
             <?= count($siswa); ?>
         </p>
     </a>
-    <a href="payment" class="card">
+    <a href="public/payment" class="card">
         Jumlah Pembayaran
         <p class="total">
             <?= count($pembayaran); ?>
@@ -37,19 +37,19 @@ $spp = query("SELECT * FROM spp");
 </section>
 
 <section id="short">
-    <a href="spp" class="card">
+    <a href="public/spp" class="card">
         Jumlah SPP
         <p class="total">
             <?= count($spp); ?>
         </p>
     </a>
-    <a href="user" class="card">
+    <a href="public/user" class="card">
         Jumlah Pengguna
         <p class="total">
             <?= count($pengguna); ?>
         </p>
     </a>
-    <a href="class" class="card">
+    <a href="public/class" class="card">
         Jumlah Kelas
         <p class="total">
             <?= count($kelas); ?>
