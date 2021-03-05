@@ -3,7 +3,7 @@ include_once('../layout/navbar.php');
 include_once('../layout/sidebar.php');
 
 // check level
-if (isset($_SESSION["payment"])) {
+if (!isset($_SESSION["officer"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -14,7 +14,7 @@ if (isset($_SESSION["payment"])) {
 }
 
 // get value
-$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['nisn']);
+$nisn = $_GET['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_GET['nisn']);
 
 // check no nisn
 $strNisn = strlen((string)$nisn);
@@ -88,7 +88,7 @@ $totalPembayaran = count($pembayaran);
                 <h3>Daftar SPP</h3>
                 <span>
                     <a href="index.php" class="badge grey">Kembali</a>
-                    <a href="pdf.php?n=<?= $nisn ?>" class="badge green">File PDF</a>
+                    <a href="pdf_spp.php?n=<?= $nisn ?>" class="badge green">File PDF</a>
                 </span>
             </span>
         </td>
@@ -141,7 +141,13 @@ $totalPembayaran = count($pembayaran);
                         echo "<div class='badge green'>Lunas<div>";
                         break;
                     default:
-                        echo "<div class='badge red'>Tidak lunas<div>";
+                        echo "
+                        <form action='create.php' method='POST'>
+                            <input type='hidden' name='nisn' value='$nisn'>
+                            <input type='hidden' name='bulan_dibayar' value='$bulan[$i]'>
+                            <button type='submit' class='badge red' style='border:none; cursor:pointer;'>Tidak lunas</button>
+                        </form>
+                        ";
                         break;
                 }
                 ?>

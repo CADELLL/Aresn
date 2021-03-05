@@ -13,14 +13,18 @@ if (!isset($_SESSION["officer"])) {
     exit;
 }
 
+$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['nisn']);
+$bulan_dibayar = $_POST['bulan_dibayar'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['bulan_dibayar']);
+
 $bulan = month();
+$siswa = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn'")[0];
 
 if (isset($_POST['create'])) {
     if (createPayment($_POST) > 0) {
         echo "
             <script>
                 alert('Data berhasil ditambahkan!');
-                document.location.href = 'index.php';
+                document.location.href = 'student.php?nisn=$nisn';
             </script>
             ";
     }
@@ -28,6 +32,8 @@ if (isset($_POST['create'])) {
 ?>
 
 <form accept="" method="POST">
+    <input type="hidden" name="nisn" value="<?= $nisn; ?>">
+    <input type="hidden" name="bulan_dibayar" value="<?= $bulan_dibayar; ?>">
     <table class="table">
         <tr>
             <td colspan="2">
@@ -38,26 +44,12 @@ if (isset($_POST['create'])) {
             </td>
         </tr>
         <tr>
-            <td><label class="text-bold" for="nisn">NISN (+00)</label></td>
-            <td><input type="text" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" required autofocus></td>
+            <td><label class="text-bold">Nama siswa</label></td>
+            <td><input type="text" class="input-form" value="<?= $siswa['nama']; ?>" disabled></td>
         </tr>
-        <tr>
-            <td><label class="text-bold" for="bulan_dibayar">Bulan dibayar</label></td>
-            <td>
-                <select name="bulan_dibayar" id="bulan_dibayar" class="input-form">
-                    <?php for ($i = 0; $i < count($bulan); $i++) : ?>
-                        <option value="<?= $bulan[$i] ?>"><?= $bulan[$i] ?></option>
-                    <?php endfor ?>
-                </select>
-            </td>
-        </tr>
-        <!-- <tr>
-            <td><label class="text-bold" for="tahun_dibayar">Tahun dibayar</label></td>
-            <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" autocomplete="off" required autofocus></td>
-        </tr> -->
         <tr>
             <td><label class="text-bold" for="jumlah_bayar">Jumlah bayar</label></td>
-            <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar!" autocomplete="off" required></td>
+            <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar minimum <?= rupiah($siswa['nominal']) ?>!" autocomplete="off" required></td>
         </tr>
         <tr>
             <td colspan="2" class="center"><button type="submit" name="create" class="button green">Tambah</button></td>

@@ -363,18 +363,6 @@ function createStudent($data)
         return false;
     }
 
-    // check nisn from tb nisn
-    $resultNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
-
-    if (!mysqli_fetch_assoc($resultNisn)) {
-        echo "
-            <script>
-                alert('NISN tidak terdaftar!');
-            </script>
-            ";
-        return false;
-    }
-
     // check nisn student
     $resultStudent = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
 
@@ -449,18 +437,6 @@ function updateStudent($data)
         echo "
             <script>
                 alert('No telepon minimum 10 karakter');
-            </script>
-            ";
-        return false;
-    }
-
-    // check nisn from tb nisn
-    $resultTbNisn = mysqli_query($conn, "SELECT nisn FROM nisn WHERE nisn = '$nisn'");
-
-    if (!mysqli_fetch_assoc($resultTbNisn)) {
-        echo "
-            <script>
-                alert('NISN tidak terdaftar');
             </script>
             ";
         return false;

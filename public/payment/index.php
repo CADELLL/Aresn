@@ -75,7 +75,7 @@ $no = numberData($limit, $curretPage);
                 <div>
                     <a href="pdf.php" class="badge <?= isset($_SESSION['admin']) ? 'green' : 'grey' ?>">File PDF</a>
                     <?php if (isset($_SESSION['officer'])) : ?>
-                        <a href="create.php" class="badge green">Tambah</a>
+                        <a href="preview.php" class="badge green">Tambah</a>
                     <?php endif; ?>
                 </div>
             </span>

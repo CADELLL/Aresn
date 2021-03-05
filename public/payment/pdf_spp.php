@@ -1,7 +1,7 @@
 <?php
 session_start();
 // check level
-if (!isset($_SESSION["admin"])) {
+if (!isset($_SESSION["officer"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
