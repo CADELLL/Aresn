@@ -22,7 +22,7 @@ if (isset($_POST['search'])) {
 $totalData = queryPagination("SELECT * FROM kelas 
                                 WHERE kelas LIKE '%$keyword%' OR
                                     kompetensi_keahlian LIKE '%$keyword%'
-                                    ORDER BY id DESC");
+                                ORDER BY id DESC");
 // pagination
 $limit = 10;
 $totalPage = ceil($totalData / $limit);

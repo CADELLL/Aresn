@@ -62,12 +62,6 @@ if (isset($_POST['create'])) {
                 <label for="petugas">Petugas</label>
                 <input type="radio" name="tingkat" id="petugas" value="petugas">
             </td>
-            <!-- <td>
-                <select name="tingkat" id="tingkat" class="input-form">
-                    <option value="admin">Admin</option>
-                    <option value="petugas">Petugas</option>
-                </select>
-            </td> -->
         </tr>
         <tr>
             <td colspan="2" class="center"><button type="submit" name="create" class="button green">Tambah</button></td>

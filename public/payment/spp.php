@@ -14,10 +14,11 @@ if (!isset($_SESSION["officer"])) {
 }
 
 // get value
-$nisn = $_GET['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_GET['nisn']);
+$nisn = $_GET['nisn'] == '' ? header('Location: index.php') : $_GET['nisn'];
 
 // check no nisn
 $strNisn = strlen((string)$nisn);
+
 if ($strNisn < 8) {
     echo "
           <script>

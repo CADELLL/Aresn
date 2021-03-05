@@ -70,10 +70,6 @@ if (isset($_POST['update'])) {
                 </select>
             </td>
         </tr>
-        <!-- <tr>
-            <td><label class="text-bold" for="tahun_dibayar">Tahun dibayar</label></td>
-            <td><input type="number" name="tahun_dibayar" class="input-form" id="tahun_dibayar" placeholder="Masukkan tahun dibayar!" autocomplete="off" value="<?= $pembayaran['tahun_dibayar'] ?>" required autofocus></td>
-        </tr> -->
         <tr>
             <td><label class="text-bold" for="jumlah_bayar">Jumlah bayar</label></td>
             <td><input type="number" name="jumlah_bayar" class="input-form" id="jumlah_bayar" placeholder="Masukkan jumlah bayar nominal Rp. <?= rupiah($pembayaran['nominal']); ?>!" autocomplete="off" value="<?= $pembayaran['jumlah_bayar']; ?>" required></td>

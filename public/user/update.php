@@ -66,11 +66,6 @@ if (isset($_POST['update'])) {
                 <input type="radio" name="tingkat" id="admin" value="admin" <?= $pengguna['tingkat'] == 'admin' ? 'checked' : '' ?>>
                 <label for="petugas">Petugas</label>
                 <input type="radio" name="tingkat" id="petugas" value="petugas" <?= $pengguna['tingkat'] == 'petugas' ? 'checked' : '' ?>>
-                <!-- <select name="tingkat" id="tingkat" class="input-form">
-                    <option value="<?= $pengguna['tingkat'] ?>"><?= $pengguna['tingkat'] ?></option>
-                    <option value="admin">Admin</option>
-                    <option value="petugas">Petugas</option>
-                </select> -->
             </td>
         </tr>
         <tr>

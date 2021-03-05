@@ -14,7 +14,7 @@ if (isset($_SESSION["payment"])) {
 }
 
 // get value
-$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['nisn']);
+$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : $_POST['nisn'];
 
 // check no nisn
 $strNisn = strlen((string)$nisn);

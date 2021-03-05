@@ -696,6 +696,7 @@ function deletePayment($id)
 
     $resultId = query("SELECT * FROM pembayaran WHERE id = '$id'")[0];
 
+    // check id petugas
     if ($resultId['id_petugas'] !== $id_petugas) {
         echo "
             <script>

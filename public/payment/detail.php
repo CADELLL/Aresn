@@ -16,14 +16,14 @@ if (!isset($_SESSION["payment"])) {
 $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 
 $pembayaran = query("SELECT *,
-                    pembayaran.id AS id_pembayaran, 
-                    siswa.nama AS nama_siswa 
-                FROM pembayaran
-                JOIN siswa ON siswa.nisn = pembayaran.nisn
-                JOIN kelas ON kelas.id = siswa.id_kelas
-                JOIN spp ON spp.id = siswa.id_spp
-                JOIN pengguna ON pengguna.id = pembayaran.id_petugas
-                WHERE pembayaran.id = $id")[0];
+                        pembayaran.id AS id_pembayaran, 
+                        siswa.nama AS nama_siswa 
+                    FROM pembayaran
+                    JOIN siswa ON siswa.nisn = pembayaran.nisn
+                    JOIN kelas ON kelas.id = siswa.id_kelas
+                    JOIN spp ON spp.id = siswa.id_spp
+                    JOIN pengguna ON pengguna.id = pembayaran.id_petugas
+                    WHERE pembayaran.id = $id")[0];
 ?>
 
 <table class="table">

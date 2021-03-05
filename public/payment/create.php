@@ -13,8 +13,8 @@ if (!isset($_SESSION["officer"])) {
     exit;
 }
 
-$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['nisn']);
-$bulan_dibayar = $_POST['bulan_dibayar'] == '' ? header('Location: index.php') : htmlspecialchars($_POST['bulan_dibayar']);
+$nisn = $_POST['nisn'] == '' ? header('Location: index.php') : $_POST['nisn'];
+$bulan_dibayar = $_POST['bulan_dibayar'] == '' ? header('Location: index.php') : $_POST['bulan_dibayar'];
 
 $bulan = month();
 $siswa = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn'")[0];
