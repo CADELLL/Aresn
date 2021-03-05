@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Mar 2021 pada 10.14
+-- Waktu pembuatan: 04 Mar 2021 pada 04.53
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.0
 
@@ -38,18 +38,21 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `kelas`, `kompetensi_keahlian`) VALUES
-(7, 'X RPL 3', 'Rekayasa Perangkat Lunak'),
-(8, 'X RPL 2', 'Rekayasa Perangkat Lunak'),
-(9, 'X RPL 1', 'Rekayasa Perangkat Lunak'),
-(12, 'X TI 1', 'Teknik Industri'),
-(13, 'X TI 2', 'Teknik Industri'),
-(14, 'X TI 3', 'Teknik Industri'),
-(15, 'X TO 1', 'Teknik Otomotif'),
-(16, 'X TO 2', 'Teknik Otomotif'),
-(17, 'X TO 3', 'Teknik Otomotif'),
-(18, 'X TE 1', 'Teknik Elektronika'),
-(19, 'X TE 2', 'Teknik Elektronika'),
-(20, 'X TE 3', 'Teknik Elektronika');
+(1, 'XII RPL 3', 'Rekayasa Perangkat Lunak'),
+(2, 'XII RPL 2', 'Rekayasa Perangkat Lunak'),
+(3, 'XII RPL 1', 'Rekayasa Perangkat Lunak'),
+(4, 'XII TKJ 3', 'Teknik Komputer dan Jaringan'),
+(5, 'XII TKJ 2', 'Teknik Komputer dan Jaringan'),
+(6, 'XII TKJ 1', 'Teknik Komputer dan Jaringan'),
+(7, 'XII TEI 3', 'Teknik Elektronika Industri'),
+(8, 'XII TEI 2', 'Teknik Elektronika Industri'),
+(9, 'XII TEI 1', 'Teknik Elektronika Industri'),
+(10, 'XII TKR 3', 'Teknik Kendarangan Ringan'),
+(11, 'XII TKR 2', 'Teknik Kendarangan Ringan'),
+(12, 'XII TKR 1', 'Teknik Kendarangan Ringan'),
+(13, 'XII TSM 3', 'Teknik Sepeda Motor'),
+(14, 'XII TSM 2', 'Teknik Sepeda Motor'),
+(15, 'XII TSM 1', 'Teknik Sepeda Motor');
 
 -- --------------------------------------------------------
 
@@ -75,7 +78,18 @@ INSERT INTO `nisn` (`id`, `nisn`) VALUES
 (7, 97561042),
 (8, 39175021),
 (9, 43148693),
-(10, 18672619);
+(10, 18672619),
+(11, 12332111),
+(12, 75937147),
+(13, 65819521),
+(14, 70341758),
+(15, 14729057),
+(16, 57392710),
+(17, 79834756),
+(18, 90245679),
+(19, 58915784),
+(20, 75984011),
+(21, 75984022);
 
 -- --------------------------------------------------------
 
@@ -99,8 +113,19 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id`, `id_petugas`, `nisn`, `tanggal_bayar`, `bulan_dibayar`, `tahun_dibayar`, `id_spp`, `jumlah_bayar`) VALUES
-(18, 1, 18672619, '2021-03-03', 'Januari', '2021', 1, 150000),
-(19, 1, 18672619, '2021-03-03', 'April', '2021', 1, 150000);
+(14, 22, 12332111, '2021-03-04', 'Januari', '2020', 5, 110000),
+(15, 22, 12332111, '2021-03-04', 'Februari', '2020', 5, 110000),
+(16, 22, 12332111, '2021-03-04', 'Maret', '2020', 5, 120000),
+(18, 26, 78392758, '2021-03-04', 'Januari', '2020', 5, 110000),
+(19, 26, 78392758, '2021-03-04', 'Februari', '2020', 5, 110000),
+(20, 26, 78392758, '2021-03-04', 'Maret', '2020', 5, 110000),
+(21, 27, 24147561, '2021-03-04', 'Januari', '2021', 6, 100000),
+(22, 27, 24147561, '2021-03-04', 'Februari', '2021', 6, 100000),
+(23, 27, 24147561, '2021-03-04', 'Maret', '2021', 6, 100000),
+(24, 27, 24147561, '2021-03-04', 'April', '2021', 6, 100000),
+(25, 24, 24147561, '2021-03-04', 'Mei', '2021', 6, 100000),
+(26, 24, 24147561, '2021-03-04', 'Juni', '2021', 6, 100000),
+(27, 24, 24147561, '2021-03-04', 'Juli', '2021', 6, 150000);
 
 -- --------------------------------------------------------
 
@@ -121,12 +146,21 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `nama`, `email`, `kata_sandi`, `tingkat`) VALUES
-(1, 'Hafid Ardiansyah', 'hafid@gmail.com', 'hafid', 'admin'),
-(12, 'Citra', 'citra@gmail.com', 'citra', 'petugas'),
-(13, 'Desiyana', 'desiyana@gmail.com', 'desiyana', 'petugas'),
-(14, 'Alifia', 'alifia@gmail.com', 'alifia', 'petugas'),
-(15, 'Revi', 'revi@gmail.com', 'revi', 'admin'),
-(16, 'Hakim', 'hakim@gmail.com', 'hakim', 'petugas');
+(19, 'Ardi', 'ardi@gmail.com', 'ardi', 'admin'),
+(20, 'Alvian', 'alvian@gmail.com', 'alvian', 'petugas'),
+(21, 'Abiyasa', 'abiyasa@gmail.com', 'abiyasa', 'admin'),
+(22, 'Rifad', 'rifad@gmail.com', 'rifad', 'petugas'),
+(23, 'Vito', 'vito@gmail.com', 'vito', 'admin'),
+(24, 'Hakim', 'hakim@gmail.com', 'hakim', 'petugas'),
+(25, 'Citra', 'citra@gmail.com', 'citra', 'petugas'),
+(26, 'Desyana', 'desyana@gmail.com', 'desyana', 'petugas'),
+(27, 'Alifia', 'alifia@gmail.com', 'alifia', 'petugas'),
+(28, 'Revi', 'revi@gmail.com', 'revi', 'petugas'),
+(29, 'Dhela', 'dhela@gmail.com', 'dhela', 'petugas'),
+(30, 'Dewangga', 'dewangga@gmail.com', 'dewangga', 'petugas'),
+(31, 'Dafa', 'dafa@gmail.com', 'dafa', 'petugas'),
+(32, 'Prastanto', 'prastanto@gmail.com', 'prastanto', 'petugas'),
+(33, 'Tegar', 'tegar@gmail.com', 'tegar', 'petugas');
 
 -- --------------------------------------------------------
 
@@ -149,11 +183,25 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telepon`, `id_spp`) VALUES
-(18672619, 9731, 'Pranata Wibowo', 9, 'Kpg. Baiduri No. 172, Cirebon 43116, SumSel', 81247592182, 1),
-(27185739, 8735, 'Titi Andriani', 7, 'Jln. Madiun No. 759, Subulussalam', 81343775142, 1),
-(39175021, 7432, 'Hasna Pratiwi', 9, 'Gg. Abdul No. 950, Serang 60158, JaTim', 32472240249, 1),
-(43148693, 5398, 'Estiono Simbolon S.I.Kom', 8, 'Kpg. Barasak No. 887, Pekalongan', 81472847381, 1),
-(78392758, 8971, 'Michelle Rahmawati M.Kom.', 7, 'Gg. Kali No. 731, Tual 72710, MalUt', 81216116708, 1);
+(12332111, 9812, 'Ilsa Puspita', 3, 'Kpg. Flora No. 755, Malang 92603, PapBar', 39326348816, 5),
+(14729057, 1821, 'Diana Gunarto', 8, 'Gg. Bank Dagang Negara No. 668, Binjai 63026, NTT', 86910662034, 6),
+(18672619, 9890, 'Sadina Setiawan', 2, 'Gg. Rumah Sakit No. 599, Tanjung Pinang 87325, DIY', 52807758784, 6),
+(24147561, 9071, 'Endah Haryanti', 5, 'Psr. Kusmanto No. 750, Sawahlunto 43438, PapBar', 5804149093, 6),
+(27185739, 9872, 'Wani Sinaga', 2, 'Jln. Pasir Koja No. 212, Yogyakarta', 65403053189, 6),
+(39175021, 2352, 'Violet Santoso', 4, 'Gg. Bahagia No. 75, Palembang 26747, Gorontalo', 37856634861, 6),
+(43148693, 9724, 'Niyaga Rajasa', 10, 'Ki. Panjaitan No. 712, Administrasi Jakarta Pusat 39996, Gorontalo', 5956322631, 6),
+(49185028, 12412, 'Jais Lestari', 3, 'Kpg. Rumah Sakit No. 813, Pasuruan 67771, NTT', 57544079901, 6),
+(57392710, 1218, 'Naradi Hartati', 2, 'Jln. Qrisdoren No. 334, Bandar Lampung 83077, DKI', 6541203645, 6),
+(58915784, 5231, 'Ellis Nababan', 8, 'Ki. Basuki No. 612, Pagar Alam 14862, BaBel', 9599369046, 6),
+(65819521, 9832, 'Jarwi Hartati', 10, 'Psr. Cikutra Timur No. 638, Pekanbaru 22486, JaBar', 48454401612, 6),
+(70341758, 7912, 'Elisa Namaga', 6, 'Ki. Sadang Serang No. 316, Administrasi Jakarta Barat 17496, NTB', 29161407712, 5),
+(75937147, 1282, 'Kala Astuti', 7, 'Jln. Sudirman No. 749, Tarakan 98029, KepR', 93186550537, 6),
+(75984011, 2423, 'Garang Firmansyah', 12, 'Jr. Sukajadi No. 133, Kotamobagu 99014, SumUt', 8496851921, 5),
+(78392758, 5212, 'Estiawan Nuraini', 3, 'Kpg. Teuku Umar No. 324, Pariaman 40566', 81859523150, 5),
+(79834756, 1723, 'Halima Simanjuntak', 6, 'Jr. Bakti No. 772, Pangkal Pinang 41314, Banten', 97414603867, 6),
+(90245679, 5621, 'Daryani Oktaviani', 1, 'Psr. Kiaracondong No. 467, Gunungsitoli 45186, JaTim', 7281999039, 6),
+(97561042, 4531, 'Padma Kurniawan', 15, 'Jln. R.M. Said No. 83, Binjai 40484, SulBar', 52287844841, 6),
+(98371657, 5341, 'Siska Yolanda', 8, 'Jln. Qrisdoren No. 103, Batam 33985, JaTim', 8021685880, 6);
 
 -- --------------------------------------------------------
 
@@ -172,8 +220,17 @@ CREATE TABLE `spp` (
 --
 
 INSERT INTO `spp` (`id`, `tahun`, `nominal`) VALUES
-(1, 2020, 150000),
-(2, 2021, 160000);
+(1, 2018, 110000),
+(2, 2019, 110000),
+(5, 2020, 110000),
+(6, 2021, 100000),
+(7, 2015, 100000),
+(8, 2016, 100000),
+(9, 2017, 100000),
+(10, 2014, 100000),
+(11, 2013, 100000),
+(12, 2012, 90000),
+(13, 2011, 90000);
 
 --
 -- Indexes for dumped tables
@@ -223,37 +280,37 @@ ALTER TABLE `spp`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `nisn`
 --
 ALTER TABLE `nisn`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `nisn` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567891;
+  MODIFY `nisn` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98371658;
 
 --
 -- AUTO_INCREMENT untuk tabel `spp`
 --
 ALTER TABLE `spp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

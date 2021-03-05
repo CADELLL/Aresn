@@ -49,79 +49,79 @@ function dynamicTitle()
         case $folder . 'officer.php':
             return 'Dashboard Petugas';
             break;
-        case $folder . 'class/':
+        case $folder . 'public/class/':
             return 'Daftar Kelas';
             break;
-        case $folder . 'class/index.php':
+        case $folder . 'public/class/index.php':
             return 'Daftar Kelas';
             break;
-        case $folder . 'class/create.php':
+        case $folder . 'public/class/create.php':
             return 'Tambah Kelas';
             break;
-        case $folder . 'class/update.php':
+        case $folder . 'public/class/update.php':
             return 'Ubah Kelas';
             break;
-        case $folder . 'student/':
+        case $folder . 'public/student/':
             return 'Daftar Siswa';
             break;
-        case $folder . 'student/index.php':
+        case $folder . 'public/student/index.php':
             return 'Daftar Siswa';
             break;
-        case $folder . 'student/create.php':
+        case $folder . 'public/student/create.php':
             return 'Tambah Siswa';
             break;
-        case $folder . 'student/update.php':
+        case $folder . 'public/student/update.php':
             return 'Ubah Siswa';
             break;
-        case $folder . 'student/detail.php':
+        case $folder . 'public/student/detail.php':
             return 'Detail Siswa';
             break;
-        case $folder . 'user/':
+        case $folder . 'public/user/':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'user/index.php':
+        case $folder . 'public/user/index.php':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'user/create.php':
+        case $folder . 'public/user/create.php':
             return 'Tambah Pengguna';
             break;
-        case $folder . 'user/update.php':
+        case $folder . 'public/user/update.php':
             return 'Ubah Pengguna';
             break;
-        case $folder . 'payment/':
+        case $folder . 'public/payment/':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'payment/index.php':
+        case $folder . 'public/payment/index.php':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'payment/create.php':
+        case $folder . 'public/payment/create.php':
             return 'Tambah Pembayaran';
             break;
-        case $folder . 'payment/update.php':
+        case $folder . 'public/payment/update.php':
             return 'Ubah Pembayaran';
             break;
-        case $folder . 'payment/detail.php':
+        case $folder . 'public/payment/detail.php':
             return 'Detail Pembayaran';
             break;
-        case $folder . 'donation/':
+        case $folder . 'public/donation/':
             return 'Daftar SPP';
             break;
-        case $folder . 'donation/index.php':
+        case $folder . 'public/donation/index.php':
             return 'Daftar SPP';
             break;
-        case $folder . 'donation/create.php':
+        case $folder . 'public/donation/create.php':
             return 'Tambah SPP';
             break;
-        case $folder . 'donation/update.php':
+        case $folder . 'public/donation/update.php':
             return 'Ubah SPP';
             break;
-        case $folder . 'general/':
+        case $folder . 'public/general/':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'general/index.php':
+        case $folder . 'public/general/index.php':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'general/detail.php':
+        case $folder . 'public/general/detail.php':
             return 'Detail Pembayaran';
             break;
         default;

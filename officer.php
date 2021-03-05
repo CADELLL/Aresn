@@ -1,6 +1,6 @@
 <?php
-include_once('layouts/navbar.php');
-include_once('layouts/sidebar.php');
+include_once('public/layout/navbar.php');
+include_once('public/layout/sidebar.php');
 
 // check level
 if (!isset($_SESSION["officer"])) {
@@ -57,4 +57,4 @@ $spp = query("SELECT * FROM spp");
     </a>
 </section>
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('public/layout/footer.php'); ?>

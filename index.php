@@ -1,6 +1,6 @@
 <?php
-include_once('layouts/navbar.php');
-include_once('layouts/sidebar.php');
+include_once('public/layout/navbar.php');
+include_once('public/layout/sidebar.php');
 
 if (isset($_SESSION["admin"])) {
     echo "
@@ -29,19 +29,19 @@ $kelas = query("SELECT * FROM kelas");
 
 <h2>Informasi Singkat</h2>
 <section id="short">
-    <a href="student" class="card">
+    <a href="public/student" class="card">
         Jumlah Siswa
         <p class="total">
             <?= count($siswa); ?>
         </p>
     </a>
-    <a href="user" class="card">
+    <a href="public/user" class="card">
         Jumlah Pengguna
         <p class="total">
             <?= count($pengguna); ?>
         </p>
     </a>
-    <a href="class" class="card">
+    <a href="public/class" class="card">
         Jumlah Kelas
         <p class="total">
             <?= count($kelas); ?>
@@ -49,4 +49,4 @@ $kelas = query("SELECT * FROM kelas");
     </a>
 </section>
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('public/layout/footer.php'); ?>
