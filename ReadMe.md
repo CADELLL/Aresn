@@ -6,6 +6,12 @@ Website to manage school donations, making it easier for schools to manage donat
 
 [Link demo website](https://firm-members.000webhostapp.com).
 
+## Account
+
+| Admin      | Officer                               | Student                                  |
+| ---------- | ------------------------------------- | ---------------------------------------- |
+| Contact me | Email: budi@gmail.com. Password: budi | NISN: 0012332111, 0014729057, 0075984011 |
+
 ## Tecnology
 
 - HTML 5
