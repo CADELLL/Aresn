@@ -15,12 +15,6 @@ if (!isset($_SESSION["officer"])) {
 
 $id = $_GET['i'] == '' ? header('Location: index.php') : $_GET['i'];
 
-$bulan = month();
-$spp = query('SELECT * FROM spp');
-$pembayaran = query("SELECT *, 
-                    pembayaran.id AS id_pembayaran FROM pembayaran 
-                    JOIN spp ON spp.id = pembayaran.id_spp
-                    WHERE pembayaran.id = $id")[0];
 
 if (isset($_POST['update'])) {
     if (updatePayment($_POST) > 0) {
@@ -31,8 +25,17 @@ if (isset($_POST['update'])) {
             </script>
             ";
     }
-    $error = 1;
 }
+
+$bulan = month();
+$spp = query('SELECT * FROM spp');
+$pembayaran = query("SELECT *, 
+                    pembayaran.id AS id_pembayaran FROM pembayaran 
+                    JOIN spp ON spp.id = pembayaran.id_spp
+                    WHERE pembayaran.id = $id")[0];
+
+var_dump($pembayaran['nisn']);
+die;
 ?>
 
 <?php if (isset($error)) : ?>

@@ -18,10 +18,10 @@ $nisn = $_POST['nisn'] == '' ? header('Location: index.php') : $_POST['nisn'];
 
 // check no nisn
 $strNisn = strlen((string)$nisn);
-if ($strNisn < 8) {
+if ($strNisn < 10) {
     echo "
           <script>
-              alert('NISN minimum 8 karakter');
+              alert('NISN minimum 10 karakter');
               window.history.back();
           </script>
           ";
@@ -75,7 +75,7 @@ $totalPembayaran = count($pembayaran);
 </h2>
 <hr>
 <p>
-    NISN : 00<?= $siswa['nisn'] ?><br>
+    NISN : <?= $siswa['nisn'] ?><br>
     Nama : <?= $siswa['nama'] ?><br>
     Kelas : <?= $siswa['kelas'] ?><br>
     SPP : Tahun <?= $siswa['tahun'] ?> - Nominal Rp. <?= rupiah($siswa['nominal']) ?>

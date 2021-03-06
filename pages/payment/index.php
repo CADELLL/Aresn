@@ -85,7 +85,7 @@ $no = numberData($limit, $curretPage);
         <th>No</th>
         <th>Petugas</th>
         <th>Siswa</th>
-        <th>NISN (+00)</th>
+        <th>NISN</th>
         <th>Tanggal</th>
         <th>Bulan</th>
         <th>Tahun</th>
@@ -105,7 +105,6 @@ $no = numberData($limit, $curretPage);
             <td>
                 <a href="detail.php?i=<?= $p['id_pembayaran'] ?>" class="badge grey">Detail</a>
                 <?php if (isset($_SESSION['officer'])) : ?>
-                    <a href="update.php?i=<?= $p['id_pembayaran'] ?>" class="badge yellow">Ubah</a>
                     <a href="delete.php?i=<?= $p['id_pembayaran'] ?>" class="badge red" onclick="return confirm('Apakah yakin menghapus data pembayaran siswa <?= $p['nama_siswa'] ?>?')">Hapus</a>
                 <?php endif; ?>
             </td>

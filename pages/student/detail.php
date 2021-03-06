@@ -3,7 +3,7 @@ include_once('../layout/navbar.php');
 include_once('../layout/sidebar.php');
 
 // check level
-if (!isset($_SESSION["officer"])) {
+if (!isset($_SESSION["admin"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -13,82 +13,74 @@ if (!isset($_SESSION["officer"])) {
     exit;
 }
 
-// get value
-$nisn = $_GET['nisn'] == '' ? header('Location: index.php') : $_GET['nisn'];
+$nisn = $_GET['n'] == '' ? header('Location: index.php') : $_GET['n'];
 
-// check no nisn
-$strNisn = strlen((string)$nisn);
+$siswa = query("SELECT * FROM siswa
+                JOIN kelas ON siswa.id_kelas = kelas.id
+                JOIN spp ON siswa.id_spp = spp.id
+                WHERE nisn = $nisn")[0];
 
-if ($strNisn < 8) {
-    echo "
-          <script>
-              alert('NISN minimum 8 karakter');
-              window.history.back();
-          </script>
-          ";
-    return false;
-}
-
-$siswa = query("SELECT * FROM siswa WHERE siswa.nisn = $nisn");
-
-// check siswa
-if ($siswa == []) {
-    echo "
-        <script>
-            alert('NISN tidak terdaftar!');
-            window.history.back();
-        </script>
-        ";
-    exit;
-}
-
-// deklarasi
-$no = 1;
-// get month data
-$bulan = month();
 $pembayaran = query("SELECT * FROM pembayaran WHERE pembayaran.nisn = $nisn");
 
-// add month to bulanbayar
+$bulan = month();
+
 $bulanBayar = [];
 foreach ($pembayaran as $p) {
-    $bulanBayar[] = $p['bulan_dibayar'] ?? '';
+    $bulanBayar[] = $p['bulan_dibayar'];
 }
 
-// add minus month to bulanbayar 
 $minus = 12 - count($pembayaran);
 for ($i = 0; $i < $minus; $i++) {
     $bulanBayar[] = '';
 }
-
-// get data
-$siswa = query("SELECT * FROM siswa
-        JOIN kelas ON kelas.id = siswa.id_kelas
-        JOIN spp ON spp.id = siswa.id_spp
-        WHERE siswa.nisn = $nisn")[0];
-
-// totalpembayaran
-$totalPembayaran = count($pembayaran);
+$no = 1;
 ?>
 
-<h2>
-    SMKN 1 Kepanjen<br>
-    Struktur SPP
-</h2>
-<hr>
-<p>
-    NISN : 00<?= $siswa['nisn'] ?><br>
-    Nama : <?= $siswa['nama'] ?><br>
-    Kelas : <?= $siswa['kelas'] ?><br>
-    SPP : Tahun <?= $siswa['tahun'] ?> - Nominal Rp. <?= rupiah($siswa['nominal']) ?>
-</p>
-<br><br>
+<table class="table">
+    <tr>
+        <td colspan="2">
+            <span id="action">
+                <h2>Detail Siswa</h2>
+                <a href="index.php" class="badge grey">Kembali</a>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-bold">NISN</td>
+        <td><?= $siswa['nisn']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">NIS</td>
+        <td><?= $siswa['nis']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">Nama</td>
+        <td><?= $siswa['nama']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">Kelas</td>
+        <td><?= $siswa['kelas']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">Alamat</td>
+        <td><?= $siswa['alamat']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">No telepon (+62)</td>
+        <td><?= $siswa['no_telepon']; ?></td>
+    </tr>
+    <tr>
+        <td class="text-bold">SPP</td>
+        <td>Tahun <?= $siswa['tahun']; ?> - Nominal Rp. <?= rupiah($siswa['nominal']); ?></td>
+    </tr>
+</table>
+<br>
 <table class="table">
     <tr>
         <td colspan="8">
             <span id="action">
-                <h3>Daftar SPP</h3>
+                <h2>Daftar SPP</h2>
                 <span>
-                    <a href="index.php" class="badge grey">Kembali</a>
                     <a href="pdf_spp.php?n=<?= $nisn ?>" class="badge green">Unduh</a>
                 </span>
             </span>
@@ -99,7 +91,7 @@ $totalPembayaran = count($pembayaran);
         <th>Bulan</th>
         <th>Status</th>
     </tr>
-    <?php for ($i = 0; $i < 12; $i++) : ?>
+    <?php for ($i = 0; $i < $minus; $i++) : ?>
         <tr>
             <td><?= $no++; ?></td>
             <td><?= $bulan[$i]; ?></td>
@@ -142,13 +134,7 @@ $totalPembayaran = count($pembayaran);
                         echo "<div class='badge green'>Lunas<div>";
                         break;
                     default:
-                        echo "
-                        <form action='create.php' method='POST'>
-                            <input type='hidden' name='nisn' value='$nisn'>
-                            <input type='hidden' name='bulan_dibayar' value='$bulan[$i]'>
-                            <button type='submit' class='badge red' style='border:none; cursor:pointer;'>Tidak lunas</button>
-                        </form>
-                        ";
+                        echo "<div class='badge red'>Tidak lunas<div>";
                         break;
                 }
                 ?>

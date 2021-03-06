@@ -68,7 +68,7 @@ $html .= "<h3>
         </h3>
         <hr>
         <p>
-            NISN : 00" . $siswa['nisn'] . "<br>
+            NISN : " . $siswa['nisn'] . "<br>
             Nama : " . $siswa['nama'] . "<br>
             Kelas : " . $siswa['kelas'] . "<br>
             SPP : Tahun " . $siswa['tahun'] . " - Nominal Rp. " . rupiah($siswa['nominal']) . "

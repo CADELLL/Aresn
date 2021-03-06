@@ -57,7 +57,7 @@ $html .= "<h2>
 $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto'>
                 <tr>
                     <th>No</th>
-                    <th>NISN (+00)</th>
+                    <th>NISN</th>
                     <th>NIS</th>
                     <th>Nama</th>
                     <th>Kelas</th>

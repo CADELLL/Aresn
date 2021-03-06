@@ -46,7 +46,7 @@ if (isset($_POST['create'])) {
             </td>
         </tr>
         <tr>
-            <td><label class="text-bold" for="nisn">NISN (+00)</label></td>
+            <td><label class="text-bold" for="nisn">NISN</label></td>
             <td><input type="number" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" autofocus required></td>
         </tr>
         <tr>

@@ -3,7 +3,7 @@ include_once('../layout/navbar.php');
 include_once('../layout/sidebar.php');
 
 // check level
-if (!isset($_SESSION["officer"])) {
+if (isset($_SESSION["payment"])) {
     echo "
 		<script>
             alert('Tidak dapat mengakses fitur ini!');
@@ -14,17 +14,17 @@ if (!isset($_SESSION["officer"])) {
 }
 ?>
 
-<form action="spp.php" method="GET">
+<form action="detail.php" method="POST">
     <table class="table">
         <tr>
             <td colspan="2">
                 <span id="action">
-                    <h2>Cek NISN</h2>
+                    <h2>Cek SPP</h2>
                 </span>
             </td>
         </tr>
         <tr>
-            <td><label class="text-bold" for="nisn">NISN (+00)</label></td>
+            <td><label class="text-bold" for="nisn">NISN</label></td>
             <td><input type="number" name="nisn" class="input-form" id="nisn" placeholder="Masukkan NISN!" autocomplete="off" required></td>
         </tr>
         <tr>

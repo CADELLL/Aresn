@@ -76,7 +76,7 @@ $html .= "<table border='1' cellspacing='0' cellpadding='10' style='margin: auto
                     <th>No</th>
                     <th>Petugas</th>
                     <th>Siswa</th>
-                    <th>NISN (+00)</th>
+                    <th>NISN</th>
                     <th>Tanggal</th>
                     <th>Bulan</th>
                     <th>Tahun</th>

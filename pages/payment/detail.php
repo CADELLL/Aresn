@@ -44,7 +44,7 @@ $pembayaran = query("SELECT *,
         <td><?= $pembayaran['nama_siswa']; ?></td>
     </tr>
     <tr>
-        <td class="text-bold">NISN (+00)</td>
+        <td class="text-bold">NISN</td>
         <td><?= $pembayaran['nisn']; ?></td>
     </tr>
     <tr>

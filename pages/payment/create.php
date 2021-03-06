@@ -16,7 +16,6 @@ if (!isset($_SESSION["officer"])) {
 $nisn = $_POST['nisn'] == '' ? header('Location: index.php') : $_POST['nisn'];
 $bulan_dibayar = $_POST['bulan_dibayar'] == '' ? header('Location: index.php') : $_POST['bulan_dibayar'];
 
-$bulan = month();
 $siswa = query("SELECT * FROM siswa JOIN spp ON siswa.id_spp = spp.id WHERE nisn = '$nisn'")[0];
 
 if (isset($_POST['create'])) {
@@ -46,6 +45,10 @@ if (isset($_POST['create'])) {
         <tr>
             <td><label class="text-bold">Nama siswa</label></td>
             <td><input type="text" class="input-form" value="<?= $siswa['nama']; ?>" disabled></td>
+        </tr>
+        <tr>
+            <td><label class="text-bold">Bulan bayar</label></td>
+            <td><input type="text" class="input-form" value="<?= $bulan_dibayar; ?>" disabled></td>
         </tr>
         <tr>
             <td><label class="text-bold" for="jumlah_bayar">Jumlah bayar</label></td>
