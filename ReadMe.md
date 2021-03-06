@@ -20,47 +20,6 @@ A website for managing school donations, this website is an assignment from scho
 - Create PDF File
 - Responsive Website
 
-## Structure
-.
-+-- _config.yml
-+-- _drafts
-|   +-- begin-with-the-crazy-ideas.textile
-|   +-- on-simplicity-in-technology.markdown
-+-- _includes
-|   +-- footer.html
-|   +-- header.html
-+-- _layouts
-|   +-- default.html
-|   +-- post.html
-+-- _posts
-|   +-- 2007-10-29-why-every-programmer-should-play-nethack.textile
-|   +-- 2009-04-26-barcamp-boston-4-roundup.textile
-+-- _data
-|   +-- members.yml
-+-- _site
-+-- index.html
-
-.
-+-- _assets
-| +-- dompdf
-| +-- fonts
-| +-- images
-+-- _database
-+-- _public
-| +-- auth
-| +-- class
-| +-- donation
-| +-- general
-| +-- layout
-| +-- payment
-| +-- student
-| +-- user
-+-- _admin.php
-+-- _functions.php
-+-- _index.php
-+-- _officer.php
-+-- _style.css
-
 ## Screenshot
 
 |                                        |                                      |
