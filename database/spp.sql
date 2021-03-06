@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Mar 2021 pada 04.53
+-- Waktu pembuatan: 06 Mar 2021 pada 06.40
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_spp_88`
+-- Database: `spp`
 --
 
 -- --------------------------------------------------------
@@ -57,43 +57,6 @@ INSERT INTO `kelas` (`id`, `kelas`, `kompetensi_keahlian`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nisn`
---
-
-CREATE TABLE `nisn` (
-  `id` int(11) NOT NULL,
-  `nisn` bigint(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `nisn`
---
-
-INSERT INTO `nisn` (`id`, `nisn`) VALUES
-(1, 78392758),
-(2, 27185739),
-(4, 98371657),
-(5, 24147561),
-(6, 49185028),
-(7, 97561042),
-(8, 39175021),
-(9, 43148693),
-(10, 18672619),
-(11, 12332111),
-(12, 75937147),
-(13, 65819521),
-(14, 70341758),
-(15, 14729057),
-(16, 57392710),
-(17, 79834756),
-(18, 90245679),
-(19, 58915784),
-(20, 75984011),
-(21, 75984022);
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `pembayaran`
 --
 
@@ -113,9 +76,7 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id`, `id_petugas`, `nisn`, `tanggal_bayar`, `bulan_dibayar`, `tahun_dibayar`, `id_spp`, `jumlah_bayar`) VALUES
-(14, 22, 12332111, '2021-03-04', 'Januari', '2020', 5, 110000),
 (15, 22, 12332111, '2021-03-04', 'Februari', '2020', 5, 110000),
-(16, 22, 12332111, '2021-03-04', 'Maret', '2020', 5, 120000),
 (18, 26, 78392758, '2021-03-04', 'Januari', '2020', 5, 110000),
 (19, 26, 78392758, '2021-03-04', 'Februari', '2020', 5, 110000),
 (20, 26, 78392758, '2021-03-04', 'Maret', '2020', 5, 110000),
@@ -125,7 +86,16 @@ INSERT INTO `pembayaran` (`id`, `id_petugas`, `nisn`, `tanggal_bayar`, `bulan_di
 (24, 27, 24147561, '2021-03-04', 'April', '2021', 6, 100000),
 (25, 24, 24147561, '2021-03-04', 'Mei', '2021', 6, 100000),
 (26, 24, 24147561, '2021-03-04', 'Juni', '2021', 6, 100000),
-(27, 24, 24147561, '2021-03-04', 'Juli', '2021', 6, 150000);
+(27, 24, 24147561, '2021-03-04', 'Juli', '2021', 6, 150000),
+(28, 22, 12332111, '2021-03-04', 'Maret', '2020', 5, 120000),
+(29, 28, 75984011, '2021-03-04', 'Januari', '2020', 5, 110000),
+(30, 22, 12332111, '2021-03-05', 'Januari', '2020', 5, 110000),
+(31, 22, 12332111, '2021-03-05', 'April', '2020', 5, 110000),
+(32, 22, 12332111, '2021-03-05', 'Mei', '2020', 5, 110000),
+(33, 22, 12332111, '2021-03-05', 'Juni', '2020', 5, 110000),
+(34, 22, 12332111, '2021-03-05', 'Juli', '2020', 5, 110000),
+(35, 22, 12332111, '2021-03-05', 'Agustus', '2020', 5, 110000),
+(36, 22, 12332111, '2021-03-05', 'September', '2020', 5, 110000);
 
 -- --------------------------------------------------------
 
@@ -148,9 +118,7 @@ CREATE TABLE `pengguna` (
 INSERT INTO `pengguna` (`id`, `nama`, `email`, `kata_sandi`, `tingkat`) VALUES
 (19, 'Ardi', 'ardi@gmail.com', 'ardi', 'admin'),
 (20, 'Alvian', 'alvian@gmail.com', 'alvian', 'petugas'),
-(21, 'Abiyasa', 'abiyasa@gmail.com', 'abiyasa', 'admin'),
 (22, 'Rifad', 'rifad@gmail.com', 'rifad', 'petugas'),
-(23, 'Vito', 'vito@gmail.com', 'vito', 'admin'),
 (24, 'Hakim', 'hakim@gmail.com', 'hakim', 'petugas'),
 (25, 'Citra', 'citra@gmail.com', 'citra', 'petugas'),
 (26, 'Desyana', 'desyana@gmail.com', 'desyana', 'petugas'),
@@ -158,9 +126,7 @@ INSERT INTO `pengguna` (`id`, `nama`, `email`, `kata_sandi`, `tingkat`) VALUES
 (28, 'Revi', 'revi@gmail.com', 'revi', 'petugas'),
 (29, 'Dhela', 'dhela@gmail.com', 'dhela', 'petugas'),
 (30, 'Dewangga', 'dewangga@gmail.com', 'dewangga', 'petugas'),
-(31, 'Dafa', 'dafa@gmail.com', 'dafa', 'petugas'),
-(32, 'Prastanto', 'prastanto@gmail.com', 'prastanto', 'petugas'),
-(33, 'Tegar', 'tegar@gmail.com', 'tegar', 'petugas');
+(37, 'Budi', 'budi@gmail.com', 'budi', 'petugas');
 
 -- --------------------------------------------------------
 
@@ -243,12 +209,6 @@ ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `nisn`
---
-ALTER TABLE `nisn`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
@@ -283,28 +243,22 @@ ALTER TABLE `kelas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `nisn`
---
-ALTER TABLE `nisn`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `nisn` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98371658;
+  MODIFY `nisn` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=824123522;
 
 --
 -- AUTO_INCREMENT untuk tabel `spp`

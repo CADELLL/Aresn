@@ -9,16 +9,16 @@ function locationFile()
     global $mainUrl;
 
     switch ($mainUrl) {
-        case '/spp_88/index.php':
+        case '/spp/index.php':
             return '';
             break;
-        case '/spp_88/student.php':
+        case '/spp/student.php':
             return '';
             break;
-        case '/spp_88/admin.php':
+        case '/spp/admin.php':
             return '';
             break;
-        case '/spp_88/officer.php':
+        case '/spp/officer.php':
             return '';
             break;
         default:
@@ -31,7 +31,7 @@ function activeMainMenu($file = '',)
 {
     global $mainUrl;
 
-    if ($mainUrl == '/spp_88/' . $file) {
+    if ($mainUrl == '/spp/' . $file) {
         return 'active';
     }
 }

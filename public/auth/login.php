@@ -13,7 +13,7 @@ if (isset($_SESSION["tingkat"])) {
 }
 
 if (isset($_POST["login"])) {
-    $conn = mysqli_connect("localhost", "root", "", "db_spp_88");
+    $conn = mysqli_connect("localhost", "root", "", "spp");
 
     $email = $_POST["email"];
     $kata_sandi = $_POST["kata_sandi"];
@@ -58,6 +58,7 @@ if (isset($_POST["login"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk akun</title>
     <link rel="stylesheet" href="../../style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
 </head>
 
 <body>

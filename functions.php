@@ -1,10 +1,10 @@
 <?php
 // connection
-$conn = mysqli_connect("localhost", "root", "", "db_spp_88");
+$conn = mysqli_connect("localhost", "root", "", "spp");
 
 // get url & folder
 $url = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-$folder = '/spp_88/';
+$folder = '/spp/';
 
 // function query for query sintaks SQL
 function query($query)
@@ -37,6 +37,9 @@ function dynamicTitle()
     $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
     switch ($url) {
+        case $folder . '':
+            return 'Dashboard';
+            break;
         case $folder . 'index.php':
             return 'Dashboard';
             break;
