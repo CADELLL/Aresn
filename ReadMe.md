@@ -23,12 +23,12 @@ A website for managing school donations, this website is an assignment from scho
 ## Structure
 
 .
-+-- \_assets
++-- _assets
 | +-- dompdf
 | +-- fonts
 | +-- images
-+-- \_database
-+-- \_public
++-- _database
++-- _public
 | +-- auth
 | +-- class
 | +-- donation
@@ -37,11 +37,11 @@ A website for managing school donations, this website is an assignment from scho
 | +-- payment
 | +-- student
 | +-- user
-+-- \_admin.php
-+-- \_functions.php
-+-- \_index.php
-+-- \_officer.php
-+-- \_style.css
++-- _admin.php
++-- _functions.php
++-- _index.php
++-- _officer.php
++-- _style.css
 
 ## Screenshot
 
