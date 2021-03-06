@@ -56,7 +56,7 @@ if (isset($_POST["login"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk akun</title>
+    <title>Masuk Akun</title>
     <link rel="stylesheet" href="../../style.css">
     <link rel="shortcut icon" href="../../assets/images/favicon.ico">
 </head>

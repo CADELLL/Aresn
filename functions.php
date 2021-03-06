@@ -1,6 +1,6 @@
 <?php
 // connection
-$conn = mysqli_connect("localhost", "root", "", "spp");
+$conn = mysqli_connect("localhost", "root", "", "epiz_28089065_spp");
 
 // get url & folder
 $url = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');

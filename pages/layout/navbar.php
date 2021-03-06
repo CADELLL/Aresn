@@ -27,7 +27,7 @@ function locationFile()
     }
 }
 
-function activeMainMenu($file = '',)
+function activeMainMenu($file = '')
 {
     global $mainUrl;
 
