@@ -4,21 +4,21 @@ A website for managing school donations, this website is an assignment from scho
 
 ## Tecnology
 
-1. HTML
-2. CSS
-3. PHP
-4. MySQL
-5. Library DOMPDF
+- HTML
+- CSS
+- PHP
+- MySQL
+- Library DOMPDF
 
 ## Features
 
-1. CRUD (Create Read Update Delete)
-2. Authentication (Login & Logout)
-3. 3 Role (Admin, Officer, & Student)
-4. Searching
-5. Pagination
-6. Create PDF File
-7. Responsive Website
+- CRUD (Create Read Update Delete)
+- Authentication (Login & Logout)
+- 3 Role (Admin, Officer, & Student)
+- Searching
+- Pagination
+- Create PDF File
+- Responsive Website
 
 ## Structure
 
@@ -45,6 +45,9 @@ A website for managing school donations, this website is an assignment from scho
 
 ## Screenshot
 
-| ![Desktop](/assets/images/desktop.png) | ![Tablet](/assets/images/tablet.png) | ![Mobile](/assets/images/mobile.png) |
-| ![Login](/assets/images/login.png) | ![Spp](/assets/images/spp.png) | ![PDF](/assets/images/pdf.png) |
-| ![Payment](/assets/images/payment.png)
+|                                        |                                      |
+| -------------------------------------- | ------------------------------------ |
+| ![Desktop](/assets/images/desktop.png) | ![Tablet](/assets/images/tablet.png) |
+| ![Mobile](/assets/images/mobile.png)   | ![Login](/assets/images/login.png)   |
+| ![Spp](/assets/images/spp.png)         | ![Pdf](/assets/images/pdf.png)       |
+| ![Payment](/assets/images/mobile.png)  |
