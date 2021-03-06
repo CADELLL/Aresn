@@ -1,6 +1,6 @@
 # Website SPP
 
-A website for managing school donations, this website is an assignment from school.
+Website to manage school donations, making it easier for schools to manage donation finances. This website is a school assignment.
 
 ## Tecnology
 
