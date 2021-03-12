@@ -16,6 +16,7 @@ Website to manage school donations, making it easier for schools to manage donat
 
 - HTML 5
 - CSS 3
+- JavaScript
 - PHP 8.0.0
 - MySQL
 - Library DOMPDF
