@@ -1,17 +1,17 @@
 <?php
 // connection
-$conn = mysqli_connect("localhost", "root", "", "spp");
+$CONN = mysqli_connect("localhost", "root", "", "spp");
 
 // get url & folder
 $url = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-$folder = '/spp/';
+$FOLDER = '/spp/';
 
 // function query for query sintaks SQL
 function query($query)
 {
-    global $conn;
+    global $CONN;
 
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($CONN, $query);
     $rows = [];
 
     while ($row = mysqli_fetch_assoc($result)) {
@@ -24,125 +24,125 @@ function query($query)
 // active menu sidebar
 function activeMenu($file)
 {
-    global $url, $folder;
+    global $url, $FOLDER;
 
-    return $url == $folder . $file ? 'active' : '';
+    return $url == $FOLDER . $file ? 'active' : '';
 }
 
 // dynamic title
 function dynamicTitle()
 {
-    global $folder;
+    global $FOLDER;
 
     $url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
     switch ($url) {
-        case $folder . '':
+        case $FOLDER . '':
             return 'Dashboard';
             break;
-        case $folder . 'index.php':
+        case $FOLDER . 'index.php':
             return 'Dashboard';
             break;
-        case $folder . 'student.php':
+        case $FOLDER . 'student.php':
             return 'Dashboard Siswa';
             break;
-        case $folder . 'admin.php':
+        case $FOLDER . 'admin.php':
             return 'Dashboard Admin';
             break;
-        case $folder . 'officer.php':
+        case $FOLDER . 'officer.php':
             return 'Dashboard Petugas';
             break;
-        case $folder . 'pages/class/':
+        case $FOLDER . 'pages/class/':
             return 'Daftar Kelas';
             break;
-        case $folder . 'pages/class/index.php':
+        case $FOLDER . 'pages/class/index.php':
             return 'Daftar Kelas';
             break;
-        case $folder . 'pages/class/create.php':
+        case $FOLDER . 'pages/class/create.php':
             return 'Tambah Kelas';
             break;
-        case $folder . 'pages/class/update.php':
+        case $FOLDER . 'pages/class/update.php':
             return 'Ubah Kelas';
             break;
-        case $folder . 'pages/class/detail.php':
+        case $FOLDER . 'pages/class/detail.php':
             return 'Detail Kelas';
             break;
-        case $folder . 'pages/student/':
+        case $FOLDER . 'pages/student/':
             return 'Daftar Siswa';
             break;
-        case $folder . 'pages/student/index.php':
+        case $FOLDER . 'pages/student/index.php':
             return 'Daftar Siswa';
             break;
-        case $folder . 'pages/student/create.php':
+        case $FOLDER . 'pages/student/create.php':
             return 'Tambah Siswa';
             break;
-        case $folder . 'pages/student/update.php':
+        case $FOLDER . 'pages/student/update.php':
             return 'Ubah Siswa';
             break;
-        case $folder . 'pages/student/detail.php':
+        case $FOLDER . 'pages/student/detail.php':
             return 'Detail Siswa';
             break;
-        case $folder . 'pages/user/':
+        case $FOLDER . 'pages/user/':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'pages/user/index.php':
+        case $FOLDER . 'pages/user/index.php':
             return 'Daftar Pengguna';
             break;
-        case $folder . 'pages/user/create.php':
+        case $FOLDER . 'pages/user/create.php':
             return 'Tambah Pengguna';
             break;
-        case $folder . 'pages/user/update.php':
+        case $FOLDER . 'pages/user/update.php':
             return 'Ubah Pengguna';
             break;
-        case $folder . 'pages/payment/':
+        case $FOLDER . 'pages/payment/':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'pages/payment/index.php':
+        case $FOLDER . 'pages/payment/index.php':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'pages/payment/create.php':
+        case $FOLDER . 'pages/payment/create.php':
             return 'Tambah Pembayaran';
             break;
-        case $folder . 'pages/payment/update.php':
+        case $FOLDER . 'pages/payment/update.php':
             return 'Ubah Pembayaran';
             break;
-        case $folder . 'pages/payment/detail.php':
+        case $FOLDER . 'pages/payment/detail.php':
             return 'Detail Pembayaran';
             break;
-        case $folder . 'pages/payment/check.php':
+        case $FOLDER . 'pages/payment/check.php':
             return 'Cek NISN';
             break;
-        case $folder . 'pages/payment/spp.php':
+        case $FOLDER . 'pages/payment/spp.php':
             return 'SPP';
             break;
-        case $folder . 'pages/donation/':
+        case $FOLDER . 'pages/donation/':
             return 'Daftar SPP';
             break;
-        case $folder . 'pages/donation/index.php':
+        case $FOLDER . 'pages/donation/index.php':
             return 'Daftar SPP';
             break;
-        case $folder . 'pages/donation/create.php':
+        case $FOLDER . 'pages/donation/create.php':
             return 'Tambah SPP';
             break;
-        case $folder . 'pages/donation/update.php':
+        case $FOLDER . 'pages/donation/update.php':
             return 'Ubah SPP';
             break;
-        case $folder . 'pages/general/':
+        case $FOLDER . 'pages/general/':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'pages/general/index.php':
+        case $FOLDER . 'pages/general/index.php':
             return 'Daftar Pembayaran';
             break;
-        case $folder . 'pages/general/detail.php':
+        case $FOLDER . 'pages/general/detail.php':
             return 'Detail Pembayaran';
             break;
-        case $folder . 'pages/announcement/':
+        case $FOLDER . 'pages/announcement/':
             return 'Daftar Pengumuman';
             break;
-        case $folder . 'pages/announcement/index.php':
+        case $FOLDER . 'pages/announcement/index.php':
             return 'Daftar Pengumuman';
             break;
-        case $folder . 'pages/announcement/create.php':
+        case $FOLDER . 'pages/announcement/create.php':
             return 'Tambah Pengumuman';
             break;
         default;
@@ -192,9 +192,9 @@ function departement()
 // pagination
 function queryPagination($query)
 {
-    global $conn;
+    global $CONN;
 
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($CONN, $query);
 
     return mysqli_num_rows($result);
 }
@@ -223,21 +223,21 @@ function numberData($limit, $curretPage)
 // class
 function createClass($data)
 {
-    global $conn;
+    global $CONN;
 
     $kelas = htmlspecialchars($data["kelas"]);
     $kompetensi_keahlian = htmlspecialchars($data['kompetensi_keahlian']);
 
     $query = "INSERT INTO kelas VALUES ('','$kelas','$kompetensi_keahlian')";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function updateClass($data)
 {
-    global $conn;
+    global $CONN;
 
     $id = $data['id'];
     $kelas = htmlspecialchars($data['kelas']);
@@ -248,26 +248,26 @@ function updateClass($data)
                     kompetensi_keahlian = '$kompetensi_keahlian'
                 WHERE id = $id";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function deleteClass($id)
 {
-    global $conn;
+    global $CONN;
 
     $query = "DELETE FROM kelas WHERE id = $id";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 // users
 function createUser($data)
 {
-    global $conn;
+    global $CONN;
 
     $nama = htmlspecialchars($data["nama"]);
     $email = htmlspecialchars($data["email"]);
@@ -275,7 +275,7 @@ function createUser($data)
     $tingkat = htmlspecialchars($data["tingkat"]);
 
     // check email
-    $result = mysqli_query($conn, "SELECT email FROM pengguna WHERE email = '$email'");
+    $result = mysqli_query($CONN, "SELECT email FROM pengguna WHERE email = '$email'");
 
     if (mysqli_fetch_assoc($result)) {
         echo "
@@ -286,14 +286,14 @@ function createUser($data)
         return false;
     }
 
-    mysqli_query($conn, "INSERT INTO pengguna VALUES('', '$nama', '$email', '$kata_sandi', '$tingkat')");
+    mysqli_query($CONN, "INSERT INTO pengguna VALUES('', '$nama', '$email', '$kata_sandi', '$tingkat')");
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function updateUser($data)
 {
-    global $conn;
+    global $CONN;
 
     $id = $data["id"];
     $emailLama = $data["emailLama"];
@@ -303,7 +303,7 @@ function updateUser($data)
     $tingkat = htmlspecialchars($data["tingkat"]);
 
     // check email
-    $result = mysqli_query($conn, "SELECT email FROM pengguna WHERE email = '$email'");
+    $result = mysqli_query($CONN, "SELECT email FROM pengguna WHERE email = '$email'");
 
     if ($email !== $emailLama && mysqli_fetch_assoc($result)) {
         echo "
@@ -316,7 +316,7 @@ function updateUser($data)
 
 
     mysqli_query(
-        $conn,
+        $CONN,
         "UPDATE pengguna SET
             nama = '$nama',
             email = '$email', 
@@ -325,23 +325,23 @@ function updateUser($data)
         WHERE id = $id"
     );
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 
 function deleteUser($id)
 {
-    global $conn;
+    global $CONN;
 
-    mysqli_query($conn, "DELETE FROM pengguna WHERE id = $id");
+    mysqli_query($CONN, "DELETE FROM pengguna WHERE id = $id");
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 // Student
 function createStudent($data)
 {
-    global $conn;
+    global $CONN;
 
     $nisn = htmlspecialchars($data['nisn']);
     $nis = htmlspecialchars($data['nis']);
@@ -385,7 +385,7 @@ function createStudent($data)
     }
 
     // check nisn student
-    $resultStudent = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
+    $resultStudent = mysqli_query($CONN, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
 
     if (mysqli_fetch_assoc($resultStudent)) {
         echo ("
@@ -396,7 +396,7 @@ function createStudent($data)
         return false;
     }
 
-    $resultStudentNis = mysqli_query($conn, "SELECT nis FROM siswa WHERE nis = '$nis'");
+    $resultStudentNis = mysqli_query($CONN, "SELECT nis FROM siswa WHERE nis = '$nis'");
 
     if (mysqli_fetch_assoc($resultStudentNis)) {
         echo ("
@@ -410,15 +410,15 @@ function createStudent($data)
 
     $query = "INSERT INTO siswa VALUES ('$nisn','$nis','$nama','$id_kelas','$alamat','$no_telepon','$id_spp')";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 
 function updateStudent($data)
 {
-    global $conn;
+    global $CONN;
 
     $nisLama = $data['nisLama'];
     $nisnLama = $data['nisnLama'];
@@ -464,7 +464,7 @@ function updateStudent($data)
     }
 
     // check nisn student
-    $resultNisn = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nis = '$nis'");
+    $resultNisn = mysqli_query($CONN, "SELECT nisn FROM siswa WHERE nis = '$nis'");
 
     if ($nisn !== $nisnLama && mysqli_fetch_assoc($resultNisn)) {
         echo "
@@ -476,7 +476,7 @@ function updateStudent($data)
     }
 
     // check nis student
-    $resultNis = mysqli_query($conn, "SELECT nis FROM siswa WHERE nis = '$nis'");
+    $resultNis = mysqli_query($CONN, "SELECT nis FROM siswa WHERE nis = '$nis'");
 
     if ($nis !== $nisLama && mysqli_fetch_assoc($resultNis)) {
         echo "
@@ -496,41 +496,41 @@ function updateStudent($data)
                 id_spp = '$id_spp'
             WHERE nisn = $nisn";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 
 function deleteStudent($nisn)
 {
-    global $conn;
+    global $CONN;
 
     $query = "DELETE FROM siswa WHERE nisn = $nisn";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 // Spp
 function createDonation($data)
 {
-    global $conn;
+    global $CONN;
 
     $tahun = htmlspecialchars($data['tahun']);
     $nominal = htmlspecialchars($data['nominal']);
 
     $query = "INSERT INTO spp VALUES ('','$tahun','$nominal')";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function updateDonation($data)
 {
-    global $conn;
+    global $CONN;
 
     $id = $data['id'];
     $tahun = htmlspecialchars($data['tahun']);
@@ -541,26 +541,26 @@ function updateDonation($data)
                     nominal = '$nominal'
                 WHERE id = $id";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function deleteDonation($id)
 {
-    global $conn;
+    global $CONN;
 
     $query = "DELETE FROM spp WHERE id = $id";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 // payment 
 function createPayment($data)
 {
-    global $conn;
+    global $CONN;
 
     $id_petugas = $_SESSION['id'];
     $nisn = htmlspecialchars($data['nisn']);
@@ -569,7 +569,7 @@ function createPayment($data)
     $jumlah_bayar = htmlspecialchars($data['jumlah_bayar']);
 
     // check nisn
-    $resultSiswa = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
+    $resultSiswa = mysqli_query($CONN, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
 
     if (!mysqli_fetch_assoc($resultSiswa)) {
         echo "
@@ -584,7 +584,7 @@ function createPayment($data)
     $id_spp = (int)$resultSpp['id_spp'];
     $tahun_dibayar = $resultSpp['tahun'];
 
-    $resultMonth = mysqli_query($conn, "SELECT * FROM pembayaran WHERE nisn = '$nisn' ");
+    $resultMonth = mysqli_query($CONN, "SELECT * FROM pembayaran WHERE nisn = '$nisn' ");
 
     // check month
     foreach ($resultMonth as $rm) {
@@ -612,14 +612,14 @@ function createPayment($data)
 
     $query = "INSERT INTO pembayaran VALUES ('','$id_petugas','$nisn','$tanggal_bayar','$bulan_dibayar','$tahun_dibayar','$id_spp','$jumlah_bayar')";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function updatePayment($data)
 {
-    global $conn;
+    global $CONN;
 
     $id_petugas = $data['id_petugas'];
     $bulan_lama = $data['bulan_lama'];
@@ -643,7 +643,7 @@ function updatePayment($data)
 
 
     // check nisn
-    $resultNisn = mysqli_query($conn, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
+    $resultNisn = mysqli_query($CONN, "SELECT nisn FROM siswa WHERE nisn = '$nisn'");
 
     if ($nisn !== $nisn_lama && !mysqli_fetch_assoc($resultNisn)) {
         echo "
@@ -654,7 +654,7 @@ function updatePayment($data)
         return false;
 
         // check bulan
-        $resultMonth = mysqli_query($conn, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
+        $resultMonth = mysqli_query($CONN, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
 
         foreach ($resultMonth as $rm) {
             if ($rm['bulan_dibayar'] == $bulan_dibayar) {
@@ -669,7 +669,7 @@ function updatePayment($data)
     }
 
     // check bulan
-    $resultMonth = mysqli_query($conn, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
+    $resultMonth = mysqli_query($CONN, "SELECT bulan_dibayar FROM pembayaran WHERE nisn = '$nisn'");
 
     foreach ($resultMonth as $rm) {
         if ($bulan_dibayar !== $bulan_lama && $rm['bulan_dibayar'] == $bulan_dibayar) {
@@ -705,14 +705,14 @@ function updatePayment($data)
                     jumlah_bayar = '$jumlah_bayar'
                 WHERE id = $id_pembayaran";
 
-    mysqli_query($conn, $query);
+    mysqli_query($CONN, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function deletePayment($id)
 {
-    global $conn;
+    global $CONN;
 
     $id_petugas = $_SESSION['id'];
 
@@ -729,15 +729,15 @@ function deletePayment($id)
         return false;
     }
 
-    mysqli_query($conn, "DELETE FROM pembayaran WHERE id = '$id'");
+    mysqli_query($CONN, "DELETE FROM pembayaran WHERE id = '$id'");
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 // Announcement
 function createAnnouncement($data)
 {
-    global $conn;
+    global $CONN;
 
     $judul = htmlspecialchars($data['judul']);
     $pembuka = htmlspecialchars($data['pembuka']);
@@ -745,16 +745,16 @@ function createAnnouncement($data)
     $penutup = htmlspecialchars($data['penutup']);
     $tanggal = htmlspecialchars($data['tanggal']);
 
-    mysqli_query($conn, "INSERT INTO pengumuman VALUES('', '$judul', '$pembuka', '$isi', '$penutup', '$tanggal')");
+    mysqli_query($CONN, "INSERT INTO pengumuman VALUES('', '$judul', '$pembuka', '$isi', '$penutup', '$tanggal')");
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }
 
 function deleteAnnoucement($id)
 {
-    global $conn;
+    global $CONN;
 
-    mysqli_query($conn, "DELETE FROM pengumuman WHERE id = $id");
+    mysqli_query($CONN, "DELETE FROM pengumuman WHERE id = $id");
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($CONN);
 }

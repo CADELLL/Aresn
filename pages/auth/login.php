@@ -13,13 +13,13 @@ if (isset($_SESSION["tingkat"])) {
 }
 
 if (isset($_POST["login"])) {
-    $conn = mysqli_connect("localhost", "root", "", "spp");
+    $CONN = mysqli_connect("localhost", "root", "", "spp");
 
     $email = $_POST["email"];
     $kata_sandi = $_POST["kata_sandi"];
 
     // get user
-    $results = mysqli_query($conn, "SELECT * FROM pengguna WHERE email = '$email'");
+    $results = mysqli_query($CONN, "SELECT * FROM pengguna WHERE email = '$email'");
 
     // check email
     if (mysqli_num_rows($results) === 1) {
