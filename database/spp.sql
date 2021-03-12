@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Mar 2021 pada 06.40
+-- Waktu pembuatan: 12 Mar 2021 pada 14.15
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.0
 
@@ -131,12 +131,34 @@ INSERT INTO `pengguna` (`id`, `nama`, `email`, `kata_sandi`, `tingkat`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `pengumuman`
+--
+
+CREATE TABLE `pengumuman` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(50) NOT NULL,
+  `pembuka` text NOT NULL,
+  `isi` text NOT NULL,
+  `penutup` text NOT NULL,
+  `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `judul`, `pembuka`, `isi`, `penutup`, `tanggal`) VALUES
+(4, 'Ikatan Remaja Masjid Al-Liqo', 'Dalam rangka menyambut dan mengisi bulan Ramadan 1439 Hijriah, kami selaku Ikatan Remaja Masjid Al-Liqo akan mengadakan sejumlah kegiatan yang antara lain:', 'Pesantren kilat di Masjid Jami Al-Liqo.\r\nMalam Bina Iman dan Taqwa (Mabit).\r\nPentas seni dari para santri dan santriwati pesantren kilat.\r\nRihlah', 'Besar harapan kami agar para jamaah Masji Jami Al-Liqo berkenan untuk mengikutsertakan anak-anaknya mengikuti program-program yang akan kami laksanakan tersebut\r\n\r\nDemikianlah pengumuman ini kami buat. Atas perhatiannya, kami ucapkan terima kasih.', '2021-03-12');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `siswa`
 --
 
 CREATE TABLE `siswa` (
-  `nisn` bigint(10) NOT NULL,
-  `nis` bigint(8) NOT NULL,
+  `nisn` varchar(10) NOT NULL,
+  `nis` varchar(8) NOT NULL,
   `nama` varchar(35) NOT NULL,
   `id_kelas` int(11) NOT NULL,
   `alamat` text NOT NULL,
@@ -149,25 +171,25 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telepon`, `id_spp`) VALUES
-(12332111, 9812, 'Ilsa Puspita', 3, 'Kpg. Flora No. 755, Malang 92603, PapBar', 39326348816, 5),
-(14729057, 1821, 'Diana Gunarto', 8, 'Gg. Bank Dagang Negara No. 668, Binjai 63026, NTT', 86910662034, 6),
-(18672619, 9890, 'Sadina Setiawan', 2, 'Gg. Rumah Sakit No. 599, Tanjung Pinang 87325, DIY', 52807758784, 6),
-(24147561, 9071, 'Endah Haryanti', 5, 'Psr. Kusmanto No. 750, Sawahlunto 43438, PapBar', 5804149093, 6),
-(27185739, 9872, 'Wani Sinaga', 2, 'Jln. Pasir Koja No. 212, Yogyakarta', 65403053189, 6),
-(39175021, 2352, 'Violet Santoso', 4, 'Gg. Bahagia No. 75, Palembang 26747, Gorontalo', 37856634861, 6),
-(43148693, 9724, 'Niyaga Rajasa', 10, 'Ki. Panjaitan No. 712, Administrasi Jakarta Pusat 39996, Gorontalo', 5956322631, 6),
-(49185028, 12412, 'Jais Lestari', 3, 'Kpg. Rumah Sakit No. 813, Pasuruan 67771, NTT', 57544079901, 6),
-(57392710, 1218, 'Naradi Hartati', 2, 'Jln. Qrisdoren No. 334, Bandar Lampung 83077, DKI', 6541203645, 6),
-(58915784, 5231, 'Ellis Nababan', 8, 'Ki. Basuki No. 612, Pagar Alam 14862, BaBel', 9599369046, 6),
-(65819521, 9832, 'Jarwi Hartati', 10, 'Psr. Cikutra Timur No. 638, Pekanbaru 22486, JaBar', 48454401612, 6),
-(70341758, 7912, 'Elisa Namaga', 6, 'Ki. Sadang Serang No. 316, Administrasi Jakarta Barat 17496, NTB', 29161407712, 5),
-(75937147, 1282, 'Kala Astuti', 7, 'Jln. Sudirman No. 749, Tarakan 98029, KepR', 93186550537, 6),
-(75984011, 2423, 'Garang Firmansyah', 12, 'Jr. Sukajadi No. 133, Kotamobagu 99014, SumUt', 8496851921, 5),
-(78392758, 5212, 'Estiawan Nuraini', 3, 'Kpg. Teuku Umar No. 324, Pariaman 40566', 81859523150, 5),
-(79834756, 1723, 'Halima Simanjuntak', 6, 'Jr. Bakti No. 772, Pangkal Pinang 41314, Banten', 97414603867, 6),
-(90245679, 5621, 'Daryani Oktaviani', 1, 'Psr. Kiaracondong No. 467, Gunungsitoli 45186, JaTim', 7281999039, 6),
-(97561042, 4531, 'Padma Kurniawan', 15, 'Jln. R.M. Said No. 83, Binjai 40484, SulBar', 52287844841, 6),
-(98371657, 5341, 'Siska Yolanda', 8, 'Jln. Qrisdoren No. 103, Batam 33985, JaTim', 8021685880, 6);
+('0012332111', '9812', 'Ilsa Puspita', 3, 'Kpg. Flora No. 755, Malang 92603, PapBar', 39326348816, 5),
+('0014729057', '1821', 'Diana Gunarto', 8, 'Gg. Bank Dagang Negara No. 668, Binjai 63026, NTT', 86910662034, 6),
+('0018672619', '9890', 'Sadina Setiawan', 2, 'Gg. Rumah Sakit No. 599, Tanjung Pinang 87325, DIY', 52807758784, 6),
+('0024147561', '9071', 'Endah Haryanti', 5, 'Psr. Kusmanto No. 750, Sawahlunto 43438, PapBar', 5804149093, 6),
+('0027185739', '9872', 'Wani Sinaga', 2, 'Jln. Pasir Koja No. 212, Yogyakarta', 65403053189, 6),
+('0039175021', '2352', 'Violet Santoso', 4, 'Gg. Bahagia No. 75, Palembang 26747, Gorontalo', 37856634861, 6),
+('0043148693', '9724', 'Niyaga Rajasa', 10, 'Ki. Panjaitan No. 712, Administrasi Jakarta Pusat 39996, Gorontalo', 5956322631, 6),
+('0049185028', '12412', 'Jais Lestari', 3, 'Kpg. Rumah Sakit No. 813, Pasuruan 67771, NTT', 57544079901, 6),
+('0057392710', '1218', 'Naradi Hartati', 2, 'Jln. Qrisdoren No. 334, Bandar Lampung 83077, DKI', 6541203645, 6),
+('0058915784', '5231', 'Ellis Nababan', 8, 'Ki. Basuki No. 612, Pagar Alam 14862, BaBel', 9599369046, 6),
+('0065819521', '9832', 'Jarwi Hartati', 10, 'Psr. Cikutra Timur No. 638, Pekanbaru 22486, JaBar', 48454401612, 6),
+('0070341758', '7912', 'Elisa Namaga', 6, 'Ki. Sadang Serang No. 316, Administrasi Jakarta Barat 17496, NTB', 29161407712, 5),
+('0075937147', '1282', 'Kala Astuti', 7, 'Jln. Sudirman No. 749, Tarakan 98029, KepR', 93186550537, 6),
+('0075984011', '2423', 'Garang Firmansyah', 12, 'Jr. Sukajadi No. 133, Kotamobagu 99014, SumUt', 8496851921, 5),
+('0079834756', '1723', 'Halima Simanjuntak', 6, 'Jr. Bakti No. 772, Pangkal Pinang 41314, Banten', 97414603867, 6),
+('0090245679', '5621', 'Daryani Oktaviani', 1, 'Psr. Kiaracondong No. 467, Gunungsitoli 45186, JaTim', 7281999039, 6),
+('0097561042', '4531', 'Padma Kurniawan', 15, 'Jln. R.M. Said No. 83, Binjai 40484, SulBar', 52287844841, 6),
+('0098371657', '5341', 'Siska Yolanda', 8, 'Jln. Qrisdoren No. 103, Batam 33985, JaTim', 8021685880, 6),
+('7839200758', '5212', 'Estiawan Nuraini', 3, 'Kpg. Teuku Umar No. 324, Pariaman 40566', 81859523150, 5);
 
 -- --------------------------------------------------------
 
@@ -221,6 +243,12 @@ ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
@@ -255,10 +283,10 @@ ALTER TABLE `pengguna`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT untuk tabel `siswa`
+-- AUTO_INCREMENT untuk tabel `pengumuman`
 --
-ALTER TABLE `siswa`
-  MODIFY `nisn` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=824123522;
+ALTER TABLE `pengumuman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `spp`
