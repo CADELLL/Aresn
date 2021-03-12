@@ -137,13 +137,13 @@ function dynamicTitle()
             return 'Detail Pembayaran';
             break;
         case $folder . 'pages/announcement/':
-            return 'Daftar SPP';
+            return 'Daftar Pengumuman';
             break;
         case $folder . 'pages/announcement/index.php':
-            return 'Daftar SPP';
+            return 'Daftar Pengumuman';
             break;
         case $folder . 'pages/announcement/create.php':
-            return 'Tambah SPP';
+            return 'Tambah Pengumuman';
             break;
         default;
             return;
