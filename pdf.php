@@ -46,4 +46,4 @@ $html .= "<div style='margin-left: 70%;'>
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream('Pengumuman' . $pengumuman['judul']);
+$dompdf->stream('Pengumuman ' . $pengumuman['judul']);
