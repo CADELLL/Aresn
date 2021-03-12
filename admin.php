@@ -18,6 +18,36 @@ $pengguna = query("SELECT * FROM pengguna");
 $kelas = query("SELECT * FROM kelas");
 $pembayaran = query("SELECT * FROM pembayaran");
 $spp = query("SELECT * FROM spp");
+$totalPengumuman = query("SELECT * FROM pengumuman");
+
+if (isset($_POST['search'])) {
+    $keyword = $_POST['keyword'];
+} else {
+    $keyword = '';
+}
+
+$totalData = queryPagination("SELECT * FROM pengumuman 
+                                WHERE judul LIKE '%$keyword%' OR
+                                    tanggal LIKE '%$keyword%'
+                                ORDER BY tanggal DESC");
+// pagination
+$limit = 10;
+$totalPage = ceil($totalData / $limit);
+// convert high value to number of rounds
+$activePage = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$curretPage = $activePage ? $activePage : 1;
+$startData = ($activePage * $limit) - $limit;
+
+$link = 2;
+$startNumber = startNumber($activePage, $link);
+$endNumber = endNumber($activePage, $link, $totalPage);
+
+$pengumuman = mysqli_query($conn, "SELECT * FROM pengumuman 
+                                    WHERE judul LIKE '%$keyword%' OR
+                                        tanggal LIKE '%$keyword%'
+                                    ORDER BY tanggal DESC LIMIT $startData, $limit");
+// data no
+$no = numberData($limit, $curretPage);
 ?>
 
 <h2>Informasi Singkat</h2>
@@ -26,6 +56,12 @@ $spp = query("SELECT * FROM spp");
         Daftar Siswa
         <p class="total">
             <?= count($siswa); ?>
+        </p>
+    </a>
+    <a href="pages/class" class="card">
+        Daftar Kelas
+        <p class="total">
+            <?= count($kelas); ?>
         </p>
     </a>
     <a href="pages/payment" class="card">
@@ -49,12 +85,55 @@ $spp = query("SELECT * FROM spp");
             <?= count($pengguna); ?>
         </p>
     </a>
-    <a href="pages/class" class="card">
-        Daftar Kelas
+    <a href="pages/announcement" class="card">
+        Daftar Pengumuman
         <p class="total">
-            <?= count($kelas); ?>
+            <?= count($totalPengumuman); ?>
         </p>
     </a>
 </section>
 
+<br>
+<h2>Pengumuman</h2>
+<table class="table">
+    <tr>
+        <th>No</th>
+        <th>Judul</th>
+        <th>Tanggal</th>
+        <th>Pengaturan</th>
+    </tr>
+    <?php $no = 1; ?>
+    <?php foreach ($pengumuman as $p) : ?>
+        <tr>
+            <td><?= $no++ ?></td>
+            <td><?= $p['judul'] ?></td>
+            <td><?= $p['tanggal'] ?></td>
+            <td>
+                <a href="pdf.php?i=<?= $p['id']; ?>" class="badge green">Unduh</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
+<div class="pagination">
+    <a href="?page=1" class="badge grey">Awal</a>
+
+    <?php if ($activePage > 1) : ?>
+        <a href="?page=<?= $activePage - 1; ?>"><i class='bx bx-caret-left badge grey'></i></a>
+    <?php endif; ?>
+
+    <?php for ($i = $startNumber; $i <= $endNumber; $i++) : ?>
+        <?php if ($i == $activePage) : ?>
+            <a href="?page=<?= $i; ?>" class="badge green"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="?page=<?= $i; ?>" class="badge grey"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <?php if ($activePage < $totalPage) : ?>
+        <a href="?page=<?= $activePage + 1; ?>"><i class='bx bx-caret-right badge grey'></i></a>
+    <?php endif; ?>
+
+    <a href="?page=<?= $totalPage; ?>" class="badge grey">Akhir</a>
+</div>
 <?php include_once('pages/layout/footer.php'); ?>

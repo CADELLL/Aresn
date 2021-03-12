@@ -21,6 +21,9 @@ function locationFile()
         case '/spp/officer.php':
             return '';
             break;
+        case '/spp/detail_pengumuman.php':
+            return '';
+            break;
         default:
             return '../../';
             break;

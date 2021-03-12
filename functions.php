@@ -136,6 +136,15 @@ function dynamicTitle()
         case $folder . 'pages/general/detail.php':
             return 'Detail Pembayaran';
             break;
+        case $folder . 'pages/announcement/':
+            return 'Daftar SPP';
+            break;
+        case $folder . 'pages/announcement/index.php':
+            return 'Daftar SPP';
+            break;
+        case $folder . 'pages/announcement/create.php':
+            return 'Tambah SPP';
+            break;
         default;
             return;
     }
@@ -721,6 +730,31 @@ function deletePayment($id)
     }
 
     mysqli_query($conn, "DELETE FROM pembayaran WHERE id = '$id'");
+
+    return mysqli_affected_rows($conn);
+}
+
+// Announcement
+function createAnnouncement($data)
+{
+    global $conn;
+
+    $judul = htmlspecialchars($data['judul']);
+    $pembuka = htmlspecialchars($data['pembuka']);
+    $isi = htmlspecialchars($data['isi']);
+    $penutup = htmlspecialchars($data['penutup']);
+    $tanggal = htmlspecialchars($data['tanggal']);
+
+    mysqli_query($conn, "INSERT INTO pengumuman VALUES('', '$judul', '$pembuka', '$isi', '$penutup', '$tanggal')");
+
+    return mysqli_affected_rows($conn);
+}
+
+function deleteAnnoucement($id)
+{
+    global $conn;
+
+    mysqli_query($conn, "DELETE FROM pengumuman WHERE id = $id");
 
     return mysqli_affected_rows($conn);
 }
