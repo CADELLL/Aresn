@@ -25,6 +25,7 @@ if (isset($_SESSION["officer"])) {
 $siswa = query("SELECT * FROM siswa");
 $pengguna = query("SELECT * FROM pengguna");
 $kelas = query("SELECT * FROM kelas");
+$pengumuman = query("SELECT * FROM pengumuman ORDER BY id DESC");
 ?>
 
 <h2>Informasi Singkat</h2>
@@ -48,5 +49,25 @@ $kelas = query("SELECT * FROM kelas");
         </p>
     </a>
 </section>
+
+<h2>Pengumuman</h2>
+<table class="table">
+    <tr>
+        <th>No</th>
+        <th>Judul</th>
+        <th>Tanggal</th>
+        <th>Pengaturan</th>
+    </tr>
+    <?php $no = 1; ?>
+    <?php foreach ($pengumuman as $p) : ?>
+        <tr>
+            <td><?= $no++ ?></td>
+            <td><?= $p['judul'] ?></td>
+            <td><?= $p['tanggal'] ?></td>
+            <td><a href="pdf.php?i=<?= $p['id']; ?>" class="badge green">File PDF</a></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+
 
 <?php include_once('pages/layout/footer.php'); ?>
