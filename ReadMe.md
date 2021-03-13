@@ -1,54 +1,51 @@
-# Website SPP
+<h1 align="center">Selamat datang di WebSPP! 👋</h1>
 
-Website to manage school donations, making it easier for schools to manage donation finances. This website is a school assignment.
+![WebSPP - Screenshot](/assets/images/dashboard.png)
 
-## Demo Website
+<p align ="Center">
 
-[Link demo website](https://firm-members.000webhostapp.com).
+<img src="https://img.shields.io/github/issues/hafidardiansyah/Website-SPP?style=flat-square">
+<img src="https://img.shields.io/github/stars/hafidardiansyah/Website-SPP?style=flat-square">
+<img src="https://img.shields.io/github/forks/hafidardiansyah/Website-SPP?style=flat-square">
 
-## Account
+</p>
+### 🤔 Apa itu WebSPP?
+WebSPP adalah website untuk mengelola SPP sekolah, yang dibuat oleh <a href="https://github.com/hafidardiansyah"> Hafid Ardiansyah </a>. Menggunakan teknologi HTML, CSS, JavaScript, PHP dan MySQL.
 
-| Admin      | Officer                               | Student                                  |
-| ---------- | ------------------------------------- | ---------------------------------------- |
-| Contact me | Email: budi@gmail.com. Password: budi | NISN: 0012332111, 0014729057, 0075984011 |
+### 🎉 Kenapa membuat WebSPP?
 
-## Tecnology
+Website ini hasil kerja saya dari Ujian Kompetensi Keahlian (UKK) Rekayasa Perangkat Lunak (RPL).
 
-- HTML 5
-- CSS 3
-- JavaScript
-- PHP 8.0.0
-- MySQL
-- Library DOMPDF
+### ✨ <a href="https://firm-members.000webhostapp.com">Demo</a>
 
-## Features
+Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
+
+### :floppy_disk: Akun
+
+| Admin        | Petugas                               | Siswa                                    |
+| ------------ | ------------------------------------- | ---------------------------------------- |
+| Hubungi saya | Email: budi@gmail.com. Password: budi | NISN: 0012332111, 0014729057, 0075984011 |
+
+### :star: Fitur
 
 - CRUD (Create Read Update Delete)
-- Authentication (Login & Logout)
-- 3 Role (Admin, Officer, & Student)
-- Searching
+- Autentikasi (Login & Logout)
+- 3 Role (Admin, Petugas, & Siswa)
+- Pencarian
 - Pagination
-- Create PDF File
+- Membuat PDF File
 - Responsive Website
 
-## Installation with XAMPP
+### :link: Social Media
 
-1. Download code.
-2. Ekstrak file.
-3. Move folder to 'xampp/htdocs'.
-4. Open XAMPP and start server Apache & phpMyAdmin.
-5. Open Browser visit 'localhost/phpmyadmin'.
-6. Create new database & import database from folder 'project_name/database'.
-7. Open project with Text Editor.
-8. Change connection in funtions.php file.
-9. New tab and visit 'localhost/project_name'.
-10. Done.
+- Instagram : <a href="http://instagram.com/dev.hafid"> @dev.hafid</a>
+- Dribbble : <a href="https://dribbble.com/hafidardiansyah"> hafidardiansyah</a>
 
-## Screenshot
+### 📝 Lisensi
 
-|                                        |                                      |
-| -------------------------------------- | ------------------------------------ |
-| ![Desktop](/assets/images/desktop.png) | ![Tablet](/assets/images/tablet.png) |
-| ![Mobile](/assets/images/mobile.png)   | ![Login](/assets/images/login.png)   |
-| ![Spp](/assets/images/spp.png)         | ![Pdf](/assets/images/pdf.png)       |
-| ![Payment](/assets/images/payment.png) |
+- Copyright © 2020 Hafid Ardiansyah.
+- **WebSPP Apache-2.0 License.**
+
+---
+
+- **Made with ❤️ by Hafid Ardiansyah**
