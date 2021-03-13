@@ -35,7 +35,7 @@ Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
 - 3 Role (Admin, Petugas, & Siswa)
 - Pencarian
 - Pagination
-- Membuat PDF file
+- Membuat file PDF
 - Responsive website
 
 ### :link: Social Media
