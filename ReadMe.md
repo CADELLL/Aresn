@@ -4,9 +4,9 @@
 
 <p align ="Center">
 
-<img src="https://img.shields.io/github/issues/hafidardiansyah/Website-SPP?style=flat-square">
-<img src="https://img.shields.io/github/stars/hafidardiansyah/Website-SPP?style=flat-square">
-<img src="https://img.shields.io/github/forks/hafidardiansyah/Website-SPP?style=flat-square">
+<img src="https://img.shields.io/github/issues/hafidardiansyah/WebSPP?style=flat-square">
+<img src="https://img.shields.io/github/stars/hafidardiansyah/WebSPP?style=flat-square">
+<img src="https://img.shields.io/github/forks/hafidardiansyah/WebSPP?style=flat-square">
 
 </p>
 
