@@ -9,7 +9,9 @@
 <img src="https://img.shields.io/github/forks/hafidardiansyah/Website-SPP?style=flat-square">
 
 </p>
+
 ### 🤔 Apa itu WebSPP?
+
 WebSPP adalah website untuk mengelola SPP sekolah, yang dibuat oleh <a href="https://github.com/hafidardiansyah"> Hafid Ardiansyah </a>. Menggunakan teknologi HTML, CSS, JavaScript, PHP dan MySQL.
 
 ### 🎉 Kenapa membuat WebSPP?
@@ -33,8 +35,8 @@ Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
 - 3 Role (Admin, Petugas, & Siswa)
 - Pencarian
 - Pagination
-- Membuat PDF File
-- Responsive Website
+- Membuat PDF file
+- Responsive website
 
 ### :link: Social Media
 
