@@ -18,7 +18,7 @@ WebSPP adalah website untuk mengelola SPP sekolah, yang dibuat oleh <a href="htt
 
 Website ini hasil kerja saya dari Ujian Kompetensi Keahlian (UKK) Rekayasa Perangkat Lunak (RPL).
 
-### ✨ <a href="https://firm-members.000webhostapp.com">Demo</a>
+### ✨ Demo
 
 Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
 
