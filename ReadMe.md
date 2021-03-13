@@ -1,20 +1,20 @@
-<h1 align="center">Selamat datang di WebSPP! 👋</h1>
+<h1 align="center">Selamat datang di Aresn! 👋</h1>
 
 ![WebSPP - Screenshot](/assets/images/dashboard.png)
 
 <p align ="Center">
 
-<img src="https://img.shields.io/github/issues/hafidardiansyah/WebSPP?style=flat-square">
-<img src="https://img.shields.io/github/stars/hafidardiansyah/WebSPP?style=flat-square">
-<img src="https://img.shields.io/github/forks/hafidardiansyah/WebSPP?style=flat-square">
+<img src="https://img.shields.io/github/issues/hafidardiansyah/Aresn?style=flat-square">
+<img src="https://img.shields.io/github/stars/hafidardiansyah/Aresn?style=flat-square">
+<img src="https://img.shields.io/github/forks/hafidardiansyah/Aresn?style=flat-square">
 
 </p>
 
-### 🤔 Apa itu WebSPP?
+### 🤔 Apa itu Aresn?
 
-WebSPP adalah website untuk mengelola SPP sekolah, yang dibuat oleh <a href="https://github.com/hafidardiansyah"> Hafid Ardiansyah</a>. Menggunakan teknologi HTML, CSS, JavaScript, PHP dan MySQL.
+Aresn adalah website untuk mengelola SPP sekolah, yang dibuat oleh <a href="https://github.com/hafidardiansyah"> Hafid Ardiansyah</a>. Menggunakan teknologi HTML, CSS, JavaScript, PHP dan MySQL.
 
-### 🎉 Kenapa membuat WebSPP?
+### 🎉 Kenapa membuat Aresn?
 
 Website ini hasil kerja saya dari Ujian Kompetensi Keahlian (UKK) Rekayasa Perangkat Lunak (RPL).
 
@@ -46,7 +46,7 @@ Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
 ### 📝 Lisensi
 
 - Copyright © 2020 Hafid Ardiansyah.
-- **WebSPP Apache-2.0 License.**
+- **Aresn Apache-2.0 License.**
 
 ---
 
