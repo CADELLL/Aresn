@@ -12,7 +12,7 @@
 
 ### 🤔 Apa itu WebSPP?
 
-WebSPP adalah website untuk mengelola SPP sekolah, yang dibuat oleh <a href="https://github.com/hafidardiansyah"> Hafid Ardiansyah </a>. Menggunakan teknologi HTML, CSS, JavaScript, PHP dan MySQL.
+WebSPP adalah website untuk mengelola SPP sekolah, yang dibuat oleh <a href="https://github.com/hafidardiansyah"> Hafid Ardiansyah</a>. Menggunakan teknologi HTML, CSS, JavaScript, PHP dan MySQL.
 
 ### 🎉 Kenapa membuat WebSPP?
 
