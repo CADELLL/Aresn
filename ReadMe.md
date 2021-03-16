@@ -22,11 +22,19 @@ Website ini hasil kerja saya dari Ujian Kompetensi Keahlian (UKK) Rekayasa Peran
 
 Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
 
-### :floppy_disk: Akun
+### 👤 Akun untuk testing
+	
+**Admin**
+- Hubungi saya
 
-| Admin        | Petugas                               | Siswa                                    |
-| ------------ | ------------------------------------- | ---------------------------------------- |
-| Hubungi saya | Email: budi@gmail.com. Password: budi | NISN: 0012332111, 0014729057, 0075984011 |
+**Petugas**
+- Email : budi@gmail.com
+- Password : budi
+
+**Siswa**
+- NISN : 0012332111
+- NISN : 0014729057
+- NISN : 0075984011
 
 ### :star: Fitur
 
@@ -37,11 +45,6 @@ Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
 - Pagination
 - Membuat file PDF
 - Responsive website
-
-### :link: Social Media
-
-- Instagram : <a href="http://instagram.com/dev.hafid"> @dev.hafid</a>
-- Dribbble : <a href="https://dribbble.com/hafidardiansyah"> hafidardiansyah</a>
 
 ### 📝 Lisensi
 
