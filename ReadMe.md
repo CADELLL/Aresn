@@ -48,7 +48,7 @@ Demo dapat kalian kunjungi di https://firm-members.000webhostapp.com
 
 ### 📝 Lisensi
 
-- Copyright © 2020 Hafid Ardiansyah.
+- Copyright © 2021 Hafid Ardiansyah.
 - **Aresn Apache-2.0 License.**
 
 ---
